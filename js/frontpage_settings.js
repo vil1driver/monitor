@@ -1,14 +1,4 @@
-﻿/*
-*
-* choix de la taille de l'image de fond 
-*		
-*
-*
-*
-*
-*
-*
-*/
+﻿
 <!-- Change the text for on/off switches -->
 var txt_on = 'On';
 var txt_off = 'Off';
