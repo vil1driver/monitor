@@ -1002,9 +1002,13 @@ function currentTime() {
     }
 	var months = ["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Aout","Septembre","Octobre","Novembre","Décembre"];
     var maand = months[(today.getMonth()).toString()];
-        
+	
+    // affiche avec l'année    
     //var ret_str = "<span style='font-size:120%;position:relative;top:-5px;'>"+h+":"+m+"</span><br><span style='font-size:35%;position:relative;top:-40px;'>"+day+" "+dag+" "+maand+"</span>";
-    var ret_str = "<span style='font-size:120%;position:relative;top:-5px;'>"+h+":"+m+"</span><br><span style='font-size:35%;position:relative;top:-40px;'>"+day+" "+dag+"</span>";
+    
+	// affiche sans l'année
+	var ret_str = "<span style='font-size:120%;position:relative;top:-5px;'>"+h+":"+m+"</span><br><span style='font-size:35%;position:relative;top:-40px;'>"+day+" "+dag+"</span>";
+	
     return ret_str;
 }
 
@@ -1029,12 +1033,26 @@ function goodmorning(v) {
 	var months = ["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Aout","Septembre","Octobre","Novembre","Décembre"];
 	var month = months[v.substring(11, 13).replace(/^0+/, '')-1];
 	
+	// année
+	var year = v.substring(14,18);
+	
+	var now = new Date();
+	//console.log("now: ", now);
+	var wakeup = new Date(year,v.substring(11, 13).replace(/^0+/, '')-1,date,h,m);
+	//console.log("wakeup: ", wakeup);
+	
+	// affiche avec l'année 
 	//var ret_str = "<span style='font-size:100%;position:relative;top:-5px;'>"+h+":"+m+"</span><br><span style='font-size:35%;position:relative;top:-40px;'>"+day+" "+date+" "+month+"</span>";
+	
+	// affiche sans l'année
 	var ret_str = "<span style='font-size:100%;position:relative;top:-5px;'>"+h+":"+m+"</span><br><span style='font-size:35%;position:relative;top:-40px;'>"+day+" "+date+"</span>";
-	if (v.substring(14, 18) == "2000") {
+	
+	// si l'alarme désactivée ou passée.
+	if (year == "2000" || now > wakeup) {
 		//var ret_str = "ZZzzz";
 		var ret_str = "<img src=icons/sleep.png  height='70' width='70'>"; 
 	}
+	
 	return ret_str;
 }	
 	
