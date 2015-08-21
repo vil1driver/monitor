@@ -18,8 +18,8 @@ vous pouvez également récupérer l'arborescence au format zip <a href=https://git
 # Configuration
 
 Editez le fichier <pre>/home/pi/domoticz/www/monitor/js/<b>frontpage_settings.js</b></pre>
-Pour cela, je vous recommande les logiciels suivant:
-<a href=http://www.clubic.com/telecharger-fiche11156-winscp.html>WinSCP</a> (explorateur de fichier utilisant la connexion SSH, permettant transferts, éditions, suppressions..)
+Pour cela, je vous recommande les logiciels suivant:<br>
+<a href=http://www.clubic.com/telecharger-fiche11156-winscp.html>WinSCP</a> (explorateur de fichier utilisant la connexion SSH, permettant transferts, éditions, suppressions..)<br>
 <a href=http://www.clubic.com/telecharger-fiche9567-notepad.html>NotePad++</a> comme éditeur (à préciser dans les option de WinSCP)
 
 renseignez l'url de votre domoticz
@@ -36,18 +36,19 @@ Cette commande donne la liste des values potentiellement utilisables, d'un devic
 
 # Utilisation
 
-vous aurez sans doute remarqué la présence des fichiers nommés frontpage.html et frontpage3.html
+vous aurez sans doute remarqué la présence des fichiers nommés frontpage.html et frontpage3.html<br>
 ce dernier offre une page supplémentaire (soit 3 pages) par rapport au fichier frontpage.html (qui n'en compte que 2)
 
-à votre convenance (si vous souhaitez avoir 3 pages), renommez <b>frontpage.html</b> en <b>frontpage2.html</b> et <b>frontpage3.html</b> en <b>frontpage.html</b>
+à votre convenance (si vous souhaitez avoir 3 pages),<br>
+renommez <b>frontpage.html</b> en <b>frontpage2.html</b> et <b>frontpage3.html</b> en <b>frontpage.html</b>
 <pre>
 cd /home/pi/domoticz/www/monitor/
 mv frontpage.html frontpage2.html && mv frontpage3.html frontpage.html
 </pre>
-puis afficher votre nouvelle interface via 
-http://user:pass@ip:port/monitor/frontpage.html
-ou
-http://ip:port/monitor/frontpage.html
+puis afficher votre nouvelle interface via <br>
+<a href="#">http://user:pass@ip:port/monitor/frontpage.html</a><br>
+ou<br>
+<a href="#">http://ip:port/monitor/frontpage.html</a><br>
 
 # Mise à jour
 
