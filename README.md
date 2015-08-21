@@ -17,9 +17,9 @@ vous pouvez également récupérer l'arborescence au format zip <a href=https://git
 
 # Configuration
 
-Editez le fichier <color=#4040BF>/home/pi/domoticz/www/monitor/js/</color><color=#FF40FF>frontpage_settings.js</color> 
+Editez le fichier <pre>/home/pi/domoticz/www/monitor/js/<b>frontpage_settings.js</b></pre>
 Pour cela, je vous recommande les logiciels suivant:
-<a href=http://www.clubic.com/telecharger-fiche11156-winscp.html>WinSCP</a> (explorateur de fichier utilisant la connexion SSH, permettant transferts, éditions, suppressions..) 
+<a href=http://www.clubic.com/telecharger-fiche11156-winscp.html>WinSCP</a> (explorateur de fichier utilisant la connexion SSH, permettant transferts, éditions, suppressions..)
 <a href=http://www.clubic.com/telecharger-fiche9567-notepad.html>NotePad++</a> comme éditeur (à préciser dans les option de WinSCP)
 
 renseignez l'url de votre domoticz
@@ -27,8 +27,7 @@ renseignez l'url de votre domoticz
 puis les idx de vos devices, l'info à glaner (value), le nom de la cellule dans laquelle les placer, la légende, etc... 
 exemple avec l'heure en haut à gauche (cellule 1)
 <pre>
-['0','Clock','cell1','','','','font-family:digital;color:#8BFD1C;font-size:160%'],	// heure et date
-</pre>
+['0','Clock','cell1','','','','font-family:digital;color:#8BFD1C;font-size:160%'],</pre>
 
 Cette commande donne la liste des values potentiellement utilisables, d'un device (remplacez IDX par l'idx de votre device)
 <pre>
@@ -57,8 +56,8 @@ cd /home/pi/domoticz/www/monitor/
 cp js/frontpage_settings.js js/frontpage_settings_old.js
 git pull
 </pre>
-puis éditez de nouveau le fichier frontpage_settings.js pour y configurer les nouveaux paramètres qui peuvent y avoir été ajouté
-et rapatrier votre configuration sauvée dans frontpage_settings_old.js
+puis éditez de nouveau le fichier <b>frontpage_settings.js</b> pour y configurer les nouveaux paramètres qui peuvent y avoir été ajouté
+et rapatrier votre configuration sauvée dans <b>frontpage_settings_old.js</b>
 
 <pre>
 ##########################################################
