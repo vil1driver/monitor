@@ -9,42 +9,42 @@ voici ce que j'obtiens sur une tablette 7" (un slide est possible une autres pag
 
 # Installation
 
-<code>
+<pre>
 sudo apt-get install git
 git clone https://github.com/vil1driver/monitor.git /home/pi/domoticz/www/monitor
-</code>
+</pre>
 vous pouvez également récupérer l'arborescence au format zip <a href=https://github.com/vil1driver/monitor/archive/master.zip>ici</a> 
 
 # Configuration
 
-Editez le fichier <color=#4040BF>/home/pi/domoticz/www/monitor/js/[/color][color=#FF40FF]frontpage_settings.js</color> 
+Editez le fichier <color=#4040BF>/home/pi/domoticz/www/monitor/js/</color><color=#FF40FF>frontpage_settings.js</color> 
 Pour cela, je vous recommande les logiciels suivant:
 <a href=http://www.clubic.com/telecharger-fiche11156-winscp.html>WinSCP</a> (explorateur de fichier utilisant la connexion SSH, permettant transferts, éditions, suppressions..) 
 <a href=http://www.clubic.com/telecharger-fiche9567-notepad.html>NotePad++</a> comme éditeur (à préciser dans les option de WinSCP)
 
 renseignez l'url de votre domoticz
-<code>$.domoticzurl="http://USER:PASS@IP:PORT";</code>
+<pre>$.domoticzurl="http://USER:PASS@IP:PORT";</pre>
 puis les idx de vos devices, l'info à glaner (value), le nom de la cellule dans laquelle les placer, la légende, etc... 
 exemple avec l'heure en haut à gauche (cellule 1)
-<code>
+<pre>
 ['0','Clock','cell1','','','','font-family:digital;color:#8BFD1C;font-size:160%'],	// heure et date
-</code>
+</pre>
 
 Cette commande donne la liste des values potentiellement utilisables, d'un device (remplacez IDX par l'idx de votre device)
-<code>
+<pre>
 /json.htm?type=devices&rid=IDX
-</code>
+</pre>
 
 # Utilisation
 
 vous aurez sans doute remarqué la présence des fichiers nommés frontpage.html et frontpage3.html
 ce dernier offre une page supplémentaire (soit 3 pages) par rapport au fichier frontpage.html (qui n'en compte que 2)
 
-à votre convenance (si vous souhaitez avoir 3 pages), renommez frontpage.html en frontpage2.html et frontpage3.html en frontpage.html
-<code>
+à votre convenance (si vous souhaitez avoir 3 pages), renommez <b>frontpage.html</b> en <b>frontpage2.html</b> et <b>frontpage3.html</b> en <b>frontpage.html</b>
+<pre>
 cd /home/pi/domoticz/www/monitor/
 mv frontpage.html frontpage2.html && mv frontpage3.html frontpage.html
-</code>
+</pre>
 puis afficher votre nouvelle interface via 
 http://user:pass@ip:port/monitor/frontpage.html
 ou
@@ -52,23 +52,23 @@ http://ip:port/monitor/frontpage.html
 
 # Mise à jour
 
-<code>
+<pre>
 cd /home/pi/domoticz/www/monitor/
 cp js/frontpage_settings.js js/frontpage_settings_old.js
 git pull
-</code>
+</pre>
 puis éditez de nouveau le fichier frontpage_settings.js pour y configurer les nouveaux paramètres qui peuvent y avoir été ajouté
 et rapatrier votre configuration sauvée dans frontpage_settings_old.js
 
-<code>
-// ############################################################################################################
-// #### vvvvv   USER VALUES below vvvvv   #######
-// ############################################################################################################
+<pre>
+##########################################################
+#### vvvvv   USER VALUES below vvvvv   #######
+##########################################################
 
 			Lors d'une mise à jour,
 		ne conserver que ce qui se trouve ici.
 
-// ############################################################################################################
-// #### ^^^^^   USER VALUES above ^^^^^   #######
-// ############################################################################################################
-</code>
+##########################################################
+#### ^^^^^   USER VALUES above ^^^^^   #######
+##########################################################
+</pre>
