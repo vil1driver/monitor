@@ -8,7 +8,6 @@
 sudo apt-get install git
 git clone https://github.com/vil1driver/monitor.git /home/pi/domoticz/www/monitor
 </pre>
-vous pouvez également récupérer l'arborescence au format zip <a href=https://github.com/vil1driver/monitor/archive/master.zip>ici</a> 
 
 # Configuration
 
