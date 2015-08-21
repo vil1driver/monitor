@@ -1,10 +1,5 @@
 # Custom page for Domoticz
 
-pour faire suite à cet <a href=http://easydomoticz.com/les-custom-pages-domoticz/>article</a> ou cet <a href=http://easydomoticz.com/mon-domoticz-a-moi-les-frontages-interactives-la-configuration/>article</a>
-pour ceux qui comme moi trouvent dommage d'avoir un panneau de contrôle sans interaction possible, je vous propose ma version interactive,
-qui n'est autre qu'un condensé de l'excellent travail de toute une <a href=http://www.domoticz.com/forum/viewtopic.php?f=8&t=4698>communauté</a>
-
-voici ce que j'obtiens sur une tablette 7" (un slide est possible une autres page)
 <img src="https://drive.google.com/uc?id=0BxlxVZPVHBfPeFRsVmpENmdrNGc"/>
 
 # Installation
