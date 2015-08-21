@@ -24,7 +24,8 @@ exemple avec l'heure en haut à gauche (cellule 1)
 <pre>
 ['0','Clock','cell1','','','','font-family:digital;color:#8BFD1C;font-size:160%'],</pre>
 
-Cette commande donne la liste des values potentiellement utilisables, d'un device (remplacez IDX par l'idx de votre device)
+Cette commande donne la liste des values potentiellement utilisables, d'un device<br>
+remplacez IDX par l'idx de votre device
 <pre>
 /json.htm?type=devices&rid=IDX
 </pre>
