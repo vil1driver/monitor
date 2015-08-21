@@ -49,7 +49,7 @@ ou<br>
 
 <pre>
 cd /home/pi/domoticz/www/monitor/
-cp js/frontpage_settings.js js/frontpage_settings_old.js
+mv js/frontpage_settings.js js/frontpage_settings_old.js
 git pull
 </pre>
 puis éditez de nouveau le fichier <b>frontpage_settings.js</b><br>
