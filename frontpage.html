@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no" />
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
 <title>Domoticz Monitor</title> 
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="mobile-web-app-capable" content="yes" />
@@ -15,31 +15,34 @@
 <script type="text/javascript" src="js/frontpage_settings.js"></script>
 <script type="text/javascript" src="js/frontpage.js"></script>
 <link rel="stylesheet" href="css/frontpage.css">
+<script type="text/javascript">
+//<!--
 <!-- empêcher la sélection du texte -->
-<script type="text/javascript">
-        //<!--
-                function ffalse()
-                {
-                        return false;
-                }
-                function ftrue()
-                {
-                        return true;
-                }
-                document.onselectstart = new Function ("return false");
-                if(window.sidebar)
-                {
-                        document.onmousedown = ffalse;
-                        document.onclick = ftrue;
-                }
-        //-->
-        </script>
+    function ffalse()
+        {
+            return false;
+        }
+    function ftrue()
+        {
+            return true;
+        }
+    document.onselectstart = new Function ("return false");
+    if(window.sidebar)
+        {
+            document.onmousedown = ffalse;
+            document.onclick = ftrue;
+        }
+
 <!-- empêcher le clic droit -->		
-<script type="text/javascript">
-    //<!--
-        document.oncontextmenu = new Function("return false");
-    //-->
-    </script>		
+    document.oncontextmenu = new Function("return false");
+
+<!-- essai responsive design -->		
+	var def = 962;	
+	var actual = document.documentElement.clientWidth;
+	var scale = Math.ceil((actual/def)*100)/100;
+	document.querySelector("meta[name=viewport]").setAttribute('content','width=device-width, initial-scale='+scale+', maximum-scale='+scale+', user-scalable=no');
+//-->
+</script>	
 </head>
 
 <body bgcolor="#000">
