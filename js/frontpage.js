@@ -52,9 +52,8 @@ function LoadMeteoWidget() {
 function show(cell){document.getElementById(cell).style.visibility = "visible";}
 function hide(cell){document.getElementById(cell).style.visibility = "hidden";} 
  
- 
-
-
+var var_sunrise='';	
+var var_sunset='';
 
 <!-- Main Frontpage fuction -->
 function RefreshData()
@@ -64,9 +63,6 @@ function RefreshData()
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 		
 	//Get sunrise/sunset
-	
-	var var_sunrise='';	
-	var var_sunset='';
 	
 	var timeurl=$.domoticzurl+"/json.htm?type=command&param=getSunRiseSet&jsoncallback=?";
 	$.getJSON(timeurl,
@@ -96,7 +92,8 @@ function RefreshData()
 
 	
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
-
+	
+		
 		// affichage de la partie switch
         var jurl=$.domoticzurl+"/json.htm?type=devices&plan="+$.roomplan+"&jsoncallback=?";
         $.getJSON(jurl,
@@ -596,7 +593,7 @@ function RefreshData()
 												// Adds € after price
 												if(vtype == 'Euro'){       
 													vdata=item.Data;
-													vdata=new String(vdata).replace( vdata,Math.ceil(vdata) + "<span style='font-size:30px;'> €</span>");
+													vdata=new String(vdata).replace( vdata,Math.ceil(vdata*100)/100 + "<span style='font-size:30px;'> €</span>");
 												}
 												
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////													
@@ -792,8 +789,10 @@ function RefreshData()
                         });
                 }
         });
-	
+		
+		
         $.refreshTimer = setInterval(RefreshData, 8000); // auto refresh page 8 secondes
+		
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////													
@@ -1010,6 +1009,7 @@ function currentTime() {
 	var ret_str = "<span style='font-size:120%;position:relative;top:-5px;'>"+h+":"+m+"</span><br><span style='font-size:35%;position:relative;top:-40px;'>"+day+" "+dag+"</span>";
 	
     return ret_str;
+    
 }
 
 // mise en forme heure de réveil

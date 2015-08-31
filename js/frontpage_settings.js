@@ -54,7 +54,7 @@ $(document).ready(function() {
 				
 				
 				
-				['4','Temp',           			'cell3',                        	''],	// températures exterieure
+				['279','Temp',           			'cell3',                        	''],	// températures exterieure
 			//	['202','Temp',          		'cell16',                       	'Salle de bain','','','color:#F2B3B7','22.5'], // alarme à 22.5°C
 				
 				
@@ -84,7 +84,7 @@ $(document).ready(function() {
 				['129','Status',   				'cell10',                       	'Reggae','','','color:#6594FE;font-family:brankovic;font-size:100%'],
 				['128','Status',        		'cell15',                       	'Rock','','','color:#6594FE;font-family:brankovic;font-size:100%'],
 			  
-                ['4','ForecastStr',    			'cell25',                       	''],	// icon météo (idx du capteur de température extérieur virtuel Weather Underground)
+                ['279','ForecastStr',    			'cell25',                       	''],	// icon météo (idx du capteur de température extérieur virtuel Weather Underground)
 			    ['0','Clock',            		'cell1',                       		'','','','font-family:digital;color:#8BFD1C;font-size:160%'],	// heure et date
 				
 							
@@ -96,7 +96,10 @@ $(document).ready(function() {
 				['101','Status',       			'cell2_5',                      	'Porte d\'entrée','2'],	// contact de porte
 				['92','Data',          			'cell2_4',                      	'CPU','','','color:#02E07A','10'],	// charge processeur
 				['112','Usage',         		'cell2_15',                      	'EDF instant','','','color:#88B496;font-size:90%','2000'],	// consommation instantanée (téléinfo)
-				['112','Counter',      			'cell2_20',                      	'EDF total','','','color:#88B496;font-size:90%'],	// consomation totale (téléinfo)
+				['112','Counter',      			'cell2_20',                      	'EDF total','','','color:#88B496;font-size:90%'],	// consommation totale (téléinfo)
+				['112','CounterToday',       	'cell2_10',                     	'EDF today','','','color:#88B496;font-size:90%','15'],	// consommation du jour (téléinfo)
+				['255','Euro',       			'cell2_11',                      	'coût jour','1','','color:pink'],	
+				['264','Euro',       			'cell2_16',                      	'coût nuit','1','','color:pink'],	
 				
 				['216','Status',        		'cell2_12',                      	'alarme','2'],	// security pannel
 				
@@ -104,11 +107,8 @@ $(document).ready(function() {
 				['214','SignalLevel',        	'cell2_8',                      	'signal sonde chambre','1','','color:#FBFE03'],	
 				['202','SignalLevel',        	'cell2_9',                      	'signal sonde sdb','1','','color:#FBFE03'],	
 				
-				['107','Data',       			'cell2_11',                      	'Total chauffage','','','','1000'],	
 				['95','SignalLevel',       		'cell2_17',                      	'la chambre','1','','color:#FBFE03'],	
 			//	['134','Status',       			'cell2_16',                      	'Thermostat','2'],	
-				['255','Euro',       			'cell2_16',                      	'tarif','','','color:pink',''],		
-				
 				
 				['195','SignalLevel',       	'cell2_22',                      	'veilleuse mur','1','','color:#FBFE03'],	
 				['66','SignalLevel',       		'cell2_13',                      	'veilleuse lit','1','','color:#FBFE03'],	
@@ -123,7 +123,7 @@ $(document).ready(function() {
             
 			//	['0','Link',       				'cell2_22',                     	'<a href="http://......" target="_blank">blabla</a>'], // simple lien s'ouvrant dans une nouvelle fenêtre
 				['0','Clock',           		'cell2_1',                      	'','','','color:#02E07A'],	// heure et date
-				['112','CounterToday',       	'cell2_10',                     	'EDF today','','','color:#88B496;font-size:90%','15'],	// consommation du jour (téléinfo)
+				
 				['0','SunRise',         		'cell2_2',                      	'','','','color:#E6A677'],	// heure de lever du soleil
 				['0','SunSet',         			'cell2_6',                     		'','','','color:#E6A677'],		// heure de coucher du soleil
 				

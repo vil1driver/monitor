@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="css/frontpage.css">
 <script type="text/javascript">
 //<!--
+
 <!-- empêcher la sélection du texte -->
     function ffalse()
         {
@@ -36,11 +37,12 @@
 <!-- empêcher le clic droit -->		
     document.oncontextmenu = new Function("return false");
 
-<!-- essai responsive design -->		
+<!-- viewport auto detect best scale -->		
 	var def = 962;	
 	var actual = document.documentElement.clientWidth;
 	var scale = Math.ceil((actual/def)*100)/100;
 	document.querySelector("meta[name=viewport]").setAttribute('content','width=device-width, initial-scale='+scale+', maximum-scale='+scale+', user-scalable=no');
+
 //-->
 </script>	
 </head>
