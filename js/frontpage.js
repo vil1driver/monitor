@@ -18,6 +18,23 @@ function lightbox_close(id){
 		clearTimeout(tempo);
 }
 
+<!-- help box open popup -->
+function helpBox_open(id){
+		window.scrollTo(0,0);
+		$('#popup_help').html('<div>Bad value, click <a target="_blank" href="'+$.domoticzurl+'/json.htm?type=devices&rid='+id+'">here</a> to show what you can use..</div>');
+		$('#popup_help').fadeIn('fast');
+		$('#fade').fadeIn('fast');
+		$('#popup_help').click(function(){helpBox_close();});
+		tempo = setTimeout(function() {helpBox_close();}, 30000);
+}
+
+<!-- help box close popup -->
+function helpBox_close(){
+        $('#popup_help').fadeOut('fast');
+        $('#fade').fadeOut('fast');
+		clearTimeout(tempo);
+}
+
 <!-- show security panel -->
 function showPanel() {
 $('#popup_secpanel').html('<object type="text/html" data="'+$.domoticzurl+'/secpanel/index.html" width="100%" height="100%"></object>');
@@ -119,7 +136,8 @@ function RefreshData()
 												var vdimmercurrent=  item["LevelInt"];  				// What is the dim level
 											
                                                 if (typeof vdata == 'undefined') {
-                                                        vdata="?!";
+                                                        //vdata="?!";
+														vdata='<span onclick="helpBox_open('+item.idx+')">?!</span>';
                                                 } else {
                                                         // remove too much text
                                                         vdata=new String(vdata).split("Watt",1)[0];
@@ -708,7 +726,8 @@ function RefreshData()
                                                 var vattr=    	$.PageArray_Scenes[ii][5];                      // extra css attributes
                                                 var vdata=      item[vtype];                            		// current value
                                                 if (typeof vdata == 'undefined') {
-                                                        vdata="?!";
+                                                      //  vdata="?!";
+                                                        vdata='<span onclick="helpBox_open('+item.idx+')">?!</span>';
                                                 } else {
                                                         // remove too much text
                                                         vdata=new String(vdata).split("Watt",1)[0];

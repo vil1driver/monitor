@@ -54,7 +54,7 @@ $(document).ready(function() {
 				
 				
 				
-				['279','Temp',           			'cell3',                        	''],	// températures exterieure
+				['279','Temp',           		'cell3',                        	''],	// températures exterieure
 			//	['202','Temp',          		'cell16',                       	'Salle de bain','','','color:#F2B3B7','22.5'], // alarme à 22.5°C
 				
 				
@@ -84,7 +84,7 @@ $(document).ready(function() {
 				['129','Status',   				'cell10',                       	'Reggae','','','color:#6594FE;font-family:brankovic;font-size:100%'],
 				['128','Status',        		'cell15',                       	'Rock','','','color:#6594FE;font-family:brankovic;font-size:100%'],
 			  
-                ['279','ForecastStr',    			'cell25',                       	''],	// icon météo (idx du capteur de température extérieur virtuel Weather Underground)
+                ['279','ForecastStr',    		'cell25',                       	''],	// icon météo (idx du capteur de température extérieur virtuel Weather Underground)
 			    ['0','Clock',            		'cell1',                       		'','','','font-family:digital;color:#8BFD1C;font-size:160%'],	// heure et date
 				
 							
