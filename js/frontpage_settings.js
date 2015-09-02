@@ -16,7 +16,7 @@ var txt_blind_up = '\'Ouverture\'';
 var txt_blind_down = '\'Fermeture\'';
 var txt_blind_stop = '\'Arrêt\'';
 
-<!-- Change backgrounds images -->
+<!-- Change backgrounds images and size -->
 var bg_day = 'pissanli.jpg';			// image de fond le jour, laisser vide pour fond noir
 var bg_night = 'romantic.jpg';			// image de fond la nuit, laisser vide pour fond noir
 var bg_size = 'cover'					// taille de l'image de fond (ex: '1024px 768px') 'cover' : "couvre" au mieux tout le fond.
@@ -27,8 +27,8 @@ var switch_on_timeout = '1000';
 var switch_off_timeout = '1000';
 
 <!-- Special items -->
-var city = 'saint-jacques-de-la-lande'	// localité pour la popup météo (lors du clic sur l'icon météo)
-var blink = true	// faire clignoter les valeurs en alarme (true/false)
+var city = 'paris'	// localité pour la popup météo (lors du clic sur l'icon météo)
+var blink = false	// faire clignoter les valeurs en alarme (true/false)
 
 // ############################################################################################################
 // #### vvvvv   USER VALUES below vvvvv   #######
@@ -37,124 +37,108 @@ var blink = true	// faire clignoter les valeurs en alarme (true/false)
 $(document).ready(function() {
         $.roomplan = 0;           // define roomplan in Domoticz and create items below. (0 = all devices, not limited to a roomplan)
 		$.domoticzurl = "http://192.168.22.100:8080";
-	//format: idx, value, label, description, 1=lastseen 2=icon 3=both, pas de thermostat, [override css], [alarm value] ou valeur max de thermostat
-	// pour trouver les 'value' disponnible pour un dispositif : /json.htm?type=devices&rid=IDX
+	
         $.PageArray = [
 		
             //page 1
 				
-				['203','Temp',         			'cell6',                        	'Salon','','','font-size:110%;color:#1CD5FD'],	// températures salon
-                ['214','Temp',         			'cell7',                       		'Chambre','','','font-size:110%;color:#1CD5FD'],	// températures chambre
-				
-				['145','SetPoint',      		'cell11',                       	'','','0.5','font-size:85%;color:#1CD5FD','23'],	// thermostat salon avec un pas de 0.5, valeur max 23°C
-				['147','SetPoint',      		'cell12',                       	'','','0.5','font-size:85%;color:#1CD5FD','23'],		// thermostat chambre avec un pas de 0.5, valeur max 23°C
-          		
-				['59','Status',            		'heat1',                       		'','2','',''],	// visu radiateur salon
-                ['60','Status',            		'heat2',                       		'','2','',''],	// visu radiateur chambre
-				
-				
-				
-				['279','Temp',           		'cell3',                        	''],	// températures exterieure
-			//	['202','Temp',          		'cell16',                       	'Salle de bain','','','color:#F2B3B7','22.5'], // alarme à 22.5°C
-				
-				
-				['103','Status',        		'cell26',                     		'Cafetière','2'],	// interrupteurs classics
-				['35','Status',         		'cell13',                       	'Pierres','2'],
-				['95','Status',         		'cell9',                        	'Chambre','2'],
-				['116','Status',        		'cell4',                       		'','2'], // interrupteurs classics avec icon
-				['248','Status',         		'cell21',                     		'Boost','2'], 
-				['204','Status',         		'cell22',                     		'Douche','2'], 
-				
-				['134','Status',       			'cell16',                      		'Chauffage','2'],	
-				['232','Status',         		'cell17',                     		'Climatisation','2'],
-				
-				['150','Wakeup',         		'cell2',                        	'','','','color:#E51CFD'],	// réveil 
-																				               
-         
-			//  ['146','SetPoint',      		'cell17',                       	'Salle de bain (&deg;C)','','1','color:#F2B3B7','25'],
-				
-                
-			   
-                ['66','Level',         			'cell14',                       	'Veilleuse','2'],	// variateur
-				['30','Level',          		'cell8',                        	'Salon','2'],
-				               
-                ['130','Status',        		'cell23',                       	'Goa','','','color:#6594FE;font-family:brankovic;font-size:100%'],	// boutons PushOn ou pushOff
-                ['148','Status',        		'cell20',                       	'Metal','','','color:#6594FE;font-family:brankovic;font-size:100%'],
-				['175','Status',        		'cell5',                       		'Spoon','','','color:#6594FE;font-family:brankovic;font-size:100%'],
-				['129','Status',   				'cell10',                       	'Reggae','','','color:#6594FE;font-family:brankovic;font-size:100%'],
-				['128','Status',        		'cell15',                       	'Rock','','','color:#6594FE;font-family:brankovic;font-size:100%'],
-			  
-                ['279','ForecastStr',    		'cell25',                       	''],	// icon météo (idx du capteur de température extérieur virtuel Weather Underground)
-			    ['0','Clock',            		'cell1',                       		'','','','font-family:digital;color:#8BFD1C;font-size:160%'],	// heure et date
-				
+			//	['idx','value',  	'cellule',    	'description','1=lastseen 2=icon 3=both','pas de thermostat','override css','Alarme ou valeur max de thermostat'],
 							
-				['0','SunBoth',					'desc_cell25',						'','','','color:#F2DDB3;font-size:19px;font-weight:bold;'],	// heures soleil dans la description de la cellule 25
+				['0','',           		'cell1',                       		'','','','',''],
+				['0','',         		'cell2',                       		'','','','',''],	
+				['0','',      			'cell3',                       		'','','','',''],	
+				['0','',      			'cell4',                       		'','','','',''],	
+          		['0','',            	'cell5',                       		'','','','',''],	
+                ['0','',            	'cell6',                       		'','','','',''],	
+				['0','',           		'cell7',                        	'','','','',''],	
+				['0','',          		'cell8',                       		'','','','',''], 
+				['0','',        		'cell9',                     		'','','','',''],	
+				['0','',         		'cell10',                       	'','','','',''],
+				['0','',         		'cell11',                        	'','','','',''],
+				['0','',        		'cell12',                       	'','','','',''], 
+				['0','',         		'cell13',                     		'','','','',''], 
+				['0','',         		'cell14',                     		'','','','',''], 
+				['0','',         		'cell15',                     		'','','','',''], 
+				['0','',       			'cell16',                      		'','','','',''],	
+				['0','',         		'cell17',                     		'','','','',''],
+				['0','',         		'cell18',                     		'','','','',''],
+				['0','',         		'cell19',                     		'','','','',''],
+				['0','',         		'cell20',                     		'','','','',''],
+				['0','',         		'cell21',                     		'','','','',''],
+				['0','',         		'cell22',                     		'','','','',''],
+				['0','',         		'cell23',                     		'','','','',''],
+				['0','',         		'cell24',                     		'','','','',''],
+				['0','',   				'cell25',                       	'','','','',''],
 				
           
 			// page 2	
 			
-				['101','Status',       			'cell2_5',                      	'Porte d\'entrée','2'],	// contact de porte
-				['92','Data',          			'cell2_4',                      	'CPU','','','color:#02E07A','10'],	// charge processeur
-				['112','Usage',         		'cell2_15',                      	'EDF instant','','','color:#88B496;font-size:90%','2000'],	// consommation instantanée (téléinfo)
-				['112','Counter',      			'cell2_20',                      	'EDF total','','','color:#88B496;font-size:90%'],	// consommation totale (téléinfo)
-				['112','CounterToday',       	'cell2_10',                     	'EDF today','','','color:#88B496;font-size:90%','15'],	// consommation du jour (téléinfo)
-				['255','Euro',       			'cell2_11',                      	'coût jour','1','','color:pink'],	
-				['264','Euro',       			'cell2_16',                      	'coût nuit','1','','color:pink'],	
-				
-				['216','Status',        		'cell2_12',                      	'alarme','2'],	// security pannel
-				
-				['203','SignalLevel',        	'cell2_7',                      	'signal sonde salon','1','','color:#FBFE03'],	
-				['214','SignalLevel',        	'cell2_8',                      	'signal sonde chambre','1','','color:#FBFE03'],	
-				['202','SignalLevel',        	'cell2_9',                      	'signal sonde sdb','1','','color:#FBFE03'],	
-				
-				['95','SignalLevel',       		'cell2_17',                      	'la chambre','1','','color:#FBFE03'],	
-			//	['134','Status',       			'cell2_16',                      	'Thermostat','2'],	
-				
-				['195','SignalLevel',       	'cell2_22',                      	'veilleuse mur','1','','color:#FBFE03'],	
-				['66','SignalLevel',       		'cell2_13',                      	'veilleuse lit','1','','color:#FBFE03'],	
-				['132','SignalLevel',       	'cell2_26',                      	'mv chambre','1','','color:#FBFE03'],	
-				['133','SignalLevel',       	'cell2_24',                      	'mv salon','1','','color:#FBFE03'],	
-				['136','SignalLevel',       	'cell2_18',                      	'Lumino salon','1','','color:#FBFE03'],	
-				['135','SignalLevel',       	'cell2_19',                      	'Lumino chambre','1','','color:#FBFE03'],	
-				['101','SignalLevel',       	'cell2_14',                      	'porte','1','','color:#FBFE03'],	
-				
-				['133','Status',       			'cell2_21',                      	'mv salon','2'],	
-				['132','Status',       			'cell2_23',                      	'mv chambre','2'],	
-            
-			//	['0','Link',       				'cell2_22',                     	'<a href="http://......" target="_blank">blabla</a>'], // simple lien s'ouvrant dans une nouvelle fenêtre
-				['0','Clock',           		'cell2_1',                      	'','','','color:#02E07A'],	// heure et date
-				
-				['0','SunRise',         		'cell2_2',                      	'','','','color:#E6A677'],	// heure de lever du soleil
-				['0','SunSet',         			'cell2_6',                     		'','','','color:#E6A677'],		// heure de coucher du soleil
+				['0','',           		'cell2_1',                       	'','','','',''],	
+				['0','',         		'cell2_2',                       	'','','','',''],	
+				['0','',      			'cell2_3',                       	'','','','',''],	
+				['0','',      			'cell2_4',                       	'','','','',''],	
+          		['0','',            	'cell2_5',                       	'','','','',''],	
+                ['0','',            	'cell2_6',                       	'','','','',''],	
+				['0','',           		'cell2_7',                        	'','','','',''],	
+				['0','',          		'cell2_8',                       	'','','','',''], 
+				['0','',        		'cell2_9',                     		'','','','',''],	
+				['0','',         		'cell2_10',                       	'','','','',''],
+				['0','',         		'cell2_11',                        	'','','','',''],
+				['0','',        		'cell2_12',                       	'','','','',''], 
+				['0','',         		'cell2_13',                     	'','','','',''], 
+				['0','',         		'cell2_14',                     	'','','','',''], 
+				['0','',         		'cell2_15',                     	'','','','',''], 
+				['0','',       			'cell2_16',                      	'','','','',''],	
+				['0','',         		'cell2_17',                     	'','','','',''],
+				['0','',         		'cell2_18',                     	'','','','',''],
+				['0','',         		'cell2_19',                     	'','','','',''],
+				['0','',         		'cell2_20',                     	'','','','',''],
+				['0','',         		'cell2_21',                     	'','','','',''],
+				['0','',         		'cell2_22',                     	'','','','',''],
+				['0','',         		'cell2_23',                     	'','','','',''],
+				['0','',         		'cell2_24',                     	'','','','',''],
+				['0','',         		'cell2_25',                     	'','','','',''],
+			   
 				
 			// page 3	
 			
-				['0','Hide',       				'cell3_5',                      	''],	
-				['0','Hide',       				'cell3_3',                      	''],	
-				['0','Hide',       				'cell3_25',                      	''],	
-				['0','Hide',          			'cell3_4',                      	''],	
-				['253','Level',          		'cell3_7',                      	'red','2'],	// rgb
-				['252','Level',          		'cell3_8',                      	'green','2'],	// rgb
-				['254','Level',          		'cell3_9',                      	'blue','2'],	// rgb
-				['0','Hide',         			'cell3_15',                      	''],	
-				['0','Hide',      				'cell3_20',                      	''],	
-				['195','SignalLevel',       	'cell3_22',                      	'veilleuse mur','1','','color:#FBFE03'],	
-				['66','SignalLevel',       		'cell3_13',                      	'veilleuse lit','1','','color:#FBFE03'],	
-				['132','SignalLevel',       	'cell3_26',                      	'mv chambre','1','','color:#FBFE03'],	
-				['133','SignalLevel',       	'cell3_24',                      	'mv salon','1','','color:#FBFE03'],	
-				['136','SignalLevel',       	'cell3_18',                      	'Lumino salon','1','','color:#FBFE03'],	
-				['135','SignalLevel',       	'cell3_19',                      	'Lumino chambre','1','','color:#FBFE03'],	
-				['101','SignalLevel',       	'cell3_14',                      	'porte','1','','color:#FBFE03'],	
+				['0','',           		'cell3_1',                       	'','','','',''],	
+				['0','',         		'cell3_2',                       	'','','','',''],	
+				['0','',      			'cell3_3',                       	'','','','',''],	
+				['0','',      			'cell3_4',                       	'','','','',''],	
+          		['0','',            	'cell3_5',                       	'','','','',''],	
+                ['0','',            	'cell3_6',                       	'','','','',''],	
+				['0','',           		'cell3_7',                        	'','','','',''],	
+				['0','',          		'cell3_8',                       	'','','','',''], 
+				['0','',        		'cell3_9',                     		'','','','',''],	
+				['0','',         		'cell3_10',                       	'','','','',''],
+				['0','',         		'cell3_11',                        	'','','','',''],
+				['0','',        		'cell3_12',                       	'','','','',''], 
+				['0','',         		'cell3_13',                     	'','','','',''], 
+				['0','',         		'cell3_14',                     	'','','','',''], 
+				['0','',         		'cell3_15',                     	'','','','',''], 
+				['0','',       			'cell3_16',                      	'','','','',''],	
+				['0','',         		'cell3_17',                     	'','','','',''],
+				['0','',         		'cell3_18',                     	'','','','',''],
+				['0','',         		'cell3_19',                     	'','','','',''],
+				['0','',         		'cell3_20',                     	'','','','',''],
+				['0','',         		'cell3_21',                     	'','','','',''],
+				['0','',         		'cell3_22',                     	'','','','',''],
+				['0','',         		'cell3_23',                     	'','','','',''],
+				['0','',         		'cell3_24',                     	'','','','',''],
+				['0','',         		'cell3_25',                     	'','','','',''],
+				
 				
 				
         ];
-        $.PageArray_Scenes = [
-            //format: idx, value, label, description, icon name (ex: Light, Blinds, WallSocket, Generic,..), [override css]
+        $.PageArray_Scenes = [		// placez ci dessous vos groupes et scènes
+            
+			//	['idx','value','cellule','description','icon name (ex: Light, Blinds, WallSocket, Generic,..)','override css'],
            
-                ['1','Status',  				'cell18',                    		'Ciné','','color:#E4D422;font-size:90%'],	// scène 
-				['6','Status',         			'cell19',                       	'Apéro','','color:#E4D422;font-size:90%'],	// scène 
-				['24','Status',         		'cell24',                     		'Toute la maison','Light'],	// groupe avec icon Light
-			//	['10','Status',         		'cell24',                     		'Toute la maison'],	// groupe 
+                ['0','',  				'',                    		'','',''],
+                ['0','',  				'',                    		'','',''],
+                ['0','',  				'',                    		'','',''],
+			
         ];
 
 // ############################################################################################################
