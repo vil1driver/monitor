@@ -1,0 +1,111 @@
+#ls_cell1, #ls_cell2, #ls_cell3, #ls_cell4,
+#ls_cell5, #ls_cell6, #ls_cell7, #ls_cell8, #ls_cell9,
+#ls_cell10, #ls_cell11, #ls_cell12, #ls_cell13, #ls_cell14,
+#ls_cell15, #ls_cell16, #ls_cell17, #ls_cell18, #ls_cell19,
+#ls_cell20, #ls_cell21, #ls_cell22, #ls_cell24, #ls_cell26, #ls_cell23, #ls_cell24, #ls_cell25 
+ {
+	font-family: arimo;
+	font-weight: normal;
+	color: #999;
+	font-size: 12px;
+	margin-top: -20px;
+	height: 20px;
+	line-height: 65px;
+	text-shadow: 1px 1px 5px black;
+	
+}
+
+#desc_cell1, #desc_cell2, #desc_cell3, #desc_cell4,
+#desc_cell5, #desc_cell6, #desc_cell7, #desc_cell8, #desc_cell9,
+#desc_cell10, #desc_cell11, #desc_cell12, #desc_cell13, #desc_cell14,
+#desc_cell15, #desc_cell16, #desc_cell17, #desc_cell18, #desc_cell19,
+#desc_cell20, #desc_cell21, #desc_cell22, #desc_cell24, #desc_cell26, #desc_cell23, #desc_cell24, #desc_cell25 
+{
+	font-family: arimo;
+	font-weight: normal;
+/*	color: #999; */
+	color: #F2DDB3;
+	font-size: 17px;
+	margin-top: -20px;
+	height: 25px;
+	line-height: 15px;
+	text-shadow: 1px 1px 4px black;
+	
+}
+
+
+#cell3, #cell25
+{
+	font-family: arimo;
+	font-weight: bold;
+	width: 277px;
+	padding: 5px;
+/*	border: 1px solid #1E1E1F; */
+	border: 1px solid transparent;
+	border-radius: 0px;
+	height: 152.5px;	
+	line-height: 170px; 
+	font-size: 100px;	
+	color: #999;
+	margin: 0px ;
+	text-shadow: 1px 1px 4px black;
+	
+}
+
+
+
+#cell1, #cell2, #cell4, #cell5, 
+#cell6, #cell7, #cell8, #cell9, #cell10, 
+#cell11, #cell12, #cell13, #cell14, #cell15, 
+#cell16, #cell17, #cell18, #cell19, #cell20, 
+#cell21, #cell22, #cell24, #cell26, #cell23
+{
+	font-family: arimo;
+	font-weight: bold;
+	width: 162px;
+	padding: 10px;
+/*	border: 1px solid #1E1E1F; */
+	border: 1px solid transparent;
+	border-radius: 0px;
+	height: 58px;
+	line-height: 55px; 		
+	font-size: 90px;
+	color: #999;
+	font-size:40px;
+	text-shadow: 1px 1px 4px black;
+	
+}
+
+
+#cell6,  #cell7, #cell8, #cell9, #cell10,  
+#cell11, #cell12, #cell13, #cell14, #cell15,
+#cell16, #cell17, #cell18, #cell19, #cell20, 
+#cell21, #cell22, #cell24, #cell26, #cell23 
+{
+	height: 58px;
+	line-height: 55px;
+	color: #999;
+}
+
+#cell8, #cell13, #cell18, #cell24
+{ 
+	width: 184px; 
+}
+
+#heat1, #heat2 {
+	/*background-color: red;*/
+	position: absolute;
+	width: 35px;
+    height: 30px;
+	margin-left: 75px;
+    margin-top: -0px;      
+	overflow : hidden;
+ 
+}
+#heat1 img, #heat2 img{
+	
+	width: 25px;
+    height: 20px;
+	
+ 
+}

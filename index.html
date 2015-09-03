@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+<title>Domoticz Monitor</title> 
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<link rel="shortcut icon" type="image/x-icon" href="icons/favicon.ico" />
+<script src="js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="js/swipe.js"></script>
+<script type="text/javascript" src="js/frontpage_settings.js"></script>
+<script type="text/javascript" src="js/frontpage.js"></script>
+<link rel="stylesheet" href="css/global.css">
+<script type="text/javascript">
+//<!--
+
+<!-- empêcher la sélection du texte -->
+    function ffalse()
+        {
+            return false;
+        }
+    function ftrue()
+        {
+            return true;
+        }
+    document.onselectstart = new Function ("return false");
+    if(window.sidebar)
+        {
+            document.onmousedown = ffalse;
+            document.onclick = ftrue;
+        }
+
+<!-- empêcher le clic droit -->		
+    document.oncontextmenu = new Function("return false");
+
+<!-- viewport auto detect best scale -->		
+	var def = 962;	
+	var actual = document.documentElement.clientWidth;
+	var scale = Math.ceil((actual/def)*100)/100;
+	document.querySelector("meta[name=viewport]").setAttribute('content','width=device-width, initial-scale='+scale+', maximum-scale='+scale+', user-scalable=no');
+	
+<!-- import pages -->	
+$(function(){
+      $("#page1").load("pages/page1.html"); 	<!-- load page 1 -->
+      $("#page2").load("pages/page2.html");		<!-- load page 2 -->
+      $("#page3").load("pages/page3.html");		<!-- load page 3 -->
+	  
+	RefreshData();	  
+	});
+	
+//-->
+</script>	
+</head>
+
+<body bgcolor="#000">
+<div id='slider' class='swipe'>
+<div class='swipe-wrap'>
+
+<div id="page1"></div>	<!-- Page 1 -->
+<div id="page2"></div>	<!-- Page 2 -->
+<div id="page3"></div>	<!-- Page 3 -->
+
+</div>
+
+<!-- Popups under -->
+<div id="popup_protected"></div>
+<div id="popup_switch"></div>
+<div id="popup_meteo"></div>
+<div id="popup_camera1"><img src="" onClick="lightbox_close('camera1');" width="640" height="480" class='bigcamera'/></div>
+<div id="popup_camera2"><img src="" onClick="lightbox_close('camera2');" width="640" height="480" class='bigcamera'/></div>
+<div id="popup_camera3"><img src="" onClick="lightbox_close('camera3');" width="640" height="480" class='bigcamera'/></div>
+<div id="popup_camera4"><img src="" onClick="lightbox_close('camera4');" width="640" height="480" class='bigcamera'/></div>
+<div id="popup_camera5"><img src="" onClick="lightbox_close('camera5');" width="640" height="480" class='bigcamera'/></div>
+<div id="popup_camera6"><img src="" onClick="lightbox_close('camera6');" width="640" height="480" class='bigcamera'/></div>
+<div id="popup_secpanel"></div>
+<div id="popup_help"></div>
+<div id="fade"></div>
+
+<script type="text/javascript">
+// swipe function
+var mySwipe = new Swipe(document.getElementById('slider'),{
+                speed: 300,
+                continuous: loop
+        });
+mySwipe.setup();
+// swipe on keypad
+	$("body").keydown(function(e) {
+	   if(e.keyCode == 37) { // left key
+		  window.mySwipe.prev();
+	   } else if(e.keyCode == 39) { // right key
+		  window.mySwipe.next();
+	   }
+	});
+// swipe on mouse wheel	
+	$(window).bind('mousewheel DOMMouseScroll', function(event){
+    if (event.originalEvent.wheelDelta > 0 || event.originalEvent.detail < 0) {
+        window.mySwipe.prev();
+    }
+    else {
+        window.mySwipe.next();
+    }
+	});
+</script>
+
+</body>
+</html>

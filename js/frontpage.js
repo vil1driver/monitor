@@ -265,6 +265,7 @@ function RefreshData()
 														var min = "<img src=icons/min.png align=left vspace=4 width=30 onclick=ChangeTherm('min'," +vplusmin+ "," + item.idx + ","+ vdata+","+ valarm+")>";
 														vdata = min.concat(hlp,plus);
 														//console.log(vdata);
+														
 												}
 												
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		

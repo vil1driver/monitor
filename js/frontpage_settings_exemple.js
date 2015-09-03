@@ -28,7 +28,9 @@ var switch_off_timeout = '1000';
 
 <!-- Special items -->
 var city = 'saint-jacques-de-la-lande'	// localité pour la popup météo (lors du clic sur l'icon météo)
-var blink = true	// faire clignoter les valeurs en alarme (true/false)
+var blink = true						// faire clignoter les valeurs en alarme (true/false)
+var loop = false						// si au moins 3 pages, autoriser rebouclage (slide infini)
+
 
 // ############################################################################################################
 // #### vvvvv   USER VALUES below vvvvv   #######

@@ -50,8 +50,7 @@ ou<br>
 <pre>
 cd /home/pi/domoticz/www/monitor/
 mv js/frontpage_settings.js js/frontpage_settings_old.js
-git fetch --all
-git reset --hard origin/master
+git pull
 </pre>
 puis éditez de nouveau le fichier <b>frontpage_settings.js</b><br>
 pour y configurer les nouveaux paramètres qui peuvent y avoir été ajouté<br>

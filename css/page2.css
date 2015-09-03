@@ -1,0 +1,93 @@
+#ls_cell2_1, #ls_cell2_2, #ls_cell2_3, #ls_cell2_4,
+#ls_cell2_5, #ls_cell2_6, #ls_cell2_7, #ls_cell2_8, #ls_cell2_9,
+#ls_cell2_10, #ls_cell2_11, #ls_cell2_12, #ls_cell2_13, #ls_cell2_14,
+#ls_cell2_15, #ls_cell2_16, #ls_cell2_17, #ls_cell2_18, #ls_cell2_19,
+#ls_cell2_20, #ls_cell2_21, #ls_cell2_22, #ls_cell2_24, #ls_cell2_26, #ls_cell2_23, #ls_cell2_24, #ls_cell2_25
+{
+	font-family: arimo;
+	font-weight: normal;
+	color: #999;
+	font-size: 12px;
+	margin-top: -20px;
+	height: 20px;
+	line-height: 65px;
+	text-shadow: 1px 1px 5px black;
+	
+}
+
+#desc_cell2_1, #desc_cell2_2, #desc_cell2_3, #desc_cell2_4,
+#desc_cell2_5, #desc_cell2_6, #desc_cell2_7, #desc_cell2_8, #desc_cell2_9,
+#desc_cell2_10, #desc_cell2_11, #desc_cell2_12, #desc_cell2_13, #desc_cell2_14,
+#desc_cell2_15, #desc_cell2_16, #desc_cell2_17, #desc_cell2_18, #desc_cell2_19,
+#desc_cell2_20, #desc_cell2_21, #desc_cell2_22, #desc_cell2_24, #desc_cell2_26, #desc_cell2_23, #desc_cell2_24, #desc_cell2_25
+{
+	font-family: arimo;
+	font-weight: normal;
+/*	color: #999; */
+	color: #F2DDB3;
+	font-size: 17px;
+	margin-top: -20px;
+	height: 25px;
+	line-height: 15px;
+	text-shadow: 1px 1px 4px black;
+	
+}
+
+
+#cell2_3, #cell2_25 
+{
+	font-family: arimo;
+	font-weight: bold;
+	width: 277px;
+	padding: 5px;
+/*	border: 1px solid #1E1E1F; */
+	border: 1px solid transparent;
+	border-radius: 0px;
+	height: 152.5px;	
+	line-height: 170px; 
+	font-size: 100px;	
+	color: #999;
+	margin: 0px ;
+	text-shadow: 1px 1px 4px black;
+	
+}
+
+
+#cell2_1, #cell2_2, #cell2_4, #cell2_5, 
+#cell2_6, #cell2_7, #cell2_8, #cell2_9, #cell2_10, 
+#cell2_11, #cell2_12, #cell2_13, #cell2_14, #cell2_15, 
+#cell2_16, #cell2_17, #cell2_18, #cell2_19, #cell2_20, 
+#cell2_21, #cell2_22, #cell2_24, #cell2_26, #cell2_23   
+{
+	font-family: arimo;
+	font-weight: bold;
+	width: 162px;
+	padding: 10px;
+/*	border: 1px solid #1E1E1F; */
+	border: 1px solid transparent;
+	border-radius: 0px;
+	height: 58px;
+	line-height: 55px; 		
+	font-size: 90px;
+	color: #999;
+	font-size:40px;
+	text-shadow: 1px 1px 4px black;
+	
+}
+
+
+#cell2_6,  #cell2_7, #cell2_8, #cell2_9, #cell2_10,  
+#cell2_11, #cell2_12, #cell2_13, #cell2_14, #cell2_15,
+#cell2_16, #cell2_17, #cell2_18, #cell2_19, #cell2_20, 
+#cell2_21, #cell2_22, #cell2_24, #cell2_26, #cell2_23 
+{
+	height: 58px;
+	line-height: 55px;
+	color: #999;
+}
+
+#cell2_8, #cell2_13, #cell2_18, #cell2_24
+{ 
+	width: 184px; 
+}
+
