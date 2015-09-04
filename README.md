@@ -31,19 +31,11 @@ remplacez IDX par l'idx de votre device
 
 # Utilisation
 
-vous aurez sans doute remarqué la présence des fichiers nommés frontpage.html et frontpage3.html<br>
-ce dernier offre une page supplémentaire (soit 3 pages) par rapport au fichier frontpage.html (qui n'en compte que 2)
 
-à votre convenance (si vous souhaitez avoir 3 pages),<br>
-renommez <b>frontpage.html</b> en <b>frontpage2.html</b> et <b>frontpage3.html</b> en <b>frontpage.html</b>
-<pre>
-cd /home/pi/domoticz/www/monitor/
-mv frontpage.html frontpage2.html && mv frontpage3.html frontpage.html
-</pre>
 puis afficher votre nouvelle interface via <br>
-<a href="#">http://user:pass@ip:port/monitor/frontpage.html</a><br>
+<a href="#">http://user:pass@ip:port/monitor/</a><br>
 ou<br>
-<a href="#">http://ip:port/monitor/frontpage.html</a><br>
+<a href="#">http://ip:port/monitor/</a><br>
 
 # Mise à jour
 
