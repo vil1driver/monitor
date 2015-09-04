@@ -19,7 +19,7 @@ var txt_blind_stop = '\'Arrêt\'';
 <!-- Change backgrounds images and size -->
 var bg_day = 'pissanli.jpg';			// image de fond le jour, laisser vide pour fond noir
 var bg_night = 'romantic.jpg';			// image de fond la nuit, laisser vide pour fond noir
-var bg_size = 'cover'					// taille de l'image de fond (ex: '1024px 768px') 'cover' : "couvre" au mieux tout le fond.
+var bg_size = 'cover';					// taille de l'image de fond (ex: '1024px 768px') 'cover' : "couvre" au mieux tout le fond.
 
 <!-- Change the timeout of the PopUp -->
 var switch_protected_timeout = '1000';
@@ -27,9 +27,10 @@ var switch_on_timeout = '1000';
 var switch_off_timeout = '1000';
 
 <!-- Special items -->
-var city = 'saint-jacques-de-la-lande'	// localité pour la popup météo (lors du clic sur l'icon météo)
-var blink = true						// faire clignoter les valeurs en alarme (true/false)
-var loop = false						// si au moins 3 pages, autoriser rebouclage (slide infini)
+var city = 'saint-jacques-de-la-lande';		// localité pour la popup météo (lors du clic sur l'icon météo)
+var blink = true;							// faire clignoter les valeurs en alarme (true/false)
+var loop = true;							// si au moins 3 pages, autoriser rebouclage (true/false)
+var showMonth = false;						// affichage(true) ou non(false) du mois dans la date
 
 
 // ############################################################################################################
@@ -47,7 +48,7 @@ $(document).ready(function() {
 			//	['idx','value',  	'cellule',    	'description','1=lastseen 2=icon 3=both','pas de thermostat','override css','Alarme ou valeur max de thermostat'],
 			
 				['203','Temp',         			'cell6',                        	'Salon','','','font-size:110%;color:#1CD5FD'],	// températures salon
-                ['214','Temp',         			'cell7',                       		'Chambre','','','font-size:110%;color:#1CD5FD'],	// températures chambre
+                ['214','Temp',         			'cell7',                       		'Chambre','','','font-size:110%;color:#1CD5FD'],	// températures chambre font-size:110%;color:#1CD5FD
 				
 				['145','SetPoint',      		'cell11',                       	'','','0.5','font-size:85%;color:#1CD5FD','23'],	// thermostat salon avec un pas de 0.5, valeur max 23°C
 				['147','SetPoint',      		'cell12',                       	'','','0.5','font-size:85%;color:#1CD5FD','23'],		// thermostat chambre avec un pas de 0.5, valeur max 23°C

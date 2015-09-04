@@ -562,16 +562,10 @@ function RefreshData()
 											
 												// gestion des unitées 
 												
-												// Adds °C after the temperature
-										 		if(vtype == 'Temp' && vlabel == 'cell3' && vdata > -100){       
-													vdata=new String(vdata).replace( vdata,vdata + "<span style='font-size:40px;position:relative;top:-45px;'>&#176;C</span>");
-												}
-												else if(vtype == 'Temp' && vdata > -100){       
-													vdata=new String(vdata).replace( vdata,vdata + "<span style='font-size:20px;position:relative;top:-15px;'>&#176;C</span>");
-												}
+												
 												// on change la couleur suivant la température
-												if(vtype == 'Temp' && typeof vattr == 'undefined') {
-													 if (parseInt(vdata, 10) >= 35) { vattr='color:#F24735'; } 
+												if(vtype == 'Temp' && (typeof vattr == 'undefined' || vattr == '') && vdata > -100 ) {
+														if (parseInt(vdata, 10) >= 35) { vattr='color:#F24735'; } 
 													else if (parseInt(vdata, 10) >= 30) { vattr='color:#F26135'; } 
 													else if (parseInt(vdata, 10) >= 25) { vattr='color:#F27935'; } 
 													else if (parseInt(vdata, 10) >= 20) { vattr='color:#FD8A1C'; } 
@@ -580,6 +574,13 @@ function RefreshData()
 													else if (parseInt(vdata, 10) >= 05) { vattr='color:#DBC14C'; } 
 													else if (parseInt(vdata, 10) >= 00) { vattr='color:#A3D6AD'; } 
 													else  { vattr='color:#78C5F5'; } 
+												}
+												// Adds °C after the temperature
+										 		if(vtype == 'Temp' && vlabel == 'cell3' && vdata > -100){       
+													vdata=new String(vdata).replace( vdata,vdata + "<span style='font-size:40px;position:relative;top:-45px;'>&#176;C</span>");
+												}
+												else if(vtype == 'Temp' && vdata > -100){   
+													vdata=new String(vdata).replace( vdata,vdata + "<span style='font-size:20px;position:relative;top:-15px;'>&#176;C</span>");
 												}
 												// Adds Km/h after the wind
 												if(vtype == 'Speed' || vtype == 'Gust' && vdata > -100){       
@@ -591,11 +592,11 @@ function RefreshData()
 												}
 												// Adds % after the humidity
 												if(vtype == 'Humidity' && vdata > -100){       
-													vdata=new String(vdata).replace( vdata,vdata + "<span style='font-size:25px;'> &#37;</span>");
+													vdata=new String(vdata).replace( vdata,vdata + "<span style='font-size:20px;'> &#37;</span>");
 												}
 												// Adds % after percentage
 												if(vtype == 'Data' && item.SubType == 'Percentage' && vdata > -100){       
-													vdata=new String(vdata).replace( vdata,Math.ceil(vdata) + "<span style='font-size:25px;'> &#37;</span>");
+													vdata=new String(vdata).replace( vdata,Math.ceil(vdata) + "<span style='font-size:20px;'> &#37;</span>");
 												}
 												// Adds Watt after the Usage
 												if(vtype == 'Usage' && (item.SubType == 'Energy' || item.SubType == 'CM119 / CM160') && vdata > -100){       
@@ -1022,12 +1023,14 @@ function currentTime() {
 	var months = ["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Aout","Septembre","Octobre","Novembre","Décembre"];
     var maand = months[(today.getMonth()).toString()];
 	
-    // affiche avec l'année    
-    //var ret_str = "<span style='font-size:120%;position:relative;top:-5px;'>"+h+":"+m+"</span><br><span style='font-size:35%;position:relative;top:-40px;'>"+day+" "+dag+" "+maand+"</span>";
-    
+    if (showMonth == true) {
+	// affiche avec l'année    
+    var ret_str = "<span style='font-size:120%;position:relative;top:-5px;'>"+h+":"+m+"</span><br><span style='font-size:35%;position:relative;top:-40px;'>"+day+" "+dag+" "+maand+"</span>";
+    }
+	else {
 	// affiche sans l'année
 	var ret_str = "<span style='font-size:120%;position:relative;top:-5px;'>"+h+":"+m+"</span><br><span style='font-size:35%;position:relative;top:-40px;'>"+day+" "+dag+"</span>";
-	
+	}
     return ret_str;
     
 }
@@ -1061,12 +1064,14 @@ function goodmorning(v) {
 	var wakeup = new Date(year,v.substring(11, 13).replace(/^0+/, '')-1,date,h,m);
 	//console.log("wakeup: ", wakeup);
 	
+	if (showMonth == true) {
 	// affiche avec l'année 
-	//var ret_str = "<span style='font-size:100%;position:relative;top:-5px;'>"+h+":"+m+"</span><br><span style='font-size:35%;position:relative;top:-40px;'>"+day+" "+date+" "+month+"</span>";
-	
+	var ret_str = "<span style='font-size:100%;position:relative;top:-5px;'>"+h+":"+m+"</span><br><span style='font-size:35%;position:relative;top:-40px;'>"+day+" "+date+" "+month+"</span>";
+	}
+	else {
 	// affiche sans l'année
 	var ret_str = "<span style='font-size:100%;position:relative;top:-5px;'>"+h+":"+m+"</span><br><span style='font-size:35%;position:relative;top:-40px;'>"+day+" "+date+"</span>";
-	
+	}
 	// si l'alarme désactivée ou passée.
 	if (year == "2000" || now > wakeup) {
 		//var ret_str = "ZZzzz";

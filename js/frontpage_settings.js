@@ -19,7 +19,7 @@ var txt_blind_stop = '\'Arrêt\'';
 <!-- Change backgrounds images and size -->
 var bg_day = 'pissanli.jpg';			// image de fond le jour, laisser vide pour fond noir
 var bg_night = 'romantic.jpg';			// image de fond la nuit, laisser vide pour fond noir
-var bg_size = 'cover'					// taille de l'image de fond (ex: '1024px 768px') 'cover' : "couvre" au mieux tout le fond.
+var bg_size = 'cover';					// taille de l'image de fond (ex: '1024px 768px') 'cover' : "couvre" au mieux tout le fond.
 
 <!-- Change the timeout of the PopUp -->
 var switch_protected_timeout = '1000';
@@ -27,9 +27,10 @@ var switch_on_timeout = '1000';
 var switch_off_timeout = '1000';
 
 <!-- Special items -->
-var city = 'paris'	// localité pour la popup météo (lors du clic sur l'icon météo)
-var blink = false	// faire clignoter les valeurs en alarme (true/false)
-var loop = false	// si au moins 3 pages, autoriser rebouclage (slide infini)
+var city = 'paris';				// localité pour la popup météo (lors du clic sur l'icon météo)
+var blink = false;				// faire clignoter les valeurs en alarme (true/false)
+var loop = true;				// si au moins 3 pages, autoriser rebouclage (true/false)
+var showMonth = false;			// affichage(true) ou non(false) du mois dans la date
 
 
 // ############################################################################################################
@@ -46,7 +47,7 @@ $(document).ready(function() {
 				
 			//	['idx','value',  	'cellule',    	'description','1=lastseen 2=icon 3=both','pas de thermostat','override css','Alarme ou valeur max de thermostat'],
 							
-				['0','',           		'cell1',                       		'','','','',''],
+				['0','Clock',           'cell1',                       		'','','','font-family:digital;color:#8BFD1C;font-size:160%',''],	// heure et date
 				['0','',         		'cell2',                       		'','','','',''],	
 				['0','',      			'cell3',                       		'','','','',''],	
 				['0','',      			'cell4',                       		'','','','',''],	
@@ -71,7 +72,7 @@ $(document).ready(function() {
 				['0','',         		'cell23',                     		'','','','',''],
 				['0','',         		'cell24',                     		'','','','',''],
 				['0','',   				'cell25',                       	'','','','',''],
-				
+				['0','SunBoth',			'desc_cell25',						'','','','color:#F2DDB3;font-size:19px;font-weight:bold'],	// heures soleil dans la description de la cellule 25
           
 			// page 2	
 			
@@ -106,7 +107,7 @@ $(document).ready(function() {
 			
 				['0','',           		'cell3_1',                       	'','','','',''],	
 				['0','',         		'cell3_2',                       	'','','','',''],	
-				['0','',      			'cell3_3',                       	'','','','',''],	
+			//	['0','',      			'cell3_3',                       	'','','','',''],	// camera
 				['0','',      			'cell3_4',                       	'','','','',''],	
           		['0','',            	'cell3_5',                       	'','','','',''],	
                 ['0','',            	'cell3_6',                       	'','','','',''],	
@@ -128,7 +129,7 @@ $(document).ready(function() {
 				['0','',         		'cell3_22',                     	'','','','',''],
 				['0','',         		'cell3_23',                     	'','','','',''],
 				['0','',         		'cell3_24',                     	'','','','',''],
-				['0','',         		'cell3_25',                     	'','','','',''],
+			//	['0','',         		'cell3_25',                     	'','','','',''],	// camera
 				
 				
 				
