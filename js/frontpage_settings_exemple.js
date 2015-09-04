@@ -150,6 +150,9 @@ $(document).ready(function() {
 				['203','Temp',       				'cell4_1a',                      	''],	
 				['203','Humidity',       			'cell4_1b',                      	'','','','color:#FBFE03'],
 				['0','Text',       					'desc_cell4_1',                     'salon'],
+				
+				['214','Temp',       				'cell4_2',                      	'chambre'],	
+					
 					
         ];
         $.PageArray_Scenes = [		// placez ci dessous vos groupes et scènes
@@ -168,7 +171,7 @@ $(document).ready(function() {
 
 
 
-RefreshData();
+//RefreshData();
 LoadMeteoWidget();
 });
 

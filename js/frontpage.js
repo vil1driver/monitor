@@ -188,7 +188,6 @@ function RefreshData()
 												var t2 = (60 * h2) + m2;	// sunrise
 												var t3 = (60 * h3) + m3;	// sunset
 												
-												
 												if ( t1 > t3 || t1 < t2) {
 													// night
 													var IsNight = 'Yes';
@@ -1024,11 +1023,11 @@ function currentTime() {
     var maand = months[(today.getMonth()).toString()];
 	
     if (showMonth == true) {
-	// affiche avec l'année    
+	// affiche avec le mois 
     var ret_str = "<span style='font-size:120%;position:relative;top:-5px;'>"+h+":"+m+"</span><br><span style='font-size:35%;position:relative;top:-40px;'>"+day+" "+dag+" "+maand+"</span>";
     }
 	else {
-	// affiche sans l'année
+	// affiche sans le mois 
 	var ret_str = "<span style='font-size:120%;position:relative;top:-5px;'>"+h+":"+m+"</span><br><span style='font-size:35%;position:relative;top:-40px;'>"+day+" "+dag+"</span>";
 	}
     return ret_str;
@@ -1065,11 +1064,11 @@ function goodmorning(v) {
 	//console.log("wakeup: ", wakeup);
 	
 	if (showMonth == true) {
-	// affiche avec l'année 
+	// affiche avec le mois 
 	var ret_str = "<span style='font-size:100%;position:relative;top:-5px;'>"+h+":"+m+"</span><br><span style='font-size:35%;position:relative;top:-40px;'>"+day+" "+date+" "+month+"</span>";
 	}
 	else {
-	// affiche sans l'année
+	// affiche sans le mois 
 	var ret_str = "<span style='font-size:100%;position:relative;top:-5px;'>"+h+":"+m+"</span><br><span style='font-size:35%;position:relative;top:-40px;'>"+day+" "+date+"</span>";
 	}
 	// si l'alarme désactivée ou passée.

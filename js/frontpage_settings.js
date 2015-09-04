@@ -151,7 +151,7 @@ $(document).ready(function() {
 
 
 
-RefreshData();
+//RefreshData();
 LoadMeteoWidget();
 });
 
