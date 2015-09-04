@@ -48,7 +48,7 @@ $(document).ready(function() {
 			//	['idx','value',  	'cellule',    	'description','1=lastseen 2=icon 3=both','pas de thermostat','override css','Alarme ou valeur max de thermostat'],
 			
 				['203','Temp',         			'cell6',                        	'Salon','','','font-size:110%;color:#1CD5FD'],	// températures salon
-                ['214','Temp',         			'cell7',                       		'Chambre','','','font-size:110%;color:#1CD5FD'],	// températures chambre font-size:110%;color:#1CD5FD
+                ['214','Temp',         			'cell7',                       		'Chambre','','','font-size:110%;color:#1CD5FD'],	// températures chambre
 				
 				['145','SetPoint',      		'cell11',                       	'','','0.5','font-size:85%;color:#1CD5FD','23'],	// thermostat salon avec un pas de 0.5, valeur max 23°C
 				['147','SetPoint',      		'cell12',                       	'','','0.5','font-size:85%;color:#1CD5FD','23'],		// thermostat chambre avec un pas de 0.5, valeur max 23°C
