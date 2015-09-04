@@ -44,7 +44,7 @@
 	document.querySelector("meta[name=viewport]").setAttribute('content','width=device-width, initial-scale='+scale+', maximum-scale='+scale+', user-scalable=no');
 	
 <!-- import pages -->	
-$(function(){
+$(window).ready(function(){
       $("#page1").load("pages/page1.html"); 	<!-- load page 1 -->
       $("#page2").load("pages/page2.html");		<!-- load page 2 -->
       $("#page3").load("pages/page3.html");		<!-- load page 3 -->
