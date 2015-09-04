@@ -145,7 +145,12 @@ $(document).ready(function() {
 				['135','SignalLevel',       	'cell3_19',                      	'Lumino chambre','1','','color:#FBFE03'],	
 				['101','SignalLevel',       	'cell3_14',                      	'porte','1','','color:#FBFE03'],	
 				
-				
+			// page 4
+		
+				['203','Temp',       				'cell4_1a',                      	''],	
+				['203','Humidity',       			'cell4_1b',                      	'','','','color:#FBFE03'],
+				['0','Text',       					'desc_cell4_1',                     'salon'],
+					
         ];
         $.PageArray_Scenes = [		// placez ci dessous vos groupes et scènes
             

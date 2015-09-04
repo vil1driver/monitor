@@ -131,7 +131,8 @@ $(document).ready(function() {
 				['0','',         		'cell3_24',                     	'','','','',''],
 			//	['0','',         		'cell3_25',                     	'','','','',''],	// camera
 				
-				
+			
+					
 				
         ];
         $.PageArray_Scenes = [		// placez ci dessous vos groupes et scènes
