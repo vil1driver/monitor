@@ -30,7 +30,7 @@ var switch_off_timeout = '1000';
 var city = 'paris';				// localité pour la popup météo (lors du clic sur l'icon météo)
 var blink = false;				// faire clignoter les valeurs en alarme (true/false)
 var loop = true;				// si au moins 3 pages, autoriser rebouclage (true/false)
-var showMonth = false;			// affichage(true) ou non(false) du mois dans la date
+var showMonth = true;			// affichage(true) ou non(false) du mois dans la date
 
 
 // ############################################################################################################
@@ -47,7 +47,7 @@ $(document).ready(function() {
 				
 			//	['idx','value',  	'cellule',    	'description','1=lastseen 2=icon 3=both','pas de thermostat','override css','Alarme ou valeur max de thermostat'],
 							
-				['0','Clock',           'cell1',                       		'','','','font-family:digital;color:#8BFD1C;font-size:160%',''],	// heure et date
+				['0','Clock',           'cell1',                       		'','','','color:#8BFD1C',''],	// heure et date
 				['0','',         		'cell2',                       		'','','','',''],	
 				['0','',      			'cell3',                       		'','','','',''],	
 				['0','',      			'cell4',                       		'','','','',''],	
