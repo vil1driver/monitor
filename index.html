@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -45,11 +45,18 @@
 	
 <!-- import pages -->	
 $(window).ready(function(){
-      $("#page1").load("pages/page1.html"); 	<!-- load page 1 -->
-      $("#page2").load("pages/page2.html");		<!-- load page 2 -->
-      $("#page3").load("pages/page3.html");		<!-- load page 3 -->
-      $("#page4").load("pages/page4.html");		<!-- load page 4 -->
-      
+      $("#page1").load("pages/page1.html"); 								<!-- load page 1 -->
+	  $('head').append('<link rel="stylesheet" href="css/page1.css" />');	<!-- load page 1 stylesheet -->
+	  
+      $("#page2").load("pages/page2.html");									<!-- load page 2 -->
+	  $('head').append('<link rel="stylesheet" href="css/page2.css" />');	<!-- load page 2 stylesheet -->
+	  
+      $("#page3").load("pages/page3.html");									<!-- load page 3 -->
+	  $('head').append('<link rel="stylesheet" href="css/page3.css" />');	<!-- load page 3 stylesheet -->
+	  
+      $("#page4").load("pages/page4.html");									<!-- load page 4 -->
+	  $('head').append('<link rel="stylesheet" href="css/page4.css" />');	<!-- load page 4 stylesheet -->
+	       
     
 	  
 	RefreshData();	  
@@ -59,7 +66,7 @@ $(window).ready(function(){
 </script>	
 </head>
 
-<body bgcolor="#000">
+<body>
 <div id='slider' class='swipe'>
 <div class='swipe-wrap'>
 
