@@ -91,12 +91,14 @@ function RefreshData()
                         $.each(data, function(i,item){
 				if ( i == 'Sunrise' ) {
 					//console.log("Opgang: ", item);
-					var_sunrise = item;
+					//var_sunrise = item;
+					var_sunrise = item.substring(0, 5);
 					
 				}
 				else if ( i == 'Sunset' ) {
 					//console.log("Ondergang: ", item);
-					var_sunset = item;
+					//var_sunset = item;
+					var_sunset = item.substring(0, 5);
 					
 				}
 				
