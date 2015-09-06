@@ -45,18 +45,19 @@
 	
 <!-- import pages -->	
 $(window).ready(function(){
-      $("#page1").load("pages/page1.html"); 								<!-- load page 1 -->
+       								
 	  $('head').append('<link rel="stylesheet" href="css/page1.css" />');	<!-- load page 1 stylesheet -->
-	  
-      $("#page2").load("pages/page2.html");									<!-- load page 2 -->
+	  $("#page1").load("pages/page1.html");									<!-- load page 1 -->
+      								
 	  $('head').append('<link rel="stylesheet" href="css/page2.css" />');	<!-- load page 2 stylesheet -->
-	  
-      $("#page3").load("pages/page3.html");									<!-- load page 3 -->
+	  $("#page2").load("pages/page2.html");									<!-- load page 2 -->
+      									
 	  $('head').append('<link rel="stylesheet" href="css/page3.css" />');	<!-- load page 3 stylesheet -->
-	  
-      $("#page4").load("pages/page4.html");									<!-- load page 4 -->
+	  $("#page3").load("pages/page3.html");									<!-- load page 3 -->
+      							
 	  $('head').append('<link rel="stylesheet" href="css/page4.css" />');	<!-- load page 4 stylesheet -->
-	       
+	  $("#page4").load("pages/page4.html");									<!-- load page 4 -->
+           
     
 	  
 	RefreshData();	  
@@ -95,6 +96,7 @@ $(window).ready(function(){
 <div id="fade"></div>
 
 <script type="text/javascript">
+//<!--
 // swipe function
 var mySwipe = new Swipe(document.getElementById('slider'),{
                 speed: 300,
@@ -118,6 +120,7 @@ mySwipe.setup();
         window.mySwipe.next();
     }
 	});
+//-->	
 </script>
 
 </body>
