@@ -72,16 +72,6 @@
 	
 }
 
-#cell3_6,  #cell3_7, #cell3_8, #cell3_9, #cell3_10,  
-#cell3_11, #cell3_12, #cell3_13, #cell3_14, #cell3_15,
-#cell3_16, #cell3_17, #cell3_18, #cell3_19, #cell3_20, 
-#cell3_21, #cell3_22, #cell3_24, #cell3_26, #cell3_23 
-{
-	height: 58px;
-	line-height: 55px;
-	color: #999;
-}
-
 #cell3_8, #cell3_13, #cell3_18, #cell3_24
 { 
 	width: 184px; 

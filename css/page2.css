@@ -33,7 +33,6 @@
 	
 }
 
-
 #cell2_3, #cell2_25 
 {
 	font-family: arimo;
@@ -51,7 +50,6 @@
 	text-shadow: 1px 1px 4px black;
 	
 }
-
 
 #cell2_1, #cell2_2, #cell2_4, #cell2_5, 
 #cell2_6, #cell2_7, #cell2_8, #cell2_9, #cell2_10, 
@@ -72,17 +70,6 @@
 	font-size:40px;
 	text-shadow: 1px 1px 4px black;
 	
-}
-
-
-#cell2_6,  #cell2_7, #cell2_8, #cell2_9, #cell2_10,  
-#cell2_11, #cell2_12, #cell2_13, #cell2_14, #cell2_15,
-#cell2_16, #cell2_17, #cell2_18, #cell2_19, #cell2_20, 
-#cell2_21, #cell2_22, #cell2_24, #cell2_26, #cell2_23 
-{
-	height: 58px;
-	line-height: 55px;
-	color: #999;
 }
 
 #cell2_8, #cell2_13, #cell2_18, #cell2_24

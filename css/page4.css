@@ -6,14 +6,12 @@
  {
 	font-family: arimo;
 	font-weight: normal;
-	
 	color: #999;
 	font-size: 12px;
 	margin-top: -27px;
 	height: 27px;
 	line-height: 68px;
 	text-shadow: 1px 1px 5px black;
-	
 }
 
 #desc_cell4_1, #desc_cell4_2, #desc_cell4_3, #desc_cell4_4,
@@ -34,9 +32,6 @@
 	
 }
 
-
-
-
 #cell4_3, #cell4_25
 {
 	font-family: arimo;
@@ -51,8 +46,6 @@
 	color: #999;
 	font-size: 100px;	
 	text-shadow: 1px 1px 4px black;
-	
-	
 }
 
 #cell4_1, #cell4_2, #cell4_4, #cell4_5, 
@@ -62,7 +55,6 @@
 {
 	font-family: arimo;
 	font-weight: bold;
-	
 	width: 162px;
 	padding: 10px;
 	border: 1px solid transparent;
@@ -71,16 +63,13 @@
 	line-height: 75px; 		
 	color: #999;
 	font-size: 40px;
-text-shadow: 1px 1px 4px black;	
-	
-	
+	text-shadow: 1px 1px 4px black;	
 }
 
 #cell4_1a, #cell4_1b, #cell4_2a, #cell4_2b, #cell4_4a, #cell4_4b, #cell4_5a, #cell4_5b
 {
 	font-family: arimo;
 	font-weight: bold;
-	
 	margin: -15px 0px -42px 0px;
 	color: #999;
 	font-size: 40px;
@@ -89,16 +78,12 @@ text-shadow: 1px 1px 4px black;
 	text-shadow: 1px 1px 4px black;
 }
 
-
-
 #cell4_6,  #cell4_7, #cell4_8, #cell4_9, #cell4_10,  
 #cell4_11, #cell4_12, #cell4_13, #cell4_14, #cell4_15,
 #cell4_16, #cell4_17, #cell4_18, #cell4_19, #cell4_20
 {
 	height: 65px;
 	line-height: 55px;
-	color: #999;
-	
 }
  
 #cell4_8, #cell4_13, #cell4_18 

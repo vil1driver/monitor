@@ -33,7 +33,6 @@
 	
 }
 
-
 #cell3, #cell25
 {
 	font-family: arimo;
@@ -51,8 +50,6 @@
 	text-shadow: 1px 1px 4px black;
 	
 }
-
-
 
 #cell1, #cell2, #cell4, #cell5, 
 #cell6, #cell7, #cell8, #cell9, #cell10, 
@@ -75,17 +72,6 @@
 	
 }
 
-
-#cell6,  #cell7, #cell8, #cell9, #cell10,  
-#cell11, #cell12, #cell13, #cell14, #cell15,
-#cell16, #cell17, #cell18, #cell19, #cell20, 
-#cell21, #cell22, #cell24, #cell26, #cell23 
-{
-	height: 58px;
-	line-height: 55px;
-	color: #999;
-}
-
 #cell8, #cell13, #cell18, #cell24
 { 
 	width: 184px; 
@@ -98,9 +84,10 @@
     height: 30px;
 	margin-left: 75px;
     margin-top: -0px;      
-	overflow : hidden;
+	overflow: hidden;
  
 }
+
 #heat1 img, #heat2 img{
 	
 	width: 25px;
