@@ -20,8 +20,8 @@ var txt_blind_stop = '\'Arrêt\'';
 var bg_day = 'pissanli.jpg';			// image de fond le jour, laisser vide pour fond noir
 var bg_night = 'romantic.jpg';			// image de fond la nuit, laisser vide pour fond noir
 var bg_size = 'cover';					// taille de l'image de fond (ex: '1024px 768px') 'cover' : "couvre" au mieux tout le fond.
-var bg_dayBright = 0.5					// luminosité du fond le jour (0=normal 1=noir)
-var bg_nightBright = 0.5				// luminosité du fond la nuit (0=normal 1=noir)
+var bg_dayBright = 0.5;					// luminosité du fond le jour (0=normal 1=noir)
+var bg_nightBright = 0.5;				// luminosité du fond la nuit (0=normal 1=noir)
 
 <!-- Change the timeout of the PopUp -->
 var switch_protected_timeout = '1000';
