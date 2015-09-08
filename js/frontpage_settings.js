@@ -16,10 +16,12 @@ var txt_blind_up = '\'Ouverture\'';
 var txt_blind_down = '\'Fermeture\'';
 var txt_blind_stop = '\'Arrêt\'';
 
-<!-- Change backgrounds images and size -->
+<!-- Change backgrounds images,size and brightness -->
 var bg_day = 'pissanli.jpg';			// image de fond le jour, laisser vide pour fond noir
 var bg_night = 'romantic.jpg';			// image de fond la nuit, laisser vide pour fond noir
 var bg_size = 'cover';					// taille de l'image de fond (ex: '1024px 768px') 'cover' : "couvre" au mieux tout le fond.
+var bg_dayBright = 0.5					// luminosité du fond le jour (0=normal 1=noir)
+var bg_nightBright = 0.5				// luminosité du fond la nuit (0=normal 1=noir)
 
 <!-- Change the timeout of the PopUp -->
 var switch_protected_timeout = '1000';
@@ -29,7 +31,7 @@ var switch_off_timeout = '1000';
 <!-- Special items -->
 var city = 'paris';				// localité pour la popup météo (lors du clic sur l'icon météo)
 var blink = false;				// faire clignoter les valeurs en alarme (true/false)
-var loop = true;				// si au moins 3 pages, autoriser rebouclage (true/false)
+var loop = false;				// si au moins 3 pages, autoriser rebouclage des pages(true/false)
 var showMonth = true;			// affichage(true) ou non(false) du mois dans la date
 
 

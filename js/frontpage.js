@@ -194,13 +194,15 @@ function RefreshData()
 													// night
 													var IsNight = 'Yes';
 													document.body.style.background='black url(icons/'+bg_night+') no-repeat top center fixed';
+													$('<style>html::after{background:rgba(0,0,0,'+bg_nightBright+')}</style>').appendTo('head');
 													document.body.style.backgroundSize=bg_size;
 												} else {
 													// day
 													var IsNight = 'No';
 													document.body.style.background='black url(icons/'+bg_day+') no-repeat top center fixed';
+													$('<style>html::after{background:rgba(0,0,0,'+bg_dayBright+')}</style>').appendTo('head');
 													document.body.style.backgroundSize=bg_size;
-												} 
+												}
 	
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 												
