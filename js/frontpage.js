@@ -567,16 +567,16 @@ function RefreshData()
 												
 												
 												// on change la couleur suivant la température
-												if(vtype == 'Temp' && (typeof vattr == 'undefined' || vattr == '') && vdata > -100 ) {
-														if (parseInt(vdata, 10) >= 35) { vattr='color:#F24735'; } 
-													else if (parseInt(vdata, 10) >= 30) { vattr='color:#F26135'; } 
-													else if (parseInt(vdata, 10) >= 25) { vattr='color:#F27935'; } 
-													else if (parseInt(vdata, 10) >= 20) { vattr='color:#FD8A1C'; } 
-													else if (parseInt(vdata, 10) >= 15) { vattr='color:#FF9B0E'; } 
-													else if (parseInt(vdata, 10) >= 10) { vattr='color:#FFAE0E'; } 
-													else if (parseInt(vdata, 10) >= 05) { vattr='color:#DBC14C'; } 
-													else if (parseInt(vdata, 10) >= 00) { vattr='color:#A3D6AD'; } 
-													else  { vattr='color:#78C5F5'; } 
+												if(vtype == 'Temp' && vdata > -100 ) {
+													if (parseInt(vdata, 10) >= 35) { new String(vattr).replace( vattr,'color:#F24735;' + vattr); } 
+													else if (parseInt(vdata, 10) >= 30) { vattr=new String(vattr).replace( vattr,'color:#F26135;' + vattr); } 
+													else if (parseInt(vdata, 10) >= 25) { vattr=new String(vattr).replace( vattr,'color:#F27935;' + vattr); } 
+													else if (parseInt(vdata, 10) >= 20) { vattr=new String(vattr).replace( vattr,'color:#FD8A1C;' + vattr); } 
+													else if (parseInt(vdata, 10) >= 15) { vattr=new String(vattr).replace( vattr,'color:#FF9B0E;' + vattr); } 
+													else if (parseInt(vdata, 10) >= 10) { vattr=new String(vattr).replace( vattr,'color:#FFAE0E;' + vattr); } 
+													else if (parseInt(vdata, 10) >= 05) { vattr=new String(vattr).replace( vattr,'color:#DBC14C;' + vattr); } 
+													else if (parseInt(vdata, 10) >= 00) { vattr=new String(vattr).replace( vattr,'color:#A3D6AD;' + vattr); }
+													else  { vattr=new String(vattr).replace( vattr,'color:#78C5F5;' + vattr); }	
 												}
 												// Adds °C after the temperature
 										 		if(vtype == 'Temp' && vlabel == 'cell3' && vdata > -100){       
