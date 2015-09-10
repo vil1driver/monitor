@@ -50,7 +50,7 @@ $(document).ready(function() {
 			//	['idx','value',  	'cellule',    	'description','1=lastseen 2=icon 3=both','pas de thermostat','override css','Alarme ou valeur max de thermostat'],
 			
 				['203','Temp',         			'cell6',                        	'Salon','','','font-size:110%;color:#1CD5FD'],	// températures salon
-                ['214','Temp',         			'cell7',                       		'Chambre','','','font-size:110%;color:#1CD5FD'],	// températures chambre
+                ['214','Temp',         			'cell7',                       		'Chambre','','','font-size:110%;color:#1CD5FD'],	// températures chambre font-size:110%;color:#1CD5FD
 				
 				['145','SetPoint',      		'cell11',                       	'','','0.5','font-size:85%;color:#1CD5FD','23'],	// thermostat salon avec un pas de 0.5, valeur max 23°C
 				['147','SetPoint',      		'cell12',                       	'','','0.5','font-size:85%;color:#1CD5FD','23'],		// thermostat chambre avec un pas de 0.5, valeur max 23°C
@@ -61,7 +61,7 @@ $(document).ready(function() {
 				
 				
 				['279','Temp',           		'cell3',                        	''],	// températures exterieure
-					
+				
 				
 				['103','Status',        		'cell26',                     		'Cafetière','2'],	// interrupteurs classics
 				['35','Status',         		'cell13',                       	'Pierres','2'],
@@ -104,21 +104,17 @@ $(document).ready(function() {
 				['264','Euro',       			'cell2_16',                      	'coût nuit','1','','color:pink'],	
 				
 				['216','Status',        		'cell2_12',                      	'alarme','2'],	// security pannel
+		
+				['253','Level',          		'cell2_14',                      	'rgb1_red','2'],	// rgb
+				['252','Level',          		'cell2_19',                      	'rgb1_green','2'],	// rgb
+				['254','Level',          		'cell2_26',                      	'rgb1_blue','2'],	// rgb
+				['257','Status',          		'cell2_9',                      	'rgb1_show','2'],	// rgb
 				
-				['203','SignalLevel',        	'cell2_7',                      	'signal sonde salon','1','','color:#FBFE03'],	
-				['214','SignalLevel',        	'cell2_8',                      	'signal sonde chambre','1','','color:#FBFE03'],	
-				['202','SignalLevel',        	'cell2_9',                      	'signal sonde sdb','1','','color:#FBFE03'],	
-				
-				['95','SignalLevel',       		'cell2_17',                      	'la chambre','1','','color:#FBFE03'],	
-							
-				['195','SignalLevel',       	'cell2_22',                      	'veilleuse mur','1','','color:#FBFE03'],	
-				['66','SignalLevel',       		'cell2_13',                      	'veilleuse lit','1','','color:#FBFE03'],	
-				['132','SignalLevel',       	'cell2_26',                      	'mv chambre','1','','color:#FBFE03'],	
-				['133','SignalLevel',       	'cell2_24',                      	'mv salon','1','','color:#FBFE03'],	
-				['136','SignalLevel',       	'cell2_18',                      	'Lumino salon','1','','color:#FBFE03'],	
-				['135','SignalLevel',       	'cell2_19',                      	'Lumino chambre','1','','color:#FBFE03'],	
-				['101','SignalLevel',       	'cell2_14',                      	'porte','1','','color:#FBFE03'],	
-				
+				['283','Level',          		'cell2_13',                      	'rgb2_red','2'],	// rgb
+				['284','Level',          		'cell2_18',                      	'rgb2_green','2'],	// rgb
+				['285','Level',          		'cell2_24',                      	'rgb2_blue','2'],	// rgb
+				['286','Status',          		'cell2_8',                      	'rgb2_show','2'],	// rgb
+		
 				['133','Status',       			'cell2_21',                      	'mv salon','2'],	
 				['132','Status',       			'cell2_23',                      	'mv chambre','2'],	
             
@@ -145,7 +141,8 @@ $(document).ready(function() {
 				['133','SignalLevel',       	'cell3_24',                      	'mv salon','1','','color:#FBFE03'],	
 				['136','SignalLevel',       	'cell3_18',                      	'Lumino salon','1','','color:#FBFE03'],	
 				['135','SignalLevel',       	'cell3_19',                      	'Lumino chambre','1','','color:#FBFE03'],	
-				['101','SignalLevel',       	'cell3_14',                      	'porte','1','','color:#FBFE03'],	
+				['101','SignalLevel',       	'cell3_14',                      	'porte','1','','color:#FBFE03'],
+
 				
 			// page 4
 		
@@ -154,6 +151,47 @@ $(document).ready(function() {
 				['0','Text',       					'desc_cell4_1',                     'salon'],
 				
 				['214','Temp',       				'cell4_2',                      	'chambre'],	
+				
+			// page 5
+			
+				['203','Temp',         			'cell5_1',                        	'Salon','','',''],	// températures salon
+                ['214','Temp',         			'cell5_2',                       	'Chambre','','',''],	// températures chambre font-size:110%;color:#1CD5FD
+                ['202','Humidity',         			'cell5_3',                       	'Salle de bain','','',''],	// températures Salle de bain font-size:110%;color:#1CD5FD
+				
+				['203','Humidity',         			'cell5_1e',                        	'','','','color:green','70'],	// Humidity salon
+                ['214','Humidity',         			'cell5_2e',                       	'','','','color:green','70'],	// Humidity chambre font-size:110%;color:#1CD5FD
+                ['202','Humidity',         			'cell5_3e',                       	'','','','color:green','70'],	// Humidity Salle de bain font-size:110%;color:#1CD5FD
+				
+				['145','SetPoint',      		'cell5_1b',                       	'','','0.5','color:#1CD5FD','23'],	// thermostat salon avec un pas de 0.5, valeur max 23°C
+				['147','SetPoint',      		'cell5_2b',                       	'','','0.5','color:#1CD5FD','23'],		// thermostat chambre avec un pas de 0.5, valeur max 23°C
+				['146','SetPoint',      		'cell5_3b',                       	'','','0.5','color:#1CD5FD','25'],		// thermostat chambre avec un pas de 0.5, valeur max 23°C
+          		
+				['59','Status',            		'cell5_1c',                       		'','2','',''],	// visu radiateur salon
+                ['60','Status',            		'cell5_2c',                       		'','2','',''],	// visu radiateur chambre
+				['255','Euro',       			'cell5_1f',                      	'','1','','color:pink'],	
+				['264','Euro',       			'cell5_2f',                      	'','1','','color:pink'],	
+				
+				['134','Status',       			'cell5_6',                      		'Chauffage','2'],	
+				
+				['248','Status',         		'cell5_1d',                     		'','2'], 
+				
+				['112','Usage',         		'cell5_9',                      	'edf now','','','color:#88B496;font-size:90%','2000'],	// consommation instantanée (téléinfo)
+				['112','Counter',      			'cell5_7',                      	'edf total','','','color:#88B496;font-size:90%'],	// consommation totale (téléinfo)
+				['112','CounterToday',       	'cell5_8',                     	'edf day','','','color:#88B496;font-size:90%','15'],	// consommation du jour (téléinfo)
+				
+				['279','Temp',           		'cell5_4a',                        	'','','','font-size:160%'],	// températures exterieure
+				
+				['0','Clock',            		'cell5_5',                       		'','','','font-family:digital;color:#8BFD1C;font-size:140%'],	// heure et date		
+
+				['279','ForecastStr',    		'cell5_4',                       	''],	// icon météo (idx du capteur de température extérieur virtuel Weather Underground)	
+				['279','HumidityStatus',    	'cell5_4f',                       	'','','','color:#88B496;font-size:80%'],	// icon météo (idx du capteur de température extérieur virtuel Weather Underground)	
+				
+				['0','Hide',         			'cell5_4b',                      	''],
+				['0','Hide',         			'cell5_4e',                      	''],
+				['111','Status',         			'cell5_3f',                      	'','2'],	// soufflant sdb
+				['263','Data',         			'cell5_4c',                      	'','','','','65'],	// proba pluie dans 1h
+				['265','Data',         			'cell5_4d',                      	'','','','','45'],	// proba pluie dans 2h
+				
 					
 					
         ];

@@ -1,24 +1,18 @@
 @font-face
 {
   font-family: 'arimo';
- /*  font-style: normal;
-  font-weight: 400; */
   src: 	url(../fonts/arimo.woff2) format('woff2'),
 		url(../fonts/arimo.woff) format('woff');
 }
 @font-face
 {
   font-family: 'brankovic';
- /*  font-style: normal;
-  font-weight: 400; */
-  src: url(../fonts/brankovic.ttf) format('truetype');
+  src: 	url(../fonts/brankovic.ttf) format('truetype');
 }
 @font-face
 {
   font-family: 'digital';
- /*  font-style: normal;
-  font-weight: 400; */
-  src: url(../fonts/digital.ttf) format('truetype');
+  src: 	url(../fonts/digital.ttf) format('truetype');
 }
 
 
@@ -42,7 +36,6 @@ html::after
    bottom:0;
    background:rgba(0,0,0,0);
    z-index:-1;
-
 }
 
 div#cnt
@@ -50,7 +43,6 @@ div#cnt
     width: 990px;
     margin: 0 auto;
     text-align: center;
-	
 }
 
 .swipe
@@ -139,6 +131,7 @@ a:hover { text-decoration: none; color: #003366; }
 	margin-top: 5px; 
 	width: 1050px;
 	height: 570px;	
+	
 }
 
 #popup_switch, #popup_protected, #popup_meteo,
