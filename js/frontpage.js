@@ -577,46 +577,43 @@ function RefreshData()
 													else if (parseInt(vdata, 10) >= 05) { vattr=new String(vattr).replace( vattr,'color:#DBC14C;' + vattr); } 
 													else if (parseInt(vdata, 10) >= 00) { vattr=new String(vattr).replace( vattr,'color:#A3D6AD;' + vattr); }
 													else  { vattr=new String(vattr).replace( vattr,'color:#78C5F5;' + vattr); }	
-												}
+												}												
 												// Adds °C after the temperature
-										 		if(vtype == 'Temp' && vlabel == 'cell3' && vdata > -100){       
-													vdata=new String(vdata).replace( vdata,vdata + "<span style='font-size:40px;position:relative;top:-45px;'>&#176;C</span>");
-												}
-												else if(vtype == 'Temp' && vdata > -100){   
-													vdata=new String(vdata).replace( vdata,vdata + "<span style='font-size:20px;position:relative;top:-15px;'>&#176;C</span>");
+										 		if(vtype == 'Temp' && vdata > -100){   
+													vdata=new String(vdata).replace( vdata,vdata + "<sup style='font-size:50%;'>&#8451;</sup>");
 												}
 												// Adds Km/h after the wind
 												if(vtype == 'Speed' || vtype == 'Gust' && vdata > -100){       
-													vdata=new String(vdata).replace( vdata,vdata + "<span style='font-size:25px;'> Km/h</span>");
+													vdata=new String(vdata).replace( vdata,vdata + "<span style='font-size:50%;'> Km/h</span>");
 												}
 												// Adds mm after the rain
 												if(vtype == 'Rain' && vdata > -100){       
-													vdata=new String(vdata).replace( vdata,vdata + "<span style='font-size:25px;'> mm</span>");
+													vdata=new String(vdata).replace( vdata,vdata + "<span style='font-size:50%;'> mm</span>");
 												}
 												// Adds % after the humidity
 												if(vtype == 'Humidity' && vdata > -100){       
-													vdata=new String(vdata).replace( vdata,vdata + "<span style='font-size:20px;'> &#37;</span>");
+													vdata=new String(vdata).replace( vdata,vdata + "<span style='font-size:50%;'> &#37;</span>");
 												}
 												// Adds % after percentage
 												if(vtype == 'Data' && item.SubType == 'Percentage' && vdata > -100){       
-													vdata=new String(vdata).replace( vdata,Math.ceil(vdata) + "<span style='font-size:20px;'> &#37;</span>");
+													vdata=new String(vdata).replace( vdata,Math.ceil(vdata) + "<span style='font-size:50%;'> &#37;</span>");
 												}
 												// Adds Watt after the Usage
 												if(vtype == 'Usage' && (item.SubType == 'Energy' || item.SubType == 'CM119 / CM160') && vdata > -100){       
-													vdata=new String(vdata).replace( vdata,vdata + "<span style='font-size:15px;'> Watt</span>");
+													vdata=new String(vdata).replace( vdata,vdata + "<span style='font-size:50%;'> Watt</span>");
 												}
 												// Adds Kwh after the CounterToday
 												if(vtype == 'CounterToday' && (item.SubType == 'Energy' || item.SubType == 'CM119 / CM160') && vdata > -100){       
-													vdata=new String(vdata).replace( vdata,Math.ceil(vdata*10)/10 + "<span style='font-size:15px;'> Kwh</span>");
+													vdata=new String(vdata).replace( vdata,Math.ceil(vdata*10)/10 + "<span style='font-size:50%;'> Kwh</span>");
 												}
 												// Adds Kwh after the Counter and convert float to integer
 												if((vtype == 'Counter' || vtype == 'Data') && (item.SubType == 'Energy' || item.SubType == 'CM119 / CM160') && vdata > -100){       
-													vdata=new String(vdata).replace( vdata,Math.ceil(vdata) + "<span style='font-size:15px;'> Kwh</span>");
+													vdata=new String(vdata).replace( vdata,Math.ceil(vdata) + "<span style='font-size:50%;'> Kwh</span>");
 												}
 												// Adds € after price
 												if(vtype == 'Euro'){       
 													vdata=item.Data;
-													vdata=new String(vdata).replace( vdata,Math.ceil(vdata*100)/100 + "<span style='font-size:30px;'> €</span>");
+													vdata=new String(vdata).replace( vdata,Math.ceil(vdata*100)/100 + "<span style='font-size:50%;'> €</span>");
 												}
 												
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////													
