@@ -38,7 +38,7 @@ html::after
    z-index:-1;
 }
 
-div#cnt
+.cnt
 {
     width: 990px;
     margin: 0 auto;
@@ -117,20 +117,11 @@ div.myPlusButton input
 a, a:visited { text-decoration: none; color: #336699; }
 a:hover { text-decoration: none; color: #003366; }
 
-#frame
+.frame
 {
 	float: left;
 	margin: 0px;
 	padding: 0px 2px 0px 2px;
-	
-}
-
-#all
-{ 
-	margin-left: -35px; 
-	margin-top: 5px; 
-	width: 1050px;
-	height: 570px;	
 	
 }
 

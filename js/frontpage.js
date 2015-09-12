@@ -600,7 +600,7 @@ function RefreshData()
 												}
 												// Adds Watt after the Usage
 												if(vtype == 'Usage' && (item.SubType == 'Energy' || item.SubType == 'CM119 / CM160') && vdata > -100){       
-													vdata=new String(vdata).replace( vdata,vdata + "<span style='font-size:50%;'> Watt</span>");
+													vdata=new String(vdata).replace( vdata,vdata + "<span style='font-size:50%;'>Watt</span>");
 												}
 												// Adds Kwh after the CounterToday
 												if(vtype == 'CounterToday' && (item.SubType == 'Energy' || item.SubType == 'CM119 / CM160') && vdata > -100){       
@@ -634,7 +634,9 @@ function RefreshData()
 												
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////							
 
-                                                $('#desc_'+vlabel).html(vdesc);
+                                                if ($('#desc_'+vlabel).length > 0) {
+													$('#desc_'+vlabel).html(vdesc);
+												}	
                                         }
                                         else if ( $.PageArray[ii][1] === 'Text' ) { 			//Special nummer, link in cell (test)
                                                 var vlabel=     $.PageArray[ii][2];             // cell number from HTML layout
@@ -651,7 +653,9 @@ function RefreshData()
                                                 var valarm=     $.PageArray[ii][7];             // alarm value to turn text to red
                                                 
 												$('#'+vlabel).html('');
-                                                $('#desc_'+vlabel).html('');
+                                                if ($('#desc_'+vlabel).length > 0) {
+													$('#desc_'+vlabel).html('');
+												}	
                                         }
 										else if ( $.PageArray[ii][1] === 'Link' ) { 			//Special nummer, link in cell (test)
                                                 var vlabel=     $.PageArray[ii][2];             // cell number from HTML layout
@@ -660,7 +664,9 @@ function RefreshData()
                                                 var valarm=     $.PageArray[ii][7];             // alarm value to turn text to red
                                                 
                                                 $('#'+vlabel).html( '<div>'+vdata+'</div>');
-                                                $('#desc_'+vlabel).html(vdesc);
+                                                if ($('#desc_'+vlabel).length > 0) {
+													$('#desc_'+vlabel).html(vdesc);
+												}	
                                         }
 										else if ( $.PageArray[ii][1] === 'Clock' ) { 			//Special nummer, Clock in cell (test)
                                                 var vlabel=     $.PageArray[ii][2];             // cell number from HTML layout
@@ -670,7 +676,9 @@ function RefreshData()
                                                 var valarm=     $.PageArray[ii][7];             // alarm value to turn text to red
                                                 
                                                 $('#'+vlabel).html( '<div style='+vattr+'>'+vdata+'</div>');
-                                                $('#desc_'+vlabel).html(vdesc);
+                                                if ($('#desc_'+vlabel).length > 0) {
+													$('#desc_'+vlabel).html(vdesc);
+												}	
 										}	
                                         else if ( $.PageArray[ii][1] === 'SunRise' ) { 			//Special nummer, zonsop/onder in cell (test)
                                                 var vlabel=     $.PageArray[ii][2];             // cell number from HTML layout
@@ -679,7 +687,9 @@ function RefreshData()
                                                 var valarm=     $.PageArray[ii][7];             // alarm value to turn text to red
 
                                                 $('#'+vlabel).html( '<div style='+vattr+'>'+var_sunrise+'</div>');
-                                                $('#desc_'+vlabel).html(txt_sunrise);
+                                                if ($('#desc_'+vlabel).length > 0) {
+													$('#desc_'+vlabel).html(txt_sunrise);
+												}	
 										}	
                                         else if ( $.PageArray[ii][1] === 'SunSet' ) { 			//Special nummer, zonsop/onder in cell (test)
                                                 var vlabel=     $.PageArray[ii][2];             // cell number from HTML layout
@@ -688,7 +698,9 @@ function RefreshData()
                                                 var valarm=     $.PageArray[ii][7];             // alarm value to turn text to red
 
                                                 $('#'+vlabel).html( '<div style='+vattr+'>'+var_sunset+'</div>');
-                                                $('#desc_'+vlabel).html(txt_sunset);
+                                                if ($('#desc_'+vlabel).length > 0) {
+													$('#desc_'+vlabel).html(txt_sunset);
+												}	
 										}	
                                         else if ( $.PageArray[ii][1] === 'SunBoth' ) { 			//Special nummer, zonsop/onder in cell (test)
                                                 var vlabel=     $.PageArray[ii][2];             // cell number from HTML layout
@@ -697,8 +709,9 @@ function RefreshData()
                                                 var valarm=     $.PageArray[ii][7];             // alarm value to turn text to red
 
                                                 $('#'+vlabel).html( '<div style='+vattr+'><img src=icons/sun.png  height="15" width="15" style="PADDING-RIGHT: 2px;">'+var_sunrise+'<img src=icons/moon.png  height="15" width="15" style="PADDING-LEFT: 15px;">'+var_sunset+'</div>');
-                                                $('#desc_'+vlabel).html(txt_sunboth);
-						
+                                                if ($('#desc_'+vlabel).length > 0) {
+													$('#desc_'+vlabel).html(txt_sunboth);
+												}
 										}
                                         
                                 }
@@ -803,8 +816,9 @@ function RefreshData()
                                                        
                                                 }
 
-                                                $('#desc_'+vlabel).html(vdesc);
-                                                
+                                                if ($('#desc_'+vlabel).length > 0) {
+													$('#desc_'+vlabel).html(vdesc);
+                                                }
                                         }
                                 }
                         });
