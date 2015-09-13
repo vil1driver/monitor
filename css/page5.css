@@ -130,7 +130,7 @@
 	line-height: 195px; 
 	font-size: 80px;	
 	color: #999;
-	margin: 2px ;
+	margin: 2px;
 	text-shadow: 1px 1px 4px black;
 }
 
@@ -144,12 +144,11 @@
 	border-radius: 0px;
 	height: 58px;
 	line-height: 55px; 		
-	font-size: 90px;
 	color: #999;
 	font-size:40px;
 	text-shadow: 1px 1px 4px black;
-  margin: 2px ;
-  margin-top: -2px;
+	margin: 2px;
+	margin-top: -2px;
 }
 
 #desc_cell5_1, #desc_cell5_2, #desc_cell5_3, #desc_cell5_4
@@ -187,8 +186,4 @@
 	height: 20px;
 	line-height: 65px;
 	text-shadow: 1px 1px 5px black;
-}
-.img
-{
-margin-top: -22px;
 }

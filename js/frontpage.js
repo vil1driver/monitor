@@ -71,6 +71,7 @@ function hide(cell){document.getElementById(cell).style.visibility = "hidden";}
  
 var var_sunrise='';	
 var var_sunset='';
+var IsNight='No';
 
 <!-- Main Frontpage fuction -->
 function RefreshData()
@@ -81,8 +82,7 @@ function RefreshData()
 		
 	//Get sunrise/sunset
 	
-	var timeurl=$.domoticzurl+"/json.htm?type=command&param=getSunRiseSet&jsoncallback=?";
-	$.getJSON(timeurl,
+	$.getJSON($.domoticzurl+"/json.htm?type=command&param=getSunRiseSet&jsoncallback=?",
 	{
 		format: "json"
 	},
@@ -106,7 +106,45 @@ function RefreshData()
 		}
 		else {
 		  console.log('Undefined');
-		}	
+		}
+		
+									 			// change background image, depending on sunset and sunrise
+												// and set IsNight for meteo icon changing
+												var today=new Date();
+												
+												var h1 = today.getHours();
+												var m1 = today.getMinutes();
+													
+												var h2 = var_sunrise.substring(0, 2);
+												var m2 = var_sunrise.substring(3, 5);
+												
+												var h3 = var_sunset.substring(0, 2);
+												var m3 = var_sunset.substring(3, 5);
+												
+												
+												h2 = parseInt(h2, 10);
+												m2 = parseInt(m2, 10);
+												h3 = parseInt(h3, 10);
+												m3 = parseInt(m3, 10); 
+												
+												var t1 = (60 * h1) + m1;	// time
+												var t2 = (60 * h2) + m2;	// sunrise
+												var t3 = (60 * h3) + m3;	// sunset
+												
+												if ( t1 > t3 || t1 < t2) {
+													// night
+													IsNight = 'Yes';
+													$('<style>html::after{background:rgba(0,0,0,'+bg_nightBright+')}</style>').appendTo('head');
+													document.body.style.background='black url(icons/'+bg_night+') no-repeat top center fixed';
+													document.body.style.backgroundSize=bg_size;
+												} else {
+													// day
+													IsNight = 'No';
+													$('<style>html::after{background:rgba(0,0,0,'+bg_dayBright+')}</style>').appendTo('head');
+													document.body.style.background='black url(icons/'+bg_day+') no-repeat top center fixed';													
+													document.body.style.backgroundSize=bg_size;
+												}
+												
 	});
 
 	
@@ -114,8 +152,8 @@ function RefreshData()
 	
 		
 		// affichage de la partie switch
-        var jurl=$.domoticzurl+"/json.htm?type=devices&plan="+$.roomplan+"&jsoncallback=?";
-        $.getJSON(jurl,
+
+        $.getJSON($.domoticzurl+"/json.htm?type=devices&plan="+$.roomplan+"&jsoncallback=?",
         {
                 format: "json"
         },
@@ -161,49 +199,10 @@ function RefreshData()
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 
 												//Check wether we want to add the last seen to the block
-												if (lastseen == '1' || lastseen == '3') {
+												if ((lastseen == '1' || lastseen == '3') && ($('#ls_'+vlabel).length > 0)) { 
 													$('#ls_'+vlabel).html(vls);
 												}
 						
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-												// change background image, depending on sunset and sunrise
-												// and set IsNight for meteo icon changing
-												var today=new Date();
-												
-												var h1 = today.getHours();
-												var m1 = today.getMinutes();
-													
-												var h2 = var_sunrise.substring(0, 2);
-												var m2 = var_sunrise.substring(3, 5);
-												
-												var h3 = var_sunset.substring(0, 2);
-												var m3 = var_sunset.substring(3, 5);
-												
-												
-												h2 = parseInt(h2, 10);
-												m2 = parseInt(m2, 10);
-												h3 = parseInt(h3, 10);
-												m3 = parseInt(m3, 10); 
-												
-												var t1 = (60 * h1) + m1;	// time
-												var t2 = (60 * h2) + m2;	// sunrise
-												var t3 = (60 * h3) + m3;	// sunset
-												
-												if ( t1 > t3 || t1 < t2) {
-													// night
-													var IsNight = 'Yes';
-													$('<style>html::after{background:rgba(0,0,0,'+bg_nightBright+')}</style>').appendTo('head');
-													document.body.style.background='black url(icons/'+bg_night+') no-repeat top center fixed';
-													document.body.style.backgroundSize=bg_size;
-												} else {
-													// day
-													var IsNight = 'No';
-													$('<style>html::after{background:rgba(0,0,0,'+bg_dayBright+')}</style>').appendTo('head');
-													document.body.style.background='black url(icons/'+bg_day+') no-repeat top center fixed';													
-													document.body.style.backgroundSize=bg_size;
-												}
-	
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 												
 											// Si reveil ->> mise en forme 
@@ -225,9 +224,9 @@ function RefreshData()
 													
                                                         if (vdata == txt_off) {
 															if (lastseen == '2') {
-																var hlp = '<img src="'+$.domoticzurl+'/images/Light48_Off.png" width=48 onclick="SwitchToggle('+item.idx+', \'On\');lightbox_open(\'switch\', '+switch_on_timeout+', '+txt_switch_on+')"; style='+alarmcss+'>';
+																var hlp = '<img src="'+$.domoticzurl+'/images/Light48_Off.png" width=48 onclick="SwitchToggle('+item.idx+', \'On\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_switch_on+')"; style='+alarmcss+'>';
                                                             } else {
-																var hlp = '<span onclick="SwitchToggle('+item.idx+', \'On\');lightbox_open(\'switch\', '+switch_on_timeout+', '+txt_switch_on+')"; style='+alarmcss+'>'+ vdata+'</span>';
+																var hlp = '<span onclick="SwitchToggle('+item.idx+', \'On\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_switch_on+')"; style='+alarmcss+'>'+ vdata+'</span>';
 															}
 															var plus = "";
                                                             var min = "";
@@ -236,19 +235,19 @@ function RefreshData()
                                                         {
 															if (item.MaxDimLevel == 100) {
 																if (lastseen == '2') {
-																	var hlp = '<img src="'+$.domoticzurl+'/images/Light48_On.png" width=48 onclick="SwitchToggle('+item.idx+', \'Off\');lightbox_open(\'switch\', '+switch_off_timeout+', '+txt_switch_off+')"; style='+alarmcss+'>';
+																	var hlp = '<img src="'+$.domoticzurl+'/images/Light48_On.png" width=48 onclick="SwitchToggle('+item.idx+', \'Off\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_switch_off+')"; style='+alarmcss+'>';
 																	vdesc=new String(vdesc).replace( vdesc,vdesc + "<span style='color:#FD0CE9;font-size:20px;'> "+vdata+"&#37;</span>");
 																} else {
-																	var hlp = '<span onclick="SwitchToggle('+item.idx+', \'Off\');lightbox_open(\'switch\', '+switch_off_timeout+', '+txt_switch_off+')"; style='+alarmcss+'>'+ vdata+'</span>';
+																	var hlp = '<span onclick="SwitchToggle('+item.idx+', \'Off\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_switch_off+')"; style='+alarmcss+'>'+ vdata+'</span>';
 																}
 																var plus = "<img src=icons/plus.png align=right hspace=10 vspace=4 width=30 onclick=DimLevel100('plus'," + vdata + "," + item.idx + ")>";
 																var min = "<img src=icons/min.png align=left hspace=10 vspace=4 width=30 onclick=DimLevel100('min'," + vdata + "," + item.idx + ")>";
 															} else {
 																if (lastseen == '2') {
-																	var hlp = '<img src="'+$.domoticzurl+'/images/Light48_On.png" width=48 onclick="SwitchToggle('+item.idx+', \'Off\');lightbox_open(\'switch\', '+switch_off_timeout+', '+txt_switch_off+')"; style='+alarmcss+'>';
+																	var hlp = '<img src="'+$.domoticzurl+'/images/Light48_On.png" width=48 onclick="SwitchToggle('+item.idx+', \'Off\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_switch_off+')"; style='+alarmcss+'>';
 																	vdesc=new String(vdesc).replace( vdesc,vdesc + "<span style='color:#FD0CE9;font-size:20px;'> "+vdata+"&#37;</span>");
 																} else {
-																	var hlp = '<span onclick="SwitchToggle('+item.idx+', \'Off\');lightbox_open(\'switch\', '+switch_off_timeout+', '+txt_switch_off+')"; style='+alarmcss+'>'+ vdata+'</span>';
+																	var hlp = '<span onclick="SwitchToggle('+item.idx+', \'Off\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_switch_off+')"; style='+alarmcss+'>'+ vdata+'</span>';
 																}
 																var plus = "<img src=icons/plus.png align=right hspace=10 vspace=4 width=30 onclick=DimLevel16('plus'," + vdata + "," + item.idx + ","+ vdimmercurrent+")>";
 																var min = "<img src=icons/min.png align=left hspace=10 vspace=4 width=30 onclick=DimLevel16('min'," + vdata + "," + item.idx + ","+ vdimmercurrent+")>";
@@ -276,14 +275,14 @@ function RefreshData()
 											// blinds
 													if (item.SwitchType == 'Blinds') {
 														if(vdata == 'Closed') {
-																var down = '<img src='+$.domoticzurl+'/images/blinds48sel.png  hspace=1 width=40 onclick="SwitchToggle('+item.idx+', \'On\');lightbox_open(\'switch\', '+switch_on_timeout+', '+txt_blind_down+')">';
-																var up = '<img src='+$.domoticzurl+'/images/blindsopen48.png  hspace=1 width=40 onclick="SwitchToggle('+item.idx+', \'Off\');lightbox_open(\'switch\', '+switch_off_timeout+', '+txt_blind_up+')">';
+																var down = '<img src='+$.domoticzurl+'/images/blinds48sel.png  hspace=1 width=40 onclick="SwitchToggle('+item.idx+', \'On\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_blind_down+')">';
+																var up = '<img src='+$.domoticzurl+'/images/blindsopen48.png  hspace=1 width=40 onclick="SwitchToggle('+item.idx+', \'Off\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_blind_up+')">';
 														}
 														if (vdata == 'Open' || vdata == 'Stopped') {
-																var down = '<img src='+$.domoticzurl+'/images/blinds48.png  hspace=1 width=40 onclick="SwitchToggle('+item.idx+', \'On\');lightbox_open(\'switch\', '+switch_on_timeout+', '+txt_blind_down+')">';
-																var up = '<img src='+$.domoticzurl+'/images/blindsopen48sel.png  hspace=1 width=40 onclick="SwitchToggle('+item.idx+', \'Off\');lightbox_open(\'switch\', '+switch_off_timeout+', '+txt_blind_up+')">';
+																var down = '<img src='+$.domoticzurl+'/images/blinds48.png  hspace=1 width=40 onclick="SwitchToggle('+item.idx+', \'On\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_blind_down+')">';
+																var up = '<img src='+$.domoticzurl+'/images/blindsopen48sel.png  hspace=1 width=40 onclick="SwitchToggle('+item.idx+', \'Off\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_blind_up+')">';
 														}
-														var stop = '<img src='+$.domoticzurl+'/images/blindsstop.png  hspace=1 height=40 onclick="SwitchToggle('+item.idx+', \'Stop\');lightbox_open(\'switch\', '+switch_on_timeout+', '+txt_blind_stop+')">';
+														var stop = '<img src='+$.domoticzurl+'/images/blindsstop.png  hspace=1 height=40 onclick="SwitchToggle('+item.idx+', \'Stop\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_blind_stop+')">';
 														if(item.Type == 'RFY') {
 															vdata = down.concat(stop,up);
 														} else	{
@@ -293,14 +292,14 @@ function RefreshData()
 													}
 													if (item.SwitchType == 'Blinds Inverted') {
 														if(vdata == 'Closed') {
-																var down = '<img src='+$.domoticzurl+'/images/blinds48sel.png  hspace=1 width=40 onclick="SwitchToggle('+item.idx+', \'Off\');lightbox_open(\'switch\', '+switch_off_timeout+', '+txt_blind_down+')">';
-																var up = '<img src='+$.domoticzurl+'/images/blindsopen48.png  hspace=1 width=40 onclick="SwitchToggle('+item.idx+', \'On\');lightbox_open(\'switch\', '+switch_on_timeout+', '+txt_blind_up+')">';
+																var down = '<img src='+$.domoticzurl+'/images/blinds48sel.png  hspace=1 width=40 onclick="SwitchToggle('+item.idx+', \'Off\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_blind_down+')">';
+																var up = '<img src='+$.domoticzurl+'/images/blindsopen48.png  hspace=1 width=40 onclick="SwitchToggle('+item.idx+', \'On\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_blind_up+')">';
 														}
 														if (vdata == 'Open' || vdata == 'Stopped') {
-																var down = '<img src='+$.domoticzurl+'/images/blinds48.png  hspace=1 width=40 onclick="SwitchToggle('+item.idx+', \'Off\');lightbox_open(\'switch\', '+switch_off_timeout+', '+txt_blind_down+')">';
-																var up = '<img src='+$.domoticzurl+'/images/blindsopen48sel.png  hspace=1 width=40 onclick="SwitchToggle('+item.idx+', \'On\');lightbox_open(\'switch\', '+switch_on_timeout+', '+txt_blind_up+')">';
+																var down = '<img src='+$.domoticzurl+'/images/blinds48.png  hspace=1 width=40 onclick="SwitchToggle('+item.idx+', \'Off\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_blind_down+')">';
+																var up = '<img src='+$.domoticzurl+'/images/blindsopen48sel.png  hspace=1 width=40 onclick="SwitchToggle('+item.idx+', \'On\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_blind_up+')">';
 														}
-														var stop = '<img src='+$.domoticzurl+'/images/blindsstop.png  hspace=1 height=40 onclick="SwitchToggle('+item.idx+', \'Stop\');lightbox_open(\'switch\', '+switch_on_timeout+', '+txt_blind_stop+')">';
+														var stop = '<img src='+$.domoticzurl+'/images/blindsstop.png  hspace=1 height=40 onclick="SwitchToggle('+item.idx+', \'Stop\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_blind_stop+')">';
 														if(item.Type == 'RFY') {
 															vdata = down.concat(stop,up);
 														} else	{
@@ -310,14 +309,14 @@ function RefreshData()
 													}
 													if (item.SwitchType == 'Venetian Blinds EU' || item.SwitchType == 'Venetian Blinds US') {
 														if(vdata == 'Closed') {
-																var down = '<img src='+$.domoticzurl+'/images/blinds48sel.png  hspace=1 width=40 onclick="SwitchToggle('+item.idx+', \'On\');lightbox_open(\'switch\', '+switch_on_timeout+', '+txt_blind_down+')">';
-																var up = '<img src='+$.domoticzurl+'/images/blindsopen48.png  hspace=1 width=40 onclick="SwitchToggle('+item.idx+', \'Off\');lightbox_open(\'switch\', '+switch_off_timeout+', '+txt_blind_up+')">';
+																var down = '<img src='+$.domoticzurl+'/images/blinds48sel.png  hspace=1 width=40 onclick="SwitchToggle('+item.idx+', \'On\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_blind_down+')">';
+																var up = '<img src='+$.domoticzurl+'/images/blindsopen48.png  hspace=1 width=40 onclick="SwitchToggle('+item.idx+', \'Off\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_blind_up+')">';
 														}
 														if (vdata == 'Open' || vdata == 'Stopped') {
-																var down = '<img src='+$.domoticzurl+'/images/blinds48.png  hspace=1 width=40 onclick="SwitchToggle('+item.idx+', \'On\');lightbox_open(\'switch\', '+switch_on_timeout+', '+txt_blind_down+')">';
-																var up = '<img src='+$.domoticzurl+'/images/blindsopen48sel.png  hspace=1 width=40 onclick="SwitchToggle('+item.idx+', \'Off\');lightbox_open(\'switch\', '+switch_off_timeout+', '+txt_blind_up+')">';
+																var down = '<img src='+$.domoticzurl+'/images/blinds48.png  hspace=1 width=40 onclick="SwitchToggle('+item.idx+', \'On\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_blind_down+')">';
+																var up = '<img src='+$.domoticzurl+'/images/blindsopen48sel.png  hspace=1 width=40 onclick="SwitchToggle('+item.idx+', \'Off\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_blind_up+')">';
 														}
-														var stop = '<img src='+$.domoticzurl+'/images/blindsstop.png  hspace=1 height=40 onclick="SwitchToggle('+item.idx+', \'Stop\');lightbox_open(\'switch\', '+switch_on_timeout+', '+txt_blind_stop+')">';
+														var stop = '<img src='+$.domoticzurl+'/images/blindsstop.png  hspace=1 height=40 onclick="SwitchToggle('+item.idx+', \'Stop\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_blind_stop+')">';
 														vdata = down.concat(stop,up);
 														//console.log(vdata);
 													}
@@ -325,21 +324,21 @@ function RefreshData()
 														
 														if(item.Status == 'Closed') {
 																vdata = 100;
-																var down = '<img src='+$.domoticzurl+'/images/blinds48sel.png  hspace=1 width=40 onclick="SwitchToggle('+item.idx+', \'On\');lightbox_open(\'switch\', '+switch_on_timeout+', '+txt_blind_down+')">';
-																var up = '<img src='+$.domoticzurl+'/images/blindsopen48.png  hspace=1 width=40 onclick="SwitchToggle('+item.idx+', \'Off\');lightbox_open(\'switch\', '+switch_off_timeout+', '+txt_blind_up+')">';
+																var down = '<img src='+$.domoticzurl+'/images/blinds48sel.png  hspace=1 width=40 onclick="SwitchToggle('+item.idx+', \'On\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_blind_down+')">';
+																var up = '<img src='+$.domoticzurl+'/images/blindsopen48.png  hspace=1 width=40 onclick="SwitchToggle('+item.idx+', \'Off\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_blind_up+')">';
 																var plus = "<img src=icons/plus.png  vspace=4 hspace=4 width=30 onclick=DimLevel100('min'," + vdata + "," + item.idx + ")>";
 																var min = "<img src=icons/min.png  vspace=4 hspace=4 width=30 onclick=DimLevel100('plus'," + vdata + "," + item.idx + ")>";
 															
 														}
 														else if (item.Status == 'Open') {
-																var down = '<img src='+$.domoticzurl+'/images/blinds48.png  hspace=1 width=40 onclick="SwitchToggle('+item.idx+', \'On\');lightbox_open(\'switch\', '+switch_on_timeout+', '+txt_blind_down+')">';
-																var up = '<img src='+$.domoticzurl+'/images/blindsopen48sel.png  hspace=1 width=40 onclick="SwitchToggle('+item.idx+', \'Off\');lightbox_open(\'switch\', '+switch_off_timeout+', '+txt_blind_up+')">';
+																var down = '<img src='+$.domoticzurl+'/images/blinds48.png  hspace=1 width=40 onclick="SwitchToggle('+item.idx+', \'On\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_blind_down+')">';
+																var up = '<img src='+$.domoticzurl+'/images/blindsopen48sel.png  hspace=1 width=40 onclick="SwitchToggle('+item.idx+', \'Off\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_blind_up+')">';
 																var plus = "<img src=icons/plus.png  vspace=4 hspace=4 width=30 onclick=DimLevel100('min'," + vdata + "," + item.idx + ")>";
 																var min = "<img src=icons/min.png  vspace=4 hspace=4 width=30 onclick=DimLevel100('plus'," + vdata + "," + item.idx + ")>";
 														}
 														else {
-																var down = '<img src='+$.domoticzurl+'/images/blinds48.png  hspace=1 width=40 onclick="SwitchToggle('+item.idx+', \'On\');lightbox_open(\'switch\', '+switch_on_timeout+', '+txt_blind_down+')">';
-																var up = '<img src='+$.domoticzurl+'/images/blindsopen48sel.png  hspace=1 width=40 onclick="SwitchToggle('+item.idx+', \'Off\');lightbox_open(\'switch\', '+switch_off_timeout+', '+txt_blind_up+')">';
+																var down = '<img src='+$.domoticzurl+'/images/blinds48.png  hspace=1 width=40 onclick="SwitchToggle('+item.idx+', \'On\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_blind_down+')">';
+																var up = '<img src='+$.domoticzurl+'/images/blindsopen48sel.png  hspace=1 width=40 onclick="SwitchToggle('+item.idx+', \'Off\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_blind_up+')">';
 																var plus = "<img src=icons/plus.png  vspace=4 hspace=4 width=30 onclick=DimLevel100('min'," + vdata + "," + item.idx + ")>";
 																var min = "<img src=icons/min.png  vspace=4 hspace=4 width=30 onclick=DimLevel100('plus'," + vdata + "," + item.idx + ")>";
 														}
@@ -351,23 +350,23 @@ function RefreshData()
 													if (item.SwitchType == 'Blinds Percentage Inverted') {
 														
 														if(item.Status == 'Closed') {
-																var down = '<img src='+$.domoticzurl+'/images/blinds48sel.png  hspace=1 width=40 onclick="SwitchToggle('+item.idx+', \'Off\');lightbox_open(\'switch\', '+switch_off_timeout+', '+txt_blind_down+')">';
-																var up = '<img src='+$.domoticzurl+'/images/blindsopen48.png  hspace=1 width=40 onclick="SwitchToggle('+item.idx+', \'On\');lightbox_open(\'switch\', '+switch_on_timeout+', '+txt_blind_up+')">';
+																var down = '<img src='+$.domoticzurl+'/images/blinds48sel.png  hspace=1 width=40 onclick="SwitchToggle('+item.idx+', \'Off\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_blind_down+')">';
+																var up = '<img src='+$.domoticzurl+'/images/blindsopen48.png  hspace=1 width=40 onclick="SwitchToggle('+item.idx+', \'On\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_blind_up+')">';
 																var plus = "<img src=icons/plus.png vspace=4 hspace=4 width=30 onclick=DimLevel100('plus'," + vdata + "," + item.idx + ")>";
 																var min = "<img src=icons/min.png vspace=4 hspace=4 width=30 onclick=DimLevel100('min'," + vdata + "," + item.idx + ")>";
 																
 														}
 														else if (item.Status == 'Open') {
 																vdata = 100;
-																var down = '<img src='+$.domoticzurl+'/images/blinds48.png  hspace=1 width=40 onclick="SwitchToggle('+item.idx+', \'Off\');lightbox_open(\'switch\', '+switch_off_timeout+', '+txt_blind_down+')">';
-																var up = '<img src='+$.domoticzurl+'/images/blindsopen48sel.png  hspace=1 width=40 onclick="SwitchToggle('+item.idx+', \'On\');lightbox_open(\'switch\', '+switch_on_timeout+', '+txt_blind_up+')">';
+																var down = '<img src='+$.domoticzurl+'/images/blinds48.png  hspace=1 width=40 onclick="SwitchToggle('+item.idx+', \'Off\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_blind_down+')">';
+																var up = '<img src='+$.domoticzurl+'/images/blindsopen48sel.png  hspace=1 width=40 onclick="SwitchToggle('+item.idx+', \'On\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_blind_up+')">';
 																var plus = "<img src=icons/plus.png vspace=4 hspace=4 width=30 onclick=DimLevel100('plus'," + vdata + "," + item.idx + ")>";
 																var min = "<img src=icons/min.png vspace=4 hspace=4 width=30 onclick=DimLevel100('min'," + vdata + "," + item.idx + ")>";
 														
 														}
 														else {
-																var down = '<img src='+$.domoticzurl+'/images/blinds48.png  hspace=1 width=40 onclick="SwitchToggle('+item.idx+', \'Off\');lightbox_open(\'switch\', '+switch_off_timeout+', '+txt_blind_down+')">';
-																var up = '<img src='+$.domoticzurl+'/images/blindsopen48sel.png  hspace=1 width=40 onclick="SwitchToggle('+item.idx+', \'On\');lightbox_open(\'switch\', '+switch_on_timeout+', '+txt_blind_up+')">';
+																var down = '<img src='+$.domoticzurl+'/images/blinds48.png  hspace=1 width=40 onclick="SwitchToggle('+item.idx+', \'Off\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_blind_down+')">';
+																var up = '<img src='+$.domoticzurl+'/images/blindsopen48sel.png  hspace=1 width=40 onclick="SwitchToggle('+item.idx+', \'On\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_blind_up+')">';
 																var plus = "<img src=icons/plus.png vspace=4 hspace=4 width=30 onclick=DimLevel100('plus'," + vdata + "," + item.idx + ")>";
 																var min = "<img src=icons/min.png vspace=4 hspace=4 width=30 onclick=DimLevel100('min'," + vdata + "," + item.idx + ")>";
 														
@@ -462,7 +461,7 @@ function RefreshData()
                                                 switchclick='';
 												
 												if (vdata == 'Off') {
-                                                        switchclick = 'onclick="SwitchToggle('+item.idx+', \'On\');lightbox_open(\'switch\', '+switch_on_timeout+', '+txt_switch_on+')"';
+                                                        switchclick = 'onclick="SwitchToggle('+item.idx+', \'On\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_switch_on+')"';
 
                                                          if ( item.SwitchType == 'Push On Button' ) {
 															vdata = vdesc;
@@ -474,7 +473,7 @@ function RefreshData()
                                                 }
 												
 												if (vdata == 'On') {
-                                                        switchclick = 'onclick="SwitchToggle('+item.idx+', \'Off\');lightbox_open(\'switch\', '+switch_off_timeout+', '+txt_switch_off+')"';
+                                                        switchclick = 'onclick="SwitchToggle('+item.idx+', \'Off\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_switch_off+')"';
 
                                                       
 														if ( item.SwitchType == 'Push Off Button' ) {
@@ -634,9 +633,9 @@ function RefreshData()
 												
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////							
 
-                                                if ($('#desc_'+vlabel).length > 0) {
+                                                 if ($('#desc_'+vlabel).length > 0) {
 													$('#desc_'+vlabel).html(vdesc);
-												}	
+												}	 
                                         }
                                         else if ( $.PageArray[ii][1] === 'Text' ) { 			//Special nummer, link in cell (test)
                                                 var vlabel=     $.PageArray[ii][2];             // cell number from HTML layout
@@ -676,9 +675,9 @@ function RefreshData()
                                                 var valarm=     $.PageArray[ii][7];             // alarm value to turn text to red
                                                 
                                                 $('#'+vlabel).html( '<div style='+vattr+'>'+vdata+'</div>');
-                                                if ($('#desc_'+vlabel).length > 0) {
+                                                 if ($('#desc_'+vlabel).length > 0) {
 													$('#desc_'+vlabel).html(vdesc);
-												}	
+												}	 
 										}	
                                         else if ( $.PageArray[ii][1] === 'SunRise' ) { 			//Special nummer, zonsop/onder in cell (test)
                                                 var vlabel=     $.PageArray[ii][2];             // cell number from HTML layout
@@ -687,9 +686,9 @@ function RefreshData()
                                                 var valarm=     $.PageArray[ii][7];             // alarm value to turn text to red
 
                                                 $('#'+vlabel).html( '<div style='+vattr+'>'+var_sunrise+'</div>');
-                                                if ($('#desc_'+vlabel).length > 0) {
+                                                 if ($('#desc_'+vlabel).length > 0) {
 													$('#desc_'+vlabel).html(txt_sunrise);
-												}	
+												}	 
 										}	
                                         else if ( $.PageArray[ii][1] === 'SunSet' ) { 			//Special nummer, zonsop/onder in cell (test)
                                                 var vlabel=     $.PageArray[ii][2];             // cell number from HTML layout
@@ -698,9 +697,9 @@ function RefreshData()
                                                 var valarm=     $.PageArray[ii][7];             // alarm value to turn text to red
 
                                                 $('#'+vlabel).html( '<div style='+vattr+'>'+var_sunset+'</div>');
-                                                if ($('#desc_'+vlabel).length > 0) {
+                                                 if ($('#desc_'+vlabel).length > 0) {
 													$('#desc_'+vlabel).html(txt_sunset);
-												}	
+												}	 
 										}	
                                         else if ( $.PageArray[ii][1] === 'SunBoth' ) { 			//Special nummer, zonsop/onder in cell (test)
                                                 var vlabel=     $.PageArray[ii][2];             // cell number from HTML layout
@@ -709,9 +708,9 @@ function RefreshData()
                                                 var valarm=     $.PageArray[ii][7];             // alarm value to turn text to red
 
                                                 $('#'+vlabel).html( '<div style='+vattr+'><img src=icons/sun.png  height="15" width="15" style="PADDING-RIGHT: 2px;">'+var_sunrise+'<img src=icons/moon.png  height="15" width="15" style="PADDING-LEFT: 15px;">'+var_sunset+'</div>');
-                                                if ($('#desc_'+vlabel).length > 0) {
+                                                 if ($('#desc_'+vlabel).length > 0) {
 													$('#desc_'+vlabel).html(txt_sunboth);
-												}
+												} 
 										}
                                         
                                 }
@@ -723,8 +722,8 @@ function RefreshData()
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////													
 		// affichage de la partie scène/groupe
-        var jurl=$.domoticzurl+"/json.htm?type=scenes&plan="+$.roomplan+"&jsoncallback=?";
-        $.getJSON(jurl,
+    
+        $.getJSON($.domoticzurl+"/json.htm?type=scenes&plan="+$.roomplan+"&jsoncallback=?",
         {
                 format: "json"
         },
@@ -757,7 +756,7 @@ function RefreshData()
                                             
                                                												
 												if (vdata == 'Off'  || item.Type == 'Scene' ) {
-                                                        switchclick = 'onclick="SceneToggle('+item.idx+', \'On\');lightbox_open(\'switch\', '+switch_on_timeout+', '+txt_switch_on+')"';
+                                                        switchclick = 'onclick="SceneToggle('+item.idx+', \'On\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_switch_on+')"';
 
                                                         if ( item.Type == 'Scene' ) {
 															vdata = vdesc;
@@ -768,13 +767,13 @@ function RefreshData()
 														}
                                                 }
                                                 if (vdata == 'On' ) {
-                                                        switchclick = 'onclick="SceneToggle('+item.idx+', \'Off\');lightbox_open(\'switch\', '+switch_off_timeout+', '+txt_switch_off+')"';
+                                                        switchclick = 'onclick="SceneToggle('+item.idx+', \'Off\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_switch_off+')"';
                                                         alarmcss=';color:#1B9772;';
                                                         vdata = txt_on;
                                                 }
 												if (vdata == 'Mixed' ) {
-                                                        var min = '<span style="font-size:100%;position:relative;left:-10px;color:#1B9772;" onclick="SceneToggle('+item.idx+', \'On\');lightbox_open(\'switch\', '+switch_on_timeout+', '+txt_switch_on+')">'+txt_on+'</span>';
-														var plus = '<span  style="font-size:100%;position:relative;left:10px;color:#E24E2A;" onclick="SceneToggle('+item.idx+', \'Off\');lightbox_open(\'switch\', '+switch_off_timeout+', '+txt_switch_off+')">'+txt_off+'</span>';
+                                                        var min = '<span style="font-size:100%;position:relative;left:-10px;color:#1B9772;" onclick="SceneToggle('+item.idx+', \'On\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_switch_on+')">'+txt_on+'</span>';
+														var plus = '<span  style="font-size:100%;position:relative;left:10px;color:#E24E2A;" onclick="SceneToggle('+item.idx+', \'Off\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_switch_off+')">'+txt_off+'</span>';
 														vdata = min.concat(plus);
 														
                                                 }
@@ -799,8 +798,8 @@ function RefreshData()
 														else if (vdata == txt_off) {
 															vdata=new String(vdata).replace( vdata,'<img src="'+$.domoticzurl+'/images/'+icon_Off+'"  width=48>');
 														} else  {
-															min=new String(vdata).replace( vdata,'<img src="'+$.domoticzurl+'/images/'+icon_On+'"  hspace=10 width=48 onclick="SceneToggle('+item.idx+', \'On\');lightbox_open(\'switch\', '+switch_on_timeout+', '+txt_switch_on+')">');
-															plus=new String(vdata).replace( vdata,'<img src="'+$.domoticzurl+'/images/'+icon_Off+'"  hspace=10 width=48 onclick="SceneToggle('+item.idx+', \'Off\');lightbox_open(\'switch\', '+switch_off_timeout+', '+txt_switch_off+')">');
+															min=new String(vdata).replace( vdata,'<img src="'+$.domoticzurl+'/images/'+icon_On+'"  hspace=10 width=48 onclick="SceneToggle('+item.idx+', \'On\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_switch_on+')">');
+															plus=new String(vdata).replace( vdata,'<img src="'+$.domoticzurl+'/images/'+icon_Off+'"  hspace=10 width=48 onclick="SceneToggle('+item.idx+', \'Off\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_switch_off+')">');
 															vdata = min.concat(plus);
 														}	
 													}
@@ -848,7 +847,8 @@ function SceneToggle(idx, switchcmd)
         console.log('ERROR');
      }
         });
-        RefreshData();
+        //RefreshData();
+		setTimeout(RefreshData , 1100);
 }
 
 //switch state of a switch
@@ -865,7 +865,8 @@ function SwitchToggle(idx, switchcmd)
         console.log('ERROR');
      }
         });
-        RefreshData();
+        //RefreshData();
+		setTimeout(RefreshData , 1100);
 }
 
 //Dimmer, 0-16
@@ -932,7 +933,8 @@ else
                 });
           }
         }
-RefreshData();
+		RefreshData();
+		
 }
 //Dimmer, 0-100
 function DimLevel100(OpenDicht,level,idx)
@@ -977,7 +979,8 @@ function DimLevel100(OpenDicht,level,idx)
                 });
           }
         
-RefreshData();
+ RefreshData();
+
 }
 // thermostat
 function ChangeTherm(dimtype,stepsize,idx,currentvalue,thermmax)
@@ -1010,7 +1013,7 @@ function ChangeTherm(dimtype,stepsize,idx,currentvalue,thermmax)
      }
  	});
  	RefreshData();
-}
+	}
 
 
 // date et heure
@@ -1087,7 +1090,7 @@ function goodmorning(v) {
 	var ret_str = "<span style='font-size:100%;position:relative;top:-5px;'>"+h+":"+m+"</span><br><span style='font-size:35%;position:relative;top:-40px;'>"+day+" "+date+"</span>";
 	}
 	// si l'alarme désactivée ou passée.
-	if (year == "2000" || now > wakeup) {
+	if (now > wakeup) {
 		//var ret_str = "ZZzzz";
 		var ret_str = "<img src=icons/sleep.png  height='70' width='70'>"; 
 	}

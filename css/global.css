@@ -91,7 +91,7 @@ html::after
     white-space: normal;
 }
 
-div.myMinButton input
+.myMinButton input
 { 
 	background:url(../icons/min.png) no-repeat center top; 
 	cursor:pointer; 
@@ -103,7 +103,7 @@ div.myMinButton input
  
 } 
 
-div.myPlusButton input
+.myPlusButton input
 { 
 	background:url(../icons/plus.png) no-repeat center top; 
 	cursor:pointer; 

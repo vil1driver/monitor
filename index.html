@@ -37,7 +37,8 @@
 <!-- empêcher le clic droit -->		
     document.oncontextmenu = new Function("return false");
 
-<!-- viewport auto detect best scale -->		
+<!-- viewport auto detect best scale -->	
+	<!-- alert(document.documentElement.clientWidth); -->
 	var def = 962;	
 	var actual = document.documentElement.clientWidth;
 	var scale = Math.ceil((actual/def)*100)/100;
@@ -63,7 +64,7 @@ $(window).ready(function(){
            
     
 	  
-	RefreshData();	  
+	setTimeout(RefreshData , 100);
 	});
 	
 //-->

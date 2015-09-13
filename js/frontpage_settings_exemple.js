@@ -25,8 +25,7 @@ var bg_nightBright = 0.5;				// luminosité du fond la nuit (0=normal 1=noir)
 
 <!-- Change the timeout of the PopUp -->
 var switch_protected_timeout = '1000';
-var switch_on_timeout = '1000';
-var switch_off_timeout = '1000';
+var switch_timeout = '1000';
 
 <!-- Special items -->
 var city = 'saint-jacques-de-la-lande';		// localité pour la popup météo (lors du clic sur l'icon météo)
