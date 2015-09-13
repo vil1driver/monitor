@@ -30,6 +30,7 @@
     width: 180px;
 	border: 1px solid transparent;
 	line-height: 60px; 
+	z-index:2;
 }
 
 #cell5_1c, #cell5_2c, #cell5_3c, #cell5_4c
