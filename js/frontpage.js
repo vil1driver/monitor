@@ -16,6 +16,7 @@ function lightbox_close(id){
         $('#popup_'+id).fadeOut('fast');
         $('#fade').fadeOut('fast');
 		clearTimeout(tempo);
+		setTimeout(RefreshData , 150);
 }
 
 <!-- help box open popup -->
@@ -847,8 +848,7 @@ function SceneToggle(idx, switchcmd)
         console.log('ERROR');
      }
         });
-        //RefreshData();
-		setTimeout(RefreshData , 1100);
+        //RefreshData();	// now include in lightbox_close function
 }
 
 //switch state of a switch
@@ -865,8 +865,7 @@ function SwitchToggle(idx, switchcmd)
         console.log('ERROR');
      }
         });
-        //RefreshData();
-		setTimeout(RefreshData , 1100);
+        //RefreshData();	// now include in lightbox_close function
 }
 
 //Dimmer, 0-16

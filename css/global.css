@@ -125,6 +125,12 @@ a:hover { text-decoration: none; color: #003366; }
 	
 }
 
+sup 
+{
+    vertical-align: super;
+    line-height: 0;
+}
+
 #popup_switch, #popup_protected, #popup_meteo,
 #popup_camera1, #popup_camera2, #popup_camera3, #popup_camera4, #popup_camera5, #popup_camera6,
 #popup_secpanel, #popup_help
