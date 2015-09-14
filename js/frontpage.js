@@ -66,9 +66,6 @@ function LoadMeteoWidget() {
 	}, 3000);	// tempo de 3s avant d'aller chercher l'image
 }
 
-<!-- blink alarm value -->
-function show(cell){document.getElementById(cell).style.visibility = "visible";}
-function hide(cell){document.getElementById(cell).style.visibility = "hidden";} 
  
 var var_sunrise='';	
 var var_sunset='';
@@ -455,7 +452,10 @@ function RefreshData()
                                                         vdata = txt_open;
 														vattr='color:#1B9772';
                                                 }
-
+												var HumidityStatus = { "Wet": "Humide", "Comfortable": "Confortable", "ccc": "333" };
+												if (typeof HumidityStatus[vdata] != 'undefined') {
+													vdata = HumidityStatus[vdata];
+												}	
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////													
                                                 												
 												// create switchable value when item is switch
@@ -546,19 +546,14 @@ function RefreshData()
 
                                                 // if alarm threshold is defined, make value red
                                                 if (typeof valarm != 'undefined' && vtype != 'SetPoint') {
-                                                        alarmcss='';
-														if ( Number(vdata) >= valarm ) {  
-                                                            alarmcss=';color:red;';
-															//blink value
-															if (blink == true) {
-																for(var i=0; i < 8100; i=i+900)
-																	{
-																		setTimeout("hide(\""+vlabel+"\")",i);
-																		setTimeout("show(\""+vlabel+"\")",i+300);
-																	}
-																	//console.log('Alarme '+vdesc+' : '+vdata+' >= '+valarm);
-															}		
-														}
+                                                    alarmcss='';
+													document.getElementById(vlabel).classList.remove("blink_me");
+													if ( Number(vdata) >= valarm ) {  
+                                                        alarmcss=';color:red;';
+														if (blink == true) {
+															document.getElementById(vlabel).classList.add("blink_me");
+														}		
+													}
                                                 }
 												
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	

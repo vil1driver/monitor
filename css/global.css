@@ -100,7 +100,7 @@ html::after
 	border: none; 
 	margin-left: 5px;
 	margin-top: 6px;
- 
+	
 } 
 
 .myPlusButton input
@@ -112,6 +112,7 @@ html::after
 	border: none; 
 	margin-left: 5px;
 	margin-top: 6px;
+	
 }
 
 a, a:visited { text-decoration: none; color: #336699; }
@@ -130,7 +131,7 @@ sup
     vertical-align: super;
     line-height: 0;
 }
-
+	
 #popup_switch, #popup_protected, #popup_meteo,
 #popup_camera1, #popup_camera2, #popup_camera3, #popup_camera4, #popup_camera5, #popup_camera6,
 #popup_secpanel, #popup_help
@@ -219,4 +220,39 @@ background: url(../icons/offline.jpg) no-repeat;
   background-size: 640px 480px;
   width: 640px;
   height: 480px;
+}
+
+.blink_me {
+    -webkit-animation-name: blinker;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+
+    -moz-animation-name: blinker;
+    -moz-animation-duration: 1s;
+    -moz-animation-timing-function: linear;
+    -moz-animation-iteration-count: infinite;
+
+    animation-name: blinker;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@-moz-keyframes blinker {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1.0; }
+}
+
+@-webkit-keyframes blinker {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1.0; }
+}
+
+@keyframes blinker {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1.0; }
 }
