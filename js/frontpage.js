@@ -547,14 +547,16 @@ function RefreshData()
                                                 // if alarm threshold is defined, make value red
                                                 if (typeof valarm != 'undefined' && vtype != 'SetPoint') {
                                                     alarmcss='';
-													document.getElementById(vlabel).classList.remove("blink_me");
 													if ( Number(vdata) >= valarm ) {  
                                                         alarmcss=';color:red;';
-														if (blink == true) {
+														if (blink == true && !$( "#"+vlabel ).hasClass( "blink_me" )) {
 															document.getElementById(vlabel).classList.add("blink_me");
 														}		
 													}
-                                                }
+													else if ( $( "#"+vlabel ).hasClass( "blink_me" ) ) {
+															document.getElementById(vlabel).classList.remove("blink_me");
+													}
+												}
 												
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 											
