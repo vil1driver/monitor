@@ -56,14 +56,12 @@ clearTimeout(tempo);
 
 <!-- Load meteo widget -->
 function LoadMeteoWidget() {
-	setTimeout(function(){
 	if (city == '') {
 		$('#popup_meteo').html('<div onClick="lightbox_close(\'meteo\');" width="650" height="250" valign="center" line-height="15px">Veuillez indiquer votre ville dans les paramètres<br>exemple:<br>var city = \'paris\'</div>');	
 	}else{
 		$('#popup_meteo').html('<img src="http://www.prevision-meteo.ch/uploads/widget/'+city+'_0.png#' + new Date().getTime()+'" onClick="lightbox_close(\'meteo\');" width="650" height="250" alt="Ville inconnue..">');
 	}	
 	setInterval(LoadMeteoWidget, 7200000); 	// rechargement toutes les 2 heures
-	}, 3000);	// tempo de 3s avant d'aller chercher l'image
 }
 
  
