@@ -132,15 +132,19 @@ function RefreshData()
 												if ( t1 > t3 || t1 < t2) {
 													// night
 													IsNight = 'Yes';
-													$('<style>html::after{background:rgba(0,0,0,'+bg_nightBright+')}</style>').appendTo('head');
-													document.body.style.background='black url(icons/'+bg_night+') no-repeat top center fixed';
-													document.body.style.backgroundSize=bg_size;
+													if ( typeof bg_day != 'undefined' ) {
+														$('<style>html::after{background:rgba(0,0,0,'+bg_nightBright+')}</style>').appendTo('head');
+														document.body.style.background='black url(icons/'+bg_night+') no-repeat top center fixed';
+														document.body.style.backgroundSize=bg_size;
+													}	
 												} else {
 													// day
 													IsNight = 'No';
-													$('<style>html::after{background:rgba(0,0,0,'+bg_dayBright+')}</style>').appendTo('head');
-													document.body.style.background='black url(icons/'+bg_day+') no-repeat top center fixed';													
-													document.body.style.backgroundSize=bg_size;
+													if ( typeof bg_night != 'undefined' ) {
+														$('<style>html::after{background:rgba(0,0,0,'+bg_dayBright+')}</style>').appendTo('head');
+														document.body.style.background='black url(icons/'+bg_day+') no-repeat top center fixed';													
+														document.body.style.backgroundSize=bg_size;
+													}	
 												}
 												
 	});
