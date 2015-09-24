@@ -54,6 +54,23 @@ $('#popup_secpanel').html('');
 clearTimeout(tempo);
 }
 
+<!-- show graph popup -->
+function showGraph() {
+$('#popup_graph').fadeIn('fast');
+$('#fade').fadeIn('fast');
+$('#fade').click(function(){closeGraph();});
+tempo = setTimeout(function(){closeGraph();},25400);
+}
+
+<!-- close graph popup -->
+function closeGraph() {
+$('#popup_graph').fadeOut('fast');
+$('#fade').fadeOut('fast');
+$("#fade").off("click");
+$('#popup_graph').html('');
+clearTimeout(tempo);
+}
+
 <!-- Load meteo widget -->
 function LoadMeteoWidget() {
 	if (city == '') {
@@ -64,7 +81,129 @@ function LoadMeteoWidget() {
 	setInterval(LoadMeteoWidget, 7200000); 	// rechargement toutes les 2 heures
 }
 
- 
+function RefreshGraphData(xIDX) {
+    
+		var vtype = 'temp';
+		var vrange = 'day';
+		var vchartcolor = 'blue';
+		var vpara = 'te';
+		var vunit = 'degrees Celcius';
+
+        var jgurl = $.domoticzurl + "/json.htm?type=graph&sensor=" + vtype + "&idx=" + xIDX + "&range=" + vrange;
+        //console.log(jgurl);
+
+        $.ajax({
+            dataType: "json",
+            async: false,
+            url: jgurl + '&jsoncallback=?',
+            xIDX: xIDX,
+			vtype: vtype,
+			vchartcolor: vchartcolor,
+            vrange: vrange,
+            vunit: vunit,
+			vpara: vpara,
+        }).done(function(data) {
+            var arrData = [];
+            var nameData = [];
+            var tmpPara = this.vpara;
+            $.each(data.result, function(i, item) {
+                var year = parseInt(item.d.substring(0, 4));
+                var month = parseInt(item.d.substring(5, 7));
+                var day = parseInt(item.d.substring(8, 10));
+                var hour = parseInt(item.d.substring(11, 13));
+                var minutes = parseInt(item.d.substring(14, 16));
+                var xVal = Date.UTC(year, month, day, hour, minutes);
+                var x = [xVal, parseFloat(item[tmpPara])];
+                arrData.push(x);
+            });
+            createGraph(arrData, this.vunit, this.vchartcolor);
+        });
+    
+}
+
+
+function createGraph(arrData, vunit, vchartcolor) {
+    
+    $('#popup_graph').highcharts({
+        chart: {
+            backgroundColor: 'white',
+            plotBackgroundColor: 'none',
+            type: 'line',
+            zoomType: 'none',
+        },
+        plotOptions: {
+            line: {
+                marker: {
+                    enabled: false
+                },
+                states: {
+                    hover: {
+                        enabled: false
+                    }
+                }
+            },
+            series: {
+                allowPointSelect: false,
+                point: {
+                    events: {
+                        click: function() {
+                            //console.log(this);
+							
+                        }
+                    }
+                }
+            }
+        },
+        subtitle: {
+            text: ''
+        },
+        title: {
+            text: ''
+        },
+        tooltip: {
+            formatter: function() {
+                return '<b>' + this.y + '</b>';
+            }
+        },
+        legend: {
+            enabled: false
+        },
+        credits: {
+            enabled: false
+        },
+        xAxis: {
+            type: 'datetime',
+            minRange: 3600000,
+            title: {
+
+                text: 'time',
+                style: {
+                    font: 'bold 13px Tahoma, sans-serif'
+                },
+                opposite: true
+            }
+        },
+        yAxis: {
+            title: {
+                text: vunit,
+                style: {
+                    font: 'bold 13px Tahoma, sans-serif'
+                },
+                opposite: true
+            }
+        },
+
+        series: [{
+            data: arrData,
+            color: vchartcolor,
+            borderWidth: 2,
+        }]
+    });
+	showGraph();
+			
+}
+
+
 var var_sunrise='';	
 var var_sunset='';
 var IsNight='No';
@@ -583,7 +722,7 @@ function RefreshData()
 												}												
 												// Adds °C after the temperature
 										 		if(vtype == 'Temp' && vdata > -100){   
-													vdata=new String(vdata).replace( vdata,vdata + "<sup style='font-size:50%;'>&#8451;</sup>");
+													vdata=new String(vdata).replace( vdata,"<span onclick='RefreshGraphData("+item.idx+")'>" + vdata + "<sup style='font-size:50%;' >&#8451;</sup></span>");
 												}
 												// Adds Km/h after the wind
 												if(vtype == 'Speed' || vtype == 'Gust' && vdata > -100){       
