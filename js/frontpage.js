@@ -519,7 +519,7 @@ function RefreshData()
 													} else if (item.SwitchType == 'Push On Button') {
 														var icon_Off = 'push48.png';
 													} else if (item.SwitchType == 'Push Off Button') {
-														var icon_On = 'push48.png';
+														var icon_On = 'pushoff48.png';
 													} else if (item.SubType == 'Security Panel') {
 														vdesc = vdata;
 														var icon = 'security48.png'
