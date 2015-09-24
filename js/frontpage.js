@@ -466,7 +466,7 @@ function RefreshData()
 												if (vdata == 'Off') {
                                                         switchclick = 'onclick="SwitchToggle('+item.idx+', \'On\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_switch_on+')"';
 
-                                                         if ( item.SwitchType == 'Push On Button' ) {
+                                                         if ( item.SwitchType == 'Push On Button' && lastseen != '2' && lastseen != '3') {
 															vdata = vdesc;
 															vdesc = '';
 														}else { 
@@ -479,7 +479,7 @@ function RefreshData()
                                                         switchclick = 'onclick="SwitchToggle('+item.idx+', \'Off\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_switch_off+')"';
 
                                                       
-														if ( item.SwitchType == 'Push Off Button' ) {
+														if ( item.SwitchType == 'Push Off Button' && lastseen != '2' && lastseen != '3') {
 															vdata = vdesc;
 															vdesc = '';
 														}else { 
@@ -516,6 +516,10 @@ function RefreshData()
 													} else if (item.SwitchType == 'Motion Sensor') {
 														var icon_On = 'motion48-on.png';
 														var icon_Off = 'motion48-off.png';
+													} else if (item.SwitchType == 'Push On Button') {
+														var icon_Off = 'push48.png';
+													} else if (item.SwitchType == 'Push Off Button') {
+														var icon_On = 'push48.png';
 													} else if (item.SubType == 'Security Panel') {
 														vdesc = vdata;
 														var icon = 'security48.png'
