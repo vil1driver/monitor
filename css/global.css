@@ -92,29 +92,6 @@ html::after
     white-space: normal;
 }
 
-.myMinButton input
-{ 
-	background:url(../icons/min.png) no-repeat center top; 
-	cursor:pointer; 
-	width: 72px; 
-	height: 59px; 
-	border: none; 
-	margin-left: 5px;
-	margin-top: 6px;
-	
-} 
-
-.myPlusButton input
-{ 
-	background:url(../icons/plus.png) no-repeat center top; 
-	cursor:pointer; 
-	width: 72px; 
-	height: 59px; 
-	border: none; 
-	margin-left: 5px;
-	margin-top: 6px;
-	
-}
 
 a, a:visited { text-decoration: none; color: #336699; }
 a:hover { text-decoration: none; color: #003366; }
@@ -132,7 +109,7 @@ sup
     vertical-align: super;
     line-height: 0;
 }
-	
+
 	
 #popup_switch, #popup_graph, #popup_protected, #popup_meteo,
 #popup_camera1, #popup_camera2, #popup_camera3, #popup_camera4, #popup_camera5, #popup_camera6,

@@ -81,7 +81,7 @@ function LoadMeteoWidget() {
 	setInterval(LoadMeteoWidget, 7200000); 	// rechargement toutes les 2 heures
 }
 
-function RefreshGraphData(xIDX, vtype, vrange, vchartcolor, vpara, vunit) {
+function RefreshGraphData(xIDX, vdesc, vtype, vrange, vchartcolor, vpara, vunit) {
     /* 
 		var vtype = 'temp';
 		var vrange = 'day';
@@ -97,6 +97,7 @@ function RefreshGraphData(xIDX, vtype, vrange, vchartcolor, vpara, vunit) {
             async: false,
             url: jgurl + '&jsoncallback=?',
             xIDX: xIDX,
+			vdesc: vdesc,
 			vtype: vtype,
 			vchartcolor: vchartcolor,
             vrange: vrange,
@@ -116,13 +117,13 @@ function RefreshGraphData(xIDX, vtype, vrange, vchartcolor, vpara, vunit) {
                 var x = [xVal, parseFloat(item[tmpPara])];
                 arrData.push(x);
             });
-            createGraph(arrData, this.vunit, this.vchartcolor);
+            createGraph(arrData, this.vdesc, this.vunit, this.vchartcolor);
         });
     
 }
 
 
-function createGraph(arrData, vunit, vchartcolor) {
+function createGraph(arrData, vdesc, vunit, vchartcolor) {
     
     $('#popup_graph').highcharts({
         chart: {
@@ -158,7 +159,7 @@ function createGraph(arrData, vunit, vchartcolor) {
             text: ''
         },
         title: {
-            text: ''
+            text: vdesc
         },
         tooltip: {
             formatter: function() {
@@ -722,7 +723,7 @@ function RefreshData()
 												}												
 												// Adds °C after the temperature
 										 		if(vtype == 'Temp' && vdata > -100){   
-													vdata=new String(vdata).replace( vdata,'<span onclick="RefreshGraphData('+item.idx+',\'temp\',\'day\',\'#3333FF\',\'te\',\'Température &#8451;\')">' + vdata + '<sup style="font-size:50%;" >&#8451;</sup></span>');
+													vdata=new String(vdata).replace( vdata,'<span onclick="RefreshGraphData('+item.idx+',\''+vdesc+'\',\'temp\',\'day\',\'#3333FF\',\'te\',\'Température &#8451;\')">' + vdata + '<sup style="font-size:50%;" >&#8451;</sup></span>');
 												}
 												// Adds Km/h after the wind
 												if(vtype == 'Speed' || vtype == 'Gust' && vdata > -100){       
@@ -734,7 +735,7 @@ function RefreshData()
 												}
 												// Adds % after the humidity
 												if(vtype == 'Humidity' && vdata > -100){       
-													vdata=new String(vdata).replace( vdata,'<span onclick="RefreshGraphData('+item.idx+',\'temp\',\'day\',\'#009900\',\'hu\',\'Humidité &#37;\')">' + vdata + '<span style="font-size:50%;"> &#37;</span></span>');
+													vdata=new String(vdata).replace( vdata,'<span onclick="RefreshGraphData('+item.idx+',\''+vdesc+'\',\'temp\',\'day\',\'#3333FF\',\'hu\',\'Humidité &#37;\')">' + vdata + '<span style="font-size:50%;"> &#37;</span></span>');
 												}
 												// Adds % after percentage
 												if(vtype == 'Data' && item.SubType == 'Percentage' && vdata > -100){       
@@ -742,7 +743,7 @@ function RefreshData()
 												}
 												// Adds Watt after the Usage
 												if(vtype == 'Usage' && (item.SubType == 'Energy' || item.SubType == 'CM119 / CM160') && vdata > -100){       
-													vdata=new String(vdata).replace( vdata,'<span onclick="RefreshGraphData('+item.idx+',\'counter&method=1\',\'day\',\'#3333FF\',\'v\',\'Electricité Watt\')">' + vdata + '<span style="font-size:50%;">Watt</span></span>');
+													vdata=new String(vdata).replace( vdata,'<span onclick="RefreshGraphData('+item.idx+',\''+vdesc+'\',\'counter&method=1\',\'day\',\'#3333FF\',\'v\',\'Electricité Watt\')">' + vdata + '<span style="font-size:50%;">Watt</span></span>');
 												}
 												// Adds Kwh after the CounterToday
 												if(vtype == 'CounterToday' && (item.SubType == 'Energy' || item.SubType == 'CM119 / CM160') && vdata > -100){       
