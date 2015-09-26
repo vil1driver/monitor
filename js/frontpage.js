@@ -74,21 +74,21 @@ clearTimeout(tempo);
 <!-- Load meteo widget -->
 function LoadMeteoWidget() {
 	if (city == '') {
-		$('#popup_meteo').html('<div onClick="lightbox_close(\'meteo\');" width="650" height="250" valign="center" line-height="15px">Veuillez indiquer votre ville dans les paramètres<br>exemple:<br>var city = \'paris\'</div>');	
+		$('#popup_meteo').html('<div onClick="lightbox_close(\'meteo\')" width="650" height="250" valign="center" line-height="15px">Veuillez indiquer votre ville dans les paramètres<br>exemple:<br>var city = \'paris\'</div>');	
 	}else{
-		$('#popup_meteo').html('<img src="http://www.prevision-meteo.ch/uploads/widget/'+city+'_0.png#' + new Date().getTime()+'" onClick="lightbox_close(\'meteo\');" width="650" height="250" alt="Ville inconnue..">');
+		$('#popup_meteo').html('<img src="http://www.prevision-meteo.ch/uploads/widget/'+city+'_0.png#' + new Date().getTime()+'" onClick="lightbox_close(\'meteo\')" width="650" height="250" alt="Ville inconnue..">');
 	}	
 	setInterval(LoadMeteoWidget, 7200000); 	// rechargement toutes les 2 heures
 }
 
-function RefreshGraphData(xIDX) {
-    
+function RefreshGraphData(xIDX, vtype, vrange, vchartcolor, vpara, vunit) {
+    /* 
 		var vtype = 'temp';
 		var vrange = 'day';
 		var vchartcolor = 'blue';
 		var vpara = 'te';
 		var vunit = 'degrees Celcius';
-
+ */
         var jgurl = $.domoticzurl + "/json.htm?type=graph&sensor=" + vtype + "&idx=" + xIDX + "&range=" + vrange;
         //console.log(jgurl);
 
@@ -363,9 +363,9 @@ function RefreshData()
 													
                                                         if (vdata == txt_off) {
 															if (lastseen == '2') {
-																var hlp = '<img src="'+$.domoticzurl+'/images/Light48_Off.png" width=48 onclick="SwitchToggle('+item.idx+', \'On\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_switch_on+')"; style='+alarmcss+'>';
+																var hlp = '<img src="'+$.domoticzurl+'/images/Light48_Off.png" width=48 onclick="SwitchToggle('+item.idx+', \'On\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_switch_on+')" style='+alarmcss+'>';
                                                             } else {
-																var hlp = '<span onclick="SwitchToggle('+item.idx+', \'On\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_switch_on+')"; style='+alarmcss+'>'+ vdata+'</span>';
+																var hlp = '<span onclick="SwitchToggle('+item.idx+', \'On\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_switch_on+')" style='+alarmcss+'>'+ vdata+'</span>';
 															}
 															var plus = "";
                                                             var min = "";
@@ -374,22 +374,22 @@ function RefreshData()
                                                         {
 															if (item.MaxDimLevel == 100) {
 																if (lastseen == '2') {
-																	var hlp = '<img src="'+$.domoticzurl+'/images/Light48_On.png" width=48 onclick="SwitchToggle('+item.idx+', \'Off\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_switch_off+')"; style='+alarmcss+'>';
+																	var hlp = '<img src="'+$.domoticzurl+'/images/Light48_On.png" width=48 onclick="SwitchToggle('+item.idx+', \'Off\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_switch_off+')" style='+alarmcss+'>';
 																	vdesc=new String(vdesc).replace( vdesc,vdesc + "<span style='color:#FD0CE9;font-size:20px;'> "+vdata+"&#37;</span>");
 																} else {
-																	var hlp = '<span onclick="SwitchToggle('+item.idx+', \'Off\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_switch_off+')"; style='+alarmcss+'>'+ vdata+'</span>';
+																	var hlp = '<span onclick="SwitchToggle('+item.idx+', \'Off\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_switch_off+')" style='+alarmcss+'>'+ vdata+'</span>';
 																}
-																var plus = "<img src=icons/plus.png align=right hspace=10 vspace=4 width=30 onclick=DimLevel100('plus'," + vdata + "," + item.idx + ")>";
-																var min = "<img src=icons/min.png align=left hspace=10 vspace=4 width=30 onclick=DimLevel100('min'," + vdata + "," + item.idx + ")>";
+																var plus = '<img src=icons/plus.png align=right hspace=10 vspace=4 width=30 onclick="DimLevel100(\'plus\',' + vdata + ',' + item.idx + ')">';
+																var min = '<img src=icons/min.png align=left hspace=10 vspace=4 width=30 onclick="DimLevel100(\'min\',' + vdata + ',' + item.idx + ')">';
 															} else {
 																if (lastseen == '2') {
-																	var hlp = '<img src="'+$.domoticzurl+'/images/Light48_On.png" width=48 onclick="SwitchToggle('+item.idx+', \'Off\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_switch_off+')"; style='+alarmcss+'>';
+																	var hlp = '<img src="'+$.domoticzurl+'/images/Light48_On.png" width=48 onclick="SwitchToggle('+item.idx+', \'Off\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_switch_off+')" style='+alarmcss+'>';
 																	vdesc=new String(vdesc).replace( vdesc,vdesc + "<span style='color:#FD0CE9;font-size:20px;'> "+vdata+"&#37;</span>");
 																} else {
-																	var hlp = '<span onclick="SwitchToggle('+item.idx+', \'Off\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_switch_off+')"; style='+alarmcss+'>'+ vdata+'</span>';
+																	var hlp = '<span onclick="SwitchToggle('+item.idx+', \'Off\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_switch_off+')" style='+alarmcss+'>'+ vdata+'</span>';
 																}
-																var plus = "<img src=icons/plus.png align=right hspace=10 vspace=4 width=30 onclick=DimLevel16('plus'," + vdata + "," + item.idx + ","+ vdimmercurrent+")>";
-																var min = "<img src=icons/min.png align=left hspace=10 vspace=4 width=30 onclick=DimLevel16('min'," + vdata + "," + item.idx + ","+ vdimmercurrent+")>";
+																var plus = '<img src=icons/plus.png align=right hspace=10 vspace=4 width=30 onclick="DimLevel16(\'plus\',' + vdata + ',' + item.idx + ','+ vdimmercurrent+')">';
+																var min = '<img src=icons/min.png align=left hspace=10 vspace=4 width=30 onclick="DimLevel16(\'min\',' + vdata + ',' + item.idx + ','+ vdimmercurrent+')">';
 															}
                                                         }
                                                         vdata = min.concat(hlp,plus);
@@ -402,8 +402,8 @@ function RefreshData()
 											//Thermostat
 												if(vtype == 'SetPoint' && vplusmin > 0) {
 														var hlp = '<span style='+vattr+'>'+ vdata+'</span>';
-														var plus = "<img src=icons/plus.png align=right vspace=4 width=30 onclick=ChangeTherm('plus'," +vplusmin+ "," + item.idx + ","+ vdata+","+ valarm+")>";
-														var min = "<img src=icons/min.png align=left vspace=4 width=30 onclick=ChangeTherm('min'," +vplusmin+ "," + item.idx + ","+ vdata+","+ valarm+")>";
+														var plus = '<img src=icons/plus.png align=right vspace=4 width=30 onclick="ChangeTherm(\'plus\',' +vplusmin+ ',' + item.idx + ','+ vdata+','+ valarm+')">';
+														var min = '<img src=icons/min.png align=left vspace=4 width=30 onclick="ChangeTherm(\'min\',' +vplusmin+ ',' + item.idx + ','+ vdata+','+ valarm+')">';
 														vdata = min.concat(hlp,plus);
 														//console.log(vdata);
 														
@@ -465,21 +465,21 @@ function RefreshData()
 																vdata = 100;
 																var down = '<img src='+$.domoticzurl+'/images/blinds48sel.png  hspace=1 width=40 onclick="SwitchToggle('+item.idx+', \'On\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_blind_down+')">';
 																var up = '<img src='+$.domoticzurl+'/images/blindsopen48.png  hspace=1 width=40 onclick="SwitchToggle('+item.idx+', \'Off\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_blind_up+')">';
-																var plus = "<img src=icons/plus.png  vspace=4 hspace=4 width=30 onclick=DimLevel100('min'," + vdata + "," + item.idx + ")>";
-																var min = "<img src=icons/min.png  vspace=4 hspace=4 width=30 onclick=DimLevel100('plus'," + vdata + "," + item.idx + ")>";
+																var plus = '<img src=icons/plus.png  vspace=4 hspace=4 width=30 onclick="DimLevel100(\'min\',' + vdata + ',' + item.idx + ')">';
+																var min = '<img src=icons/min.png  vspace=4 hspace=4 width=30 onclick="DimLevel100(\'plus\',' + vdata + ',' + item.idx + ')">';
 															
 														}
 														else if (item.Status == 'Open') {
 																var down = '<img src='+$.domoticzurl+'/images/blinds48.png  hspace=1 width=40 onclick="SwitchToggle('+item.idx+', \'On\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_blind_down+')">';
 																var up = '<img src='+$.domoticzurl+'/images/blindsopen48sel.png  hspace=1 width=40 onclick="SwitchToggle('+item.idx+', \'Off\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_blind_up+')">';
-																var plus = "<img src=icons/plus.png  vspace=4 hspace=4 width=30 onclick=DimLevel100('min'," + vdata + "," + item.idx + ")>";
-																var min = "<img src=icons/min.png  vspace=4 hspace=4 width=30 onclick=DimLevel100('plus'," + vdata + "," + item.idx + ")>";
+																var plus = '<img src=icons/plus.png  vspace=4 hspace=4 width=30 onclick="DimLevel100(\'min\',' + vdata + ',' + item.idx + ')">';
+																var min = '<img src=icons/min.png  vspace=4 hspace=4 width=30 onclick="DimLevel100(\'plus\',' + vdata + ',' + item.idx + ')">';
 														}
 														else {
 																var down = '<img src='+$.domoticzurl+'/images/blinds48.png  hspace=1 width=40 onclick="SwitchToggle('+item.idx+', \'On\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_blind_down+')">';
 																var up = '<img src='+$.domoticzurl+'/images/blindsopen48sel.png  hspace=1 width=40 onclick="SwitchToggle('+item.idx+', \'Off\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_blind_up+')">';
-																var plus = "<img src=icons/plus.png  vspace=4 hspace=4 width=30 onclick=DimLevel100('min'," + vdata + "," + item.idx + ")>";
-																var min = "<img src=icons/min.png  vspace=4 hspace=4 width=30 onclick=DimLevel100('plus'," + vdata + "," + item.idx + ")>";
+																var plus = '<img src=icons/plus.png  vspace=4 hspace=4 width=30 onclick="DimLevel100(\'min\',' + vdata + ',' + item.idx + ')">';
+																var min = '<img src=icons/min.png  vspace=4 hspace=4 width=30 onclick="DimLevel100(\'plus\',' + vdata + ',' + item.idx + ')">';
 														}
 														
 														vdesc=new String(vdesc).replace( vdesc,vdesc + "<span style='color:#1B9772;font-size:20px;'> "+(100-vdata)+"&#37;</span>");
@@ -491,23 +491,23 @@ function RefreshData()
 														if(item.Status == 'Closed') {
 																var down = '<img src='+$.domoticzurl+'/images/blinds48sel.png  hspace=1 width=40 onclick="SwitchToggle('+item.idx+', \'Off\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_blind_down+')">';
 																var up = '<img src='+$.domoticzurl+'/images/blindsopen48.png  hspace=1 width=40 onclick="SwitchToggle('+item.idx+', \'On\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_blind_up+')">';
-																var plus = "<img src=icons/plus.png vspace=4 hspace=4 width=30 onclick=DimLevel100('plus'," + vdata + "," + item.idx + ")>";
-																var min = "<img src=icons/min.png vspace=4 hspace=4 width=30 onclick=DimLevel100('min'," + vdata + "," + item.idx + ")>";
+																var plus = '<img src=icons/plus.png vspace=4 hspace=4 width=30 onclick="DimLevel100(\'plus\',' + vdata + ',' + item.idx + ')">';
+																var min = '<img src=icons/min.png vspace=4 hspace=4 width=30 onclick="DimLevel100(\'min\',' + vdata + ',' + item.idx + ')">';
 																
 														}
 														else if (item.Status == 'Open') {
 																vdata = 100;
 																var down = '<img src='+$.domoticzurl+'/images/blinds48.png  hspace=1 width=40 onclick="SwitchToggle('+item.idx+', \'Off\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_blind_down+')">';
 																var up = '<img src='+$.domoticzurl+'/images/blindsopen48sel.png  hspace=1 width=40 onclick="SwitchToggle('+item.idx+', \'On\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_blind_up+')">';
-																var plus = "<img src=icons/plus.png vspace=4 hspace=4 width=30 onclick=DimLevel100('plus'," + vdata + "," + item.idx + ")>";
-																var min = "<img src=icons/min.png vspace=4 hspace=4 width=30 onclick=DimLevel100('min'," + vdata + "," + item.idx + ")>";
+																var plus = '<img src=icons/plus.png vspace=4 hspace=4 width=30 onclick="DimLevel100(\'plus\',' + vdata + ',' + item.idx + ')">';
+																var min = '<img src=icons/min.png vspace=4 hspace=4 width=30 onclick="DimLevel100(\'min\',' + vdata + ',' + item.idx + ')">';
 														
 														}
 														else {
 																var down = '<img src='+$.domoticzurl+'/images/blinds48.png  hspace=1 width=40 onclick="SwitchToggle('+item.idx+', \'Off\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_blind_down+')">';
 																var up = '<img src='+$.domoticzurl+'/images/blindsopen48sel.png  hspace=1 width=40 onclick="SwitchToggle('+item.idx+', \'On\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_blind_up+')">';
-																var plus = "<img src=icons/plus.png vspace=4 hspace=4 width=30 onclick=DimLevel100('plus'," + vdata + "," + item.idx + ")>";
-																var min = "<img src=icons/min.png vspace=4 hspace=4 width=30 onclick=DimLevel100('min'," + vdata + "," + item.idx + ")>";
+																var plus = '<img src=icons/plus.png vspace=4 hspace=4 width=30 onclick="DimLevel100(\'plus\',' + vdata + ',' + item.idx + ')">';
+																var min = '<img src=icons/min.png vspace=4 hspace=4 width=30 onclick="DimLevel100(\'min\',' + vdata + ',' + item.idx + ')">';
 														
 														}
 														vdesc=new String(vdesc).replace( vdesc,vdesc + "<span style='color:#1B9772;font-size:20px;'> "+vdata+"&#37;</span>");
@@ -705,7 +705,7 @@ function RefreshData()
 												
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 											
-												// gestion des unitées 
+												// gestion des unitées et graphs
 												
 												
 												// on change la couleur suivant la température
@@ -722,40 +722,40 @@ function RefreshData()
 												}												
 												// Adds °C after the temperature
 										 		if(vtype == 'Temp' && vdata > -100){   
-													vdata=new String(vdata).replace( vdata,"<span onclick='RefreshGraphData("+item.idx+")'>" + vdata + "<sup style='font-size:50%;' >&#8451;</sup></span>");
+													vdata=new String(vdata).replace( vdata,'<span onclick="RefreshGraphData('+item.idx+',\'temp\',\'day\',\'#3333FF\',\'te\',\'Température &#8451;\')">' + vdata + '<sup style="font-size:50%;" >&#8451;</sup></span>');
 												}
 												// Adds Km/h after the wind
 												if(vtype == 'Speed' || vtype == 'Gust' && vdata > -100){       
-													vdata=new String(vdata).replace( vdata,vdata + "<span style='font-size:50%;'> Km/h</span>");
+													vdata=new String(vdata).replace( vdata,vdata + '<span style="font-size:50%;"> Km/h</span>');
 												}
 												// Adds mm after the rain
 												if(vtype == 'Rain' && vdata > -100){       
-													vdata=new String(vdata).replace( vdata,vdata + "<span style='font-size:50%;'> mm</span>");
+													vdata=new String(vdata).replace( vdata,vdata + '<span style="font-size:50%;"> mm</span>');
 												}
 												// Adds % after the humidity
 												if(vtype == 'Humidity' && vdata > -100){       
-													vdata=new String(vdata).replace( vdata,vdata + "<span style='font-size:50%;'> &#37;</span>");
+													vdata=new String(vdata).replace( vdata,'<span onclick="RefreshGraphData('+item.idx+',\'temp\',\'day\',\'#009900\',\'hu\',\'Humidité &#37;\')">' + vdata + '<span style="font-size:50%;"> &#37;</span></span>');
 												}
 												// Adds % after percentage
 												if(vtype == 'Data' && item.SubType == 'Percentage' && vdata > -100){       
-													vdata=new String(vdata).replace( vdata,Math.ceil(vdata) + "<span style='font-size:50%;'> &#37;</span>");
+													vdata=new String(vdata).replace( vdata,Math.ceil(vdata) + '<span style="font-size:50%;"> &#37;</span>');
 												}
 												// Adds Watt after the Usage
 												if(vtype == 'Usage' && (item.SubType == 'Energy' || item.SubType == 'CM119 / CM160') && vdata > -100){       
-													vdata=new String(vdata).replace( vdata,vdata + "<span style='font-size:50%;'>Watt</span>");
+													vdata=new String(vdata).replace( vdata,'<span onclick="RefreshGraphData('+item.idx+',\'counter&method=1\',\'day\',\'#3333FF\',\'v\',\'Electricité Watt\')">' + vdata + '<span style="font-size:50%;">Watt</span></span>');
 												}
 												// Adds Kwh after the CounterToday
 												if(vtype == 'CounterToday' && (item.SubType == 'Energy' || item.SubType == 'CM119 / CM160') && vdata > -100){       
-													vdata=new String(vdata).replace( vdata,Math.ceil(vdata*10)/10 + "<span style='font-size:50%;'> Kwh</span>");
+													vdata=new String(vdata).replace( vdata,Math.ceil(vdata*10)/10 + '<span style="font-size:50%;"> Kwh</span>');
 												}
 												// Adds Kwh after the Counter and convert float to integer
 												if((vtype == 'Counter' || vtype == 'Data') && (item.SubType == 'Energy' || item.SubType == 'CM119 / CM160') && vdata > -100){       
-													vdata=new String(vdata).replace( vdata,Math.ceil(vdata) + "<span style='font-size:50%;'> Kwh</span>");
+													vdata=new String(vdata).replace( vdata,Math.ceil(vdata) + '<span style="font-size:50%;"> Kwh</span>');
 												}
 												// Adds € after price
 												if(vtype == 'Euro'){       
 													vdata=item.Data;
-													vdata=new String(vdata).replace( vdata,Math.ceil(vdata*100)/100 + "<span style='font-size:50%;'> €</span>");
+													vdata=new String(vdata).replace( vdata,Math.ceil(vdata*100)/100 + '<span style="font-size:50%;"> €</span>');
 												}
 												
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////													
@@ -763,13 +763,13 @@ function RefreshData()
 												// if extra css attributes. Make switch not switchable when it is protected, just give message.
 												if (typeof vattr == 'undefined') {
 													if (item.Protected == true) {
-														$('#'+vlabel).html('<div onClick="lightbox_open(\'protected\', '+switch_protected_timeout+', '+txt_switch_protected+');" style='+alarmcss+'>'+vdata+'</div>');
+														$('#'+vlabel).html('<div onClick="lightbox_open(\'protected\', '+switch_protected_timeout+', '+txt_switch_protected+')" style='+alarmcss+'>'+vdata+'</div>');
 													} else { 
 														$('#'+vlabel).html('<div '+switchclick+' style='+alarmcss+'>'+vdata+'</div>');
 													}
 												} 
 												else if (item.Protected == true) {
-													$('#'+vlabel).html( '<div onClick="lightbox_open(\'protected\', '+switch_protected_timeout+ ', '+txt_switch_protected+');" style='+vattr+alarmcss+'>'+vdata+'</div>');
+													$('#'+vlabel).html( '<div onClick="lightbox_open(\'protected\', '+switch_protected_timeout+ ', '+txt_switch_protected+')" style='+vattr+alarmcss+'>'+vdata+'</div>');
 												} else {
 													$('#'+vlabel).html( '<div '+switchclick+' style='+vattr+alarmcss+'>'+vdata+'</div>');
 												}
