@@ -94,7 +94,7 @@ function RefreshGraphData(xIDX, vdesc, vtype, vrange, vchartcolor, vpara, vunit)
 
         $.ajax({
             dataType: "json",
-            async: false,
+            async: true,
             url: jgurl + '&jsoncallback=?',
             xIDX: xIDX,
 			vdesc: vdesc,
@@ -982,7 +982,7 @@ function SceneToggle(idx, switchcmd)
 {
          $.ajax({
      url: $.domoticzurl+"/json.htm?type=command&param=switchscene" + "&idx=" + idx + "&switchcmd=" + switchcmd + "&level=0",
-     async: false,
+     async: true,
      dataType: 'json',
      success: function(){
         console.log('SUCCES');
@@ -999,7 +999,7 @@ function SwitchToggle(idx, switchcmd)
 {
          $.ajax({
      url: $.domoticzurl+"/json.htm?type=command&param=switchlight" + "&idx=" + idx + "&switchcmd=" + switchcmd + "&level=0",
-     async: false,
+     async: true,
      dataType: 'json',
      success: function(){
         console.log('SUCCES');
@@ -1022,7 +1022,7 @@ if (level == txt_off) {
 	//console.log("In uit",currentlevel);
         $.ajax({
                 url: $.domoticzurl+"/json.htm?type=command&param=switchlight&idx=" + idx + "&switchcmd=Set Level&level=" + currentlevel,
-                async: false,
+                async: true,
                 dataType: 'json',
                 success: function(){
                         console.log('SUCCES');
@@ -1045,7 +1045,7 @@ else
                 }
                 $.ajax({
                         url: $.domoticzurl+"/json.htm?type=command&param=switchlight&idx=" + idx + "&switchcmd=Set Level&level=" + d,
-                        async: false,
+                        async: true,
                         dataType: 'json',
                         success: function(){
                                 console.log('SUCCES');
@@ -1064,7 +1064,7 @@ else
                 }
                 $.ajax({
                         url: $.domoticzurl+"/json.htm?type=command&param=switchlight&idx=" + idx + "&switchcmd=Set Level&level=" + d,
-                        async: false,
+                        async: true,
                         dataType: 'json',
                         success: function(){
                                 console.log('SUCCES');
@@ -1075,8 +1075,8 @@ else
                 });
           }
         }
-		RefreshData();
-		
+		//RefreshData();
+		setTimeout(RefreshData , 150);
 }
 //Dimmer, 0-100
 function DimLevel100(OpenDicht,level,idx)
@@ -1090,7 +1090,7 @@ function DimLevel100(OpenDicht,level,idx)
                 }
                 $.ajax({
                         url: $.domoticzurl+"/json.htm?type=command&param=switchlight&idx=" + idx + "&switchcmd=Set Level&level=" + d,
-                        async: false,
+                        async: true,
                         dataType: 'json',
                         success: function(){
                                 console.log('SUCCES');
@@ -1110,7 +1110,7 @@ function DimLevel100(OpenDicht,level,idx)
                 }
                 $.ajax({
                         url: $.domoticzurl+"/json.htm?type=command&param=switchlight&idx=" + idx + "&switchcmd=Set Level&level=" + d,
-                        async: false,
+                        async: true,
                         dataType: 'json',
                         success: function(){
                                 console.log('SUCCES');
@@ -1121,8 +1121,8 @@ function DimLevel100(OpenDicht,level,idx)
                 });
           }
         
- RefreshData();
-
+ //	RefreshData();
+	setTimeout(RefreshData , 150);
 }
 // thermostat
 function ChangeTherm(dimtype,stepsize,idx,currentvalue,thermmax)
@@ -1145,7 +1145,7 @@ function ChangeTherm(dimtype,stepsize,idx,currentvalue,thermmax)
 	}
 	 $.ajax({
      url: $.domoticzurl+"/json.htm?type=command&param=udevice" + "&idx=" + idx + "&nvalue=0&svalue=" + newvalue,
-     async: false, 
+     async: true, 
      dataType: 'json',
      success: function(){
      	console.log('SUCCES');
@@ -1154,7 +1154,8 @@ function ChangeTherm(dimtype,stepsize,idx,currentvalue,thermmax)
      	console.log('ERROR');
      }
  	});
- 	RefreshData();
+ //	RefreshData();
+	setTimeout(RefreshData , 150);
 	}
 
 
