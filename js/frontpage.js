@@ -749,15 +749,15 @@ function RefreshData()
 												
 												// on change la couleur suivant la température
 												if(vtype == 'Temp' && vdata > -100 ) {
-													if (parseInt(vdata, 10) >= 35) { new String(vattr).replace( vattr,'color:#F24735;' + vattr); } 
-													else if (parseInt(vdata, 10) >= 30) { vattr=new String(vattr).replace( vattr,'color:#F26135;' + vattr); } 
-													else if (parseInt(vdata, 10) >= 25) { vattr=new String(vattr).replace( vattr,'color:#F27935;' + vattr); } 
-													else if (parseInt(vdata, 10) >= 20) { vattr=new String(vattr).replace( vattr,'color:#FD8A1C;' + vattr); } 
-													else if (parseInt(vdata, 10) >= 15) { vattr=new String(vattr).replace( vattr,'color:#FF9B0E;' + vattr); } 
-													else if (parseInt(vdata, 10) >= 10) { vattr=new String(vattr).replace( vattr,'color:#FFAE0E;' + vattr); } 
-													else if (parseInt(vdata, 10) >= 05) { vattr=new String(vattr).replace( vattr,'color:#DBC14C;' + vattr); } 
-													else if (parseInt(vdata, 10) >= 00) { vattr=new String(vattr).replace( vattr,'color:#A3D6AD;' + vattr); }
-													else  { vattr=new String(vattr).replace( vattr,'color:#78C5F5;' + vattr); }	
+													if (parseInt(vdata, 10) >= 35) { new String(vattr).replace( vattr,'color:'+T35+';' + vattr); } 
+													else if (parseInt(vdata, 10) >= 30) { vattr=new String(vattr).replace( vattr,'color:'+T30+';' + vattr); } 
+													else if (parseInt(vdata, 10) >= 25) { vattr=new String(vattr).replace( vattr,'color:'+T25+';' + vattr); } 
+													else if (parseInt(vdata, 10) >= 20) { vattr=new String(vattr).replace( vattr,'color:'+T20+';' + vattr); } 
+													else if (parseInt(vdata, 10) >= 15) { vattr=new String(vattr).replace( vattr,'color:'+T15+';' + vattr); } 
+													else if (parseInt(vdata, 10) >= 10) { vattr=new String(vattr).replace( vattr,'color:'+T10+';' + vattr); } 
+													else if (parseInt(vdata, 10) >= 05) { vattr=new String(vattr).replace( vattr,'color:'+T05+';' + vattr); } 
+													else if (parseInt(vdata, 10) >= 00) { vattr=new String(vattr).replace( vattr,'color:'+T00+';' + vattr); }
+													else  { vattr=new String(vattr).replace( vattr,'color:'+T000+';' + vattr); }	
 												}												
 												// Adds °C after the temperature
 										 		if(vtype == 'Temp' && vdata > -100){   

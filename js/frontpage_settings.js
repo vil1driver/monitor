@@ -23,6 +23,17 @@ var bg_size = 'cover';					// taille de l'image de fond (ex: '1024px 768px') 'co
 var bg_dayBright = 0.5;					// luminosité du fond le jour (0=normal 1=noir)
 var bg_nightBright = 0.5;				// luminosité du fond la nuit (0=normal 1=noir)
 
+<!-- Change colors of temps -->
+var T35 = '#F24735';						// couleur de la température au dessus de 35°C
+var T30 = '#F26135';
+var T25 = '#F27935';
+var T20 = '#FD8A1C';
+var T15 = '#FF9B0E';
+var T10 = '#FFAE0E';
+var T05 = '#DBC14C';
+var T00 = '#A3D6AD';
+var T000 = '#78C5F5';						// couleur de la température sous 0°C
+
 <!-- Change the timeout of the PopUp -->
 var switch_protected_timeout = '1000';
 var switch_timeout = '1000';
