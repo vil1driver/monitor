@@ -29,6 +29,7 @@ var switch_timeout = '1000';
 
 <!-- Special items -->
 var city = 'saint-jacques-de-la-lande';		// localité pour la popup météo (lors du clic sur l'icon météo)
+var cityDay = 0;							// météo à J+x (0 = météo du jour, valeur max=3)
 var blink = true;							// faire clignoter les valeurs en alarme (true/false)
 var loop = true;							// si au moins 3 pages, autoriser rebouclage des pages(true/false)
 var showMonth = false;						// affichage(true) ou non(false) du mois dans la date

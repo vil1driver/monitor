@@ -29,6 +29,7 @@ var switch_timeout = '1000';
 
 <!-- Special items -->
 var city = 'paris';				// localité pour la popup météo (lors du clic sur l'icon météo)
+var cityDay = 0;				// météo à J+x (0 = météo du jour, valeur max=3)
 var blink = false;				// faire clignoter les valeurs en alarme (true/false)
 var loop = false;				// si au moins 3 pages, autoriser rebouclage (true/false)
 var showMonth = false;			// affichage(true) ou non(false) du mois dans la date
