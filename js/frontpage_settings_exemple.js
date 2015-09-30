@@ -27,7 +27,15 @@ var bg_nightBright = 0.5;				// luminosité du fond la nuit (0=normal 1=noir)
 var T35 = '#FF0000';						// couleur de la température à 35°C et plus
 var T30 = '#FC6500';
 var T25 = '#FC9B00';
-var T20 = '#FCCF65';
+var T24 = '#FCCF65';
+var T23 = '#FCCF65';
+var T22 = '#FCCF65';
+var T21 = '#FCCF65';
+var T20 = '#FCCF65';						// couleur de la température à 20°C et plus
+var T19 = '#FFE29E';
+var T18 = '#FFE29E';
+var T17 = '#FFE29E';
+var T16 = '#FFE29E';
 var T15 = '#FFE29E';
 var T10 = '#DDF5AE';
 var T05 = '#AEF5DC';
@@ -40,7 +48,6 @@ var switch_timeout = '1000';
 
 <!-- Special items -->
 var city = 'saint-jacques-de-la-lande';		// localité pour la popup météo (lors du clic sur l'icon météo)
-var cityDay = 0;							// météo à J+x (0 = météo du jour, valeur max=3)
 var blink = true;							// faire clignoter les valeurs en alarme (true/false)
 var loop = true;							// si au moins 3 pages, autoriser rebouclage des pages(true/false)
 var showMonth = false;						// affichage(true) ou non(false) du mois dans la date
@@ -58,7 +65,7 @@ $(document).ready(function() {
 		
             //page 1
 			
-			//	['idx','value',  	'cellule',    	'description','1=lastseen 2=icon 3=both','pas de thermostat','override css','Alarme ou valeur max de thermostat'],
+			//	['idx','value',  	'cellule',    	'description','1=lastseen 2=icon 3=both ou J+x(popup météo)','pas de thermostat','override css','Alarme ou valeur max de thermostat'],
 			
 				['203','Temp',         			'cell6',                        	'Salon','','','font-size:110%;color:#1CD5FD'],	// températures salon
                 ['214','Temp',         			'cell7',                       		'Chambre','','','font-size:110%;color:#1CD5FD'],	// températures chambre font-size:110%;color:#1CD5FD

@@ -74,9 +74,15 @@ clearTimeout(tempo);
 <!-- Load meteo widget -->
 function LoadMeteoWidget() {
 	if (city == '') {
-		$('#popup_meteo').html('<div onClick="lightbox_close(\'meteo\')" width="650" height="250" valign="center" line-height="15px">Veuillez indiquer votre ville dans les paramètres<br>exemple:<br>var city = \'paris\'</div>');	
+		$('#popup_meteo0').html('<div onClick="lightbox_close(\'meteo0\')" width="650" height="250" valign="center" line-height="15px">Veuillez indiquer votre ville dans les paramètres<br>exemple:<br>var city = \'paris\'</div>');	
+		$('#popup_meteo1').html('<div onClick="lightbox_close(\'meteo1\')" width="650" height="250" valign="center" line-height="15px">Veuillez indiquer votre ville dans les paramètres<br>exemple:<br>var city = \'paris\'</div>');	
+		$('#popup_meteo2').html('<div onClick="lightbox_close(\'meteo2\')" width="650" height="250" valign="center" line-height="15px">Veuillez indiquer votre ville dans les paramètres<br>exemple:<br>var city = \'paris\'</div>');	
+		$('#popup_meteo3').html('<div onClick="lightbox_close(\'meteo3\')" width="650" height="250" valign="center" line-height="15px">Veuillez indiquer votre ville dans les paramètres<br>exemple:<br>var city = \'paris\'</div>');	
 	}else{
-		$('#popup_meteo').html('<img src="http://www.prevision-meteo.ch/uploads/widget/'+city+'_'+cityDay+'.png#' + new Date().getTime()+'" onClick="lightbox_close(\'meteo\')" width="650" height="250" alt="Ville inconnue..">');
+		$('#popup_meteo0').html('<img src="http://www.prevision-meteo.ch/uploads/widget/'+city+'_0.png#' + new Date().getTime()+'" onClick="lightbox_close(\'meteo0\')" width="650" height="250" alt="Ville inconnue..">');
+		$('#popup_meteo1').html('<img src="http://www.prevision-meteo.ch/uploads/widget/'+city+'_1.png#' + new Date().getTime()+'" onClick="lightbox_close(\'meteo1\')" width="650" height="250" alt="Ville inconnue..">');
+		$('#popup_meteo2').html('<img src="http://www.prevision-meteo.ch/uploads/widget/'+city+'_2.png#' + new Date().getTime()+'" onClick="lightbox_close(\'meteo2\')" width="650" height="250" alt="Ville inconnue..">');
+		$('#popup_meteo3').html('<img src="http://www.prevision-meteo.ch/uploads/widget/'+city+'_3.png#' + new Date().getTime()+'" onClick="lightbox_close(\'meteo3\')" width="650" height="250" alt="Ville inconnue..">');
 	}	
 	setInterval(LoadMeteoWidget, 7200000); 	// rechargement toutes les 2 heures
 }
@@ -87,7 +93,7 @@ function RefreshGraphData(xIDX, vdesc, vtype, vrange, vpara, vunit) {
 		var vrange = 'day';
 		var vpara = 'te';
 		var vunit = 'degrees Celcius';
- */
+	*/
 		
         var jgurl = $.domoticzurl + "/json.htm?type=graph&sensor=" + vtype + "&idx=" + xIDX + "&range=" + vrange;
         //console.log(jgurl);
@@ -154,17 +160,12 @@ function RefreshGraphData(xIDX, vdesc, vtype, vrange, vpara, vunit) {
 			}
 
 
-				
-						
-						
-           // createGraph(arrData, this.vdesc, this.vunit, this.vchartcolor);
             createGraph(seriesData, this.vdesc, this.vunit);
         });
     
 }
 
 
-//function createGraph(arrData, vdesc, vunit, vchartcolor) {
 function createGraph(seriesData, vdesc, vunit) {
     
     $('#popup_graph').highcharts({
@@ -377,9 +378,12 @@ function RefreshData()
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 
 												//Check wether we want to add the last seen to the block
-												if ((lastseen == '1' || lastseen == '3') && ($('#ls_'+vlabel).length > 0)) { 
-													$('#ls_'+vlabel).html(vls);
+												if (typeof lastseen == 'undefined' || lastseen == '') {
+													lastseen = '0';
 												}
+												if (vtype != 'ForecastStr' && (lastseen == '1' || lastseen == '3') && ($('#ls_'+vlabel).length > 0)) { 
+													$('#ls_'+vlabel).html(vls);
+												}													
 						
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 												
@@ -558,67 +562,69 @@ function RefreshData()
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
 											
                                             // replace forecast (text) with an image (THIS IS THE NIGHT part)	
+											
+												
 																		
                                                 if (vdata == 'Sunny' && IsNight == 'Yes') {
-                                                        vdata=new String(vdata).replace( "Sunny",'<img src=icons/meteo/night-clear.png width=155 height=155 onclick="lightbox_open(\'meteo\', 25400)">');
+                                                        vdata=new String(vdata).replace( "Sunny",'<img src=icons/meteo/night-clear.png width=155 height=155 onclick="lightbox_open(\'meteo'+lastseen+'\', 25400)">');
                                                 }
                                                 if (vdata == 'Partly Cloudy' && IsNight == 'Yes') {
-                                                        vdata=new String(vdata).replace( "Partly Cloudy",'<img src=icons/meteo/night-partlycloudy.png width=155 height=155 onclick="lightbox_open(\'meteo\', 25400)">');
+                                                        vdata=new String(vdata).replace( "Partly Cloudy",'<img src=icons/meteo/night-partlycloudy.png width=155 height=155 onclick="lightbox_open(\'meteo'+lastseen+'\', 25400)">');
                                                 }
                                                 if (vdata == 'Cloudy' && IsNight == 'Yes') {
-                                                        vdata=new String(vdata).replace( "Cloudy",'<img src=icons/meteo/night-cloudy.png width=155 height=155 onclick="lightbox_open(\'meteo\', 25400)">');
+                                                        vdata=new String(vdata).replace( "Cloudy",'<img src=icons/meteo/night-cloudy.png width=155 height=155 onclick="lightbox_open(\'meteo'+lastseen+'\', 25400)">');
                                                 }
                                                 if (vdata == 'Clear' && IsNight == 'Yes') {
-                                                        vdata=new String(vdata).replace( "Clear",'<img src=icons/meteo/night-clear.png width=155 height=155 onclick="lightbox_open(\'meteo\', 25400)">');
+                                                        vdata=new String(vdata).replace( "Clear",'<img src=icons/meteo/night-clear.png width=155 height=155 onclick="lightbox_open(\'meteo'+lastseen+'\', 25400)">');
                                                 }
                                                 if (vdata == 'Rain' && IsNight == 'Yes') {
-                                                        vdata=new String(vdata).replace( "Rain",'<img src=icons/meteo/night-rain.png width=155 height=155 onclick="lightbox_open(\'meteo\', 25400)">');
+                                                        vdata=new String(vdata).replace( "Rain",'<img src=icons/meteo/night-rain.png width=155 height=155 onclick="lightbox_open(\'meteo'+lastseen+'\', 25400)">');
                                                 }
                                                 if (vdata == 'Snow' && IsNight == 'Yes') {
-                                                        vdata=new String(vdata).replace( "Snow",'<img src=icons/meteo/night-snow.png width=155 height=155 onclick="lightbox_open(\'meteo\', 25400)">');
+                                                        vdata=new String(vdata).replace( "Snow",'<img src=icons/meteo/night-snow.png width=155 height=155 onclick="lightbox_open(\'meteo'+lastseen+'\', 25400)">');
                                                 }
                                                 if (vdata == 'Fog' && IsNight == 'Yes') {
-                                                        vdata=new String(vdata).replace( "Fog",'<img src=icons/meteo/night-fog.png width=155 height=155 onclick="lightbox_open(\'meteo\', 25400)">');
+                                                        vdata=new String(vdata).replace( "Fog",'<img src=icons/meteo/night-fog.png width=155 height=155 onclick="lightbox_open(\'meteo'+lastseen+'\', 25400)">');
                                                 }
                                                 if (vdata == 'Hail' && IsNight == 'Yes') {
-                                                        vdata=new String(vdata).replace( "Hail",'<img src=icons/meteo/night-hail.png width=155 height=155 onclick="lightbox_open(\'meteo\', 25400)">');
+                                                        vdata=new String(vdata).replace( "Hail",'<img src=icons/meteo/night-hail.png width=155 height=155 onclick="lightbox_open(\'meteo'+lastseen+'\', 25400)">');
                                                 }
                                                 if (vdata == 'Thunderstom' && IsNight == 'Yes') {
-                                                        vdata=new String(vdata).replace( "Thunderstorm",'<img src=icons/meteo/night-thunder.png width=155 height=155 onclick="lightbox_open(\'meteo\', 25400)">');
+                                                        vdata=new String(vdata).replace( "Thunderstorm",'<img src=icons/meteo/night-thunder.png width=155 height=155 onclick="lightbox_open(\'meteo'+lastseen+'\', 25400)">');
                                                 }
                                                 if (vdata == 'Sleet' && IsNight == 'Yes')  {
-                                                        vdata=new String(vdata).replace( "Sleet",'<img src=icons/meteo/night-sleet.png width=155 height=155 onclick="lightbox_open(\'meteo\', 25400)">');  
+                                                        vdata=new String(vdata).replace( "Sleet",'<img src=icons/meteo/night-sleet.png width=155 height=155 onclick="lightbox_open(\'meteo'+lastseen+'\', 25400)">');  
                                                 }
 											// replace forecast (text) with an image (THIS IS THE DAY part)
 												if (vdata == 'Sunny' && IsNight == 'No') {
-                                                        vdata=new String(vdata).replace( "Sunny",'<img src=icons/meteo/day-sun.png width=155 height=155 onclick="lightbox_open(\'meteo\', 25400)">');
+                                                        vdata=new String(vdata).replace( "Sunny",'<img src=icons/meteo/day-sun.png width=155 height=155 onclick="lightbox_open(\'meteo'+lastseen+'\', 25400)">');
                                                 }
                                                 if (vdata == 'Partly Cloudy' && IsNight == 'No') {
-                                                        vdata=new String(vdata).replace( "Partly Cloudy",'<img src=icons/meteo/day-partlycloudy.png width=155 height=155 onclick="lightbox_open(\'meteo\', 25400)">');
+                                                        vdata=new String(vdata).replace( "Partly Cloudy",'<img src=icons/meteo/day-partlycloudy.png width=155 height=155 onclick="lightbox_open(\'meteo'+lastseen+'\', 25400)">');
                                                 }
                                                 if (vdata == 'Cloudy' && IsNight == 'No') {
-                                                        vdata=new String(vdata).replace( "Cloudy",'<img src=icons/meteo/day-cloudy.png width=155 height=155 onclick="lightbox_open(\'meteo\', 25400)">');
+                                                        vdata=new String(vdata).replace( "Cloudy",'<img src=icons/meteo/day-cloudy.png width=155 height=155 onclick="lightbox_open(\'meteo'+lastseen+'\', 25400)">');
                                                 }
                                                 if (vdata == 'Clear' && IsNight == 'No') {
-                                                        vdata=new String(vdata).replace( "Clear",'<img src=icons/meteo/day-sun.png width=155 height=155 onclick="lightbox_open(\'meteo\', 25400)">');
+                                                        vdata=new String(vdata).replace( "Clear",'<img src=icons/meteo/day-sun.png width=155 height=155 onclick="lightbox_open(\'meteo'+lastseen+'\', 25400)">');
                                                 }
                                                 if (vdata == 'Rain' && IsNight == 'No') {
-                                                        vdata=new String(vdata).replace( "Rain",'<img src=icons/meteo/day-rain.png width=155 height=155 onclick="lightbox_open(\'meteo\', 25400)">');
+                                                        vdata=new String(vdata).replace( "Rain",'<img src=icons/meteo/day-rain.png width=155 height=155 onclick="lightbox_open(\'meteo'+lastseen+'\', 25400)">');
                                                 }
                                                 if (vdata == 'Snow' && IsNight == 'No') {
-                                                        vdata=new String(vdata).replace( "Snow",'<img src=icons/meteo/day-snow.png width=155 height=155 onclick="lightbox_open(\'meteo\', 25400)">');
+                                                        vdata=new String(vdata).replace( "Snow",'<img src=icons/meteo/day-snow.png width=155 height=155 onclick="lightbox_open(\'meteo'+lastseen+'\', 25400)">');
                                                 }
                                                 if (vdata == 'Fog' && IsNight == 'No') {
-                                                        vdata=new String(vdata).replace( "Fog",'<img src=icons/meteo/day-fog.png width=155 height=155 onclick="lightbox_open(\'meteo\', 25400)">');
+                                                        vdata=new String(vdata).replace( "Fog",'<img src=icons/meteo/day-fog.png width=155 height=155 onclick="lightbox_open(\'meteo'+lastseen+'\', 25400)">');
                                                 }
                                                 if (vdata == 'Hail' && IsNight == 'No') {
-                                                        vdata=new String(vdata).replace( "Hail",'<img src=icons/meteo/day-hail.png width=155 height=155 onclick="lightbox_open(\'meteo\', 25400)">');
+                                                        vdata=new String(vdata).replace( "Hail",'<img src=icons/meteo/day-hail.png width=155 height=155 onclick="lightbox_open(\'meteo'+lastseen+'\', 25400)">');
                                                 }
                                                 if (vdata == 'Thunderstom' && IsNight == 'No') {
-                                                        vdata=new String(vdata).replace( "Thunderstorm",'<img src=icons/meteo/day-thunder.png width=155 height=155 onclick="lightbox_open(\'meteo\', 25400)">');
+                                                        vdata=new String(vdata).replace( "Thunderstorm",'<img src=icons/meteo/day-thunder.png width=155 height=155 onclick="lightbox_open(\'meteo'+lastseen+'\', 25400)">');
                                                 }
                                                 if (vdata == 'Sleet' && IsNight == 'No')  {
-                                                        vdata=new String(vdata).replace( "Sleet",'<img src=icons/meteo/day-sleet.png width=155 height=155 onclick="lightbox_open(\'meteo\', 25400)">');  
+                                                        vdata=new String(vdata).replace( "Sleet",'<img src=icons/meteo/day-sleet.png width=155 height=155 onclick="lightbox_open(\'meteo'+lastseen+'\', 25400)">');  
                                                 }
 												
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////													
@@ -679,7 +685,7 @@ function RefreshData()
 
 												// Replace On/Off status with custom icon if needed
 												
-												if (lastseen == '2' || lastseen == '3') {
+												if (vtype != 'ForecastStr' && (lastseen == '2' || lastseen == '3')) {
 												 	
 													
 													if (item.SwitchType == 'Dusk Sensor') {
@@ -752,7 +758,15 @@ function RefreshData()
 													if (parseInt(vdata, 10) >= 35) { new String(vattr).replace( vattr,'color:'+T35+';' + vattr); } 
 													else if (parseInt(vdata, 10) >= 30) { vattr=new String(vattr).replace( vattr,'color:'+T30+';' + vattr); } 
 													else if (parseInt(vdata, 10) >= 25) { vattr=new String(vattr).replace( vattr,'color:'+T25+';' + vattr); } 
+													else if (parseInt(vdata, 10) >= 24) { vattr=new String(vattr).replace( vattr,'color:'+T24+';' + vattr); } 
+													else if (parseInt(vdata, 10) >= 23) { vattr=new String(vattr).replace( vattr,'color:'+T23+';' + vattr); } 
+													else if (parseInt(vdata, 10) >= 22) { vattr=new String(vattr).replace( vattr,'color:'+T22+';' + vattr); } 
+													else if (parseInt(vdata, 10) >= 21) { vattr=new String(vattr).replace( vattr,'color:'+T21+';' + vattr); } 
 													else if (parseInt(vdata, 10) >= 20) { vattr=new String(vattr).replace( vattr,'color:'+T20+';' + vattr); } 
+													else if (parseInt(vdata, 10) >= 19) { vattr=new String(vattr).replace( vattr,'color:'+T19+';' + vattr); } 
+													else if (parseInt(vdata, 10) >= 18) { vattr=new String(vattr).replace( vattr,'color:'+T18+';' + vattr); } 
+													else if (parseInt(vdata, 10) >= 17) { vattr=new String(vattr).replace( vattr,'color:'+T17+';' + vattr); } 
+													else if (parseInt(vdata, 10) >= 16) { vattr=new String(vattr).replace( vattr,'color:'+T16+';' + vattr); } 
 													else if (parseInt(vdata, 10) >= 15) { vattr=new String(vattr).replace( vattr,'color:'+T15+';' + vattr); } 
 													else if (parseInt(vdata, 10) >= 10) { vattr=new String(vattr).replace( vattr,'color:'+T10+';' + vattr); } 
 													else if (parseInt(vdata, 10) >= 05) { vattr=new String(vattr).replace( vattr,'color:'+T05+';' + vattr); } 
