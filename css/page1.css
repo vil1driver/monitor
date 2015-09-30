@@ -77,16 +77,6 @@
 	width: 184px; 
 }
 
-#heat1, #heat2 {
-	/*background-color: red;*/
-	position: absolute;
-	width: 35px;
-    height: 30px;
-	margin-left: 75px;
-    margin-top: -0px;      
-	overflow: hidden;
- 
-}
 
 #heat1 img, #heat2 img{
 	
