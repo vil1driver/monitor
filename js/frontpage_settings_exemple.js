@@ -43,8 +43,9 @@ var T00 = '#AEE3F5';
 var T000 = '#EBF4F7';						// couleur de la température sous 0°C
 
 <!-- Change the timeout of the PopUp -->
-var switch_protected_timeout = '1000';
-var switch_timeout = '1000';
+var switch_protected_timeout = '800';		// durée d'affichage en milisecondes
+var switch_timeout = '600';
+var fad_Duration = 0;					// durée de l'animation en milisecondes
 
 <!-- Special items -->
 var city = 'saint-jacques-de-la-lande';		// localité pour la popup météo (lors du clic sur l'icon météo)

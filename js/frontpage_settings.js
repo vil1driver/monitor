@@ -43,8 +43,9 @@ var T00 = '#AEE3F5';
 var T000 = '#EBF4F7';						// couleur de la température sous 0°C
 
 <!-- Change the timeout of the PopUp -->
-var switch_protected_timeout = '1000';
+var switch_protected_timeout = '1000';		// durée d'affichage en milisecondes
 var switch_timeout = '1000';
+var fad_Duration = 200;					// durée de l'animation en milisecondes
 
 <!-- Special items -->
 var city = 'paris';				// localité pour la popup météo (lors du clic sur l'icon météo)

@@ -6,15 +6,15 @@ function lightbox_open(id, timeout, txt){
 		if (typeof txt != 'undefined') {
 			$('#popup_'+id).html('<div>'+txt+'</div>');
 		}
-        $('#popup_'+id).fadeIn('fast');
-		$('#fade').fadeIn('fast');
+        $('#popup_'+id).fadeIn(fad_Duration);
+		$('#fade').fadeIn(fad_Duration);
 		tempo = setTimeout(function() {lightbox_close(id);}, timeout);
 }
 
 <!-- Close popup -->
 function lightbox_close(id){
-        $('#popup_'+id).fadeOut('fast');
-        $('#fade').fadeOut('fast');
+        $('#popup_'+id).fadeOut(fad_Duration);
+        $('#fade').fadeOut(fad_Duration);
 		clearTimeout(tempo);
 		setTimeout(RefreshData , 150);
 }
@@ -23,32 +23,32 @@ function lightbox_close(id){
 function helpBox_open(id){
 		window.scrollTo(0,0);
 		$('#popup_help').html('<div>Bad value, click <a target="_blank" href="'+$.domoticzurl+'/json.htm?type=devices&rid='+id+'">here</a> to show what you can use..</div>');
-		$('#popup_help').fadeIn('fast');
-		$('#fade').fadeIn('fast');
+		$('#popup_help').fadeIn(fad_Duration);
+		$('#fade').fadeIn(fad_Duration);
 		$('#popup_help').click(function(){helpBox_close();});
 		tempo = setTimeout(function() {helpBox_close();}, 30000);
 }
 
 <!-- help box close popup -->
 function helpBox_close(){
-        $('#popup_help').fadeOut('fast');
-        $('#fade').fadeOut('fast');
+        $('#popup_help').fadeOut(fad_Duration);
+        $('#fade').fadeOut(fad_Duration);
 		clearTimeout(tempo);
 }
 
 <!-- show security panel -->
 function showPanel() {
 $('#popup_secpanel').html('<object type="text/html" data="'+$.domoticzurl+'/secpanel/index.html" width="100%" height="100%"></object>');
-$('#popup_secpanel').fadeIn('fast');
-$('#fade').fadeIn('fast');
+$('#popup_secpanel').fadeIn(fad_Duration);
+$('#fade').fadeIn(fad_Duration);
 $('#fade').click(function(){closePanel();});
 tempo = setTimeout(function(){closePanel();},60000);
 }
 
 <!-- close security panel -->
 function closePanel() {
-$('#popup_secpanel').fadeOut('fast');
-$('#fade').fadeOut('fast');
+$('#popup_secpanel').fadeOut(fad_Duration);
+$('#fade').fadeOut(fad_Duration);
 $("#fade").off("click");
 $('#popup_secpanel').html('');
 clearTimeout(tempo);
@@ -56,16 +56,16 @@ clearTimeout(tempo);
 
 <!-- show graph popup -->
 function showGraph() {
-$('#popup_graph').fadeIn('fast');
-$('#fade').fadeIn('fast');
+$('#popup_graph').fadeIn(fad_Duration);
+$('#fade').fadeIn(fad_Duration);
 $('#fade').click(function(){closeGraph();});
 tempo = setTimeout(function(){closeGraph();},25400);
 }
 
 <!-- close graph popup -->
 function closeGraph() {
-$('#popup_graph').fadeOut('fast');
-$('#fade').fadeOut('fast');
+$('#popup_graph').fadeOut(fad_Duration);
+$('#fade').fadeOut(fad_Duration);
 $("#fade").off("click");
 $('#popup_graph').html('');
 clearTimeout(tempo);
