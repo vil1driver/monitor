@@ -110,6 +110,11 @@ sup
     line-height: 0;
 }
 
+span.percent {
+	color:	#FD0CE9;
+	font-size:	20px;
+
+}
 	
 #popup_switch, #popup_graph, #popup_protected,
 #popup_meteo0, #popup_meteo1, #popup_meteo2, #popup_meteo3,
@@ -183,7 +188,7 @@ sup
  
 #fade
 {
-    display: none;
+   	display: none;
     position: fixed;
     top: 0%;
     left: 0%;

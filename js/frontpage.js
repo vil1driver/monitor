@@ -418,7 +418,7 @@ function RefreshData()
 															if (item.MaxDimLevel == 100) {
 																if (lastseen == '2') {
 																	var hlp = '<img src="'+$.domoticzurl+'/images/Light48_On.png" width=48 onclick="SwitchToggle('+item.idx+', \'Off\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_switch_off+')" style='+alarmcss+'>';
-																	vdesc=new String(vdesc).replace( vdesc,vdesc + "<span style='color:#FD0CE9;font-size:20px;'> "+vdata+"&#37;</span>");
+																	vdesc=new String(vdesc).replace( vdesc,vdesc + "<span class='percent'> "+vdata+"<span style='font-size:70%;'> &#37;</span></span>");
 																} else {
 																	var hlp = '<span onclick="SwitchToggle('+item.idx+', \'Off\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_switch_off+')" style='+alarmcss+'>'+ vdata+'</span>';
 																}
@@ -427,7 +427,7 @@ function RefreshData()
 															} else {
 																if (lastseen == '2') {
 																	var hlp = '<img src="'+$.domoticzurl+'/images/Light48_On.png" width=48 onclick="SwitchToggle('+item.idx+', \'Off\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_switch_off+')" style='+alarmcss+'>';
-																	vdesc=new String(vdesc).replace( vdesc,vdesc + "<span style='color:#FD0CE9;font-size:20px;'> "+vdata+"&#37;</span>");
+																	vdesc=new String(vdesc).replace( vdesc,vdesc + "<span class='percent'> "+vdata+"<span style='font-size:70%;'> &#37;</span></span>");
 																} else {
 																	var hlp = '<span onclick="SwitchToggle('+item.idx+', \'Off\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_switch_off+')" style='+alarmcss+'>'+ vdata+'</span>';
 																}
@@ -437,7 +437,7 @@ function RefreshData()
                                                         }
                                                         vdata = min.concat(hlp,plus);
                                                         //console.log(vdata);
-                                                } 
+												} 
 
 											
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
@@ -449,7 +449,6 @@ function RefreshData()
 														var min = '<img src=icons/min.png align=left vspace=4 width=30 onclick="ChangeTherm(\'min\',' +vplusmin+ ',' + item.idx + ','+ vdata+','+ valarm+')">';
 														vdata = min.concat(hlp,plus);
 														//console.log(vdata);
-														
 												}
 												
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
@@ -525,7 +524,7 @@ function RefreshData()
 																var min = '<img src=icons/min.png  vspace=4 hspace=4 width=30 onclick="DimLevel100(\'plus\',' + vdata + ',' + item.idx + ')">';
 														}
 														
-														vdesc=new String(vdesc).replace( vdesc,vdesc + "<span style='color:#1B9772;font-size:20px;'> "+(100-vdata)+"&#37;</span>");
+														vdesc=new String(vdesc).replace( vdesc,vdesc + "<span class='percent'> "+(100-vdata)+"<span style='font-size:50%;'> &#37;</span></span>");
 														vdata = min.concat(down,up,plus);
 														//console.log(vdata);
 													}
@@ -553,7 +552,7 @@ function RefreshData()
 																var min = '<img src=icons/min.png vspace=4 hspace=4 width=30 onclick="DimLevel100(\'min\',' + vdata + ',' + item.idx + ')">';
 														
 														}
-														vdesc=new String(vdesc).replace( vdesc,vdesc + "<span style='color:#1B9772;font-size:20px;'> "+vdata+"&#37;</span>");
+														vdesc=new String(vdesc).replace( vdesc,vdesc + "<span class='percent'> "+vdata+"<span style='font-size:50%;'> &#37;</span></span>");
 														vdata = min.concat(down,up,plus);
 														//console.log(vdata);
 													}
@@ -802,7 +801,7 @@ function RefreshData()
 													}
 												}
 												// Adds Kwh after the CounterToday
-												if(vtype == 'CounterToday' && (item.SubType == 'Energy' || item.SubType == 'CM119 / CM160') && vdata > -100){       
+												if(vtype == 'CounterToday' && (item.SubType == 'Energy' || item.SubType == 'CM119 / CM160' || item.SubType == 'kWh') && vdata > -100){       
 													vdata=new String(vdata).replace( vdata,Math.ceil(vdata*10)/10 + '<span style="font-size:50%;"> Kwh</span>');
 												}
 												// Adds Kwh after the Counter and convert float to integer

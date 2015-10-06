@@ -33,8 +33,6 @@ remplacez IDX par l'idx de votre device
 
 
 puis afficher votre nouvelle interface via <br>
-<a href="#">http://user:pass@ip:port/monitor/</a><br>
-ou<br>
 <a href="#">http://ip:port/monitor/</a><br>
 
 # Mise à jour
