@@ -749,12 +749,9 @@ function RefreshData()
 												
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 											
-												// gestion des unitées et graphs
-												
-												
 												// on change la couleur suivant la température
 												if(vtype == 'Temp' && vdata > -100 ) {
-													if (parseInt(vdata, 10) >= 35) { new String(vattr).replace( vattr,'color:'+T35+';' + vattr); } 
+														 if (parseInt(vdata, 10) >= 35) { vattr=new String(vattr).replace( vattr,'color:'+T35+';' + vattr); } 
 													else if (parseInt(vdata, 10) >= 30) { vattr=new String(vattr).replace( vattr,'color:'+T30+';' + vattr); } 
 													else if (parseInt(vdata, 10) >= 25) { vattr=new String(vattr).replace( vattr,'color:'+T25+';' + vattr); } 
 													else if (parseInt(vdata, 10) >= 24) { vattr=new String(vattr).replace( vattr,'color:'+T24+';' + vattr); } 
@@ -770,19 +767,24 @@ function RefreshData()
 													else if (parseInt(vdata, 10) >= 10) { vattr=new String(vattr).replace( vattr,'color:'+T10+';' + vattr); } 
 													else if (parseInt(vdata, 10) >= 05) { vattr=new String(vattr).replace( vattr,'color:'+T05+';' + vattr); } 
 													else if (parseInt(vdata, 10) >= 00) { vattr=new String(vattr).replace( vattr,'color:'+T00+';' + vattr); }
-													else  { vattr=new String(vattr).replace( vattr,'color:'+T000+';' + vattr); }	
-												}												
+																				  else  { vattr=new String(vattr).replace( vattr,'color:'+T000+';' + vattr); }	
+												}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+											
+											// gestion des unitées et graphs
+												
 												// Adds °C after the temperature
 										 		if(vtype == 'Temp' && vdata > -100){   
 													vdata=new String(vdata).replace( vdata,'<span onclick="RefreshGraphData('+item.idx+',\''+vdesc+'\',\'temp\',\'day\',\'te\',\'Température &#8451;\')">' + vdata + '<sup style="font-size:50%;" >&#8451;</sup></span>');
 												}
 												// Adds Km/h after the wind
 												if(vtype == 'Speed' || vtype == 'Gust' && vdata > -100){       
-													vdata=new String(vdata).replace( vdata,vdata + '<span style="font-size:50%;"> Km/h</span>');
+													vdata=new String(vdata).replace( vdata,'<span onclick="RefreshGraphData('+item.idx+',\''+vdesc+'\',\'wind\',\'day\',\'sp\',\'Vitesse km/h\')">' + vdata + '<span style="font-size:50%;"> km/h</span></span>');
 												}
 												// Adds mm after the rain
 												if(vtype == 'Rain' && vdata > -100){       
-													vdata=new String(vdata).replace( vdata,vdata + '<span style="font-size:50%;"> mm</span>');
+													vdata=new String(vdata).replace( vdata,'<span onclick="RefreshGraphData('+item.idx+',\''+vdesc+'\',\'rain\',\'day\',\'mm\',\'Précipitations mm\')">' + vdata + '<span style="font-size:50%;"> mm</span></span>');
 												}
 												// Adds % after the humidity
 												if(vtype == 'Humidity' && vdata > -100){       
@@ -790,7 +792,7 @@ function RefreshData()
 												}
 												// Adds % after percentage
 												if(vtype == 'Data' && item.SubType == 'Percentage' && vdata > -100){       
-													vdata=new String(vdata).replace( vdata,Math.ceil(vdata) + '<span style="font-size:50%;"> &#37;</span>');
+													vdata=new String(vdata).replace( vdata,'<span onclick="RefreshGraphData('+item.idx+',\''+vdesc+'\',\'Percentage\',\'day\',\'v\',\'Pourcentage &#37;\')">' + Math.ceil(vdata) + '<span style="font-size:50%;"> &#37;</span></span>');
 												}
 												// Adds Watt after the Usage
 												if(vtype == 'Usage' && (item.SubType == 'Energy' || item.SubType == 'CM119 / CM160') && vdata > -100){       
@@ -813,6 +815,8 @@ function RefreshData()
 													vdata=item.Data;
 													vdata=new String(vdata).replace( vdata,Math.ceil(vdata*100)/100 + '<span style="font-size:50%;"> €</span>');
 												}
+												// Adds m³ after volume   m&#179;
+												
 												
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////													
 
