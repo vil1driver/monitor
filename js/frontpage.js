@@ -813,11 +813,16 @@ function RefreshData()
 												// Adds € after price
 												if(vtype == 'Euro'){       
 													vdata=item.Data;
-													vdata=new String(vdata).replace( vdata,Math.ceil(vdata*100)/100 + '<span style="font-size:50%;"> €</span>');
+													vdata=new String(vdata).replace( vdata,Math.ceil(vdata*100)/100 + '<span style="font-size:50%;"> &#8364;</span>');
 												}
-												// Adds m³ after volume   m&#179;
-												
-												
+												// Adds m³ after volume
+												if(item.Type == 'Counter Incremental'){
+													vdata=new String(vdata).replace( vdata,vdata + '<span style="font-size:50%;"> m&#179;</span>');
+												}												
+												// Adds Watt/m² after solar radiation
+												if(item.SubType == 'Solar Radiation'){
+													vdata=new String(vdata).replace( vdata,vdata + '<span style="font-size:50%;"> Watt/m&#178;</span>');
+												}
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////													
 
 												// if extra css attributes. Make switch not switchable when it is protected, just give message.
