@@ -750,7 +750,7 @@ function RefreshData()
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 											
 												// on change la couleur suivant la température
-												if(vtype == 'Temp' && vdata > -100 ) {
+												if(vtype == 'Temp') {
 														 if (parseInt(vdata, 10) >= 35) { vattr=new String(vattr).replace( vattr,'color:'+T35+';' + vattr); } 
 													else if (parseInt(vdata, 10) >= 30) { vattr=new String(vattr).replace( vattr,'color:'+T30+';' + vattr); } 
 													else if (parseInt(vdata, 10) >= 25) { vattr=new String(vattr).replace( vattr,'color:'+T25+';' + vattr); } 
@@ -775,27 +775,36 @@ function RefreshData()
 											// gestion des unitées et graphs
 												
 												// Adds °C after the temperature
-										 		if(vtype == 'Temp' && vdata > -100){   
+										 		if(vtype == 'Temp'){   
 													vdata=new String(vdata).replace( vdata,'<span onclick="RefreshGraphData('+item.idx+',\''+vdesc+'\',\'temp\',\'day\',\'te\',\'Température &#8451;\')">' + vdata + '<sup style="font-size:50%;" >&#8451;</sup></span>');
 												}
+												// Adds % after the humidity
+												if(vtype == 'Humidity'){       
+													vdata=new String(vdata).replace( vdata,'<span onclick="RefreshGraphData('+item.idx+',\''+vdesc+'\',\'temp\',\'day\',\'hu\',\'Humidité &#37;\')">' + vdata + '<span style="font-size:50%;"> &#37;</span></span>');
+												}
+												// Adds hPa after Barometer
+												if(vtype == 'Barometer'){
+													vdata=new String(vdata).replace( vdata,vdata + '<span style="font-size:50%;"> hPa</span>');
+												}
 												// Adds Km/h after the wind
-												if(vtype == 'Speed' || vtype == 'Gust' && vdata > -100){       
+												if(vtype == 'Speed' || vtype == 'Gust'){       
 													vdata=new String(vdata).replace( vdata,'<span onclick="RefreshGraphData('+item.idx+',\''+vdesc+'\',\'wind\',\'day\',\'sp\',\'Vitesse km/h\')">' + vdata + '<span style="font-size:50%;"> km/h</span></span>');
 												}
 												// Adds mm after the rain
-												if(vtype == 'Rain' && vdata > -100){       
+												if(item.Type == 'Rain'){       
 													vdata=new String(vdata).replace( vdata,'<span onclick="RefreshGraphData('+item.idx+',\''+vdesc+'\',\'rain\',\'day\',\'mm\',\'Précipitations mm\')">' + vdata + '<span style="font-size:50%;"> mm</span></span>');
 												}
-												// Adds % after the humidity
-												if(vtype == 'Humidity' && vdata > -100){       
-													vdata=new String(vdata).replace( vdata,'<span onclick="RefreshGraphData('+item.idx+',\''+vdesc+'\',\'temp\',\'day\',\'hu\',\'Humidité &#37;\')">' + vdata + '<span style="font-size:50%;"> &#37;</span></span>');
+												// Adds UVI after UV
+												if(item.Type == 'UV'){
+													vdata=new String(vdata).replace( vdata,vdata + '<span style="font-size:50%;"> UVI</span>');
 												}
+												
 												// Adds % after percentage
-												if(vtype == 'Data' && item.SubType == 'Percentage' && vdata > -100){       
+												if(vtype == 'Data' && item.SubType == 'Percentage'){       
 													vdata=new String(vdata).replace( vdata,'<span onclick="RefreshGraphData('+item.idx+',\''+vdesc+'\',\'Percentage\',\'day\',\'v\',\'Pourcentage &#37;\')">' + Math.ceil(vdata) + '<span style="font-size:50%;"> &#37;</span></span>');
 												}
 												// Adds Watt after the Usage
-												if(vtype == 'Usage' && (item.SubType == 'Energy' || item.SubType == 'CM119 / CM160' || item.SubType == 'CM180' || item.SubType == 'kWh') && vdata > -100){       
+												if(vtype == 'Usage' && (item.SubType == 'Energy' || item.SubType == 'CM119 / CM160' || item.SubType == 'CM180' || item.SubType == 'kWh')){       
 													if(item.Type == 'P1 Smart Meter') {
 														vdata=new String(vdata).replace( vdata,'<span onclick="RefreshGraphData('+item.idx+',\''+vdesc+'\',\'counter\',\'day\',\'p1\',\'Electricité Watt\')">' + vdata + '<span style="font-size:50%;">Watt</span></span>');
 													}else{	
@@ -803,11 +812,11 @@ function RefreshData()
 													}
 												}
 												// Adds Kwh after the CounterToday
-												if(vtype == 'CounterToday' && (item.SubType == 'Energy' || item.SubType == 'CM119 / CM160' || item.SubType == 'CM180' || item.SubType == 'kWh') && vdata > -100){       
+												if(vtype == 'CounterToday' && (item.SubType == 'Energy' || item.SubType == 'CM119 / CM160' || item.SubType == 'CM180' || item.SubType == 'kWh')){       
 													vdata=new String(vdata).replace( vdata,Math.ceil(vdata*10)/10 + '<span style="font-size:50%;"> kWh</span>');
 												}
 												// Adds Kwh after the Counter and convert float to integer
-												if((vtype == 'Counter' || vtype == 'Data') && (item.SubType == 'Energy' || item.SubType == 'CM119 / CM160' || item.SubType == 'CM180' || item.SubType == 'kWh') && vdata > -100){       
+												if((vtype == 'Counter' || vtype == 'Data') && (item.SubType == 'Energy' || item.SubType == 'CM119 / CM160' || item.SubType == 'CM180' || item.SubType == 'kWh')){       
 													vdata=new String(vdata).replace( vdata,Math.ceil(vdata) + '<span style="font-size:50%;"> kWh</span>');
 												}
 												// Adds € after price
@@ -827,6 +836,7 @@ function RefreshData()
 												if(item.SubType == 'Solar Radiation'){
 													vdata=new String(vdata).replace( vdata,vdata + '<span style="font-size:50%;"> Watt/m&#178;</span>');
 												}
+												
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////													
 
 												// if extra css attributes. Make switch not switchable when it is protected, just give message.
