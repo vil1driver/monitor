@@ -804,21 +804,25 @@ function RefreshData()
 												}
 												// Adds Kwh after the CounterToday
 												if(vtype == 'CounterToday' && (item.SubType == 'Energy' || item.SubType == 'CM119 / CM160' || item.SubType == 'CM180' || item.SubType == 'kWh') && vdata > -100){       
-													vdata=new String(vdata).replace( vdata,Math.ceil(vdata*10)/10 + '<span style="font-size:50%;"> Kwh</span>');
+													vdata=new String(vdata).replace( vdata,Math.ceil(vdata*10)/10 + '<span style="font-size:50%;"> kWh</span>');
 												}
 												// Adds Kwh after the Counter and convert float to integer
 												if((vtype == 'Counter' || vtype == 'Data') && (item.SubType == 'Energy' || item.SubType == 'CM119 / CM160' || item.SubType == 'CM180' || item.SubType == 'kWh') && vdata > -100){       
-													vdata=new String(vdata).replace( vdata,Math.ceil(vdata) + '<span style="font-size:50%;"> Kwh</span>');
+													vdata=new String(vdata).replace( vdata,Math.ceil(vdata) + '<span style="font-size:50%;"> kWh</span>');
 												}
 												// Adds € after price
 												if(vtype == 'Euro'){       
 													vdata=item.Data;
 													vdata=new String(vdata).replace( vdata,Math.ceil(vdata*100)/100 + '<span style="font-size:50%;"> &#8364;</span>');
 												}
-												// Adds m³ after volume
-												if(item.Type == 'Counter Incremental'){
+												// Adds m³ after volume for incremental counter
+												if(item.Type == 'Counter Incremental' && (item.SwitchTypeVal == '1' || item.SwitchTypeVal == '2')){
 													vdata=new String(vdata).replace( vdata,vdata + '<span style="font-size:50%;"> m&#179;</span>');
-												}												
+												}
+												// Adds Kwh after energy for incremental counter
+												if(item.Type == 'Counter Incremental' && (item.SwitchTypeVal == '0' || item.SwitchTypeVal == '4')){
+													vdata=new String(vdata).replace( vdata,vdata + '<span style="font-size:50%;"> kWh</span>');
+												}
 												// Adds Watt/m² after solar radiation
 												if(item.SubType == 'Solar Radiation'){
 													vdata=new String(vdata).replace( vdata,vdata + '<span style="font-size:50%;"> Watt/m&#178;</span>');
