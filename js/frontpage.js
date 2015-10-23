@@ -835,7 +835,7 @@ function RefreshData()
 												}
 												// Adds Watt/m² after solar radiation
 												if(item.SubType == 'Solar Radiation'){
-													vdata=new String(vdata).replace( vdata,vdata + '<span style="font-size:50%;"> Watt/m&#178;</span>');
+													vdata=new String(vdata).replace( vdata,vdata + '<span style="font-size:50%;"> W/m&#178;</span>');
 												}
 												
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////													
