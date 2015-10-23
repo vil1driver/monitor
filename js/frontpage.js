@@ -8,6 +8,7 @@ function lightbox_open(id, timeout, txt){
 		}
         $('#popup_'+id).fadeIn(fad_Duration);
 		$('#fade').fadeIn(fad_Duration);
+		$('#fade').click(function(){lightbox_close(id);});
 		tempo = setTimeout(function() {lightbox_close(id);}, timeout);
 }
 
@@ -15,6 +16,7 @@ function lightbox_open(id, timeout, txt){
 function lightbox_close(id){
         $('#popup_'+id).fadeOut(fad_Duration);
         $('#fade').fadeOut(fad_Duration);
+		$("#fade").off("click");
 		clearTimeout(tempo);
 		setTimeout(RefreshData , 150);
 }
@@ -798,7 +800,6 @@ function RefreshData()
 												if(item.Type == 'UV'){
 													vdata=new String(vdata).replace( vdata,vdata + '<span style="font-size:50%;"> UVI</span>');
 												}
-												
 												// Adds % after percentage
 												if(vtype == 'Data' && item.SubType == 'Percentage'){       
 													vdata=new String(vdata).replace( vdata,'<span onclick="RefreshGraphData('+item.idx+',\''+vdesc+'\',\'Percentage\',\'day\',\'v\',\'Pourcentage &#37;\')">' + Math.ceil(vdata) + '<span style="font-size:50%;"> &#37;</span></span>');
@@ -806,9 +807,9 @@ function RefreshData()
 												// Adds Watt after the Usage
 												if(vtype == 'Usage' && (item.SubType == 'Energy' || item.SubType == 'CM119 / CM160' || item.SubType == 'CM180' || item.SubType == 'kWh')){       
 													if(item.Type == 'P1 Smart Meter') {
-														vdata=new String(vdata).replace( vdata,'<span onclick="RefreshGraphData('+item.idx+',\''+vdesc+'\',\'counter\',\'day\',\'p1\',\'Electricité Watt\')">' + vdata + '<span style="font-size:50%;">Watt</span></span>');
+														vdata=new String(vdata).replace( vdata,'<span onclick="RefreshGraphData('+item.idx+',\''+vdesc+'\',\'counter\',\'day\',\'p1\',\'Electricité Watt\')">' + Math.ceil(vdata) + '<span style="font-size:50%;"> Watt</span></span>');
 													}else{	
-														vdata=new String(vdata).replace( vdata,'<span onclick="RefreshGraphData('+item.idx+',\''+vdesc+'\',\'counter\',\'day\',\'v\',\'Electricité Watt\')">' + vdata + '<span style="font-size:50%;">Watt</span></span>');
+														vdata=new String(vdata).replace( vdata,'<span onclick="RefreshGraphData('+item.idx+',\''+vdesc+'\',\'counter\',\'day\',\'v\',\'Electricité Watt\')">' + Math.ceil(vdata) + '<span style="font-size:50%;"> Watt</span></span>');
 													}
 												}
 												// Adds Kwh after the CounterToday
