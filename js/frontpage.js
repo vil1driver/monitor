@@ -648,10 +648,10 @@ function RefreshData()
 												// create switchable value when item is switch
                                                 switchclick='';
 												
-												if (vdata == 'Off') {
+												if (vdata == 'Off' || item.SwitchType == 'Doorbell') {
                                                         switchclick = 'onclick="SwitchToggle('+item.idx+', \'On\');lightbox_open(\'switch\', '+switch_timeout+', '+txt_switch_on+')"';
 
-                                                         if ( item.SwitchType == 'Push On Button' && lastseen != '2' && lastseen != '3') {
+                                                        if ( item.SwitchType == 'Push On Button' && lastseen != '2' && lastseen != '3') {
 															vdata = vdesc;
 															vdesc = '';
 														}else { 
@@ -684,7 +684,7 @@ function RefreshData()
 												
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////													
 
-												// Replace On/Off status with custom icon if needed
+												// Replace Status with icon if needed
 												
 												if (vtype != 'ForecastStr' && (lastseen == '2' || lastseen == '3')) {
 												 	
@@ -695,6 +695,8 @@ function RefreshData()
 													} else if (item.SwitchType == 'Door Lock') {
 														var icon_On = 'door48open.png';
 														var icon_Off = 'door48.png';
+													} else if (item.SwitchType == 'Doorbell') {
+														var icon_Off = 'doorbell48.png';
 													} else if (item.SwitchType == 'Contact') {
 														var icon_On = 'contact48_open.png';
 														var icon_Off = 'contact48.png';
@@ -705,6 +707,9 @@ function RefreshData()
 														var icon_Off = 'push48.png';
 													} else if (item.SwitchType == 'Push Off Button') {
 														var icon_On = 'pushoff48.png';
+													} else if (item.SwitchType == 'Smoke Detector') {
+														var icon_On = 'smoke48on.png';
+														var icon_Off = 'smoke48off.png';
 													} else if (item.SubType == 'Security Panel') {
 														vdesc = vdata;
 														var icon = 'security48.png'
