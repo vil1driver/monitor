@@ -200,6 +200,7 @@ function createGraph(seriesData, vdesc, vunit) {
                 }
             }
         },
+		
         subtitle: {
             text: ''
         },
@@ -814,7 +815,7 @@ function RefreshData()
 													if(item.Type == 'P1 Smart Meter') {
 														vdata=new String(vdata).replace( vdata,'<span onclick="RefreshGraphData('+item.idx+',\''+vdesc+'\',\'counter\',\'day\',\'p1\',\'Electricité Watt\')">' + Math.ceil(vdata) + '<span style="font-size:50%;"> Watt</span></span>');
 													}else{	
-														vdata=new String(vdata).replace( vdata,'<span onclick="RefreshGraphData('+item.idx+',\''+vdesc+'\',\'counter\',\'day\',\'v\',\'Electricité Watt\')">' + Math.ceil(vdata) + '<span style="font-size:50%;"> Watt</span></span>');
+														vdata=new String(vdata).replace( vdata,'<span onclick="RefreshGraphData('+item.idx+',\''+vdesc+'\',\'counter&method=1\',\'day\',\'v\',\'Electricité Watt\')">' + Math.ceil(vdata) + '<span style="font-size:50%;"> Watt</span></span>');
 													}
 												}
 												// Adds Kwh after the CounterToday
