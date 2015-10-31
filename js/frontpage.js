@@ -327,8 +327,18 @@ function RefreshData()
 													}	
 												}
 												
+	})//;
+	.success(function() {
+	//	console.log("connection success");
+		$('#popup_warning').fadeOut(fad_Duration);
+        $('#fade').fadeOut(fad_Duration);
+	})
+	.error(function() {
+		console.log("error connection lost");
+		window.scrollTo(0,0);
+		$('#popup_warning').fadeIn(fad_Duration);
+		$('#fade').fadeIn(fad_Duration);
 	});
-
 	
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 	
@@ -1268,16 +1278,14 @@ function currentTime() {
 	var months = ["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Aout","Septembre","Octobre","Novembre","Décembre"];
     var maand = months[(today.getMonth()).toString()];
 	
-    if (showMonth == true) {
-	// affiche avec le mois 
-    var ret_str = "<span style='font-size:120%;position:relative;top:-5px;'>"+h+":"+m+"</span><br><span style='font-size:35%;position:relative;top:-40px;'>"+day+" "+dag+" "+maand+"</span>";
-    }
-	else {
-	// affiche sans le mois 
-	var ret_str = "<span style='font-size:120%;position:relative;top:-5px;'>"+h+":"+m+"</span><br><span style='font-size:35%;position:relative;top:-40px;'>"+day+" "+dag+"</span>";
+    if (showMonth == true){
+		// affiche avec le mois 
+		var ret_str = "<span style='font-size:120%;position:relative;top:-5px;'>"+h+":"+m+"</span><br><span style='font-size:35%;position:relative;top:-40px;'>"+day+" "+dag+" "+maand+"</span>";
+	}else{
+		// affiche sans le mois 
+		var ret_str = "<span style='font-size:120%;position:relative;top:-5px;'>"+h+":"+m+"</span><br><span style='font-size:35%;position:relative;top:-40px;'>"+day+" "+dag+"</span>";
 	}
-    return ret_str;
-    
+	return ret_str;
 }
 
 // mise en forme heure de réveil
