@@ -18,7 +18,6 @@
 <script type="text/javascript" src="js/highcharts.js"></script>	
 <script type="text/javascript">
 //<!--
-
 <!-- empêcher la sélection du texte -->
     function ffalse()
         {
@@ -38,13 +37,13 @@
 <!-- empêcher le clic droit -->		
     document.oncontextmenu = new Function("return false");
 
-<!-- viewport auto detect best scale -->	
+<!-- viewport auto detect best scale -->
 	<!-- alert(document.documentElement.clientWidth); -->
 	var def = 962;	
 	var actual = document.documentElement.clientWidth;
 	var scale = Math.ceil((actual/def)*100)/100;
 	document.querySelector("meta[name=viewport]").setAttribute('content','width=device-width, initial-scale='+scale+', maximum-scale='+scale+', user-scalable=no');
-	
+		
 <!-- import pages -->	
 $(window).ready(function(){
        								
@@ -80,6 +79,8 @@ $(window).ready(function(){
 
 
 
+
+
 </div>
 </div>
 
@@ -100,7 +101,11 @@ $(window).ready(function(){
 <div id="popup_secpanel"></div>
 <div id="popup_help"></div>
 <div id="fade"></div>
+<div id="fade2"></div>
 <div id="popup_warning"><img src="icons/warning.png"  height='270' width='270'></div>
+
+
+
 
 <script type="text/javascript">
 //<!--
@@ -120,7 +125,7 @@ var mySwipe = new Swipe(document.getElementById('slider'),{
     stopPropagation: true,
     callback: function(index, element) {},
     transitionEnd: function(index, element) {}
-	});
+});
 mySwipe.setup();
 
 // swipe on keypad

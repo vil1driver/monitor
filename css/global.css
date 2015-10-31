@@ -186,7 +186,7 @@ span.percent {
     margin-top: -100px;      
 }
  
-#fade
+#fade,#fade2
 {
    	display: none;
     position: fixed;
