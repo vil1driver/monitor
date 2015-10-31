@@ -43,15 +43,19 @@ var T00 = '#AEE3F5';
 var T000 = '#EBF4F7';						// couleur de la température sous 0°C
 
 <!-- Change the timeout of the PopUp -->
-var switch_protected_timeout = '1000';		// durée d'affichage en milisecondes
+var switch_protected_timeout = '1000';		// durée d'affichage (en milisecondes)
 var switch_timeout = '1000';
-var fad_Duration = 200;					// durée de l'animation en milisecondes
+var fad_Duration = 200;					// durée de l'animation (en milisecondes)
 
 <!-- Special items -->
-var city = 'paris';				// localité pour la popup météo (lors du clic sur l'icon météo)
-var blink = false;				// faire clignoter les valeurs en alarme (true/false)
-var loop = false;				// si au moins 3 pages, autoriser rebouclage (true/false)
-var showMonth = false;			// affichage(true) ou non(false) du mois dans la date
+var city = 'paris';		// localité pour la popup météo (lors du clic sur l'icon météo)
+var blink = false;							// faire clignoter les valeurs en alarme (true/false)
+var showMonth = false;						// affichage du mois dans la date (true/false)
+
+<!-- Swipe options -->
+var speed = 300;							// durée de l'animation (en milisecondes)
+var continuous = false;						// si au moins 3 pages, défilement infini (true/false)
+var auto = 0;							// si au moins 3 pages, défilement automatique, temps entre chaque changement de page (en milisecondes)
 
 
 // ############################################################################################################
