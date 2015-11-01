@@ -394,8 +394,8 @@ function RefreshData()
 												if (typeof lastseen == 'undefined' || lastseen == '') {
 													lastseen = '0';
 												}
-												if (vtype != 'ForecastStr' && (lastseen == '1' || lastseen == '3') && ($('#ls_'+vlabel).length > 0)) { 
-													$('#ls_'+vlabel).html(vls);
+												if (vtype != 'ForecastStr' && (lastseen == '1' || lastseen == '3') && ($('.ls_'+vlabel).length > 0)) { 
+													$('.ls_'+vlabel).html(vls);
 												}													
 						
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
@@ -756,12 +756,30 @@ function RefreshData()
                                                     alarmcss='';
 													if ( Number(vdata) >= valarm ) {  
                                                         alarmcss=';color:red;';
-														if (blink == true && !$( "#"+vlabel ).hasClass( "blink_me" )) {
-															document.getElementById(vlabel).classList.add("blink_me");
+														if (blink == true && !$( "."+vlabel ).hasClass( "blink_me" )) {
+															//document.getElementsByClassName(vlabel).classList.add("blink_me");
+															// Get desired elements
+															var element = document.getElementsByClassName(vlabel);
+
+															// Iterate through the retrieved elements and add the necessary class names.
+															for(var i = 0; i < element.length; i++)
+															{
+																element[i].classList.add('blink_me');
+																console.log(element[i].className);
+															}
 														}		
 													}
-													else if ( $( "#"+vlabel ).hasClass( "blink_me" ) ) {
-															document.getElementById(vlabel).classList.remove("blink_me");
+													else if ( $( "."+vlabel ).hasClass( "blink_me" ) ) {
+															//document.getElementsByClassName(vlabel).classList.remove("blink_me");
+															// Get desired elements
+															var element = document.getElementsByClassName(vlabel);
+
+															// Iterate through the retrieved elements and add the necessary class names.
+															for(var i = 0; i < element.length; i++)
+															{
+																element[i].classList.remove('blink_me');
+																console.log(element[i].className);
+															}
 													}
 												}
 												
@@ -859,21 +877,21 @@ function RefreshData()
 												// if extra css attributes. Make switch not switchable when it is protected, just give message.
 												if (typeof vattr == 'undefined') {
 													if (item.Protected == true) {
-														$('#'+vlabel).html('<div onClick="lightbox_open(\'protected\', '+switch_protected_timeout+', '+txt_switch_protected+')" style='+alarmcss+'>'+vdata+'</div>');
+														$('.'+vlabel).html('<div onClick="lightbox_open(\'protected\', '+switch_protected_timeout+', '+txt_switch_protected+')" style='+alarmcss+'>'+vdata+'</div>');
 													} else { 
-														$('#'+vlabel).html('<div '+switchclick+' style='+alarmcss+'>'+vdata+'</div>');
+														$('.'+vlabel).html('<div '+switchclick+' style='+alarmcss+'>'+vdata+'</div>');
 													}
 												} 
 												else if (item.Protected == true) {
-													$('#'+vlabel).html( '<div onClick="lightbox_open(\'protected\', '+switch_protected_timeout+ ', '+txt_switch_protected+')" style='+vattr+alarmcss+'>'+vdata+'</div>');
+													$('.'+vlabel).html( '<div onClick="lightbox_open(\'protected\', '+switch_protected_timeout+ ', '+txt_switch_protected+')" style='+vattr+alarmcss+'>'+vdata+'</div>');
 												} else {
-													$('#'+vlabel).html( '<div '+switchclick+' style='+vattr+alarmcss+'>'+vdata+'</div>');
+													$('.'+vlabel).html( '<div '+switchclick+' style='+vattr+alarmcss+'>'+vdata+'</div>');
 												}
 												
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////							
 
-                                                 if ($('#desc_'+vlabel).length > 0) {
-													$('#desc_'+vlabel).html(vdesc);
+                                                 if ($('.desc_'+vlabel).length > 0) {
+													$('.desc_'+vlabel).html(vdesc);
 												}	 
                                         }
                                         else if ( $.PageArray[ii][1] === 'Text' ) { 			//Special nummer, link in cell (test)
@@ -882,7 +900,7 @@ function RefreshData()
 												var vattr=    $.PageArray[ii][6];             	// extra css attributes
                                                 var valarm=     '';             // alarm value to turn text to red
 												
-												$('#'+vlabel).html('<div style='+vattr+'>'+vdesc+'</div>');
+												$('.'+vlabel).html('<div style='+vattr+'>'+vdesc+'</div>');
 										}
 										else if ( $.PageArray[ii][1] === 'Hide' ) { 			//Special nummer, link in cell (test)
                                                 var vlabel=     $.PageArray[ii][2];             // cell number from HTML layout
@@ -890,9 +908,9 @@ function RefreshData()
                                                 var vdesc = '';
                                                 var valarm=     $.PageArray[ii][7];             // alarm value to turn text to red
                                                 
-												$('#'+vlabel).html('');
-                                                if ($('#desc_'+vlabel).length > 0) {
-													$('#desc_'+vlabel).html('');
+												$('.'+vlabel).html('');
+                                                if ($('.desc_'+vlabel).length > 0) {
+													$('.desc_'+vlabel).html('');
 												}	
                                         }
 										else if ( $.PageArray[ii][1] === 'Link' ) { 			//Special nummer, link in cell (test)
@@ -901,9 +919,9 @@ function RefreshData()
                                                 var vdesc = '';
                                                 var valarm=     $.PageArray[ii][7];             // alarm value to turn text to red
                                                 
-                                                $('#'+vlabel).html( '<div>'+vdata+'</div>');
-                                                if ($('#desc_'+vlabel).length > 0) {
-													$('#desc_'+vlabel).html(vdesc);
+                                                $('.'+vlabel).html( '<div>'+vdata+'</div>');
+                                                if ($('.desc_'+vlabel).length > 0) {
+													$('.desc_'+vlabel).html(vdesc);
 												}	
                                         }
 										else if ( $.PageArray[ii][1] === 'Clock' ) { 			//Special nummer, Clock in cell (test)
@@ -913,9 +931,9 @@ function RefreshData()
                                                 var vattr=    $.PageArray[ii][6];             	// extra css attributes
                                                 var valarm=     $.PageArray[ii][7];             // alarm value to turn text to red
                                                 
-                                                $('#'+vlabel).html( '<div style='+vattr+'>'+vdata+'</div>');
-                                                 if ($('#desc_'+vlabel).length > 0) {
-													$('#desc_'+vlabel).html(vdesc);
+                                                $('.'+vlabel).html( '<div style='+vattr+'>'+vdata+'</div>');
+                                                 if ($('.desc_'+vlabel).length > 0) {
+													$('.desc_'+vlabel).html(vdesc);
 												}	 
 										}	
                                         else if ( $.PageArray[ii][1] === 'SunRise' ) { 			//Special nummer, zonsop/onder in cell (test)
@@ -924,9 +942,9 @@ function RefreshData()
                                                 var vattr=    $.PageArray[ii][6];             	// extra css attributes
                                                 var valarm=     $.PageArray[ii][7];             // alarm value to turn text to red
 
-                                                $('#'+vlabel).html( '<div style='+vattr+'>'+var_sunrise+'</div>');
-                                                 if ($('#desc_'+vlabel).length > 0) {
-													$('#desc_'+vlabel).html(txt_sunrise);
+                                                $('.'+vlabel).html( '<div style='+vattr+'>'+var_sunrise+'</div>');
+                                                 if ($('.desc_'+vlabel).length > 0) {
+													$('.desc_'+vlabel).html(txt_sunrise);
 												}	 
 										}	
                                         else if ( $.PageArray[ii][1] === 'SunSet' ) { 			//Special nummer, zonsop/onder in cell (test)
@@ -935,9 +953,9 @@ function RefreshData()
                                                 var vattr=    $.PageArray[ii][6];             	// extra css attributes
                                                 var valarm=     $.PageArray[ii][7];             // alarm value to turn text to red
 
-                                                $('#'+vlabel).html( '<div style='+vattr+'>'+var_sunset+'</div>');
-                                                 if ($('#desc_'+vlabel).length > 0) {
-													$('#desc_'+vlabel).html(txt_sunset);
+                                                $('.'+vlabel).html( '<div style='+vattr+'>'+var_sunset+'</div>');
+                                                 if ($('.desc_'+vlabel).length > 0) {
+													$('.desc_'+vlabel).html(txt_sunset);
 												}	 
 										}	
                                         else if ( $.PageArray[ii][1] === 'SunBoth' ) { 			//Special nummer, zonsop/onder in cell (test)
@@ -946,9 +964,9 @@ function RefreshData()
                                                 var vattr=    $.PageArray[ii][6];             	// extra css attributes
                                                 var valarm=     $.PageArray[ii][7];             // alarm value to turn text to red
 
-                                                $('#'+vlabel).html( '<div style='+vattr+'><img src=icons/sun.png  height="15" width="15" style="PADDING-RIGHT: 2px;">'+var_sunrise+'<img src=icons/moon.png  height="15" width="15" style="PADDING-LEFT: 15px;">'+var_sunset+'</div>');
-                                                 if ($('#desc_'+vlabel).length > 0) {
-													$('#desc_'+vlabel).html(txt_sunboth);
+                                                $('.'+vlabel).html( '<div style='+vattr+'><img src=icons/sun.png  height="15" width="15" style="PADDING-RIGHT: 2px;">'+var_sunrise+'<img src=icons/moon.png  height="15" width="15" style="PADDING-LEFT: 15px;">'+var_sunset+'</div>');
+                                                 if ($('.desc_'+vlabel).length > 0) {
+													$('.desc_'+vlabel).html(txt_sunboth);
 												} 
 										}
                                         
@@ -1047,15 +1065,15 @@ function RefreshData()
 
                                                 // if extra css attributes
                                                 if (typeof vattr == 'undefined') {
-                                                        $('#'+vlabel).html('<div '+switchclick+' style='+alarmcss+'>'+vdata+'</div>');
+                                                        $('.'+vlabel).html('<div '+switchclick+' style='+alarmcss+'>'+vdata+'</div>');
                                                        
                                                 } else {
-                                                        $('#'+vlabel).html( '<div '+switchclick+' style='+vattr+alarmcss+'>'+vdata+'</div>');
+                                                        $('.'+vlabel).html( '<div '+switchclick+' style='+vattr+alarmcss+'>'+vdata+'</div>');
                                                        
                                                 }
 
-                                                if ($('#desc_'+vlabel).length > 0) {
-													$('#desc_'+vlabel).html(vdesc);
+                                                if ($('.desc_'+vlabel).length > 0) {
+													$('.desc_'+vlabel).html(vdesc);
                                                 }
                                         }
                                 }
