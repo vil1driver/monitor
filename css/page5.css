@@ -1,5 +1,5 @@
 ﻿
-#cell5_1a, #cell5_2a, #cell5_3a, #cell5_4a
+.cell5_1a, .cell5_2a, .cell5_3a, .cell5_4a
 {
     position: absolute;
     width: 130px;
@@ -16,7 +16,7 @@
 	line-height: 60px; 
 }
 
-#cell5_1b, #cell5_2b, #cell5_3b, #cell5_4b
+.cell5_1b, .cell5_2b, .cell5_3b, .cell5_4b
 {
     position: absolute;
     height: 60px;
@@ -33,7 +33,7 @@
 	z-index:2;
 }
 
-#cell5_1c, #cell5_2c, #cell5_3c, #cell5_4c
+.cell5_1c, .cell5_2c, .cell5_3c, .cell5_4c
 {
     position: absolute;
     width: 130px;
@@ -50,7 +50,7 @@
 	line-height: 60px; 
 }
 
-#cell5_1d, #cell5_2d, #cell5_3d, #cell5_4d
+.cell5_1d, .cell5_2d, .cell5_3d, .cell5_4d
 {
     position: absolute;
     width: 130px;
@@ -67,7 +67,7 @@
 	line-height: 60px; 
 }
 
-#cell5_1e, #cell5_2e, #cell5_3e, #cell5_4e
+.cell5_1e, .cell5_2e, .cell5_3e, .cell5_4e
 {
     position: absolute;
     width: 130px;
@@ -84,7 +84,7 @@
 	line-height: 60px; 
 }
 
-#cell5_1f, #cell5_2f, #cell5_3f, #cell5_4f
+.cell5_1f, .cell5_2f, .cell5_3f, .cell5_4f
 {
     position: absolute;
     width: 130px;
@@ -101,7 +101,7 @@
 	line-height: 60px; 
 }
 
-#cell5_1g, #cell5_2g, #cell5_3g, #cell5_4g
+.cell5_1g, .cell5_2g, .cell5_3g, .cell5_4g
 {
     position: absolute;
     height: 60px;
@@ -118,7 +118,7 @@
 	line-height: 60px; 
 }
 
-#cell5_1, #cell5_2, #cell5_3, #cell5_4 
+.cell5_1, .cell5_2, .cell5_3, .cell5_4 
 {
 	font-family: arimo;
 	font-weight: bold;
@@ -135,7 +135,7 @@
 	text-shadow: 1px 1px 4px black;
 }
 
-#cell5_5, #cell5_6, #cell5_7, #cell5_8, #cell5_9
+.cell5_5, .cell5_6, .cell5_7, .cell5_8, .cell5_9
  {
 	font-family: arimo;
 	font-weight: bold;
@@ -152,7 +152,7 @@
 	margin-top: -2px;
 }
 
-#desc_cell5_1, #desc_cell5_2, #desc_cell5_3, #desc_cell5_4
+.desc_cell5_1, .desc_cell5_2, .desc_cell5_3, .desc_cell5_4
 {
     font-family: arimo;
     font-weight: normal;
@@ -164,7 +164,7 @@
 	text-shadow: 1px 1px 4px black;
 }
 
-#desc_cell5_5, #desc_cell5_6, #desc_cell5_7, #desc_cell5_8, #desc_cell5_9
+.desc_cell5_5, .desc_cell5_6, .desc_cell5_7, .desc_cell5_8, .desc_cell5_9
  {
 	font-family: arimo;
 	font-weight: normal;
@@ -176,8 +176,8 @@
 	text-shadow: 1px 1px 4px black;
 }
 
-#ls_cell5_1, #ls_cell5_2, #ls_cell5_3, #ls_cell5_4,
-#ls_cell5_5, #ls_cell5_6, #ls_cell5_7, #ls_cell5_8, #ls_cell5_9
+.ls_cell5_1, .ls_cell5_2, .ls_cell5_3, .ls_cell5_4,
+.ls_cell5_5, .ls_cell5_6, .ls_cell5_7, .ls_cell5_8, .ls_cell5_9
  {
 	font-family: arimo;
 	font-weight: normal;

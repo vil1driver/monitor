@@ -48,12 +48,12 @@
 $(window).ready(function(){
        								
 	  
-	  $("#page1").load("pages/page1.html");									<!-- load page 1 -->
-      $("#page2").load("pages/page2.html");									<!-- load page 2 -->
-      $("#page3").load("pages/page3.html");									<!-- load page 3 -->
-      $("#page4").load("pages/page4.html");									<!-- load page 4 -->
-	  $("#page5").load("pages/page5.html");									<!-- load page 5 -->
-	  $("#logs").load("pages/logs.html");									<!-- load logs -->
+	  $(".page1").load("pages/page1.html");									<!-- load page 1 -->
+      $(".page2").load("pages/page2.html");									<!-- load page 2 -->
+      $(".page3").load("pages/page3.html");									<!-- load page 3 -->
+      $(".page4").load("pages/page4.html");									<!-- load page 4 -->
+	  $(".page5").load("pages/page5.html");									<!-- load page 5 -->
+	  $(".logs").load("pages/logs.html");									<!-- load logs -->
            
     
 	  
@@ -70,12 +70,12 @@ $(window).ready(function(){
 <div id='slider' class='swipe'>
 <div class='swipe-wrap'>
 
-<div id="page1"></div>	<!-- Page 1 -->
-<div id="page2"></div>	<!-- Page 2 -->
-<div id="page3"></div>	<!-- Page 3 -->
-<div id="page4"></div>	<!-- Page 4 -->
-<div id="page5"></div>	<!-- Page 5 -->
-<div id="logs"></div>	<!-- Page 5 -->
+<div class="page1"></div>	<!-- Page 1 -->
+<div class="page2"></div>	<!-- Page 2 -->
+<div class="page3"></div>	<!-- Page 3 -->
+<div class="page4"></div>	<!-- Page 4 -->
+<div class="page5"></div>	<!-- Page 5 -->
+<div class="logs"></div>	<!-- Page 5 -->
 
 
 
@@ -120,7 +120,8 @@ var mySwipe = new Swipe(document.getElementById('slider'),{
 	speed: speed,
     auto: auto,
     autoRestart: autoRestart,
-    continuous: continuous,
+    continuous: true,
+	draggable: false,
     disableScroll: true,
     stopPropagation: true,
     callback: function(index, element) {},
