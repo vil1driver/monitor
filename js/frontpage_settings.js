@@ -54,7 +54,7 @@ var showMonth = false;						// affichage du mois dans la date (true/false)
 
 <!-- Swipe options -->
 var speed = 300;							// durée de l'animation (en milisecondes)
-var auto = 0;							// si au moins 3 pages, défilement automatique, temps entre chaque changement de page (en milisecondes)
+var auto = 0;							// défilement automatique, temps entre chaque changement de page (en milisecondes)
 
 
 // ############################################################################################################

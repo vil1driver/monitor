@@ -757,7 +757,6 @@ function RefreshData()
 													if ( Number(vdata) >= valarm ) {  
                                                         alarmcss=';color:red;';
 														if (blink == true && !$( "."+vlabel ).hasClass( "blink_me" )) {
-															//document.getElementsByClassName(vlabel).classList.add("blink_me");
 															// Get desired elements
 															var element = document.getElementsByClassName(vlabel);
 
@@ -765,12 +764,11 @@ function RefreshData()
 															for(var i = 0; i < element.length; i++)
 															{
 																element[i].classList.add('blink_me');
-																console.log(element[i].className);
+																//console.log(element[i].className);
 															}
 														}		
 													}
 													else if ( $( "."+vlabel ).hasClass( "blink_me" ) ) {
-															//document.getElementsByClassName(vlabel).classList.remove("blink_me");
 															// Get desired elements
 															var element = document.getElementsByClassName(vlabel);
 
@@ -778,7 +776,7 @@ function RefreshData()
 															for(var i = 0; i < element.length; i++)
 															{
 																element[i].classList.remove('blink_me');
-																console.log(element[i].className);
+																//console.log(element[i].className);
 															}
 													}
 												}
