@@ -330,13 +330,13 @@ function RefreshData()
 	})//;
 	.success(function() {
 	//	console.log("connection success");
-		$('#popup_warning').fadeOut(fad_Duration);
+		$('#popup_offline').fadeOut(fad_Duration);
         $('#fade2').fadeOut(fad_Duration);
 	})
 	.error(function() {
 		console.log("error connection lost");
 		window.scrollTo(0,0);
-		$('#popup_warning').fadeIn(fad_Duration);
+		$('#popup_offline').fadeIn(fad_Duration);
 		$('#fade2').fadeIn(fad_Duration);
 	});
 	
