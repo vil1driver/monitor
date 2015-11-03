@@ -56,23 +56,6 @@ $('#popup_secpanel').html('');
 clearTimeout(tempo);
 }
 
-<!-- show graph popup -->
-function showGraph() {
-$('#popup_graph').fadeIn(fad_Duration);
-$('#fade').fadeIn(fad_Duration);
-$('#fade').click(function(){closeGraph();});
-tempo = setTimeout(function(){closeGraph();},25400);
-}
-
-<!-- close graph popup -->
-function closeGraph() {
-$('#popup_graph').fadeOut(fad_Duration);
-$('#fade').fadeOut(fad_Duration);
-$("#fade").off("click");
-$('#popup_graph').html('');
-clearTimeout(tempo);
-}
-
 <!-- Load meteo widget -->
 function LoadMeteoWidget() {
 	if (city == '') {
@@ -250,7 +233,8 @@ function createGraph(seriesData, vdesc, vunit) {
 
         series: seriesData
     });
-	showGraph();
+	
+	lightbox_open('graph', 25400);
 			
 }
 
@@ -794,7 +778,15 @@ function RefreshData()
 												// on change la couleur suivant la température
 												if(vtype == 'Temp') {
 														 if (parseInt(vdata, 10) >= 35) { vattr=new String(vattr).replace( vattr,'color:'+T35+';' + vattr); } 
+													else if (parseInt(vdata, 10) >= 34) { vattr=new String(vattr).replace( vattr,'color:'+T34+';' + vattr); } 
+													else if (parseInt(vdata, 10) >= 33) { vattr=new String(vattr).replace( vattr,'color:'+T33+';' + vattr); } 
+													else if (parseInt(vdata, 10) >= 32) { vattr=new String(vattr).replace( vattr,'color:'+T32+';' + vattr); } 
+													else if (parseInt(vdata, 10) >= 31) { vattr=new String(vattr).replace( vattr,'color:'+T31+';' + vattr); } 
 													else if (parseInt(vdata, 10) >= 30) { vattr=new String(vattr).replace( vattr,'color:'+T30+';' + vattr); } 
+													else if (parseInt(vdata, 10) >= 29) { vattr=new String(vattr).replace( vattr,'color:'+T29+';' + vattr); } 
+													else if (parseInt(vdata, 10) >= 28) { vattr=new String(vattr).replace( vattr,'color:'+T28+';' + vattr); } 
+													else if (parseInt(vdata, 10) >= 27) { vattr=new String(vattr).replace( vattr,'color:'+T27+';' + vattr); } 
+													else if (parseInt(vdata, 10) >= 26) { vattr=new String(vattr).replace( vattr,'color:'+T26+';' + vattr); } 
 													else if (parseInt(vdata, 10) >= 25) { vattr=new String(vattr).replace( vattr,'color:'+T25+';' + vattr); } 
 													else if (parseInt(vdata, 10) >= 24) { vattr=new String(vattr).replace( vattr,'color:'+T24+';' + vattr); } 
 													else if (parseInt(vdata, 10) >= 23) { vattr=new String(vattr).replace( vattr,'color:'+T23+';' + vattr); } 
@@ -806,9 +798,21 @@ function RefreshData()
 													else if (parseInt(vdata, 10) >= 17) { vattr=new String(vattr).replace( vattr,'color:'+T17+';' + vattr); } 
 													else if (parseInt(vdata, 10) >= 16) { vattr=new String(vattr).replace( vattr,'color:'+T16+';' + vattr); } 
 													else if (parseInt(vdata, 10) >= 15) { vattr=new String(vattr).replace( vattr,'color:'+T15+';' + vattr); } 
+													else if (parseInt(vdata, 10) >= 14) { vattr=new String(vattr).replace( vattr,'color:'+T14+';' + vattr); } 
+													else if (parseInt(vdata, 10) >= 13) { vattr=new String(vattr).replace( vattr,'color:'+T13+';' + vattr); } 
+													else if (parseInt(vdata, 10) >= 12) { vattr=new String(vattr).replace( vattr,'color:'+T12+';' + vattr); } 
+													else if (parseInt(vdata, 10) >= 11) { vattr=new String(vattr).replace( vattr,'color:'+T11+';' + vattr); } 
 													else if (parseInt(vdata, 10) >= 10) { vattr=new String(vattr).replace( vattr,'color:'+T10+';' + vattr); } 
-													else if (parseInt(vdata, 10) >= 05) { vattr=new String(vattr).replace( vattr,'color:'+T05+';' + vattr); } 
-													else if (parseInt(vdata, 10) >= 00) { vattr=new String(vattr).replace( vattr,'color:'+T00+';' + vattr); }
+													else if (parseInt(vdata, 10) >= 9) { vattr=new String(vattr).replace( vattr,'color:'+T09+';' + vattr); } 
+													else if (parseInt(vdata, 10) >= 8) { vattr=new String(vattr).replace( vattr,'color:'+T08+';' + vattr); } 
+													else if (parseInt(vdata, 10) >= 7) { vattr=new String(vattr).replace( vattr,'color:'+T07+';' + vattr); } 
+													else if (parseInt(vdata, 10) >= 6) { vattr=new String(vattr).replace( vattr,'color:'+T06+';' + vattr); } 
+													else if (parseInt(vdata, 10) >= 5) { vattr=new String(vattr).replace( vattr,'color:'+T05+';' + vattr); } 
+													else if (parseInt(vdata, 10) >= 4) { vattr=new String(vattr).replace( vattr,'color:'+T04+';' + vattr); } 
+													else if (parseInt(vdata, 10) >= 3) { vattr=new String(vattr).replace( vattr,'color:'+T03+';' + vattr); } 
+													else if (parseInt(vdata, 10) >= 2) { vattr=new String(vattr).replace( vattr,'color:'+T02+';' + vattr); } 
+													else if (parseInt(vdata, 10) >= 1) { vattr=new String(vattr).replace( vattr,'color:'+T01+';' + vattr); } 
+													else if (parseInt(vdata, 10) >= 0) { vattr=new String(vattr).replace( vattr,'color:'+T00+';' + vattr); }
 																				  else  { vattr=new String(vattr).replace( vattr,'color:'+T000+';' + vattr); }	
 												}
 

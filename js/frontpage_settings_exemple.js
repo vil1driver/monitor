@@ -24,21 +24,41 @@ var bg_dayBright = 0.5;					// luminosité du fond le jour (0=normal 1=noir)
 var bg_nightBright = 0.5;				// luminosité du fond la nuit (0=normal 1=noir)
 
 <!-- Change colors of temps -->
-var T35 = '#FF0000';						// couleur de la température à 35°C et plus
+var T35 = '#FF0000';						// couleur de la température à 35°C
+var T34 = '#FE1400 ';
+var T33 = '#FD2800 ';
+var T32 = '#FD3C00 ';
+var T31 = '#FC5000 ';
 var T30 = '#FC6500';
-var T25 = '#FC9B00';
-var T24 = '#FCCF65';
-var T23 = '#FCCF65';
-var T22 = '#FCCF65';
-var T21 = '#FCCF65';
-var T20 = '#FCCF65';						// couleur de la température à 20°C et plus
-var T19 = '#FFE29E';
-var T18 = '#FFE29E';
-var T17 = '#FFE29E';
-var T16 = '#FFE29E';
+var T29 = '#FC6F0A';
+var T28 = '#FC7A14';
+var T27 = '#FC841E';
+var T26 = '#FC8F28';
+var T25 = '#FC9A32';
+var T24 = '#FCA43C';
+var T23 = '#FCAF46';
+var T22 = '#FCB950';
+var T21 = '#FCC45A';
+var T20 = '#FCCF65';						// couleur de la température à 20°C
+var T19 = '#FCD270';
+var T18 = '#FDD67B';
+var T17 = '#FDDA87';
+var T16 = '#FEDE92';
 var T15 = '#FFE29E';
+var T14 = '#F8E5A1';
+var T13 = '#F1E9A4';
+var T12 = '#EAEDA7';
+var T11 = '#E3F1AA';
 var T10 = '#DDF5AE';
+var T09 = '#D3F5B7';
+var T08 = '#CAF5C0';
+var T07 = '#C0F5C9';
+var T06 = '#B7F5D2';
 var T05 = '#AEF5DC';
+var T04 = '#AEF1E1';
+var T03 = '#AEEDE6';
+var T02 = '#AEEAEB';
+var T01 = '#AEE6F0';
 var T00 = '#AEE3F5';
 var T000 = '#EBF4F7';						// couleur de la température sous 0°C
 
