@@ -25,10 +25,10 @@ var bg_nightBright = 0.5;				// luminosité du fond la nuit (0=normal 1=noir)
 
 <!-- Change colors of temps -->
 var T35 = '#FF0000';						// couleur de la température à 35°C
-var T34 = '#FE1400 ';
-var T33 = '#FD2800 ';
-var T32 = '#FD3C00 ';
-var T31 = '#FC5000 ';
+var T34 = '#FE1400';
+var T33 = '#FD2800';
+var T32 = '#FD3C00';
+var T31 = '#FC5000';
 var T30 = '#FC6500';
 var T29 = '#FC6F0A';
 var T28 = '#FC7A14';
@@ -85,7 +85,7 @@ $(document).ready(function() {
         $.roomplan = 0;           // define roomplan in Domoticz and create items below. (0 = all devices, not limited to a roomplan)
 		
 		$.domoticzurl = "http://192.168.22.100:8080";	// url de connection à domoticz (ex: http://toto.com:8765)
-		//$.domoticzurl = "http://" + location.host;		// beta test, auto detect
+		//$.domoticzurl = location.protocol + "//" + location.host;		// beta test, auto detect
 	
         $.PageArray = [
 		
