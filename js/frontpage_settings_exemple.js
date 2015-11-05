@@ -84,8 +84,7 @@ var auto = 30000;							// défilement automatique, temps entre chaque changemen
 
 $(document).ready(function() {
         $.roomplan = 2;           // define roomplan in Domoticz and create items below. (0 = all devices, not limited to a roomplan)
-		$.domoticzLanUrl = "http://192.168.22.100:8080";	// url de connection à domoticz pour un accès local (à la maison)
-		$.domoticzWanUrl = "http://toto.com:8765";			// url de connection à domoticz pour un accès distant (depuis internet)
+		$.domoticzurl = "http://192.168.22.100:8080";
 	
         $.PageArray = [
 		
