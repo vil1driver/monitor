@@ -76,6 +76,8 @@ var showMonth = false;						// affichage du mois dans la date (true/false)
 var speed = 300;							// durée de l'animation (en milisecondes)
 var auto = 0;							// défilement automatique, temps entre chaque changement de page (en milisecondes)
 
+<!-- Display -->
+var zoom = 0;								// ajustage de la valeur de zoom (valeurs négatives autorisées)
 
 // ############################################################################################################
 // #### vvvvv   USER VALUES below vvvvv   #######
@@ -84,8 +86,8 @@ var auto = 0;							// défilement automatique, temps entre chaque changement de
 $(document).ready(function() {
         $.roomplan = 0;           // define roomplan in Domoticz and create items below. (0 = all devices, not limited to a roomplan)
 		
-		$.domoticzurl = "http://192.168.22.100:8080";	// url de connection à domoticz (ex: http://toto.com:8765)
-		//$.domoticzurl = location.protocol + "//" + location.host;		// beta test, auto detect
+		//$.domoticzurl = "http://192.168.22.100:8080";	// url de connection à domoticz (ex: http://toto.com:8765)
+		$.domoticzurl = location.protocol + "//" + location.host;		// beta test, auto detect
 	
         $.PageArray = [
 		

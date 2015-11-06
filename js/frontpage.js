@@ -2,7 +2,7 @@
 <!-- Create popup -->
 var tempo;
 function lightbox_open(id, timeout, txt){
-		window.scrollTo(0,0);
+		//window.scrollTo(0,0);
 		if (typeof txt != 'undefined') {
 			$('#popup_'+id).html('<div>'+txt+'</div>');
 		}
@@ -23,7 +23,7 @@ function lightbox_close(id){
 
 <!-- help box open popup -->
 function helpBox_open(id){
-		window.scrollTo(0,0);
+		//window.scrollTo(0,0);
 		$('#popup_help').html('<div>Bad value, click <a target="_blank" href="'+$.domoticzurl+'/json.htm?type=devices&rid='+id+'">here</a> to show what you can use..</div>');
 		$('#popup_help').fadeIn(fad_Duration);
 		$('#fade').fadeIn(fad_Duration);
@@ -326,8 +326,8 @@ function RefreshData()
         $('#fade2').fadeOut(fad_Duration);
 	})
 	.error(function() {
-		console.log("error connection lost");
-		window.scrollTo(0,0);
+		console.log("ERROR connect to " + $.domoticzurl);
+		//window.scrollTo(0,0);
 		$('#popup_offline').fadeIn(fad_Duration);
 		$('#fade2').fadeIn(fad_Duration);
 	});
