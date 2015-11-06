@@ -171,6 +171,9 @@ $(document).ready(function() {
 				['0','SunRise',         		'cell2_2',                      	'','','','color:#E6A677'],	// heure de lever du soleil
 				['0','SunSet',         			'cell2_6',                     		'','','','color:#E6A677'],		// heure de coucher du soleil
 				
+				['0','Camera',					'cell2_3',						'http://highslide.com/samples/full3.jpg','','',''],	// camera 1
+				['0','Camera',					'cell2_25',						'http://www.pachavana.net/wp-content/uploads/2015/08/Main_IMG_7948_Resize1.jpg','','',''],	// camera 2
+				
 			// page 3	
 			
 				['0','Hide',       				'cell3_5',                      	''],	

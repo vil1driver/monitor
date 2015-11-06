@@ -9,6 +9,7 @@ function lightbox_open(id, timeout, txt){
         $('#popup_'+id).fadeIn(fad_Duration);
 		$('#fade').fadeIn(fad_Duration);
 		$('#fade').click(function(){lightbox_close(id);});
+		$('#popup_'+id).click(function(){lightbox_close(id);});
 		tempo = setTimeout(function() {lightbox_close(id);}, timeout);
 }
 
@@ -16,7 +17,8 @@ function lightbox_open(id, timeout, txt){
 function lightbox_close(id){
         $('#popup_'+id).fadeOut(fad_Duration);
         $('#fade').fadeOut(fad_Duration);
-		$("#fade").off("click");
+		$('#fade').off("click");
+		$('#popup_'+id).off("click");
 		clearTimeout(tempo);
 		setTimeout(RefreshData , 150);
 }
@@ -59,15 +61,15 @@ clearTimeout(tempo);
 <!-- Load meteo widget -->
 function LoadMeteoWidget() {
 	if (city == '') {
-		$('#popup_meteo0').html('<div onClick="lightbox_close(\'meteo0\')" width="650" height="250" valign="center" line-height="15px">Veuillez indiquer votre ville dans les paramètres<br>exemple:<br>var city = \'paris\'</div>');	
-		$('#popup_meteo1').html('<div onClick="lightbox_close(\'meteo1\')" width="650" height="250" valign="center" line-height="15px">Veuillez indiquer votre ville dans les paramètres<br>exemple:<br>var city = \'paris\'</div>');	
-		$('#popup_meteo2').html('<div onClick="lightbox_close(\'meteo2\')" width="650" height="250" valign="center" line-height="15px">Veuillez indiquer votre ville dans les paramètres<br>exemple:<br>var city = \'paris\'</div>');	
-		$('#popup_meteo3').html('<div onClick="lightbox_close(\'meteo3\')" width="650" height="250" valign="center" line-height="15px">Veuillez indiquer votre ville dans les paramètres<br>exemple:<br>var city = \'paris\'</div>');	
+		$('#popup_meteo0').html('<div width="650" height="250" valign="center" line-height="15px">Veuillez indiquer votre ville dans les paramètres<br>exemple:<br>var city = \'paris\'</div>');	
+		$('#popup_meteo1').html('<div width="650" height="250" valign="center" line-height="15px">Veuillez indiquer votre ville dans les paramètres<br>exemple:<br>var city = \'paris\'</div>');	
+		$('#popup_meteo2').html('<div width="650" height="250" valign="center" line-height="15px">Veuillez indiquer votre ville dans les paramètres<br>exemple:<br>var city = \'paris\'</div>');	
+		$('#popup_meteo3').html('<div width="650" height="250" valign="center" line-height="15px">Veuillez indiquer votre ville dans les paramètres<br>exemple:<br>var city = \'paris\'</div>');	
 	}else{
-		$('#popup_meteo0').html('<img src="http://www.prevision-meteo.ch/uploads/widget/'+city+'_0.png#' + new Date().getTime()+'" onClick="lightbox_close(\'meteo0\')" width="650" height="250" alt="Ville inconnue..">');
-		$('#popup_meteo1').html('<img src="http://www.prevision-meteo.ch/uploads/widget/'+city+'_1.png#' + new Date().getTime()+'" onClick="lightbox_close(\'meteo1\')" width="650" height="250" alt="Ville inconnue..">');
-		$('#popup_meteo2').html('<img src="http://www.prevision-meteo.ch/uploads/widget/'+city+'_2.png#' + new Date().getTime()+'" onClick="lightbox_close(\'meteo2\')" width="650" height="250" alt="Ville inconnue..">');
-		$('#popup_meteo3').html('<img src="http://www.prevision-meteo.ch/uploads/widget/'+city+'_3.png#' + new Date().getTime()+'" onClick="lightbox_close(\'meteo3\')" width="650" height="250" alt="Ville inconnue..">');
+		$('#popup_meteo0').html('<img src="http://www.prevision-meteo.ch/uploads/widget/'+city+'_0.png#' + new Date().getTime()+'" width="650" height="250" alt="Ville inconnue.."/>');
+		$('#popup_meteo1').html('<img src="http://www.prevision-meteo.ch/uploads/widget/'+city+'_1.png#' + new Date().getTime()+'" width="650" height="250" alt="Ville inconnue.."/>');
+		$('#popup_meteo2').html('<img src="http://www.prevision-meteo.ch/uploads/widget/'+city+'_2.png#' + new Date().getTime()+'" width="650" height="250" alt="Ville inconnue.."/>');
+		$('#popup_meteo3').html('<img src="http://www.prevision-meteo.ch/uploads/widget/'+city+'_3.png#' + new Date().getTime()+'" width="650" height="250" alt="Ville inconnue.."/>');
 	}	
 	setInterval(LoadMeteoWidget, 7200000); 	// rechargement toutes les 2 heures
 }
@@ -904,7 +906,17 @@ function RefreshData()
 													$('.desc_'+vlabel).html(vdesc);
 												}	 
                                         }
-                                        else if ( $.PageArray[ii][1] === 'Text' ) { 			//Special nummer, link in cell (test)
+                                        else if ( $.PageArray[ii][1] === 'Camera' ) { 			//Special nummer, link in cell (test)
+                                                var vlabel=     $.PageArray[ii][2];             // cell number from HTML layout
+                                                var vdesc = 	$.PageArray[ii][3];				// description (text in this case
+												var vattr=    $.PageArray[ii][6];             	// extra css attributes
+                                                var valarm=     '';             // alarm value to turn text to red
+												$('.'+vlabel).html('<div style='+vattr+'><img src='+vdesc+'   onClick="$(\'#popup_camera\').html(\'<img  src='+vdesc+' />\');lightbox_open(\'camera\', 25400)"  class=\'camera\' /></div>');
+												if ($('.desc_'+vlabel).length > 0) {
+													$('.desc_'+vlabel).html('');
+												}
+										}
+										else if ( $.PageArray[ii][1] === 'Text' ) { 			//Special nummer, link in cell (test)
                                                 var vlabel=     $.PageArray[ii][2];             // cell number from HTML layout
                                                 var vdesc = 	$.PageArray[ii][3];				// description (text in this case
 												var vattr=    $.PageArray[ii][6];             	// extra css attributes
