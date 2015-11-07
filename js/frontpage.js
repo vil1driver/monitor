@@ -244,6 +244,7 @@ function createGraph(seriesData, vdesc, vunit) {
 var var_sunrise='';	
 var var_sunset='';
 var IsNight='No';
+var error = 0;
 
 <!-- Main Frontpage fuction -->
 function RefreshData()
@@ -326,12 +327,20 @@ function RefreshData()
 	//	console.log("connection success");
 		$('#popup_offline').fadeOut(fad_Duration);
         $('#fade2').fadeOut(fad_Duration);
+		error = 0;
 	})
 	.error(function() {
+		error += 1;
 		console.log("ERROR connect to " + $.domoticzurl);
-		//window.scrollTo(0,0);
-		$('#popup_offline').fadeIn(fad_Duration);
-		$('#fade2').fadeIn(fad_Duration);
+		if( error >= 3 ) 
+		{
+			//window.scrollTo(0,0);
+			$('#popup_offline').fadeIn(fad_Duration);
+			$('#fade2').fadeIn(fad_Duration);
+		}else{
+			RefreshData();
+		}	
+			
 	});
 	
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
