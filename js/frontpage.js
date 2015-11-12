@@ -66,10 +66,10 @@ function LoadMeteoWidget() {
 		$('#popup_meteo2').html('<div width="650" height="250" valign="center" line-height="15px">Veuillez indiquer votre ville dans les paramètres<br>exemple:<br>var city = \'paris\'</div>');	
 		$('#popup_meteo3').html('<div width="650" height="250" valign="center" line-height="15px">Veuillez indiquer votre ville dans les paramètres<br>exemple:<br>var city = \'paris\'</div>');	
 	}else{
-		$('#popup_meteo0').html('<img src="http://www.prevision-meteo.ch/uploads/widget/'+city+'_0.png#' + new Date().getTime()+'" width="650" height="250" alt="Ville inconnue.."/>');
-		$('#popup_meteo1').html('<img src="http://www.prevision-meteo.ch/uploads/widget/'+city+'_1.png#' + new Date().getTime()+'" width="650" height="250" alt="Ville inconnue.."/>');
-		$('#popup_meteo2').html('<img src="http://www.prevision-meteo.ch/uploads/widget/'+city+'_2.png#' + new Date().getTime()+'" width="650" height="250" alt="Ville inconnue.."/>');
-		$('#popup_meteo3').html('<img src="http://www.prevision-meteo.ch/uploads/widget/'+city+'_3.png#' + new Date().getTime()+'" width="650" height="250" alt="Ville inconnue.."/>');
+		$('#popup_meteo0').html('<img src="http://www.prevision-meteo.ch/uploads/widget/'+city+'_0.png#' + new Date().getTime()+'" width="650" height="250" alt="Ville inconnue..">');
+		$('#popup_meteo1').html('<img src="http://www.prevision-meteo.ch/uploads/widget/'+city+'_1.png#' + new Date().getTime()+'" width="650" height="250" alt="Ville inconnue..">');
+		$('#popup_meteo2').html('<img src="http://www.prevision-meteo.ch/uploads/widget/'+city+'_2.png#' + new Date().getTime()+'" width="650" height="250" alt="Ville inconnue..">');
+		$('#popup_meteo3').html('<img src="http://www.prevision-meteo.ch/uploads/widget/'+city+'_3.png#' + new Date().getTime()+'" width="650" height="250" alt="Ville inconnue..">');
 	}	
 	setInterval(LoadMeteoWidget, 7200000); 	// rechargement toutes les 2 heures
 }
@@ -250,7 +250,7 @@ var error = 0;
 function RefreshData()
 {
         clearInterval($.refreshTimer);
-		
+		//console.log('refresh');
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 		
 	//Get sunrise/sunset
@@ -915,17 +915,7 @@ function RefreshData()
 													$('.desc_'+vlabel).html(vdesc);
 												}	 
                                         }
-                                        else if ( $.PageArray[ii][1] === 'Camera' ) { 			//Special nummer, link in cell (test)
-                                                var vlabel=     $.PageArray[ii][2];             // cell number from HTML layout
-                                                var vdesc = 	$.PageArray[ii][3];				// description (text in this case
-												var vattr=    $.PageArray[ii][6];             	// extra css attributes
-                                                var valarm=     '';             // alarm value to turn text to red
-												$('.'+vlabel).html('<div style='+vattr+'><img src='+vdesc+'   onClick="$(\'#popup_camera\').html(\'<img  src='+vdesc+' />\');lightbox_open(\'camera\', 25400)"  class=\'camera\' /></div>');
-												if ($('.desc_'+vlabel).length > 0) {
-													$('.desc_'+vlabel).html('');
-												}
-										}
-										else if ( $.PageArray[ii][1] === 'Text' ) { 			//Special nummer, link in cell (test)
+                                        else if ( $.PageArray[ii][1] === 'Text' ) { 			//Special nummer, link in cell (test)
                                                 var vlabel=     $.PageArray[ii][2];             // cell number from HTML layout
                                                 var vdesc = 	$.PageArray[ii][3];				// description (text in this case
 												var vattr=    $.PageArray[ii][6];             	// extra css attributes
@@ -994,7 +984,7 @@ function RefreshData()
                                                 var vdesc = '';
                                                 var vattr=    $.PageArray[ii][6];             	// extra css attributes
                                                 var valarm=     $.PageArray[ii][7];             // alarm value to turn text to red
-
+												
                                                 $('.'+vlabel).html( '<div style='+vattr+'><img src=icons/sun.png  height="15" width="15" style="PADDING-RIGHT: 2px;">'+var_sunrise+'<img src=icons/moon.png  height="15" width="15" style="PADDING-LEFT: 15px;">'+var_sunset+'</div>');
                                                  if ($('.desc_'+vlabel).length > 0) {
 													$('.desc_'+vlabel).html(txt_sunboth);
@@ -1005,7 +995,6 @@ function RefreshData()
                         });
                 }
         });
-		
 		
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////													
@@ -1117,9 +1106,52 @@ function RefreshData()
 		
 }
 
+		
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////													
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////													
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////													
+
+// One shot get cams
+function GetCams()
+{
+		for( var ii = 0, len = $.PageArray.length; ii < len; ii++ ) {
+		
+										if ( $.PageArray[ii][1] === 'Camera' ) { 			//Special nummer, link in cell (test)
+                                                												
+												var vlabel=     $.PageArray[ii][2];             // cell number from HTML layout
+                                                var src_1 = 	$.PageArray[ii][3];				// Local network
+                                                var src_2 = 	$.PageArray[ii][4];				// www
+												
+												if(src_2 == '' || typeof src_2 == 'undefined')
+												{
+													src_2 = location.href.replace(/\/$/, '')+'/icons/offline.jpg';
+												}	
+											
+												$('.'+vlabel).html('<img src='+src_1+' alt='+src_2+' class=\'camera\' >');
+												$('.'+vlabel+' img').error(function(){
+																						//console.log('vlabel: '+this.parentNode.className);
+																						//console.log('on error: '+this.src);
+																						this.onerror=null;
+																						if( this.src == this.alt)
+																						{
+																							this.src = location.href.replace(/\/$/, '')+'/icons/offline.jpg';
+																						}else{
+																							this.src = this.alt;
+																						}	
+																						//console.log('replace: '+this.src);
+																					});
+												$('.'+vlabel+' img').click(function(){
+																						$('#popup_camera').html('<img src='+this.src+' >');
+																						lightbox_open('camera', 25400);
+																					});
+												
+																				
+												if ($('.desc_'+vlabel).length > 0) {
+													$('.desc_'+vlabel).html('');
+												}
+										}
+		}	
+}
 
 //Switch state off a scene/group
 function SceneToggle(idx, switchcmd)
@@ -1208,7 +1240,7 @@ else
                 }
                 $.ajax({
                         url: $.domoticzurl+"/json.htm?type=command&param=switchlight&idx=" + idx + "&switchcmd=Set Level&level=" + d,
-                        async: false,
+						async: false,
                         dataType: 'json',
                         success: function(){
                                 console.log('SUCCES');

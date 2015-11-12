@@ -86,8 +86,8 @@ var zoom = 0;								// ajustage de la valeur de zoom (valeurs négatives autori
 $(document).ready(function() {
         $.roomplan = 0;           // define roomplan in Domoticz and create items below. (0 = all devices, not limited to a roomplan)
 		
-		//$.domoticzurl = "http://192.168.22.100:8080";	// url de connection à domoticz (ex: http://toto.com:8765)
-		$.domoticzurl = location.protocol + "//" + location.host;		// beta test, auto detect
+		//$.domoticzurl = "http://192.168.22.100:8080";	// url de connection à domoticz (ex: http://paul:ochon@toto.com:8765)
+		$.domoticzurl = location.protocol + "//" + location.host;		// auto detect (location.protocol + "//paul:ochon@" + location.host)
 	
         $.PageArray = [
 		
