@@ -3,7 +3,7 @@
  *
  * Brad Birdsall & Felix Liu
  * Copyright 2015, MIT License
- *
+ * https://github.com/lyfeyaj/swipe/blob/master/swipe.js
 */
 
 // if the module has no dependencies, the above pattern can be simplified to
@@ -286,8 +286,11 @@
 
     function begin() {
 
-      interval = setTimeout(next, delay);
-
+		if (options.direction == 'next') {
+			interval = setTimeout(next, delay);
+		} else if (options.direction == 'index') {
+			interval = setTimeout(function(){slide(0,speed);}, delay);
+		}
     }
 
     function stop() {

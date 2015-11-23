@@ -74,7 +74,8 @@ var showMonth = false;						// affichage du mois dans la date (true/false)
 
 <!-- Swipe options -->
 var speed = 300;							// durée de l'animation (en milisecondes)
-var auto = 0;							// défilement automatique, temps entre chaque changement de page (en milisecondes)
+var delai = 0;								// défilement automatique, temps avant changement de page (en milisecondes)
+var direction = 'next';						// si delai est différent de 0, choix d'aller à la page suivante ou de revenir à la première page ('next'/'index')
 
 <!-- Display -->
 var zoom = 0;								// ajustage de la valeur de zoom (valeurs négatives autorisées)
