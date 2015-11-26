@@ -922,6 +922,9 @@ function RefreshData()
                                                 var valarm=     '';             // alarm value to turn text to red
 												
 												$('.'+vlabel).html('<div style='+vattr+'>'+vdesc+'</div>');
+												if ($('.desc_'+vlabel).length > 0) {
+													$('.desc_'+vlabel).html('');
+												}
 										}
 										else if ( $.PageArray[ii][1] === 'Hide' ) { 			//Special nummer, link in cell (test)
                                                 var vlabel=     $.PageArray[ii][2];             // cell number from HTML layout
