@@ -1,0 +1,188 @@
+﻿.ls_clock_1,.ls_clock_2,.ls_clock_3,.ls_clock_4,.ls_clock_5,.ls_clock_6,.ls_clock_7,
+.ls_clock_8,.ls_clock_9,.ls_clock_10,.ls_clock_11,.ls_clock_12,.ls_clock_13,.ls_clock_14,.ls_clock_space
+ {
+	font-family: arimo;
+	font-weight: normal;
+	color: #999;
+	font-size: 20px;
+	margin-top: -20px;
+	height: 20px;
+	line-height: 65px;
+	text-shadow: 1px 1px 5px black;
+}
+
+.desc_clock_1,.desc_clock_2,.desc_clock_3,.desc_clock_4,.desc_clock_5,.desc_clock_6,.desc_clock_7,
+.desc_clock_8,.desc_clock_9,.desc_clock_10,.desc_clock_11,.desc_clock_12,.desc_clock_13,.desc_clock_14,.desc_clock_space
+ {
+	font-family: arimo;
+	font-weight: normal;
+	color: #F2DDB3;
+	font-size: 17px;
+	margin-top: -20px;
+	height: 25px;
+	line-height: 15px;
+	text-shadow: 1px 1px 4px black;
+}
+
+.clock_1,.clock_2
+{
+	font-family: arimo;
+	font-weight: bold;
+	width: 240px;
+	padding: 10px;
+	border: 1px solid transparent;
+	border-radius: 0px;
+	height: 144px;	
+	line-height: 170px; 
+	font-size: 100px;	
+	color: #999;
+	margin: 0px ;
+	text-shadow: 1px 1px 4px black;
+	
+}
+
+.clock_3,.clock_4,.clock_5,.clock_6,.clock_7,
+.clock_8,.clock_9,.clock_10,.clock_11,.clock_12,.clock_13,.clock_14
+{
+	font-family: arimo;
+	font-weight: bold;
+	width: 151.5px;
+	padding: 10px;
+	border: 1px solid transparent;
+	border-radius: 0px;
+	height: 58px;
+	line-height: 55px; 		
+	color: #999;
+	font-size:40px;
+	text-shadow: 1px 1px 4px black;
+}
+
+.clock_15
+{
+    position: absolute;
+    width: 162px;
+	height: 58px;
+	margin-top: 150px;
+    margin-left: 130px;
+	font-family: arimo;
+    font-weight: bold;
+    color: #999;
+    font-size: 40px;
+ /*    text-shadow: 1px 1px 4px black; */
+    border: 1px solid transparent;
+	line-height: 55px; 
+	z-index:1;
+}
+
+.clock_16
+{
+    position: absolute;
+    width: 162px;
+	height: 58px;
+    margin-top: 295px;
+    margin-left: 130px;
+	font-family: arimo;
+    font-weight: bold;
+    color: #999;
+    font-size: 40px;
+  /*   text-shadow: 1px 1px 4px black; */
+    border: 1px solid transparent;
+	line-height: 55px; 
+	z-index:1;
+}
+
+.clock_space
+{
+	font-family: arimo;
+	font-weight: bold;
+	width: 400px;
+	padding: 10px;
+	border: 1px solid transparent;
+	border-radius: 0px;
+	height: 144px;	
+	line-height: 170px; 
+	font-size: 100px;	
+	color: #999;
+	margin: 0px ;
+	text-shadow: 1px 1px 4px black;	
+}
+
+.horloge 
+{
+	height: 400px;
+	margin: 40px auto;
+	position: relative;
+	width: 400px;
+	border: 10px solid #3A5486;
+	border-radius: 50%;
+	background: url("../icons/clockFace.png") no-repeat scroll center 25% rgba(255,255,255,1);
+	background-size: 400px 400px;
+	box-shadow: 0 0 10px #000000, 0 0 50px 10px #CCCCCC inset;
+}
+
+.horloge:before 
+{
+	border-radius: 50%;
+	box-shadow: -2px -2px 5px #000000 inset, -2px 2px 5px #000000 inset, 2px -2px 5px #000000 inset, 2px 2px 5px #000000 inset;
+	position: absolute;
+	content: '';
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+}
+
+.seconde
+{
+	left: 198px;
+	top: 25px;
+	height: 180px;
+	border: 2px solid rgba( 255,0,0,0.8);
+	z-index:3;
+}
+
+.minute
+{
+	left: 196px;
+	top: 55px;
+	height: 150px;
+	border: 4px solid rgba( 80,100,240,0.8);
+	z-index:3;
+}
+
+.heure
+{
+	left: 194px;
+	top: 100px;
+	height: 100px;
+	border: 6px solid rgba( 10,50,128,0.8);
+	z-index:3;
+}
+.centre
+{
+	border: 6px solid rgba(0,0,0,1);
+	left: 194px;
+	top: 194px;
+	z-index:3;
+}
+
+.rond,.sep
+{
+	position: absolute;
+	border-radius: 50%;
+}
+
+.sep
+{
+	height: 10px;
+	width: 10px;
+	text-align: center;
+	line-height: 10px;
+	top: 195px;
+	left: 195px;
+}
+
+.sep:before{
+/*	content: '•'; */
+	color: #3A5486;
+}

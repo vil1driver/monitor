@@ -1,0 +1,227 @@
+﻿<!-- load page stylesheet -->
+<script type="text/javascript">
+//<!--
+$('head').append('<link rel="stylesheet" href="css/clock.css" />');
+//-->
+</script>
+
+<script type="text/javascript">
+//<!--
+var PrefixFinder = function(){
+	this.setPrefixes();
+	if(!this.navFullySupported){
+		this.navFullySupported = false;
+		this.prefixe = {css: '-ms-', js: 'ms'};
+	}
+};
+PrefixFinder.prototype = {
+	navFullySupported: true,
+	listPrefixes: {},
+	prefixe: {css: false, js: false},
+	setPrefixes: function() {
+		if(window.getComputedStyle){
+			var allStyles = window.getComputedStyle(document.documentElement, ''),
+					pre = (Array.prototype.slice.call(allStyles).join('|'));
+			var tmp = pre.match(/\|-([^-]+)-([^|]+)\|/) || (allStyles.OLink === '' && ['', 'o']);
+			this.prefixe.css = '-'+tmp[1]+'-';
+			var testElem = document.createElement('div').style;
+			tmp[2] = this.camelize(tmp[2], true);
+			if((tmp[1] + tmp[2]) in testElem){
+				this.prefixe.js = tmp[1];
+				return true;
+			}
+			tmp[1] = this.camelize(tmp[1], true);
+			if((tmp[1] + tmp[2]) in testElem){
+				this.prefixe.js = tmp[1];
+				return true;
+			}
+		}
+		this.navFullySupported = false;
+	},
+	camelize: function(st, full){
+		st = st.replace(/-([a-z])/g, function(reg, camel){
+			return camel.toUpperCase();
+		});
+		if(full){
+		   return st.replace(st.charAt(0), st.charAt(0).toUpperCase());
+		}
+		return st
+	},
+	deCamelize: function(st){
+		return st.replace(/[A-Z]/g, function(camel, pos){
+			return (pos == 0 ? '' : '-') + camel.toLowerCase();
+		});
+	},
+	getPrefixedProp: function(prop){
+		prop = this.deCamelize(prop);
+		var jsProp = this.camelize(prop);
+		if(this.listPrefixes[jsProp]){
+			return this.listPrefixes[jsProp];
+		}
+		var tester = document.createElement('div').style;
+		if(jsProp in tester){
+			this.listPrefixes[jsProp] = {css: prop, js: jsProp};
+			return {css: prop, js: jsProp};
+		}
+		var jsPropPref = this.prefixe.js + jsProp.replace(jsProp.charAt(0), jsProp.charAt(0).toUpperCase());
+		if(jsPropPref in tester){
+			this.listPrefixes[jsProp] = {css: this.prefixe.css + prop, js: jsPropPref};
+			return {css: this.prefixe.css + prop, js: jsPropPref};
+		}
+		this.listPrefixes[jsProp] = {css: false, js: false};
+		return {css: false, js: false};
+	},
+    getPrefixedPropValue: function(prop, valeur){
+        prop = this.deCamelize(prop);
+        var tester = document.createElement('div').style;
+        var jsProp = this.camelize(prop);
+        test:if(jsProp in tester){
+            try {
+                tester[jsProp] = valeur;
+            } catch (e) {
+                break test;
+            }
+            if(tester[jsProp] != ''){
+                return {css: prop, js: jsProp, valeur: tester[jsProp]};
+            }
+        }
+        jsProp = this.prefixe.js + jsProp.replace(jsProp.charAt(0), jsProp.charAt(0).toUpperCase());
+        test:if(jsProp in tester){
+            try {
+                tester[jsProp] = valeur;
+            } catch (e) {
+                break test;
+            }
+            if(tester[jsProp] != ''){
+                return {css: this.prefixe.css + prop, js: jsProp, valeur: tester[jsProp]};
+            }
+        }
+        var ret = this.getPrefixedProp(prop);
+        ret.valeur = false;
+        return ret;
+    }
+};
+
+//-->
+</script>
+
+
+<!-- Page -->
+<div class="cnt v-wrap">
+<div class="v-box">
+<!-- contenu -->
+
+<!--
+le contenu de votre page ne doit pas dépasser les dimensions suivantes
+largeur: 962px
+hauteur: 500px
+-->
+
+
+<div>
+<div class="frame">
+	<div class="ls_clock_1"></div><div class="clock_1">--</div><div class="desc_clock_1">clock_1</div>
+</div>
+<div class="frame">
+	<div class="ls_clock_2"></div><div class="clock_2">--</div><div class="desc_clock_2">clock_2</div>
+</div>
+<div class="frame">
+	<div class="horloge rond "><div class="heure rond"></div><div class="minute rond"></div><div class="seconde rond"></div><div class="centre rond"></div></div>
+	<div class="clock_15">clock_15</div>
+	<div class="clock_16">clock_16</div>
+	<div class="ls_clock_space"></div><div class="clock_space"></div><div class="desc_clock_space"></div>
+</div>
+</div>
+
+<div>
+<div class="frame">
+	<div class="ls_clock_3"></div><div class="clock_3">--</div><div class="desc_clock_3">clock_3</div>
+	<div class="ls_clock_6"></div><div class="clock_6">--</div><div class="desc_clock_6">clock_6</div>
+</div>
+<div class="frame">
+	<div class="ls_clock_4"></div><div class="clock_4">--</div><div class="desc_clock_4">clock_4</div>
+	<div class="ls_clock_7"></div><div class="clock_7">--</div><div class="desc_clock_7">clock_7</div>
+</div>
+<div class="frame">
+	<div class="ls_clock_5"></div><div class="clock_5">--</div><div class="desc_clock_5">clock_5</div>
+	<div class="ls_clock_8"></div><div class="clock_8">--</div><div class="desc_clock_8">clock_8</div>
+</div>
+<div class="frame">
+	<div class="ls_clock_space"></div><div class="clock_space"></div><div class="desc_clock_space"></div>
+</div>	
+</div>	
+
+
+<div>
+<div class="frame">
+	<div class="ls_clock_9"></div><div class="clock_9">--</div><div class="desc_clock_9">clock_9</div>
+	<div class="ls_clock_12"></div><div class="clock_12">--</div><div class="desc_clock_12">clock_12</div>
+</div>
+<div class="frame">
+	<div class="ls_clock_10"></div><div class="clock_10">--</div><div class="desc_clock_10">clock_10</div>
+	<div class="ls_clock_13"></div><div class="clock_13">--</div><div class="desc_clock_13">clock_13</div>
+</div>
+<div class="frame">
+	<div class="ls_clock_11"></div><div class="clock_11">--</div><div class="desc_clock_11">clock_11</div>
+	<div class="ls_clock_14"></div><div class="clock_14">--</div><div class="desc_clock_14">clock_14</div>
+</div>
+<div class="frame">
+	<div class="ls_clock_space"></div><div class="clock_space"></div><div class="desc_clock_space"></div>
+</div>
+</div> 
+
+
+	
+	
+<!-- fin contenu -->
+</div>
+</div>
+<!-- fin page -->
+
+	<script>
+		(function(){
+			var prefixer = new PrefixFinder(),
+				tt = new Date(),
+				jsTransform = prefixer.getPrefixedProp('transform').js,
+				cssTransform = prefixer.getPrefixedProp('transform').css,
+				jsAnim = prefixer.getPrefixedProp('animation').js,
+				$sep = document.createElement('div'),
+				$horloge = document.getElementsByClassName('horloge')[0],
+				secondeCSS = document.getElementsByClassName('seconde')[0].style,
+				minuteCSS = document.getElementsByClassName('minute')[0].style,
+				heureCSS = document.getElementsByClassName('heure')[0].style;
+			var styleElement = document.createElement('style');
+			document.getElementsByTagName('script')[0].parentNode.insertBefore(styleElement, document.getElementsByTagName('script')[0]);
+			try{
+				styleElement.sheet.insertRule('@keyframes tour{from{' + cssTransform + ': rotate(0deg);}to{' + cssTransform + ': rotate(360deg)}}', 0);
+			}
+			catch(e){
+				try{
+					styleElement.sheet.insertRule('@' + prefixer.prefixe.css + 'keyframes tour{from{' + cssTransform + ': rotate(0deg);}to{' + cssTransform + ': rotate(360deg)}}', 0);
+				}
+				catch(e){
+				//	$horloge.id = '';
+					$horloge.className = '';
+					$horloge.style.border = '1px solid #25465B';
+					$horloge.style.margin = '10px 40px';
+					$horloge.style.padding = '10px 10px 10px 50px';
+					$horloge.style.background = 'url("") no-repeat scroll 10px center #FFBCC5';
+					$horloge.innerHTML = 'Votre navigateur est trop ancien pour supporter cet exemple.<br />Vous devriez le mettre à jour pour pouvoir profiter pleinement des nouveautés offertes par HTML5 / CSS 3 / JavaScript.';
+					return false;
+				}
+			}
+			$sep.className = 'sep';
+			secondeCSS[jsAnim] = 'tour 60s -' + (tt.getSeconds()) + 's steps(60, end) infinite';
+			secondeCSS[jsTransform + 'Origin'] = '50% 175px';
+			minuteCSS[jsAnim] = 'tour 3600s -' + (tt.getMinutes()*60 + tt.getSeconds()) + 's steps(60, end) infinite';
+			minuteCSS[jsTransform + 'Origin'] = '50% 145px';
+			heureCSS[jsAnim] = 'tour 43200s -' + ((tt.getHours()%12)*3600 + tt.getMinutes()*60 + tt.getSeconds()) + 's linear infinite';
+			heureCSS[jsTransform + 'Origin'] = '50% 100px';
+			for(var i = 0; i < 12; i++){
+				$sepactu = $sep.cloneNode(true);
+				$sepactu.style[jsTransform] = 'rotate(' + (i*30) + 'deg) translateY(-190px)';
+				$horloge.appendChild($sepactu);
+			}
+		})()
+	</script>
+
