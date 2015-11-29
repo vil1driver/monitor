@@ -965,6 +965,18 @@ function RefreshData()
                                                  if ($('.desc_'+vlabel).length > 0) {
 													$('.desc_'+vlabel).html(vdesc);
 												}	 
+										}
+										else if ( $.PageArray[ii][1] === 'Date' ) { 			//Special nummer, Date in cell (test)
+                                                var vlabel=     $.PageArray[ii][2];             // cell number from HTML layout
+                                                var vdata=      currentDate();             		// Get present time
+                                                var vdesc = '';
+                                                var vattr=    $.PageArray[ii][6];             	// extra css attributes
+                                                var valarm=     $.PageArray[ii][7];             // alarm value to turn text to red
+                                                
+                                                $('.'+vlabel).html( '<div style='+vattr+'>'+vdata+'</div>');
+                                                 if ($('.desc_'+vlabel).length > 0) {
+													$('.desc_'+vlabel).html(vdesc);
+												}	 
 										}	
                                         else if ( $.PageArray[ii][1] === 'SunRise' ) { 			//Special nummer, zonsop/onder in cell (test)
                                                 var vlabel=     $.PageArray[ii][2];             // cell number from HTML layout
@@ -1344,7 +1356,7 @@ function ChangeTherm(dimtype,stepsize,idx,currentvalue,thermmax)
 	}
 
 
-// date et heure
+// heure et date
 function currentTime() {
     var today=new Date();
     var h=today.getHours().toString();
@@ -1374,6 +1386,30 @@ function currentTime() {
 	}else{
 		// affiche sans le mois 
 		var ret_str = "<span style='font-size:120%;position:relative;top:-5px;'>"+h+":"+m+"</span><br><span style='font-size:35%;position:relative;top:-40px;'>"+day+" "+dag+"</span>";
+	}
+	return ret_str;
+}
+
+// date
+function currentDate() {
+    var today=new Date();
+    var days = ["Dimanche","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi"];
+    var day = days[today.getDay().toString()];
+	
+    var dag=today.getDate().toString();
+    dag = dag.trim();
+    if (dag.length == 1) { 
+	dag = '0'+ dag;
+    }
+	var months = ["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Aout","Septembre","Octobre","Novembre","Décembre"];
+    var maand = months[(today.getMonth()).toString()];
+	
+    if (showMonth == true){
+		// affiche avec le mois 
+		var ret_str = "<span style='font-size:50%;'>"+day+" "+dag+" "+maand+"</span>";
+	}else{
+		// affiche sans le mois 
+		var ret_str = "<span style='font-size:50%;'>"+day+" "+dag+"</span>";
 	}
 	return ret_str;
 }
