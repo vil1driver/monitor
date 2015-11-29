@@ -383,6 +383,11 @@ function RefreshData()
                                                         vdata=new String(vdata).split("m3",1)[0];
                                                         vdata=new String(vdata).replace("true","protected");
                                                 }
+												
+												if(vtype == 'Euro'){       
+													vdata=item.Data;
+												}
+												
                                                 alarmcss='';
 												
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
@@ -757,7 +762,8 @@ function RefreshData()
                                                 // if alarm threshold is defined, make value red
                                                 if (typeof valarm != 'undefined' && vtype != 'SetPoint') {
                                                     alarmcss='';
-													if ( Number(vdata) >= valarm ) {  
+												//	if ( Number(vdata) >= valarm ) {  
+													if ( eval(valarm.replace(/x/g, "Number(vdata)")) ) {  
                                                         alarmcss=';color:red;';
 														if (blink == true && !$( "."+vlabel ).hasClass( "blink_me" )) {
 															// Get desired elements
@@ -877,7 +883,7 @@ function RefreshData()
 												}
 												// Adds € after price
 												if(vtype == 'Euro'){       
-													vdata=item.Data;
+													//vdata=item.Data;
 													vdata=new String(vdata).replace( vdata,Math.ceil(vdata*100)/100 + '<span style="font-size:50%;"> &#8364;</span>');
 												}
 												// Adds m³ after volume for incremental counter

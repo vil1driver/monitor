@@ -17,8 +17,8 @@ var txt_blind_down = '\'Fermeture\'';
 var txt_blind_stop = '\'Arrêt\'';
 
 <!-- Change backgrounds images,size and brightness -->
-var bg_day = 'pissanli.jpg';			// image de fond le jour, laisser vide pour fond noir
-var bg_night = 'romantic.jpg';			// image de fond la nuit, laisser vide pour fond noir
+var bg_day = 'pissanli.jpg'; //'pissanli.jpg';			// image de fond le jour, laisser vide pour fond noir
+var bg_night = 'romantic.jpg'; //'romantic.jpg';			// image de fond la nuit, laisser vide pour fond noir
 var bg_size = 'cover';					// taille de l'image de fond (ex: '1024px 768px') 'cover' : "couvre" au mieux tout le fond.
 var bg_dayBright = 0.5;					// luminosité du fond le jour (0=normal 1=noir)
 var bg_nightBright = 0.5;				// luminosité du fond la nuit (0=normal 1=noir)
@@ -74,13 +74,13 @@ var showMonth = false;						// affichage du mois dans la date (true/false)
 
 <!-- Swipe options -->
 var speed = 300;							// durée de l'animation (en milisecondes)
-var delai = 30000;							// défilement automatique, temps avant changement de page (en milisecondes)
-var direction = 'next';						// si delai est différent de 0, choix d'aller à la page suivante ou de revenir à la première page ('next'/'index')
+var delai = 60000;							// défilement automatique, temps avant changement de page (en milisecondes)
+var direction = 'index';						// si delai est différent de 0, choix d'aller à la page suivante ou de revenir à la première page ('next'/'index')
 
 <!-- Display -->
-var zoom = 0;								// ajustage de la valeur de zoom (valeurs négatives autorisées)
+var zoom = -3;								// ajustage de la valeur de zoom
 
-
+//Pattern_start
 // ############################################################################################################
 // #### vvvvv   USER VALUES below vvvvv   #######
 // ############################################################################################################
@@ -90,23 +90,14 @@ $(document).ready(function() {
 		
 		//$.domoticzurl = "http://192.168.22.100:8080";	// url de connection à domoticz (ex: http://paul:ochon@toto.com:8765)
 		$.domoticzurl = location.protocol + "//" + location.host;		// auto detect (location.protocol + "//paul:ochon@" + location.host)
-	
+				
         $.PageArray = [
 		
             //page 1
 			
-			//	['idx','value',  	'cellule',    	'description','1=lastseen 2=icon 3=both ou J+x(popup météo)','pas de thermostat','override css','Alarme ou valeur max de thermostat'],
+			//	['idx','value','cellule','description','1=lastseen 2=icon 3=both ou J+x(popup météo)','pas de thermostat','override css','Alarme ou valeur max de thermostat'],
 			
-				['203','Temp',         			'cell6',                        	'Salon','','','font-size:110%;color:#1CD5FD'],	// températures salon
-                ['214','Temp',         			'cell7',                       		'Chambre','','','font-size:110%;color:#1CD5FD'],	// températures chambre font-size:110%;color:#1CD5FD
-				
-				['145','SetPoint',      		'cell11',                       	'','','0.5','font-size:85%;color:#1CD5FD','23'],	// thermostat salon avec un pas de 0.5, valeur max 23°C
-				['147','SetPoint',      		'cell12',                       	'','','0.5','font-size:85%;color:#1CD5FD','23'],		// thermostat chambre avec un pas de 0.5, valeur max 23°C
-          		
-				['59','Status',            		'heat1',                       		'','2','',''],	// visu radiateur salon
-                ['60','Status',            		'heat2',                       		'','2','',''],	// visu radiateur chambre
-				
-				
+	
 				
 				['279','Temp',           		'cell3',                        	''],	// températures exterieure
 				
@@ -115,11 +106,16 @@ $(document).ready(function() {
 				['35','Status',         		'cell13',                       	'Pierres','2'],
 				['95','Status',         		'cell9',                        	'Chambre','2'],
 				['116','Status',        		'cell4',                       		'','2'], // interrupteurs classics avec icon
-				['248','Status',         		'cell21',                     		'Boost','2'], 
-				['204','Status',         		'cell22',                     		'Douche','2'], 
+	
+				['253','Level',          		'cell12',                      		'rgb1_red','2'],	// rgb
+				['252','Level',          		'cell17',                      		'rgb1_green','2'],	// rgb
+				['254','Level',          		'cell22',                      		'rgb1_blue','2'],	// rgb
+				['257','Status',          		'cell7',                      		'rgb1_show','2'],	// rgb
 				
-				['134','Status',       			'cell16',                      		'Chauffage','2'],	
-				['232','Status',         		'cell17',                     		'Climatisation','2'],
+				['283','Level',          		'cell11',                      		'rgb2_red','2'],	// rgb
+				['284','Level',          		'cell16',                      		'rgb2_green','2'],	// rgb
+				['285','Level',          		'cell21',                      		'rgb2_blue','2'],	// rgb
+				['286','Status',          		'cell6',                      		'rgb2_show','2'],	// rgb
 				
 				['150','Wakeup',         		'cell2',                        	'','','','color:#E51CFD'],	// réveil 
 																				               
@@ -140,110 +136,85 @@ $(document).ready(function() {
 							
 				['0','SunBoth',					'desc_cell25',						'','','','color:#F2DDB3;font-size:19px;font-weight:bold'],	// heures soleil dans la description de la cellule 25
 				
-          
-			// page 2	
 			
-				['101','Status',       			'cell2_5',                      	'Porte d\'entrée','2'],	// contact de porte
-				['92','Data',          			'cell2_4',                      	'CPU','','','color:#02E07A','10'],	// charge processeur
-				['112','Usage',         		'cell2_15',                      	'EDF instant','','','color:#88B496;font-size:90%','2000'],	// consommation instantanée (téléinfo)
-				['112','Counter',      			'cell2_20',                      	'EDF total','','','color:#88B496;font-size:90%'],	// consommation totale (téléinfo)
-				['112','CounterToday',       	'cell2_10',                     	'EDF today','','','color:#88B496;font-size:90%','15'],	// consommation du jour (téléinfo)
-				['255','Euro',       			'cell2_11',                      	'coût jour','1','','color:pink'],	
-				['264','Euro',       			'cell2_16',                      	'coût nuit','1','','color:pink'],	
+		 	// page 5
+	 		
+				['203','Temp',         			'cell5_3',                        	'Salon (7h - 23h)','','','color:#FA8072',''],	// températures salon color:#FA8072
+                ['214','Temp',         			'cell5_4',                       	'Chambre (9h - 21h)','','','color:#52CE8A'],	// températures chambre color:#52CE8A
+                ['202','Temp',         			'cell5_2',                       	'Salle de bain','','','color:#A752CE'],	// températures Salle de bain color:#A752CE
 				
-				['216','Status',        		'cell2_12',                      	'alarme','2'],	// security pannel
-		
-				['253','Level',          		'cell2_14',                      	'rgb1_red','2'],	// rgb
-				['252','Level',          		'cell2_19',                      	'rgb1_green','2'],	// rgb
-				['254','Level',          		'cell2_26',                      	'rgb1_blue','2'],	// rgb
-				['257','Status',          		'cell2_9',                      	'rgb1_show','2'],	// rgb
+				['203','Humidity',         		'cell5_3f',                     	'','','','color:#1CD5FD','x < 30 || x > 70'],	// Humidity salon
+                ['214','Humidity',         		'cell5_4f',                     	'','','','color:#1CD5FD','x < 30 || x > 70'],	// Humidity chambre font-size:110%;color:#1CD5FD
+                ['202','Humidity',         		'cell5_2f',                     	'','','','color:#1CD5FD','x < 30 || x > 70'],	// Humidity Salle de bain font-size:110%;color:#1CD5FD
 				
-				['283','Level',          		'cell2_13',                      	'rgb2_red','2'],	// rgb
-				['284','Level',          		'cell2_18',                      	'rgb2_green','2'],	// rgb
-				['285','Level',          		'cell2_24',                      	'rgb2_blue','2'],	// rgb
-				['286','Status',          		'cell2_8',                      	'rgb2_show','2'],	// rgb
-		
-				['133','Status',       			'cell2_21',                      	'mv salon','2'],	
-				['132','Status',       			'cell2_23',                      	'mv chambre','2'],	
-            
-			//	['0','Link',       				'cell2_22',                     	'<a href="http://......" target="_blank">blabla</a>'], // simple lien s'ouvrant dans une nouvelle fenêtre
-				['0','Clock',           		'cell2_1',                      	'','','','color:#02E07A'],	// heure et date
-				
-				['0','SunRise',         		'cell2_2',                      	'','','','color:#E6A677'],	// heure de lever du soleil
-				['0','SunSet',         			'cell2_6',                     		'','','','color:#E6A677'],		// heure de coucher du soleil
-				
-				['0','Camera',					'cell2_3',						'http://highslide.com/samples/full3.jpg','','',''],	// camera 1
-				['0','Camera',					'cell2_25',						'http://www.pachavana.net/wp-content/uploads/2015/08/Main_IMG_7948_Resize1.jpg','','',''],	// camera 2
-				
-			// page 3	
-			
-				['0','Hide',       				'cell3_5',                      	''],	
-				['0','Hide',       				'cell3_3',                      	''],	
-				['0','Hide',       				'cell3_25',                      	''],	
-				['0','Hide',          			'cell3_4',                      	''],	
-				['253','Level',          		'cell3_7',                      	'red','2'],	// rgb
-				['252','Level',          		'cell3_8',                      	'green','2'],	// rgb
-				['254','Level',          		'cell3_9',                      	'blue','2'],	// rgb
-				['0','Hide',         			'cell3_15',                      	''],	
-				['0','Hide',      				'cell3_20',                      	''],	
-				['195','SignalLevel',       	'cell3_22',                      	'veilleuse mur','1','','color:#FBFE03'],	
-				['66','SignalLevel',       		'cell3_13',                      	'veilleuse lit','1','','color:#FBFE03'],	
-				['132','SignalLevel',       	'cell3_26',                      	'mv chambre','1','','color:#FBFE03'],	
-				['133','SignalLevel',       	'cell3_24',                      	'mv salon','1','','color:#FBFE03'],	
-				['136','SignalLevel',       	'cell3_18',                      	'Lumino salon','1','','color:#FBFE03'],	
-				['135','SignalLevel',       	'cell3_19',                      	'Lumino chambre','1','','color:#FBFE03'],	
-				['101','SignalLevel',       	'cell3_14',                      	'porte','1','','color:#FBFE03'],
-
-				
-			// page 4
-		
-				['203','Temp',       				'cell4_1a',                      	''],	
-				['203','Humidity',       			'cell4_1b',                      	'','','','color:#FBFE03'],
-				['0','Text',       					'desc_cell4_1',                     'salon'],
-				
-				['214','Temp',       				'cell4_2',                      	'chambre'],	
-				
-			// page 5
-			
-				['203','Temp',         			'cell5_1',                        	'Salon','','',''],	// températures salon
-                ['214','Temp',         			'cell5_2',                       	'Chambre','','',''],	// températures chambre font-size:110%;color:#1CD5FD
-                ['202','Humidity',         			'cell5_3',                       	'Salle de bain','','',''],	// températures Salle de bain font-size:110%;color:#1CD5FD
-				
-				['203','Humidity',         			'cell5_1e',                        	'','','','color:green','70'],	// Humidity salon
-                ['214','Humidity',         			'cell5_2e',                       	'','','','color:green','70'],	// Humidity chambre font-size:110%;color:#1CD5FD
-                ['202','Humidity',         			'cell5_3e',                       	'','','','color:green','70'],	// Humidity Salle de bain font-size:110%;color:#1CD5FD
-				
-				['145','SetPoint',      		'cell5_1b',                       	'','','0.5','color:#1CD5FD','23'],	// thermostat salon avec un pas de 0.5, valeur max 23°C
-				['147','SetPoint',      		'cell5_2b',                       	'','','0.5','color:#1CD5FD','23'],		// thermostat chambre avec un pas de 0.5, valeur max 23°C
-				['146','SetPoint',      		'cell5_3b',                       	'','','0.5','color:#1CD5FD','25'],		// thermostat chambre avec un pas de 0.5, valeur max 23°C
+				['147','SetPoint',      		'cell5_4b',                       	'','','0.5','font-size:110%;color:#72DDEA','23'],	// thermostat salon avec un pas de 0.5, valeur max 23°C
+				['145','SetPoint',      		'cell5_3b',                       	'','','0.5','font-size:110%;color:#72DDEA','23'],		// thermostat chambre avec un pas de 0.5, valeur max 23°C
+				['146','SetPoint',      		'cell5_2b',                       	'','','1','font-size:110%;color:#72DDEA','25'],		// thermostat Salle de bain avec un pas de 1, valeur max 25°C
           		
-				['59','Status',            		'cell5_1c',                       		'','2','',''],	// visu radiateur salon
-                ['60','Status',            		'cell5_2c',                       		'','2','',''],	// visu radiateur chambre
-				['255','Euro',       			'cell5_1f',                      	'','1','','color:pink'],	
-				['264','Euro',       			'cell5_2f',                      	'','1','','color:pink'],	
+				['248','Status',         		'cell5_3g',                     	'Boost','2'], 
+          		['0','Hide',					'cell5_1b',							''],
+          		['0','Hide',					'cell5_1d',							''],
+          		['0','Hide',					'cell5_3a',							''],
 				
-				['134','Status',       			'cell5_6',                      		'Chauffage','2'],	
+				['59','Status',            		'cell5_3e',                       	'','2','',''],	// visu radiateur salon
+                ['60','Status',            		'cell5_4d',                       	'','2','',''],	// visu radiateur chambre
+				['255','Euro',       			'cell5_8',                      	'edf hier','','','color:pink','x > 3'],	
+									
+				['134','Status',       			'cell5_7',                      	'Chauffage','2'],	
 				
-				['248','Status',         		'cell5_1d',                     		'','2'], 
 				
-				['112','Usage',         		'cell5_9',                      	'edf now','','','color:#88B496;font-size:90%','2000'],	// consommation instantanée (téléinfo)
-				['112','Counter',      			'cell5_7',                      	'edf total','','','color:#88B496;font-size:90%'],	// consommation totale (téléinfo)
-				['112','CounterToday',       	'cell5_8',                     	'edf day','','','color:#88B496;font-size:90%','15'],	// consommation du jour (téléinfo)
+				['101','Hide',       			'cell5_3d',                      	'',''],	
+				['112','Usage',         		'cell5_9',                      	'edf now','','','color:#D5DE3F;font-size:90%','x > 7500'],	// consommation instantanée (téléinfo)
+				['107','CounterToday',      	'cell5_6',                      	'chauffage day','','','color:#D5DE3F;font-size:90%'],	// consommation totale (téléinfo)
+				['0','Hide',      				'cell5_4c',                      	''],	
+							
+				['279','Temp',           		'cell5_1c',                        	'','','','font-size:180%'],	// températures exterieure
 				
-				['279','Temp',           		'cell5_4a',                        	'','','','font-size:160%'],	// températures exterieure
-				
-				['0','Clock',            		'cell5_5',                       		'','','','font-family:digital;color:#8BFD1C;font-size:140%'],	// heure et date		
+				['0','Hide',            		'cell5_1a',                       		'','','',''],
 
-				['279','ForecastStr',    		'cell5_4',                       	''],	// icon météo (idx du capteur de température extérieur virtuel Weather Underground)	
-				['279','HumidityStatus',    	'cell5_4f',                       	'','','','color:#88B496;font-size:80%'],	// icon météo (idx du capteur de température extérieur virtuel Weather Underground)	
+				['279','ForecastStr',    		'cell5_1',                       	'','1'],	// icon météo (idx du capteur de température extérieur virtuel Weather Underground)	
 				
-				['0','Hide',         			'cell5_4b',                      	''],
+				['279','HumidityStatus',    	'cell5_1f',                       	'','','','color:#88B496;font-size:80%'],	
+				
+				
+				['0','Hide',         			'cell5_4a',                      	''],
+				['0','Hide',         			'cell5_2a',                      	''],
+				['0','Hide',         			'cell5_2c',                      	''],
+				['0','Hide',         			'cell5_2d',                      	''],
+				['0','Hide',         			'cell5_3c',                      	''],
 				['0','Hide',         			'cell5_4e',                      	''],
-				['111','Status',         			'cell5_3f',                      	'','2'],	// soufflant sdb
-				['263','Data',         			'cell5_4c',                      	'','','','','65'],	// proba pluie dans 1h
-				['265','Data',         			'cell5_4d',                      	'','','','','45'],	// proba pluie dans 2h
+				['0','Hide',         			'cell5_4g',                      	''],
+			
+				['107','Usage',          		'cell5_5',                      	'chauffage now','','','color:#D5DE3F;font-size:90%','x > 4000'],	// consommation instantanée chauffage
 				
-					
+				['111','Status',         		'cell5_2e',                      	'','2'],	// soufflant sdb
+				['204','Status',         		'cell5_2g',                     	'','2'], // douche
+				['263','Data',         			'cell5_1e',                      	'','','','','x > 65'],	// proba pluie dans 1h
+				['265','Data',         			'cell5_1g',                      	'','','','','x > 45'],	// proba pluie dans 2h
+				
+		// clock page
+			
+				['111','Hide',         			'clock_3',                      	'',''],
+				['111','Hide',         			'clock_5',                      	'',''],
+				['111','Hide',         			'clock_6',                      	'',''],
+				['111','Hide',         			'clock_7',                      	'',''],
+				['111','Hide',         			'clock_8',                      	'',''],
+				['111','Hide',         			'clock_10',                      	'',''],
+				['111','Hide',         			'clock_11',                      	'',''],
+				['111','Hide',         			'clock_12',                      	'',''],
+				['111','Hide',         			'clock_13',                      	'',''],
+				['111','Hide',         			'clock_14',                      	'',''],
+				['111','Hide',         			'clock_15',                      	'',''],
+				['150','Wakeup',         		'clock_16',                        	'','','','color:#3A5486;font-size:130%'],	// réveil 
+				['279','ForecastStr',    		'clock_2',                       	'','',''],	// icon météo (idx du capteur de température extérieur virtuel Weather Underground)
+				
+				['0','SunBoth',					'desc_clock_2',						'','','','color:#F2DDB3;font-size:19px;font-weight:bold'],	// heures soleil dans la description de la cellule clock_2
+				['279','Temp',           		'clock_1',                        	'','','',''],	// températures exterieure
+			 //	['0','Camera',					'clock_4',							'http://webcam.st-malo.com/mjpg/video.mjpg','http://webcam.st-malo.com/axis-cgi/mjpg/video.cgi','',''],	// camera 1	
+			 	['0','Camera',					'clock_4',							'http://192.168.22.100:2550','','',''],	// camera 1	
+			  	['311','Data',					'clock_9',							'','','','color:#4dd2ff'],	// saint du jour
+				
+				 
 					
         ];
         $.PageArray_Scenes = [		// placez ci dessous vos groupes et scènes
@@ -253,13 +224,13 @@ $(document).ready(function() {
                 ['1','Status',  				'cell18',                    		'Ciné','','color:#E4D422;font-size:90%'],	// scène 
 				['6','Status',         			'cell19',                       	'Apéro','','color:#E4D422;font-size:90%'],	// scène 
 				['24','Status',         		'cell24',                     		'Toute la maison','Light'],	// groupe avec icon Light
-			//	['10','Status',         		'cell24',                     		'Toute la maison'],	// groupe 
+			
         ];
 
 // ############################################################################################################
 // #### ^^^^^   USER VALUES above ^^^^^   #######
 // ############################################################################################################
-
+//Pattern_end
 
 });
 
