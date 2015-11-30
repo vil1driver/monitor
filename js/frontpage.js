@@ -308,17 +308,35 @@ function RefreshData()
 													// night
 													IsNight = 'Yes';
 													if ( typeof bg_day != 'undefined' ) {
+														// night background
 														$('<style>html::after{background:rgba(0,0,0,'+bg_nightBright+')}</style>').appendTo('head');
 														document.body.style.background='black url(icons/'+bg_night+') no-repeat top center fixed';
 														document.body.style.backgroundSize=bg_size;
+														// night negative clock background
+														if ($('.horloge').length > 0) {
+															$('.horloge').css('-webkit-filter', 'invert(1)');
+															$('.horloge').css('filter', 'invert(1)');
+															$('.horloge').css('border', '10px solid #C5AB79');
+															$('.horloge').css('box-shadow', '0 0 10px #ffffff, 0 0 50px 10px #cccccc inset');
+															$('<style>.horloge:before {box-shadow: -2px -2px 5px #ffffff inset, -2px 2px 5px #ffffff inset, 2px -2px 5px #ffffff inset, 2px 2px 5px #ffffff inset}</style>').appendTo('head');
+														}
 													}	
 												} else {
 													// day
 													IsNight = 'No';
 													if ( typeof bg_night != 'undefined' ) {
+														// day background
 														$('<style>html::after{background:rgba(0,0,0,'+bg_dayBright+')}</style>').appendTo('head');
 														document.body.style.background='black url(icons/'+bg_day+') no-repeat top center fixed';													
 														document.body.style.backgroundSize=bg_size;
+														// day clock background
+														if ($('.horloge').length > 0) {
+															$('.horloge').css('-webkit-filter', 'invert(0)');
+															$('.horloge').css('filter', 'invert(0)');
+															$('.horloge').css('border', '10px solid #3A5486');
+															$('.horloge').css('box-shadow', '0 0 10px #000000, 0 0 50px 10px #CCCCCC inset');
+															$('<style>.horloge:before {box-shadow: -2px -2px 5px #000000 inset, -2px 2px 5px #000000 inset, 2px -2px 5px #000000 inset, 2px 2px 5px #000000 inset}</style>').appendTo('head');
+														}	
 													}	
 												}
 												
