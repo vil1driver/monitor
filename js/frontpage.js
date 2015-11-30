@@ -357,7 +357,7 @@ function RefreshData()
      
 						$.each(data.result, function(i,item){
                                 for( var ii = 0, len = $.PageArray.length; ii < len; ii++ ) {
-                                        if( $.PageArray[ii][0] === item.idx ) {         				// Domoticz idx number
+                                        if( $.PageArray[ii][0] === item.idx || $.PageArray[ii][0] === item.Name ) {         				// Domoticz idx number
                                                 var vtype=      $.PageArray[ii][1];             		// Domotitcz type (like Temp, Humidity)
                                                 var vlabel=     $.PageArray[ii][2];                     // cell number from HTML layout
                                                 var vdesc=      $.PageArray[ii][3];                     // description
@@ -1030,7 +1030,7 @@ function RefreshData()
 
                         $.each(data.result, function(i,item){
                                 for( var ii = 0, len = $.PageArray_Scenes.length; ii < len; ii++ ) {
-                                        if( $.PageArray_Scenes[ii][0] === item.idx ) {          				// Domoticz idx number
+                                        if( $.PageArray_Scenes[ii][0] === item.idx || $.PageArray_Scenes[ii][0] === item.Name ) {          				// Domoticz idx number
                                                 var vtype=      $.PageArray_Scenes[ii][1];              		// Domotitcz type (like Temp, Humidity)
                                                 var vlabel=     $.PageArray_Scenes[ii][2];                      // cell number from HTML layout
                                                 var vdesc=      $.PageArray_Scenes[ii][3];                      // description
