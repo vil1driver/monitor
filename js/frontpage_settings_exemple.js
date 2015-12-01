@@ -158,7 +158,7 @@ $(document).ready(function() {
 				
 				['radiateur salon','Status',            		'cell5_3e',                       	'','2'],	// visu radiateur salon
                 ['radiateur chambre','Status',            		'cell5_4d',                       	'','2'],	// visu radiateur chambre
-				['conso totale','Euro',       			'cell5_8',                      	'edf hier','','','color:pink','x > 4'],	
+				['conso veille euros','Euro',       			'cell5_8',                      	'edf hier','','','color:pink','x > 4'],	
 									
 				['chauffage','Status',       			'cell5_7',                      	'Chauffage','2'],	
 				
@@ -185,7 +185,7 @@ $(document).ready(function() {
 				['','Hide',         			'cell5_4e',                      	''],
 				['','Hide',         			'cell5_4g',                      	''],
 			
-				['conso totale','Usage',          		'cell5_5',                      	'chauffage now','','','color:#D5DE3F;font-size:90%','x > 4000'],	// consommation instantanée chauffage
+				['conso chauffage','Usage',          		'cell5_5',                      	'chauffage now','','','color:#D5DE3F;font-size:90%','x > 4000'],	// consommation instantanée chauffage
 				
 				['soufflant','Status',         		'cell5_2e',                      	'','2'],	// soufflant sdb
 				['douche','Status',         		'cell5_2g',                     	'','2'], // douche

@@ -312,7 +312,7 @@ function RefreshData()
 														$('<style>html::after{background:rgba(0,0,0,'+bg_nightBright+')}</style>').appendTo('head');
 														document.body.style.background='black url(icons/'+bg_night+') no-repeat top center fixed';
 														document.body.style.backgroundSize=bg_size;
-														// night negative clock background
+														// night clock background
 														if ($('.horloge').length > 0) {
 															$('.horloge').css('-webkit-filter', 'invert(1)');
 															$('.horloge').css('filter', 'invert(1)');
