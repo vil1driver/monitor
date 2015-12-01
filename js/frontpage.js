@@ -306,8 +306,8 @@ function RefreshData()
 												
 												if ( t1 > t3 || t1 < t2) {
 													// night
-													IsNight = 'Yes';
-													if ( typeof bg_day != 'undefined' ) {
+													
+													if ( typeof bg_day != 'undefined' && IsNight != 'Yes') {
 														// night background
 														$('<style>html::after{background:rgba(0,0,0,'+bg_nightBright+')}</style>').appendTo('head');
 														document.body.style.background='black url(icons/'+bg_night+') no-repeat top center fixed';
@@ -320,11 +320,13 @@ function RefreshData()
 															$('.horloge').css('box-shadow', '0 0 10px #ffffff, 0 0 50px 10px #cccccc inset');
 															$('<style>.horloge:before {box-shadow: -2px -2px 5px #ffffff inset, -2px 2px 5px #ffffff inset, 2px -2px 5px #ffffff inset, 2px 2px 5px #ffffff inset}</style>').appendTo('head');
 														}
-													}	
+													}
+													IsNight = 'Yes';
+													
 												} else {
 													// day
-													IsNight = 'No';
-													if ( typeof bg_night != 'undefined' ) {
+													
+													if ( typeof bg_night != 'undefined' && IsNight != 'No' ) {
 														// day background
 														$('<style>html::after{background:rgba(0,0,0,'+bg_dayBright+')}</style>').appendTo('head');
 														document.body.style.background='black url(icons/'+bg_day+') no-repeat top center fixed';													
@@ -337,7 +339,8 @@ function RefreshData()
 															$('.horloge').css('box-shadow', '0 0 10px #000000, 0 0 50px 10px #CCCCCC inset');
 															$('<style>.horloge:before {box-shadow: -2px -2px 5px #000000 inset, -2px 2px 5px #000000 inset, 2px -2px 5px #000000 inset, 2px 2px 5px #000000 inset}</style>').appendTo('head');
 														}	
-													}	
+													}
+													IsNight = 'No';
 												}
 												
 	})//;
