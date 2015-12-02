@@ -2,7 +2,6 @@
 <!-- Create popup -->
 var tempo;
 function lightbox_open(id, timeout, txt){
-		//window.scrollTo(0,0);
 		if (typeof txt != 'undefined') {
 			$('#popup_'+id).html('<div>'+txt+'</div>');
 		}
@@ -20,12 +19,10 @@ function lightbox_close(id){
 		$('#fade').off("click");
 		$('#popup_'+id).off("click");
 		clearTimeout(tempo);
-		setTimeout(RefreshData , 150);
 }
 
 <!-- help box open popup -->
 function helpBox_open(id){
-		//window.scrollTo(0,0);
 		$('#popup_help').html('<div>Bad value, click <a target="_blank" href="'+$.domoticzurl+'/json.htm?type=devices&rid='+id+'">here</a> to show what you can use..</div>');
 		$('#popup_help').fadeIn(fad_Duration);
 		$('#fade').fadeIn(fad_Duration);
@@ -87,7 +84,7 @@ function RefreshGraphData(xIDX, vdesc, vtype, vrange, vpara, vunit) {
 
         $.ajax({
             dataType: "json",
-            async: false,
+            async: true,
             url: jgurl + '&jsoncallback=?',
             xIDX: xIDX,
 			vdesc: vdesc,
@@ -313,11 +310,11 @@ function RefreshData()
 														document.body.style.background='black url(icons/'+bg_night+') no-repeat top center fixed';
 														document.body.style.backgroundSize=bg_size;
 														// night clock background
-														if ($('.horloge').length > 0) {
-															$('.horloge').css('-webkit-filter', 'invert(1)');
-															$('.horloge').css('filter', 'invert(1)');
-															$('.horloge').css('border', '10px solid #C5AB79');
-															$('.horloge').css('box-shadow', '0 0 10px #ffffff, 0 0 50px 10px #cccccc inset');
+														if ($('div.horloge').length > 0) {
+															$('div.horloge').css('-webkit-filter', 'invert(1)');
+															$('div.horloge').css('filter', 'invert(1)');
+															$('div.horloge').css('border', '10px solid #C5AB79');
+															$('div.horloge').css('box-shadow', '0 0 10px #ffffff, 0 0 50px 10px #cccccc inset');
 															$('<style>.horloge:before {box-shadow: -2px -2px 5px #ffffff inset, -2px 2px 5px #ffffff inset, 2px -2px 5px #ffffff inset, 2px 2px 5px #ffffff inset}</style>').appendTo('head');
 														}
 													}	
@@ -330,11 +327,11 @@ function RefreshData()
 														document.body.style.background='black url(icons/'+bg_day+') no-repeat top center fixed';													
 														document.body.style.backgroundSize=bg_size;
 														// day clock background
-														if ($('.horloge').length > 0) {
-															$('.horloge').css('-webkit-filter', 'invert(0)');
-															$('.horloge').css('filter', 'invert(0)');
-															$('.horloge').css('border', '10px solid #3A5486');
-															$('.horloge').css('box-shadow', '0 0 10px #000000, 0 0 50px 10px #CCCCCC inset');
+														if ($('div.horloge').length > 0) {
+															$('div.horloge').css('-webkit-filter', 'invert(0)');
+															$('div.horloge').css('filter', 'invert(0)');
+															$('div.horloge').css('border', '10px solid #3A5486');
+															$('div.horloge').css('box-shadow', '0 0 10px #000000, 0 0 50px 10px #CCCCCC inset');
 															$('<style>.horloge:before {box-shadow: -2px -2px 5px #000000 inset, -2px 2px 5px #000000 inset, 2px -2px 5px #000000 inset, 2px 2px 5px #000000 inset}</style>').appendTo('head');
 														}	
 													}	
@@ -420,8 +417,8 @@ function RefreshData()
 												if (typeof lastseen == 'undefined' || lastseen == '') {
 													lastseen = '0';
 												}
-												if (vtype != 'ForecastStr' && (lastseen == '1' || lastseen == '3') && ($('.ls_'+vlabel).length > 0)) { 
-													$('.ls_'+vlabel).html(vls);
+												if (vtype != 'ForecastStr' && (lastseen == '1' || lastseen == '3') && ($('div.ls_'+vlabel).length > 0)) { 
+													$('div.ls_'+vlabel).html(vls);
 												}													
 						
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
@@ -922,21 +919,21 @@ function RefreshData()
 												// if extra css attributes. Make switch not switchable when it is protected, just give message.
 												if (typeof vattr == 'undefined') {
 													if (item.Protected == true) {
-														$('.'+vlabel).html('<div onClick="lightbox_open(\'protected\', '+switch_protected_timeout+', '+txt_switch_protected+')" style='+alarmcss+'>'+vdata+'</div>');
+														$('div.'+vlabel).html('<div onClick="lightbox_open(\'protected\', '+switch_protected_timeout+', '+txt_switch_protected+')" style='+alarmcss+'>'+vdata+'</div>');
 													} else { 
-														$('.'+vlabel).html('<div '+switchclick+' style='+alarmcss+'>'+vdata+'</div>');
+														$('div.'+vlabel).html('<div '+switchclick+' style='+alarmcss+'>'+vdata+'</div>');
 													}
 												} 
 												else if (item.Protected == true) {
-													$('.'+vlabel).html( '<div onClick="lightbox_open(\'protected\', '+switch_protected_timeout+ ', '+txt_switch_protected+')" style='+vattr+alarmcss+'>'+vdata+'</div>');
+													$('div.'+vlabel).html( '<div onClick="lightbox_open(\'protected\', '+switch_protected_timeout+ ', '+txt_switch_protected+')" style='+vattr+alarmcss+'>'+vdata+'</div>');
 												} else {
-													$('.'+vlabel).html( '<div '+switchclick+' style='+vattr+alarmcss+'>'+vdata+'</div>');
+													$('div.'+vlabel).html( '<div '+switchclick+' style='+vattr+alarmcss+'>'+vdata+'</div>');
 												}
 												
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////							
 
-                                                 if ($('.desc_'+vlabel).length > 0) {
-													$('.desc_'+vlabel).html(vdesc);
+                                                 if ($('div.desc_'+vlabel).length > 0) {
+													$('div.desc_'+vlabel).html(vdesc);
 												}	 
                                         }
                                         else if ( $.PageArray[ii][1] === 'Text' ) { 			//Special nummer, link in cell (test)
@@ -945,9 +942,9 @@ function RefreshData()
 												var vattr=    $.PageArray[ii][6];             	// extra css attributes
                                                 var valarm=     '';             // alarm value to turn text to red
 												
-												$('.'+vlabel).html('<div style='+vattr+'>'+vdesc+'</div>');
-												if ($('.desc_'+vlabel).length > 0) {
-													$('.desc_'+vlabel).html('');
+												$('div.'+vlabel).html('<div style='+vattr+'>'+vdesc+'</div>');
+												if ($('div.desc_'+vlabel).length > 0) {
+													$('div.desc_'+vlabel).html('');
 												}
 										}
 										else if ( $.PageArray[ii][1] === 'Hide' ) { 			//Special nummer, link in cell (test)
@@ -956,9 +953,9 @@ function RefreshData()
                                                 var vdesc = '';
                                                 var valarm=     $.PageArray[ii][7];             // alarm value to turn text to red
                                                 
-												$('.'+vlabel).html('');
-                                                if ($('.desc_'+vlabel).length > 0) {
-													$('.desc_'+vlabel).html('');
+												$('div.'+vlabel).html('');
+                                                if ($('div.desc_'+vlabel).length > 0) {
+													$('div.desc_'+vlabel).html('');
 												}	
                                         }
 										else if ( $.PageArray[ii][1] === 'Link' ) { 			//Special nummer, link in cell (test)
@@ -967,9 +964,9 @@ function RefreshData()
                                                 var vdesc = '';
                                                 var valarm=     $.PageArray[ii][7];             // alarm value to turn text to red
                                                 
-                                                $('.'+vlabel).html( '<div>'+vdata+'</div>');
-                                                if ($('.desc_'+vlabel).length > 0) {
-													$('.desc_'+vlabel).html(vdesc);
+                                                $('div.'+vlabel).html( '<div>'+vdata+'</div>');
+                                                if ($('div.desc_'+vlabel).length > 0) {
+													$('div.desc_'+vlabel).html(vdesc);
 												}	
                                         }
 										else if ( $.PageArray[ii][1] === 'Clock' ) { 			//Special nummer, Clock in cell (test)
@@ -979,9 +976,9 @@ function RefreshData()
                                                 var vattr=    $.PageArray[ii][6];             	// extra css attributes
                                                 var valarm=     $.PageArray[ii][7];             // alarm value to turn text to red
                                                 
-                                                $('.'+vlabel).html( '<div style='+vattr+'>'+vdata+'</div>');
-                                                 if ($('.desc_'+vlabel).length > 0) {
-													$('.desc_'+vlabel).html(vdesc);
+                                                $('div.'+vlabel).html( '<div style='+vattr+'>'+vdata+'</div>');
+                                                 if ($('div.desc_'+vlabel).length > 0) {
+													$('div.desc_'+vlabel).html(vdesc);
 												}	 
 										}
 										else if ( $.PageArray[ii][1] === 'Date' ) { 			//Special nummer, Date in cell (test)
@@ -991,9 +988,9 @@ function RefreshData()
                                                 var vattr=    $.PageArray[ii][6];             	// extra css attributes
                                                 var valarm=     $.PageArray[ii][7];             // alarm value to turn text to red
                                                 
-                                                $('.'+vlabel).html( '<div style='+vattr+'>'+vdata+'</div>');
-                                                 if ($('.desc_'+vlabel).length > 0) {
-													$('.desc_'+vlabel).html(vdesc);
+                                                $('div.'+vlabel).html( '<div style='+vattr+'>'+vdata+'</div>');
+                                                 if ($('div.desc_'+vlabel).length > 0) {
+													$('div.desc_'+vlabel).html(vdesc);
 												}	 
 										}	
                                         else if ( $.PageArray[ii][1] === 'SunRise' ) { 			//Special nummer, zonsop/onder in cell (test)
@@ -1002,9 +999,9 @@ function RefreshData()
                                                 var vattr=    $.PageArray[ii][6];             	// extra css attributes
                                                 var valarm=     $.PageArray[ii][7];             // alarm value to turn text to red
 
-                                                $('.'+vlabel).html( '<div style='+vattr+'>'+var_sunrise+'</div>');
-                                                 if ($('.desc_'+vlabel).length > 0) {
-													$('.desc_'+vlabel).html(txt_sunrise);
+                                                $('div.'+vlabel).html( '<div style='+vattr+'>'+var_sunrise+'</div>');
+                                                 if ($('div.desc_'+vlabel).length > 0) {
+													$('div.desc_'+vlabel).html(txt_sunrise);
 												}	 
 										}	
                                         else if ( $.PageArray[ii][1] === 'SunSet' ) { 			//Special nummer, zonsop/onder in cell (test)
@@ -1013,9 +1010,9 @@ function RefreshData()
                                                 var vattr=    $.PageArray[ii][6];             	// extra css attributes
                                                 var valarm=     $.PageArray[ii][7];             // alarm value to turn text to red
 
-                                                $('.'+vlabel).html( '<div style='+vattr+'>'+var_sunset+'</div>');
-                                                 if ($('.desc_'+vlabel).length > 0) {
-													$('.desc_'+vlabel).html(txt_sunset);
+                                                $('div.'+vlabel).html( '<div style='+vattr+'>'+var_sunset+'</div>');
+                                                 if ($('div.desc_'+vlabel).length > 0) {
+													$('div.desc_'+vlabel).html(txt_sunset);
 												}	 
 										}	
                                         else if ( $.PageArray[ii][1] === 'SunBoth' ) { 			//Special nummer, zonsop/onder in cell (test)
@@ -1024,9 +1021,9 @@ function RefreshData()
                                                 var vattr=    $.PageArray[ii][6];             	// extra css attributes
                                                 var valarm=     $.PageArray[ii][7];             // alarm value to turn text to red
 												
-                                                $('.'+vlabel).html( '<div style='+vattr+'><img src=icons/sun.png  height="15" width="15" style="PADDING-RIGHT: 2px;">'+var_sunrise+'<img src=icons/moon.png  height="15" width="15" style="PADDING-LEFT: 15px;">'+var_sunset+'</div>');
-                                                 if ($('.desc_'+vlabel).length > 0) {
-													$('.desc_'+vlabel).html(txt_sunboth);
+                                                $('div.'+vlabel).html( '<div style='+vattr+'><img src=icons/sun.png  height="15" width="15" style="PADDING-RIGHT: 2px;">'+var_sunrise+'<img src=icons/moon.png  height="15" width="15" style="PADDING-LEFT: 15px;">'+var_sunset+'</div>');
+                                                 if ($('div.desc_'+vlabel).length > 0) {
+													$('div.desc_'+vlabel).html(txt_sunboth);
 												} 
 										}
                                         
@@ -1124,15 +1121,15 @@ function RefreshData()
 
                                                 // if extra css attributes
                                                 if (typeof vattr == 'undefined') {
-                                                        $('.'+vlabel).html('<div '+switchclick+' style='+alarmcss+'>'+vdata+'</div>');
+                                                        $('div.'+vlabel).html('<div '+switchclick+' style='+alarmcss+'>'+vdata+'</div>');
                                                        
                                                 } else {
-                                                        $('.'+vlabel).html( '<div '+switchclick+' style='+vattr+alarmcss+'>'+vdata+'</div>');
+                                                        $('div.'+vlabel).html( '<div '+switchclick+' style='+vattr+alarmcss+'>'+vdata+'</div>');
                                                        
                                                 }
 
-                                                if ($('.desc_'+vlabel).length > 0) {
-													$('.desc_'+vlabel).html(vdesc);
+                                                if ($('div.desc_'+vlabel).length > 0) {
+													$('div.desc_'+vlabel).html(vdesc);
                                                 }
                                         }
                                 }
@@ -1166,8 +1163,8 @@ function GetCams()
 													src_2 = location.href.replace(/\/$/, '')+'/icons/offline.jpg';
 												}	
 											
-												$('.'+vlabel).html('<img src='+src_1+' alt='+src_2+' class=\'camera\' >');
-												$('.'+vlabel+' img').error(function(){
+												$('div.'+vlabel).html('<img src='+src_1+' alt='+src_2+' class=\'camera\' >');
+												$('div.'+vlabel+' img').error(function(){
 																						//console.log('vlabel: '+this.parentNode.className);
 																						//console.log('on error: '+this.src);
 																						this.onerror=null;
@@ -1179,14 +1176,14 @@ function GetCams()
 																						}	
 																						//console.log('replace: '+this.src);
 																					});
-												$('.'+vlabel+' img').click(function(){
+												$('div.'+vlabel+' img').click(function(){
 																						$('#popup_camera').html('<img src='+this.src+' >');
 																						lightbox_open('camera', 25400);
 																					});
 												
 																				
-												if ($('.desc_'+vlabel).length > 0) {
-													$('.desc_'+vlabel).html('');
+												if ($('div.desc_'+vlabel).length > 0) {
+													$('div.desc_'+vlabel).html('');
 												}
 										}
 		}	
@@ -1197,16 +1194,16 @@ function SceneToggle(idx, switchcmd)
 {
          $.ajax({
      url: $.domoticzurl+"/json.htm?type=command&param=switchscene" + "&idx=" + idx + "&switchcmd=" + switchcmd + "&level=0",
-     async: false,
+     async: true,
      dataType: 'json',
      success: function(){
         console.log('SUCCES');
+		RefreshData();
      },
      error: function(){
         console.log('ERROR');
      }
         });
-        //RefreshData();	// now include in lightbox_close function
 }
 
 //switch state of a switch
@@ -1214,16 +1211,16 @@ function SwitchToggle(idx, switchcmd)
 {
          $.ajax({
      url: $.domoticzurl+"/json.htm?type=command&param=switchlight" + "&idx=" + idx + "&switchcmd=" + switchcmd + "&level=0",
-     async: false,
+     async: true,
      dataType: 'json',
      success: function(){
         console.log('SUCCES');
+		RefreshData();
      },
      error: function(){
         console.log('ERROR');
      }
         });
-        //RefreshData();	// now include in lightbox_close function
 }
 
 //Dimmer, 0-16
@@ -1237,10 +1234,11 @@ if (level == txt_off) {
 	//console.log("In uit",currentlevel);
         $.ajax({
                 url: $.domoticzurl+"/json.htm?type=command&param=switchlight&idx=" + idx + "&switchcmd=Set Level&level=" + currentlevel,
-                async: false,
+                async: true,
                 dataType: 'json',
                 success: function(){
                         console.log('SUCCES');
+						RefreshData();
 
                 },
                 error: function(){
@@ -1260,10 +1258,11 @@ else
                 }
                 $.ajax({
                         url: $.domoticzurl+"/json.htm?type=command&param=switchlight&idx=" + idx + "&switchcmd=Set Level&level=" + d,
-                        async: false,
+                        async: true,
                         dataType: 'json',
                         success: function(){
                                 console.log('SUCCES');
+								RefreshData();
                         },
                         error: function(){
                                 console.log('ERROR');
@@ -1279,10 +1278,11 @@ else
                 }
                 $.ajax({
                         url: $.domoticzurl+"/json.htm?type=command&param=switchlight&idx=" + idx + "&switchcmd=Set Level&level=" + d,
-						async: false,
+						async: true,
                         dataType: 'json',
                         success: function(){
                                 console.log('SUCCES');
+								RefreshData();
                         },
                         error: function(){
                                 console.log('ERROR');
@@ -1290,8 +1290,7 @@ else
                 });
           }
         }
-		RefreshData();
-		
+				
 }
 //Dimmer, 0-100
 function DimLevel100(OpenDicht,level,idx)
@@ -1305,10 +1304,11 @@ function DimLevel100(OpenDicht,level,idx)
                 }
                 $.ajax({
                         url: $.domoticzurl+"/json.htm?type=command&param=switchlight&idx=" + idx + "&switchcmd=Set Level&level=" + d,
-                        async: false,
+                        async: true,
                         dataType: 'json',
                         success: function(){
                                 console.log('SUCCES');
+								RefreshData();
                         },
                         error: function(){
                                 console.log('ERROR');
@@ -1325,10 +1325,11 @@ function DimLevel100(OpenDicht,level,idx)
                 }
                 $.ajax({
                         url: $.domoticzurl+"/json.htm?type=command&param=switchlight&idx=" + idx + "&switchcmd=Set Level&level=" + d,
-                        async: false,
+                        async: true,
                         dataType: 'json',
                         success: function(){
                                 console.log('SUCCES');
+								RefreshData();
                         },
                         error: function(){
                                 console.log('ERROR');
@@ -1336,8 +1337,7 @@ function DimLevel100(OpenDicht,level,idx)
                 });
           }
         
- 	RefreshData();
-	
+ 		
 }
 // thermostat
 function ChangeTherm(dimtype,stepsize,idx,currentvalue,thermmax)
@@ -1360,17 +1360,17 @@ function ChangeTherm(dimtype,stepsize,idx,currentvalue,thermmax)
 	}
 	 $.ajax({
      url: $.domoticzurl+"/json.htm?type=command&param=udevice" + "&idx=" + idx + "&nvalue=0&svalue=" + newvalue,
-     async: false, 
+     async: true, 
      dataType: 'json',
      success: function(){
      	console.log('SUCCES');
+		RefreshData();
      },
      error: function(){
      	console.log('ERROR');
      }
  	});
- 	RefreshData();
-	
+ 		
 	}
 
 
