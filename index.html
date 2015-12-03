@@ -46,25 +46,24 @@
 	document.querySelector("meta[name=viewport]").setAttribute('content','width=device-width, initial-scale='+scale+', maximum-scale='+scale+', user-scalable=no');
 		
 <!-- import pages -->	
-$(window).ready(function(){
+$(function(){
        								
 	  
-	  $(".clock").load("pages/clock.html");									<!-- load clock page --> 
-	  $(".page1").load("pages/page1.html");									<!-- load page 1 -->
-      $(".page2").load("pages/page2.html");									<!-- load page 2 -->
-      $(".page3").load("pages/page3.html");									<!-- load page 3 -->
-      $(".page4").load("pages/page4.html");									<!-- load page 4 -->
-	  $(".page5").load("pages/page5.html");									<!-- load page 5 -->
-	  $(".logs").load("pages/logs.html");									<!-- load logs -->
-           
-    
-	  
+	$(".clock").load("pages/clock.html");									<!-- load clock page --> 
+	$(".page1").load("pages/page1.html");									<!-- load page 1 -->
+    $(".page2").load("pages/page2.html");									<!-- load page 2 -->
+    $(".page3").load("pages/page3.html");									<!-- load page 3 -->
+    $(".page4").load("pages/page4.html");									<!-- load page 4 -->
+	$(".page5").load("pages/page5.html");									<!-- load page 5 -->
+	$(".logs").load("pages/logs.html");									<!-- load logs -->
+	
+	
+	
 	setTimeout(RefreshData , 100);
 	setTimeout(GetCams , 500);
-	setTimeout(LoadMeteoWidget , 3000);
-	
+	setTimeout(LoadMeteoWidget , 3000);           
 });
-	
+
 //-->
 </script>	
 </head>
