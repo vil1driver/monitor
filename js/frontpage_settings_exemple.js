@@ -80,12 +80,12 @@ var direction = 'index';						// si delai est différent de 0, choix d'aller à 
 <!-- Display -->
 var zoom = -3;								// ajustage de la valeur de zoom
 
-//Pattern_start
+
 // ############################################################################################################
 // #### vvvvv   USER VALUES below vvvvv   #######
 // ############################################################################################################
 
-$(document).ready(function() {
+
         $.roomplan = 2;           // define roomplan in Domoticz and create items below. (0 = all devices, not limited to a roomplan)
 		
 		//$.domoticzurl = "http://192.168.22.100:8080";	// url de connection à domoticz (ex: http://paul:ochon@toto.com:8765)
@@ -230,8 +230,6 @@ $(document).ready(function() {
 // ############################################################################################################
 // #### ^^^^^   USER VALUES above ^^^^^   #######
 // ############################################################################################################
-//Pattern_end
 
-});
 
 
