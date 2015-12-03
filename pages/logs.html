@@ -36,14 +36,11 @@ hauteur: 541px
 function RefreshLogData() {
     clearInterval($.refreshTimerLog);
 
-    //console.log('Getting: Logs');
-    var jgurl = $.domoticzurl + "/json.htm?type=command&param=getlog";
-    //console.log(jgurl);
-
+    
     $.ajax({
         dataType: "json",
-        async: false,
-        url: jgurl + '&jsoncallback=?',
+        async: true,
+        url: $.domoticzurl + "/json.htm?type=command&param=getlog&jsoncallback=?",
     }).done(function(data) {
         var arrData = [];
         $.each(data.result, function(i, item) {
