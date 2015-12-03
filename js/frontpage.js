@@ -79,13 +79,13 @@ function RefreshGraphData(xIDX, vdesc, vtype, vrange, vpara, vunit) {
 		var vunit = 'degrees Celcius';
 	*/
 		
-        var jgurl = $.domoticzurl + "/json.htm?type=graph&sensor=" + vtype + "&idx=" + xIDX + "&range=" + vrange;
+        //var jgurl = $.domoticzurl + "/json.htm?type=graph&sensor=" + vtype + "&idx=" + xIDX + "&range=" + vrange;
         //console.log(jgurl);
 
         $.ajax({
             dataType: "json",
             async: true,
-            url: jgurl + '&jsoncallback=?',
+            url: $.domoticzurl + "/json.htm?type=graph&sensor=" + vtype + "&idx=" + xIDX + "&range=" + vrange + '&jsoncallback=?',
             xIDX: xIDX,
 			vdesc: vdesc,
 			vtype: vtype,
@@ -252,11 +252,15 @@ function RefreshData()
 		
 	//Get sunrise/sunset
 	
-	$.getJSON($.domoticzurl+"/json.htm?type=command&param=getSunRiseSet&jsoncallback=?",
-	{
-		format: "json"
-	},
-	function(data) {
+//	$.getJSON($.domoticzurl+"/json.htm?type=command&param=getSunRiseSet&jsoncallback=?",
+//	{
+//		format: "json"
+//	},
+	$.ajax({
+            dataType: "json",
+            async: true,
+            url: $.domoticzurl + "/json.htm?type=command&param=getSunRiseSet&jsoncallback=?",
+        }).done(function(data) {
 		if (typeof data != 'undefined') {
                         $.each(data, function(i,item){
 				if ( i == 'Sunrise' ) {
@@ -337,14 +341,18 @@ function RefreshData()
 													}	
 												}
 												
-	})//;
-	.success(function() {
 	//	console.log("connection success");
 		$('#popup_offline').fadeOut(fad_Duration);
         $('#fade2').fadeOut(fad_Duration);
-		error = 0;
-	})
-	.error(function() {
+		error = 0;											
+	})//;
+//	.success(function() {
+	//	console.log("connection success");
+//		$('#popup_offline').fadeOut(fad_Duration);
+//        $('#fade2').fadeOut(fad_Duration);
+//		error = 0;
+//	})
+	.fail(function() {
 		error += 1;
 		console.log("ERROR connect to " + $.domoticzurl);
 		if( error >= 3 ) 
@@ -363,16 +371,29 @@ function RefreshData()
 		
 		// affichage de la partie switch
 
-        $.getJSON($.domoticzurl+"/json.htm?type=devices&plan="+$.roomplan+"&jsoncallback=?",
-        {
-                format: "json"
-        },
-        function(data) {
-                if (typeof data.result != 'undefined') {
+ //       $.getJSON($.domoticzurl+"/json.htm?type=devices&plan="+$.roomplan+"&jsoncallback=?",
+  //      {
+  //              format: "json"
+  //      },
+        $.ajax({
+            dataType: "json",
+            async: true,
+            url: $.domoticzurl + "/json.htm?type=devices&plan=" + $.roomplan + "&jsoncallback=?",
+        }).done(function(data) {
+                
+				if (typeof data.result != 'undefined') {
      
 						$.each(data.result, function(i,item){
-                                for( var ii = 0, len = $.PageArray.length; ii < len; ii++ ) {
-                                        if( $.PageArray[ii][0] === item.idx || $.PageArray[ii][0] === item.Name ) {         				// Domoticz idx number
+						//    for( var ii = 0, len = $.PageArray.length; ii < len; ii++ ) {
+							var ii = 0, len = $.PageArray.length;
+							jsKata.nofreeze.forloop(
+								  // the condition
+								  function() { return ii < len;  }, 
+								  // the incrementor
+								  function() { ii++; },
+								  // this is what will be executed
+								  function fct() {
+										if( $.PageArray[ii][0] === item.idx || $.PageArray[ii][0] === item.Name ) {         				// Domoticz idx number
                                                 var vtype=      $.PageArray[ii][1];             		// Domotitcz type (like Temp, Humidity)
                                                 var vlabel=     $.PageArray[ii][2];                     // cell number from HTML layout
                                                 var vdesc=      $.PageArray[ii][3];                     // description
@@ -1027,7 +1048,7 @@ function RefreshData()
 												} 
 										}
                                         
-                                }
+                                });
                         });
                 }
         });
@@ -1036,16 +1057,28 @@ function RefreshData()
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////													
 		// affichage de la partie scène/groupe
     
-        $.getJSON($.domoticzurl+"/json.htm?type=scenes&plan="+$.roomplan+"&jsoncallback=?",
-        {
-                format: "json"
-        },
-        function(data) {
+//        $.getJSON($.domoticzurl+"/json.htm?type=scenes&plan="+$.roomplan+"&jsoncallback=?",
+ //       {
+ //               format: "json"
+ //       },
+        $.ajax({
+            dataType: "json",
+            async: true,
+            url: $.domoticzurl + "/json.htm?type=scenes&plan=" + $.roomplan + "&jsoncallback=?",
+        }).done(function(data) {
                 if (typeof data.result != 'undefined') {
 
                         $.each(data.result, function(i,item){
-                                for( var ii = 0, len = $.PageArray_Scenes.length; ii < len; ii++ ) {
-                                        if( $.PageArray_Scenes[ii][0] === item.idx || $.PageArray_Scenes[ii][0] === item.Name ) {          				// Domoticz idx number
+                            //    for( var ii = 0, len = $.PageArray_Scenes.length; ii < len; ii++ ) {
+                                var ii = 0, len = $.PageArray_Scenes.length;
+							jsKata.nofreeze.forloop(
+								  // the condition
+								  function() { return ii < len;  }, 
+								  // the incrementor
+								  function() { ii++; },
+								  // this is what will be executed
+								  function fct() {
+								  if( $.PageArray_Scenes[ii][0] === item.idx || $.PageArray_Scenes[ii][0] === item.Name ) {          				// Domoticz idx number
                                                 var vtype=      $.PageArray_Scenes[ii][1];              		// Domotitcz type (like Temp, Humidity)
                                                 var vlabel=     $.PageArray_Scenes[ii][2];                      // cell number from HTML layout
                                                 var vdesc=      $.PageArray_Scenes[ii][3];                      // description
@@ -1132,7 +1165,7 @@ function RefreshData()
 													$('div.desc_'+vlabel).html(vdesc);
                                                 }
                                         }
-                                }
+                                });
                         });
                 }
         });
@@ -1150,8 +1183,15 @@ function RefreshData()
 // One shot get cams
 function GetCams()
 {
-		for( var ii = 0, len = $.PageArray.length; ii < len; ii++ ) {
-		
+	//	for( var ii = 0, len = $.PageArray.length; ii < len; ii++ ) {
+	     var ii = 0, len = $.PageArray.length;
+							jsKata.nofreeze.forloop(
+								  // the condition
+								  function() { return ii < len;  }, 
+								  // the incrementor
+								  function() { ii++; },
+								  // this is what will be executed
+								  function fct() {	
 										if ( $.PageArray[ii][1] === 'Camera' ) { 			//Special nummer, link in cell (test)
                                                 												
 												var vlabel=     $.PageArray[ii][2];             // cell number from HTML layout
@@ -1186,7 +1226,7 @@ function GetCams()
 													$('div.desc_'+vlabel).html('');
 												}
 										}
-		}	
+		});	
 }
 
 //Switch state off a scene/group
