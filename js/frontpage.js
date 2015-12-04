@@ -1046,6 +1046,18 @@ function RefreshData()
                                                  if ($('div.desc_'+vlabel).length > 0) {
 													$('div.desc_'+vlabel).html(vdesc);
 												}	 
+										}
+										else if ( $.PageArray[ii][1] === 'MonthYear' ) { 			//Special nummer, Date in cell (test)
+                                                var vlabel=     $.PageArray[ii][2];             // cell number from HTML layout
+                                                var vdata=      currentMonthYear();             		// Get present time
+                                                var vdesc = '';
+                                                var vattr=    $.PageArray[ii][6];             	// extra css attributes
+                                                var valarm=     $.PageArray[ii][7];             // alarm value to turn text to red
+                                                
+                                                $('div.'+vlabel).html( '<div style='+vattr+'>'+vdata+'</div>');
+                                                 if ($('div.desc_'+vlabel).length > 0) {
+													$('div.desc_'+vlabel).html(vdesc);
+												}	 
 										}	
                                         else if ( $.PageArray[ii][1] === 'SunRise' ) { 			//Special nummer, zonsop/onder in cell (test)
                                                 var vlabel=     $.PageArray[ii][2];             // cell number from HTML layout
@@ -1444,7 +1456,7 @@ function ChangeTherm(dimtype,stepsize,idx,currentvalue,thermmax)
 	}
 
 
-// heure et date
+// time and date
 function currentTime() {
     var today=new Date();
     var h=today.getHours().toString();
@@ -1499,6 +1511,16 @@ function currentDate() {
 		// affiche sans le mois 
 		var ret_str = "<span style='font-size:50%;'>"+day+" "+dag+"</span>";
 	}
+	return ret_str;
+}
+
+// month and year
+function currentMonthYear() {
+    var today=new Date();
+    var months = ["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Aout","Septembre","Octobre","Novembre","Décembre"];
+    var maand = months[(today.getMonth()).toString()];
+	var year = today.getFullYear().toString();
+    var ret_str = "<span style='font-size:60%;position:relative;top:-5px;'>"+maand+"</span><br><span style='font-size:55%;position:relative;top:-40px;'>"+year+"</span>";
 	return ret_str;
 }
 
