@@ -68,21 +68,12 @@ function LoadMeteoWidget() {
 		$('#popup_meteo2').html('<img src="http://www.prevision-meteo.ch/uploads/widget/'+city+'_2.png#' + new Date().getTime()+'" width="650" height="250" alt="Ville inconnue..">');
 		$('#popup_meteo3').html('<img src="http://www.prevision-meteo.ch/uploads/widget/'+city+'_3.png#' + new Date().getTime()+'" width="650" height="250" alt="Ville inconnue..">');
 	}	
-	setInterval(LoadMeteoWidget, 7200000); 	// rechargement toutes les 2 heures
+	setInterval(LoadMeteoWidget, 7200000); 	// refresh every 2 hours
 }
 
 function RefreshGraphData(xIDX, vdesc, vtype, vrange, vpara, vunit) {
-    /* 
-		var vtype = 'temp';
-		var vrange = 'day';
-		var vpara = 'te';
-		var vunit = 'degrees Celcius';
-	*/
 		
-        //var jgurl = $.domoticzurl + "/json.htm?type=graph&sensor=" + vtype + "&idx=" + xIDX + "&range=" + vrange;
-        //console.log(jgurl);
-
-        $.ajax({
+		$.ajax({
             dataType: "json",
             async: true,
             url: $.domoticzurl + "/json.htm?type=graph&sensor=" + vtype + "&idx=" + xIDX + "&range=" + vrange + '&jsoncallback=?',
@@ -294,7 +285,7 @@ function RefreshData()
 		//console.log(mdate);
 	  
 		if (mdate >= '1222') { 
-			//console.log('Hiver'); 
+			//console.log('winter'); 
 			if ( typeof bg_day_winter != 'undefined' && bg_day_winter != '') {
 				bg_day = bg_day_winter;
 			}
@@ -303,7 +294,7 @@ function RefreshData()
 			}
 		} 
 		else if (mdate >= '0923') { 
-			//console.log('Automne'); 
+			//console.log('autumn'); 
 			if ( typeof bg_day_autumn != 'undefined' && bg_day_autumn != '') {
 				bg_day = bg_day_autumn;
 			}
@@ -312,7 +303,7 @@ function RefreshData()
 			}
 		} 
 		else if (mdate >= '0621') { 
-			//console.log('Été'); 
+			//console.log('summer'); 
 			if ( typeof bg_day_summer != 'undefined' && bg_day_summer != '') {
 				bg_day = bg_day_summer;
 			}
@@ -321,7 +312,7 @@ function RefreshData()
 			}
 		} 
 		else { 
-		//console.log('Printemps'); 
+		//console.log('spring'); 
 			if ( typeof bg_day_spring != 'undefined' && bg_day_spring != '') {
 				bg_day = bg_day_spring;
 			}
@@ -379,7 +370,7 @@ function RefreshData()
 				document.body.style.backgroundSize=bg_size;
 				// day clock background
 				if ($('div.horloge').length > 0) {
-				$('div.horloge').css('-webkit-filter', 'invert(0)');
+					$('div.horloge').css('-webkit-filter', 'invert(0)');
 					$('div.horloge').css('filter', 'invert(0)');
 					$('div.horloge').css('border', '10px solid #3A5486');
 					$('div.horloge').css('box-shadow', '0 0 10px #000000, 0 0 50px 10px #CCCCCC inset');
@@ -397,7 +388,6 @@ function RefreshData()
 		console.log("ERROR connect to " + $.domoticzurl);
 		if( error >= 3 ) 
 		{
-			//window.scrollTo(0,0);
 			$('#popup_offline').fadeIn(fad_Duration);
 			$('#fade2').fadeIn(fad_Duration);
 		}else{
@@ -431,7 +421,7 @@ function RefreshData()
                                                 var vtype=      $.PageArray[ii][1];             		// Domotitcz type (like Temp, Humidity)
                                                 var vlabel=     $.PageArray[ii][2];                     // cell number from HTML layout
                                                 var vdesc=      $.PageArray[ii][3];                     // description
-												var lastseen=   $.PageArray[ii][4];						//Display lastseen or noT
+												var lastseen=   $.PageArray[ii][4];						// display lastseen or noT
                                                 var vplusmin=   $.PageArray[ii][5];             		// minplus buttons
                                                 var vattr=      $.PageArray[ii][6];                     // extra css attributes
                                                 var valarm=     $.PageArray[ii][7];             		// alarm value to turn text to red
@@ -732,6 +722,7 @@ function RefreshData()
 												if (typeof HumidityStatus[vdata] != 'undefined') {
 													vdata = HumidityStatus[vdata];
 												}	
+												
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////													
                                                 												
 												// create switchable value when item is switch
@@ -839,11 +830,18 @@ function RefreshData()
 															var element = document.getElementsByClassName(vlabel);
 
 															// Iterate through the retrieved elements and add the necessary class names.
-															for(var i = 0; i < element.length; i++)
-															{
-																element[i].classList.add('blink_me');
-																//console.log(element[i].className);
-															}
+														//	for(var i = 0; i < element.length; i++){
+															var i = 0;
+															jsKata.nofreeze.forloop(
+																  // the condition
+																  function() { return i < element.length;  }, 
+																  // the incrementor
+																  function() { i++; },
+																  // this is what will be executed
+																  function fct() {
+																		element[i].classList.add('blink_me');
+																		//console.log(element[i].className);
+																	});
 														}		
 													}
 													else if ( $( "."+vlabel ).hasClass( "blink_me" ) ) {
@@ -851,17 +849,24 @@ function RefreshData()
 															var element = document.getElementsByClassName(vlabel);
 
 															// Iterate through the retrieved elements and add the necessary class names.
-															for(var i = 0; i < element.length; i++)
-															{
-																element[i].classList.remove('blink_me');
-																//console.log(element[i].className);
-															}
+														//	for(var i = 0; i < element.length; i++){
+															var i = 0;
+															jsKata.nofreeze.forloop(
+																  // the condition
+																  function() { return i < element.length;  }, 
+																  // the incrementor
+																  function() { i++; },
+																  // this is what will be executed
+																  function fct() {
+																		element[i].classList.remove('blink_me');
+																		//console.log(element[i].className);
+																	});
 													}
 												}
 												
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 											
-												// on change la couleur suivant la température
+												// temp color 
 												if(vtype == 'Temp') {
 														 if (parseInt(vdata, 10) >= 35) { vattr=new String(vattr).replace( vattr,'color:'+T35+';' + vattr); } 
 													else if (parseInt(vdata, 10) >= 34) { vattr=new String(vattr).replace( vattr,'color:'+T34+';' + vattr); } 
@@ -904,7 +909,7 @@ function RefreshData()
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 											
-											// gestion des unitées et graphs
+											// graphs and units
 												
 												// Adds °C after the temperature
 										 		if(vtype == 'Temp'){   
@@ -1005,7 +1010,7 @@ function RefreshData()
                                                 var vlabel=     $.PageArray[ii][2];             // cell number from HTML layout
                                                 var vdata=      $.PageArray[ii][3];             // description (link in this case
                                                 var vdesc = '';
-                                                var valarm=     $.PageArray[ii][7];             // alarm value to turn text to red
+                                                var valarm= '';             // alarm value to turn text to red
                                                 
 												$('div.'+vlabel).html('');
                                                 if ($('div.desc_'+vlabel).length > 0) {
@@ -1015,24 +1020,24 @@ function RefreshData()
 										else if ( $.PageArray[ii][1] === 'Link' ) { 			//Special nummer, link in cell (test)
                                                 var vlabel=     $.PageArray[ii][2];             // cell number from HTML layout
                                                 var vdata=      $.PageArray[ii][3];             // description (link in this case
-                                                var vdesc = '';
-                                                var valarm=     $.PageArray[ii][7];             // alarm value to turn text to red
+                                                var vdesc= '';
+                                                var valarm=  '';             // alarm value to turn text to red
                                                 
                                                 $('div.'+vlabel).html( '<div>'+vdata+'</div>');
                                                 if ($('div.desc_'+vlabel).length > 0) {
-													$('div.desc_'+vlabel).html(vdesc);
+													$('div.desc_'+vlabel).html('');
 												}	
                                         }
 										else if ( $.PageArray[ii][1] === 'Clock' ) { 			//Special nummer, Clock in cell (test)
                                                 var vlabel=     $.PageArray[ii][2];             // cell number from HTML layout
                                                 var vdata=      currentTime();             		// Get present time
-                                                var vdesc = '';
+                                                var vdesc= '';
                                                 var vattr=    $.PageArray[ii][6];             	// extra css attributes
-                                                var valarm=     $.PageArray[ii][7];             // alarm value to turn text to red
+                                                var valarm=   '';             // alarm value to turn text to red
                                                 
                                                 $('div.'+vlabel).html( '<div style='+vattr+'>'+vdata+'</div>');
                                                  if ($('div.desc_'+vlabel).length > 0) {
-													$('div.desc_'+vlabel).html(vdesc);
+													$('div.desc_'+vlabel).html('');
 												}	 
 										}
 										else if ( $.PageArray[ii][1] === 'Date' ) { 			//Special nummer, Date in cell (test)
@@ -1040,11 +1045,11 @@ function RefreshData()
                                                 var vdata=      currentDate();             		// Get present time
                                                 var vdesc = '';
                                                 var vattr=    $.PageArray[ii][6];             	// extra css attributes
-                                                var valarm=     $.PageArray[ii][7];             // alarm value to turn text to red
+                                                var valarm=    '';             // alarm value to turn text to red
                                                 
                                                 $('div.'+vlabel).html( '<div style='+vattr+'>'+vdata+'</div>');
                                                  if ($('div.desc_'+vlabel).length > 0) {
-													$('div.desc_'+vlabel).html(vdesc);
+													$('div.desc_'+vlabel).html('');
 												}	 
 										}
 										else if ( $.PageArray[ii][1] === 'MonthYear' ) { 			//Special nummer, Date in cell (test)
@@ -1052,18 +1057,18 @@ function RefreshData()
                                                 var vdata=      currentMonthYear();             		// Get present time
                                                 var vdesc = '';
                                                 var vattr=    $.PageArray[ii][6];             	// extra css attributes
-                                                var valarm=     $.PageArray[ii][7];             // alarm value to turn text to red
+                                                var valarm=   '';             // alarm value to turn text to red
                                                 
                                                 $('div.'+vlabel).html( '<div style='+vattr+'>'+vdata+'</div>');
                                                  if ($('div.desc_'+vlabel).length > 0) {
-													$('div.desc_'+vlabel).html(vdesc);
+													$('div.desc_'+vlabel).html('');
 												}	 
 										}	
                                         else if ( $.PageArray[ii][1] === 'SunRise' ) { 			//Special nummer, zonsop/onder in cell (test)
                                                 var vlabel=     $.PageArray[ii][2];             // cell number from HTML layout
                                                 var vdesc = '';
                                                 var vattr=    $.PageArray[ii][6];             	// extra css attributes
-                                                var valarm=     $.PageArray[ii][7];             // alarm value to turn text to red
+                                                var valarm=   '';             // alarm value to turn text to red
 
                                                 $('div.'+vlabel).html( '<div style='+vattr+'>'+var_sunrise+'</div>');
                                                  if ($('div.desc_'+vlabel).length > 0) {
@@ -1074,7 +1079,7 @@ function RefreshData()
                                                 var vlabel=     $.PageArray[ii][2];             // cell number from HTML layout
                                                 var vdesc = '';
                                                 var vattr=    $.PageArray[ii][6];             	// extra css attributes
-                                                var valarm=     $.PageArray[ii][7];             // alarm value to turn text to red
+                                                var valarm=    '';             // alarm value to turn text to red
 
                                                 $('div.'+vlabel).html( '<div style='+vattr+'>'+var_sunset+'</div>');
                                                  if ($('div.desc_'+vlabel).length > 0) {
@@ -1085,7 +1090,7 @@ function RefreshData()
                                                 var vlabel=     $.PageArray[ii][2];             // cell number from HTML layout
                                                 var vdesc = '';
                                                 var vattr=    $.PageArray[ii][6];             	// extra css attributes
-                                                var valarm=     $.PageArray[ii][7];             // alarm value to turn text to red
+                                                var valarm=   '';             // alarm value to turn text to red
 												
                                                 $('div.'+vlabel).html( '<div style='+vattr+'><img src=icons/sun.png  height="15" width="15" style="PADDING-RIGHT: 2px;">'+var_sunrise+'<img src=icons/moon.png  height="15" width="15" style="PADDING-LEFT: 15px;">'+var_sunset+'</div>');
                                                  if ($('div.desc_'+vlabel).length > 0) {
@@ -1112,7 +1117,7 @@ function RefreshData()
 
                         $.each(data.result, function(i,item){
                             //    for( var ii = 0, len = $.PageArray_Scenes.length; ii < len; ii++ ) {
-                                var ii = 0, len = $.PageArray_Scenes.length;
+                            var ii = 0, len = $.PageArray_Scenes.length;
 							jsKata.nofreeze.forloop(
 								  // the condition
 								  function() { return ii < len;  }, 
@@ -1213,7 +1218,7 @@ function RefreshData()
         });
 		
 		
-        $.refreshTimer = setInterval(RefreshData, 8000); // auto refresh page 8 secondes
+        $.refreshTimer = setInterval(RefreshData, refresh); // auto refresh page 8 secondes
 		
 }
 
@@ -1374,6 +1379,7 @@ else
         }
 				
 }
+
 //Dimmer, 0-100
 function DimLevel100(OpenDicht,level,idx)
 {
@@ -1418,12 +1424,11 @@ function DimLevel100(OpenDicht,level,idx)
                         }
                 });
           }
-        
- 		
 }
+
 // thermostat
 function ChangeTherm(dimtype,stepsize,idx,currentvalue,thermmax)
-	{
+{
 	 newvalue='';
 	  //console.log(dimtype,stepsize,idx,currentvalue,thermmax)
 	 if (dimtype == 'plus') { 
@@ -1453,8 +1458,7 @@ function ChangeTherm(dimtype,stepsize,idx,currentvalue,thermmax)
      }
  	});
  		
-	}
-
+}
 
 // time and date
 function currentTime() {
@@ -1481,10 +1485,10 @@ function currentTime() {
     var maand = months[(today.getMonth()).toString()];
 	
     if (showMonth == true){
-		// affiche avec le mois 
+		// with month
 		var ret_str = "<span style='font-size:120%;position:relative;top:-5px;'>"+h+":"+m+"</span><br><span style='font-size:35%;position:relative;top:-40px;'>"+day+" "+dag+" "+maand+"</span>";
 	}else{
-		// affiche sans le mois 
+		// without month
 		var ret_str = "<span style='font-size:120%;position:relative;top:-5px;'>"+h+":"+m+"</span><br><span style='font-size:35%;position:relative;top:-40px;'>"+day+" "+dag+"</span>";
 	}
 	return ret_str;
@@ -1505,10 +1509,10 @@ function currentDate() {
     var maand = months[(today.getMonth()).toString()];
 	
     if (showMonth == true){
-		// affiche avec le mois 
+		// with month
 		var ret_str = "<span style='font-size:50%;'>"+day+" "+dag+" "+maand+"</span>";
 	}else{
-		// affiche sans le mois 
+		// without month
 		var ret_str = "<span style='font-size:50%;'>"+day+" "+dag+"</span>";
 	}
 	return ret_str;
@@ -1524,28 +1528,16 @@ function currentMonthYear() {
 	return ret_str;
 }
 
-// mise en forme heure de réveil
+// wakeup time format
 function goodmorning(v) {
 	//(format 15:00-1-10/02/2015)
-	
-	// heures
 	var h = v.substring(0, 2);
-	
-	// minutes
 	var m = v.substring(3, 5);
-	
-	// date
 	var date = v.substring(8, 10);
-	
-	// jour de la semaine
 	var days = ["Dimanche","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi"];
 	var day = days[v.substring(6, 7)-1];
-	
-	// mois
 	var months = ["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Aout","Septembre","Octobre","Novembre","Décembre"];
 	var month = months[v.substring(11, 13).replace(/^0+/, '')-1];
-	
-	// année
 	var year = v.substring(14,18);
 	
 	var now = new Date();
@@ -1554,14 +1546,14 @@ function goodmorning(v) {
 	//console.log("wakeup: ", wakeup);
 	
 	if (showMonth == true) {
-	// affiche avec le mois 
+	// with month 
 	var ret_str = "<span style='font-size:100%;position:relative;top:-5px;'>"+h+":"+m+"</span><br><span style='font-size:35%;position:relative;top:-40px;'>"+day+" "+date+" "+month+"</span>";
 	}
 	else {
-	// affiche sans le mois 
+	// without month
 	var ret_str = "<span style='font-size:100%;position:relative;top:-5px;'>"+h+":"+m+"</span><br><span style='font-size:35%;position:relative;top:-40px;'>"+day+" "+date+"</span>";
 	}
-	// si l'alarme désactivée ou passée.
+	
 	if (now > wakeup) {
 		//var ret_str = "ZZzzz";
 		var ret_str = "<img src=icons/sleep.png  height='70' width='70'>"; 

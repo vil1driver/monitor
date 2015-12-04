@@ -87,6 +87,7 @@ var direction = 'next';						// si delai est différent de 0, choix d'aller à l
 
 <!-- Display -->
 var zoom = 0;								// ajustage de la valeur de zoom (valeurs négatives autorisées)
+var refresh = 8000;							// temps entre 2 rafraîchissements (en millisecondes)
 
 // ############################################################################################################
 // #### vvvvv   USER VALUES below vvvvv   #######
