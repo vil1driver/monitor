@@ -250,12 +250,6 @@ function RefreshData()
 		//console.log('refresh');
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 		
-	//Get sunrise/sunset
-	
-//	$.getJSON($.domoticzurl+"/json.htm?type=command&param=getSunRiseSet&jsoncallback=?",
-//	{
-//		format: "json"
-//	},
 	$.ajax({
             dataType: "json",
             async: true,
@@ -265,13 +259,11 @@ function RefreshData()
                         $.each(data, function(i,item){
 				if ( i == 'Sunrise' ) {
 					//console.log("Opgang: ", item);
-					//var_sunrise = item;
 					var_sunrise = item.substring(0, 5);
 					
 				}
 				else if ( i == 'Sunset' ) {
 					//console.log("Ondergang: ", item);
-					//var_sunset = item;
 					var_sunset = item.substring(0, 5);
 					
 				}
@@ -281,78 +273,126 @@ function RefreshData()
 		else {
 		  console.log('Undefined');
 		}
+		var today=new Date();
 		
-									 			// change background image, depending on sunset and sunrise
-												// and set IsNight for meteo icon changing
-												var today=new Date();
-												
-												var h1 = today.getHours();
-												var m1 = today.getMinutes();
+		// get season
+
+		var dagmdate=today.getDate().toString();
+		dagmdate = dagmdate.trim();
+		if (dagmdate.length == 1) { 
+		dagmdate = '0'+ dagmdate;
+		}
+		
+		var maandmdate=(today.getMonth()+1).toString();
+		maandmdate = maandmdate.trim();
+		if (maandmdate.length == 1) { 
+		maandmdate = '0'+ maandmdate;
+		}
+		
+		mdate = maandmdate + dagmdate;
+		
+		//console.log(mdate);
+	  
+		if (mdate >= '1222') { 
+			//console.log('Hiver'); 
+			if ( typeof bg_day_winter != 'undefined' && bg_day_winter != '') {
+				bg_day = bg_day_winter;
+			}
+			if ( typeof bg_night_winter != 'undefined' && bg_night_winter != '') {
+				bg_night = bg_night_winter; 
+			}
+		} 
+		else if (mdate >= '0923') { 
+			//console.log('Automne'); 
+			if ( typeof bg_day_autumn != 'undefined' && bg_day_autumn != '') {
+				bg_day = bg_day_autumn;
+			}
+			if ( typeof bg_night_autumn != 'undefined' && bg_night_autumn != '') {
+				bg_night = bg_night_autumn; 
+			}
+		} 
+		else if (mdate >= '0621') { 
+			//console.log('Été'); 
+			if ( typeof bg_day_summer != 'undefined' && bg_day_summer != '') {
+				bg_day = bg_day_summer;
+			}
+			if ( typeof bg_night_summer != 'undefined' && bg_night_summer != '') {
+				bg_night = bg_night_summer; 
+			}
+		} 
+		else { 
+		//console.log('Printemps'); 
+			if ( typeof bg_day_spring != 'undefined' && bg_day_spring != '') {
+				bg_day = bg_day_spring;
+			}
+			if ( typeof bg_night_spring != 'undefined' && bg_night_spring != '') {
+				bg_night = bg_night_spring; 
+			}
+		} 
+ 
+		// change background image, depending on day/night/season
+		// and set IsNight for meteo icon changing
+																									
+		var h1 = today.getHours();
+		var m1 = today.getMinutes();
+														
+		var h2 = var_sunrise.substring(0, 2);
+		var m2 = var_sunrise.substring(3, 5);
 													
-												var h2 = var_sunrise.substring(0, 2);
-												var m2 = var_sunrise.substring(3, 5);
+		var h3 = var_sunset.substring(0, 2);
+		var m3 = var_sunset.substring(3, 5);
+													
+													
+		h2 = parseInt(h2, 10);
+		m2 = parseInt(m2, 10);
+		h3 = parseInt(h3, 10);
+		m3 = parseInt(m3, 10); 
+		
+		var t1 = (60 * h1) + m1;	// time
+		var t2 = (60 * h2) + m2;	// sunrise
+		var t3 = (60 * h3) + m3;	// sunset
+		
+		if ( t1 > t3 || t1 < t2) {
+			// night
+			IsNight = 'Yes';
+			if ( typeof bg_day != 'undefined' ) {
+				// night background
+				$('<style>html::after{background:rgba(0,0,0,'+bg_nightBright+')}</style>').appendTo('head');
+				document.body.style.background='black url(icons/'+bg_night+') no-repeat top center fixed';
+				document.body.style.backgroundSize=bg_size;
+				// night clock background
+				if ($('div.horloge').length > 0) {
+					$('div.horloge').css('-webkit-filter', 'invert(1)');
+					$('div.horloge').css('filter', 'invert(1)');
+					$('div.horloge').css('border', '10px solid #C5AB79');
+					$('div.horloge').css('box-shadow', '0 0 10px #ffffff, 0 0 50px 10px #cccccc inset');
+					$('<style>.horloge:before {box-shadow: -2px -2px 5px #ffffff inset, -2px 2px 5px #ffffff inset, 2px -2px 5px #ffffff inset, 2px 2px 5px #ffffff inset}</style>').appendTo('head');
+				}
+			}	
+		} else {
+			// day
+			IsNight = 'No';
+			if ( typeof bg_night != 'undefined' ) {
+				// day background
+				$('<style>html::after{background:rgba(0,0,0,'+bg_dayBright+')}</style>').appendTo('head');
+				document.body.style.background='black url(icons/'+bg_day+') no-repeat top center fixed';													
+				document.body.style.backgroundSize=bg_size;
+				// day clock background
+				if ($('div.horloge').length > 0) {
+				$('div.horloge').css('-webkit-filter', 'invert(0)');
+					$('div.horloge').css('filter', 'invert(0)');
+					$('div.horloge').css('border', '10px solid #3A5486');
+					$('div.horloge').css('box-shadow', '0 0 10px #000000, 0 0 50px 10px #CCCCCC inset');
+					$('<style>.horloge:before {box-shadow: -2px -2px 5px #000000 inset, -2px 2px 5px #000000 inset, 2px -2px 5px #000000 inset, 2px 2px 5px #000000 inset}</style>').appendTo('head');
+				}	
+			}	
+		}
 												
-												var h3 = var_sunset.substring(0, 2);
-												var m3 = var_sunset.substring(3, 5);
-												
-												
-												h2 = parseInt(h2, 10);
-												m2 = parseInt(m2, 10);
-												h3 = parseInt(h3, 10);
-												m3 = parseInt(m3, 10); 
-												
-												var t1 = (60 * h1) + m1;	// time
-												var t2 = (60 * h2) + m2;	// sunrise
-												var t3 = (60 * h3) + m3;	// sunset
-												
-												if ( t1 > t3 || t1 < t2) {
-													// night
-													IsNight = 'Yes';
-													if ( typeof bg_day != 'undefined' ) {
-														// night background
-														$('<style>html::after{background:rgba(0,0,0,'+bg_nightBright+')}</style>').appendTo('head');
-														document.body.style.background='black url(icons/'+bg_night+') no-repeat top center fixed';
-														document.body.style.backgroundSize=bg_size;
-														// night clock background
-														if ($('div.horloge').length > 0) {
-															$('div.horloge').css('-webkit-filter', 'invert(1)');
-															$('div.horloge').css('filter', 'invert(1)');
-															$('div.horloge').css('border', '10px solid #C5AB79');
-															$('div.horloge').css('box-shadow', '0 0 10px #ffffff, 0 0 50px 10px #cccccc inset');
-															$('<style>.horloge:before {box-shadow: -2px -2px 5px #ffffff inset, -2px 2px 5px #ffffff inset, 2px -2px 5px #ffffff inset, 2px 2px 5px #ffffff inset}</style>').appendTo('head');
-														}
-													}	
-												} else {
-													// day
-													IsNight = 'No';
-													if ( typeof bg_night != 'undefined' ) {
-														// day background
-														$('<style>html::after{background:rgba(0,0,0,'+bg_dayBright+')}</style>').appendTo('head');
-														document.body.style.background='black url(icons/'+bg_day+') no-repeat top center fixed';													
-														document.body.style.backgroundSize=bg_size;
-														// day clock background
-														if ($('div.horloge').length > 0) {
-															$('div.horloge').css('-webkit-filter', 'invert(0)');
-															$('div.horloge').css('filter', 'invert(0)');
-															$('div.horloge').css('border', '10px solid #3A5486');
-															$('div.horloge').css('box-shadow', '0 0 10px #000000, 0 0 50px 10px #CCCCCC inset');
-															$('<style>.horloge:before {box-shadow: -2px -2px 5px #000000 inset, -2px 2px 5px #000000 inset, 2px -2px 5px #000000 inset, 2px 2px 5px #000000 inset}</style>').appendTo('head');
-														}	
-													}	
-												}
-												
-	//	console.log("connection success");
+		//	console.log("connection success");
 		$('#popup_offline').fadeOut(fad_Duration);
         $('#fade2').fadeOut(fad_Duration);
 		error = 0;											
-	})//;
-//	.success(function() {
-	//	console.log("connection success");
-//		$('#popup_offline').fadeOut(fad_Duration);
-//        $('#fade2').fadeOut(fad_Duration);
-//		error = 0;
-//	})
-	.fail(function() {
+	}).fail(function() {
 		error += 1;
 		console.log("ERROR connect to " + $.domoticzurl);
 		if( error >= 3 ) 
@@ -366,16 +406,10 @@ function RefreshData()
 			
 	});
 	
+	
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 	
-		
-		// affichage de la partie switch
-
- //       $.getJSON($.domoticzurl+"/json.htm?type=devices&plan="+$.roomplan+"&jsoncallback=?",
-  //      {
-  //              format: "json"
-  //      },
-        $.ajax({
+		$.ajax({
             dataType: "json",
             async: true,
             url: $.domoticzurl + "/json.htm?type=devices&plan=" + $.roomplan + "&jsoncallback=?",
@@ -798,7 +832,6 @@ function RefreshData()
                                                 // if alarm threshold is defined, make value red
                                                 if (typeof valarm != 'undefined' && vtype != 'SetPoint') {
                                                     alarmcss='';
-												//	if ( Number(vdata) >= valarm ) {  
 													if ( eval(valarm.replace(/x/g, "Number(vdata)")) ) {  
                                                         alarmcss=';color:red;';
 														if (blink == true && !$( "."+vlabel ).hasClass( "blink_me" )) {
@@ -1054,14 +1087,11 @@ function RefreshData()
         });
 		
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////													
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
+											
 		// affichage de la partie scène/groupe
-    
-//        $.getJSON($.domoticzurl+"/json.htm?type=scenes&plan="+$.roomplan+"&jsoncallback=?",
- //       {
- //               format: "json"
- //       },
-        $.ajax({
+		
+		$.ajax({
             dataType: "json",
             async: true,
             url: $.domoticzurl + "/json.htm?type=scenes&plan=" + $.roomplan + "&jsoncallback=?",
@@ -1185,47 +1215,47 @@ function GetCams()
 {
 	//	for( var ii = 0, len = $.PageArray.length; ii < len; ii++ ) {
 	     var ii = 0, len = $.PageArray.length;
-							jsKata.nofreeze.forloop(
-								  // the condition
-								  function() { return ii < len;  }, 
-								  // the incrementor
-								  function() { ii++; },
-								  // this is what will be executed
-								  function fct() {	
-										if ( $.PageArray[ii][1] === 'Camera' ) { 			//Special nummer, link in cell (test)
-                                                												
-												var vlabel=     $.PageArray[ii][2];             // cell number from HTML layout
-                                                var src_1 = 	$.PageArray[ii][3];				// Local network
-                                                var src_2 = 	$.PageArray[ii][4];				// www
-												
-												if(src_2 == '' || typeof src_2 == 'undefined')
-												{
-													src_2 = location.href.replace(/\/$/, '')+'/icons/offline.jpg';
-												}	
-											
-												$('div.'+vlabel).html('<img src='+src_1+' alt='+src_2+' class=\'camera\' >');
-												$('div.'+vlabel+' img').error(function(){
-																						//console.log('vlabel: '+this.parentNode.className);
-																						//console.log('on error: '+this.src);
-																						this.onerror=null;
-																						if( this.src == this.alt)
-																						{
-																							this.src = location.href.replace(/\/$/, '')+'/icons/offline.jpg';
-																						}else{
-																							this.src = this.alt;
-																						}	
-																						//console.log('replace: '+this.src);
-																					});
-												$('div.'+vlabel+' img').click(function(){
-																						$('#popup_camera').html('<img src='+this.src+' >');
-																						lightbox_open('camera', 25400);
-																					});
-												
-																				
-												if ($('div.desc_'+vlabel).length > 0) {
-													$('div.desc_'+vlabel).html('');
-												}
-										}
+		jsKata.nofreeze.forloop(
+			  // the condition
+			  function() { return ii < len;  }, 
+			  // the incrementor
+			  function() { ii++; },
+			  // this is what will be executed
+			  function fct() {	
+					if ( $.PageArray[ii][1] === 'Camera' ) { 			//Special nummer, link in cell (test)
+																			
+							var vlabel=     $.PageArray[ii][2];             // cell number from HTML layout
+							var src_1 = 	$.PageArray[ii][3];				// Local network
+							var src_2 = 	$.PageArray[ii][4];				// www
+							
+							if(src_2 == '' || typeof src_2 == 'undefined')
+							{
+								src_2 = location.href.replace(/\/$/, '')+'/icons/offline.jpg';
+							}	
+						
+							$('div.'+vlabel).html('<img src='+src_1+' alt='+src_2+' class=\'camera\' >');
+							$('div.'+vlabel+' img').error(function(){
+																	//console.log('vlabel: '+this.parentNode.className);
+																	//console.log('on error: '+this.src);
+																	this.onerror=null;
+																	if( this.src == this.alt)
+																	{
+																		this.src = location.href.replace(/\/$/, '')+'/icons/offline.jpg';
+																	}else{
+																		this.src = this.alt;
+																	}	
+																	//console.log('replace: '+this.src);
+																});
+							$('div.'+vlabel+' img').click(function(){
+																	$('#popup_camera').html('<img src='+this.src+' >');
+																	lightbox_open('camera', 25400);
+																});
+							
+															
+							if ($('div.desc_'+vlabel).length > 0) {
+								$('div.desc_'+vlabel).html('');
+							}
+					}
 		});	
 }
 

@@ -19,6 +19,14 @@ var txt_blind_stop = '\'Arrêt\'';
 <!-- Change backgrounds images,size and brightness -->
 var bg_day = 'pissanli.jpg';			// image de fond le jour, laisser vide pour fond noir
 var bg_night = 'romantic.jpg';			// image de fond la nuit, laisser vide pour fond noir
+var bg_day_spring = '';									// image de fond pour la saison printemps
+var bg_night_spring = '';
+var bg_day_summer = '';									// image de fond pour la saison été
+var bg_night_summer = '';
+var bg_day_autumn = '';									// image de fond pour la saison automne
+var bg_night_autumn = 'autumn_night.jpg';
+var bg_day_winter = '';									// image de fond pour la saison hiver
+var bg_night_winter = '';
 var bg_size = 'cover';					// taille de l'image de fond (ex: '1024px 768px') 'cover' : "couvre" au mieux tout le fond.
 var bg_dayBright = 0.5;					// luminosité du fond le jour (0=normal 1=noir)
 var bg_nightBright = 0.5;				// luminosité du fond la nuit (0=normal 1=noir)
