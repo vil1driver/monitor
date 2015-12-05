@@ -972,7 +972,7 @@ function RefreshData()
 													vdata=new String(vdata).replace( vdata,vdata + '<span style="font-size:50%;"> W/m&#178;</span>');
 												}
 												// graph for counter without unit
-												if(vtype == 'Counter'){       
+												if(item.Type == 'RFXMeter' && item.SwitchTypeVal == '3'){       
 													vdata=new String(vdata).replace( vdata,'<span onclick="RefreshGraphData('+item.idx+',\''+vdesc+'\',\'counter\',\'day\',\'v\',\'Compteur\')">' + vdata + '</span>');
 												}
 												// adds V after voltage
