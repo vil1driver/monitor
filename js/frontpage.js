@@ -957,7 +957,6 @@ function RefreshData()
 												}
 												// Adds € after price
 												if(vtype == 'Euro'){       
-													//vdata=item.Data;
 													vdata=new String(vdata).replace( vdata,Math.ceil(vdata*100)/100 + '<span style="font-size:50%;"> &#8364;</span>');
 												}
 												// Adds m³ after volume for incremental counter
@@ -971,6 +970,14 @@ function RefreshData()
 												// Adds Watt/m² after solar radiation
 												if(item.SubType == 'Solar Radiation'){
 													vdata=new String(vdata).replace( vdata,vdata + '<span style="font-size:50%;"> W/m&#178;</span>');
+												}
+												// graph for counter without unit
+												if(vtype == 'Counter'){       
+													vdata=new String(vdata).replace( vdata,'<span onclick="RefreshGraphData('+item.idx+',\''+vdesc+'\',\'counter\',\'day\',\'v\',\'Compteur\')">' + vdata + '</span>');
+												}
+												// adds V after voltage
+												if(vtype == 'Voltage'){       
+													vdata=new String(vdata).replace( vdata,'<span onclick="RefreshGraphData('+item.idx+',\''+vdesc+'\',\'counter\',\'day\',\'v\',\'Tension V\')">' + Math.ceil(vdata*100)/100 + '<span style="font-size:50%;"> V</span></span>');
 												}
 												
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////													
