@@ -10,45 +10,19 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <link rel="shortcut icon" type="image/x-icon" href="icons/favicon.ico" />
-<script src="js/jquery-2.1.4.min.js"></script>
-<script type="text/javascript" src="js/jskata.nofreeze.js"></script>
 <link rel="stylesheet" href="css/global.css">
+<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="js/jskata.nofreeze.js"></script>
 <script type="text/javascript" src="js/frontpage_settings.js"></script>
 <script type="text/javascript" src="js/frontpage.min.js"></script>
 <script type="text/javascript" src="js/swipe.js"></script>	
 <script type="text/javascript" src="js/highcharts.js"></script>	
 <script type="text/javascript">
 //<!--
-<!-- empêcher la sélection du texte -->
-    function ffalse()
-        {
-            return false;
-        }
-    function ftrue()
-        {
-            return true;
-        }
-    document.onselectstart = new Function ("return false");
-    if(window.sidebar)
-        {
-            document.onmousedown = ffalse;
-            document.onclick = ftrue;
-        }
-
-<!-- empêcher le clic droit -->		
-    document.oncontextmenu = new Function("return false");
-
-<!-- viewport auto detect best scale -->
-	<!-- alert(document.documentElement.clientWidth); -->
-	var def = 962 - zoom;	//962
-	var actual = document.documentElement.clientWidth;
-	var scale = Math.ceil((actual/def)*100)/100;
-	document.querySelector("meta[name=viewport]").setAttribute('content','width=device-width, initial-scale='+scale+', maximum-scale='+scale+', user-scalable=no');
 		
 <!-- import pages -->	
 $(function(){
-       								
-	  
+
 	$(".clock").load("pages/clock.html");									<!-- load clock page --> 
 	$(".page1").load("pages/page1.html");									<!-- load page 1 -->
     $(".page2").load("pages/page2.html");									<!-- load page 2 -->
@@ -56,21 +30,18 @@ $(function(){
     $(".page4").load("pages/page4.html");									<!-- load page 4 -->
 	$(".page5").load("pages/page5.html");									<!-- load page 5 -->
 	$(".logs").load("pages/logs.html");									<!-- load logs -->
+
 	
-	
-	
-	setTimeout(RefreshData , 100);
-	setTimeout(GetCams , 500);
-	setTimeout(LoadMeteoWidget , 3000);           
 });
+	
 
 //-->
-</script>	
+</script>
 </head>
-
 <body  bgcolor="#000">
 <div id='slider' class='swipe'>
 <div class='swipe-wrap'>
+
 
 <div class="clock"></div>	<!-- clock page -->
 <div class="page1"></div>	<!-- Page 1 -->
@@ -78,9 +49,7 @@ $(function(){
 <div class="page3"></div>	<!-- Page 3 -->
 <div class="page4"></div>	<!-- Page 4 -->
 <div class="page5"></div>	<!-- Page 5 -->
-<div class="logs"></div>	<!-- Page 5 -->
-
-
+<div class="logs"></div>	<!-- logs -->
 
 
 
@@ -102,53 +71,7 @@ $(function(){
 <div id="fade2"></div>
 <div id="popup_offline"></div>
 
-
-
-
-<script type="text/javascript">
-//<!--
-// swipe function
-if (delai == 0){
-	var autoRestart = false;
-}else{
-	var autoRestart = true;
-}	
-var mySwipe = new Swipe(document.getElementById('slider'),{
-    startSlide: 0,
-	speed: speed,
-    auto: delai,
-	direction: direction,
-    autoRestart: autoRestart,
-    continuous: true,
-	draggable: false,
-    disableScroll: false,
-    stopPropagation: true,
-    //callback: function(index, element) {},
-    //transitionEnd: function(index, element) {}
-});
-mySwipe.setup();
-
-// swipe on keypad
-	$("body").keydown(function(e) {
-	   if(e.keyCode == 37) { // left key
-		  window.mySwipe.prev();
-	   } else if(e.keyCode == 39) { // right key
-		  window.mySwipe.next();
-	   }
-	});
-	
-// swipe on mouse wheel	
-	$(window).bind('mousewheel DOMMouseScroll', function(event){
-    if (event.originalEvent.wheelDelta > 0 || event.originalEvent.detail < 0) {
-        window.mySwipe.prev();
-    }
-    else {
-        window.mySwipe.next();
-    }
-	});
-	
-//-->	
-</script>
-
+<script type="text/javascript" src="js/common.js"></script>
 </body>
 </html>
+
