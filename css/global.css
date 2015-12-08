@@ -20,12 +20,15 @@
 body,html
 {
     height: 95%;
-    margin: 0px;
-    padding: 10px 0px 0px 0px;
+	margin: 0 auto; 
+	padding: 10px 0px 0px 0px;
 	cursor: default;
 }
 
-
+body
+{
+	background-color: #000;
+}
 
 html::after
 {
@@ -41,9 +44,11 @@ html::after
 
 .cnt
 {
-    width: 990px;
-    margin: 0 auto;
+    
+	width: 990px;
+    margin: 0 auto; 
     text-align: center;
+	
 }
 
 .swipe
@@ -255,3 +260,5 @@ img[alt] {
     50% { opacity: 0.5; }
     100% { opacity: 1.0; }
 }
+
+

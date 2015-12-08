@@ -63,12 +63,12 @@ function LoadMeteoWidget() {
 		$('#popup_meteo2').html('<div width="650" height="250" valign="center" line-height="15px">Veuillez indiquer votre ville dans les paramètres<br>exemple:<br>var city = \'paris\'</div>');	
 		$('#popup_meteo3').html('<div width="650" height="250" valign="center" line-height="15px">Veuillez indiquer votre ville dans les paramètres<br>exemple:<br>var city = \'paris\'</div>');	
 	}else{
-		$('#popup_meteo0').html(['<img src="http://www.prevision-meteo.ch/uploads/widget/',city,'_0.png#',new Date().getTime(),'" width="650" height="250" alt="Ville inconnue..">'].join(''));
-		$('#popup_meteo1').html(['<img src="http://www.prevision-meteo.ch/uploads/widget/',city,'_1.png#',new Date().getTime(),'" width="650" height="250" alt="Ville inconnue..">'].join(''));
-		$('#popup_meteo2').html(['<img src="http://www.prevision-meteo.ch/uploads/widget/',city,'_2.png#',new Date().getTime(),'" width="650" height="250" alt="Ville inconnue..">'].join(''));
-		$('#popup_meteo3').html(['<img src="http://www.prevision-meteo.ch/uploads/widget/',city,'_3.png#',new Date().getTime(),'" width="650" height="250" alt="Ville inconnue..">'].join(''));
+		$('#popup_meteo0').html(['<img src="http://www.prevision-meteo.ch/uploads/widget/',city,'_0.png?timestamp=',new Date().getTime(),'" width="650" height="250" alt="Ville inconnue..">'].join(''));
+		$('#popup_meteo1').html(['<img src="http://www.prevision-meteo.ch/uploads/widget/',city,'_1.png?timestamp=',new Date().getTime(),'" width="650" height="250" alt="Ville inconnue..">'].join(''));
+		$('#popup_meteo2').html(['<img src="http://www.prevision-meteo.ch/uploads/widget/',city,'_2.png?timestamp=',new Date().getTime(),'" width="650" height="250" alt="Ville inconnue..">'].join(''));
+		$('#popup_meteo3').html(['<img src="http://www.prevision-meteo.ch/uploads/widget/',city,'_3.png?timestamp=',new Date().getTime(),'" width="650" height="250" alt="Ville inconnue..">'].join(''));
 	}	
-	setInterval(LoadMeteoWidget, 7200000); 	// refresh every 2 hours
+	 setInterval(LoadMeteoWidget, 3600000); 	// refresh every hours
 }
 
 function RefreshGraphData(xIDX, vdesc, vtype, vrange, vpara, vunit) {
