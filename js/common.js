@@ -5,9 +5,11 @@ $(function(){
 	setTimeout(RefreshData , 100);
 	setTimeout(GetCams , 500);
 	setTimeout(LoadMeteoWidget , 3000);
+
+// reload page every hours	
 	setTimeout(function () { 
       location.reload();
-    }, 4 * 60 * 60 * 1000);
+    }, 1 * 60 * 60 * 1000);
 	
 });
 

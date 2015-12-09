@@ -17,19 +17,19 @@ var txt_blind_down = '\'Fermeture\'';
 var txt_blind_stop = '\'Arrêt\'';
 
 <!-- Change backgrounds images,size and brightness -->
-var bg_day = 'pissanli.jpg'; //'pissanli.jpg';			// image de fond le jour, laisser vide pour fond noir
-var bg_night = 'romantic.jpg'; //'romantic.jpg';			// image de fond la nuit, laisser vide pour fond noir
-var bg_day_spring = '';									// image de fond pour la saison printemps
-var bg_night_spring = '';
-var bg_day_summer = '';									// image de fond pour la saison été
-var bg_night_summer = '';
-var bg_day_autumn = '';									// image de fond pour la saison automne
-var bg_night_autumn = '';
-var bg_day_winter = '';									// image de fond pour la saison hiver
-var bg_night_winter = '';
-var bg_size = 'cover';					// taille de l'image de fond (ex: '1024px 768px') 'cover' : "couvre" au mieux tout le fond.
-var bg_dayBright = 0.5;					// luminosité du fond le jour (0=normal 1=noir)
-var bg_nightBright = 0.5;				// luminosité du fond la nuit (0=normal 1=noir)
+var bg_day = ''; //'pissanli.jpg';									// image de fond le jour, laisser vide pour fond noir
+var bg_night = ''; //'romantic.jpg';								// image de fond la nuit, laisser vide pour fond noir
+var bg_day_spring = 'spring_day.jpg';									// image de fond pour la saison printemps
+var bg_night_spring = 'spring_night.jpg';
+var bg_day_summer = 'pissanli.jpg';									// image de fond pour la saison été
+var bg_night_summer = 'romantic.jpg';
+var bg_day_autumn = 'autumn_day.png';								// image de fond pour la saison automne
+var bg_night_autumn = 'autumn_night.jpg';
+var bg_day_winter = 'winter_day.jpg';								// image de fond pour la saison hiver
+var bg_night_winter = 'winter_night.jpg';
+var bg_size = 'cover';												// taille de l'image de fond (ex: '1024px 768px') 'cover' : "couvre" au mieux tout le fond.
+var bg_dayBright = 0.5;												// luminosité du fond le jour (0=normal 1=noir)
+var bg_nightBright = 0.5;											// luminosité du fond la nuit (0=normal 1=noir)
 
 <!-- Change colors of temps -->
 var T35 = '#FF0000';						// couleur de la température à 35°C
@@ -73,7 +73,7 @@ var T000 = '#EBF4F7';						// couleur de la température sous 0°C
 <!-- Change the timeout of the PopUp -->
 var switch_protected_timeout = '800';		// durée d'affichage (en milisecondes)
 var switch_timeout = '600';
-var fad_Duration = 0;					// durée de l'animation (en milisecondes)
+var fad_Duration = 0;						// durée de l'animation (en milisecondes)
 
 <!-- Special items -->
 var city = 'saint-jacques-de-la-lande';		// localité pour la popup météo (lors du clic sur l'icon météo)
@@ -83,11 +83,11 @@ var showMonth = false;						// affichage du mois dans la date (true/false)
 <!-- Swipe options -->
 var speed = 300;							// durée de l'animation (en milisecondes)
 var delai = 60000;							// défilement automatique, temps avant changement de page (en milisecondes)
-var direction = 'index';						// si delai est différent de 0, choix d'aller à la page suivante ou de revenir à la première page ('next'/'index')
+var direction = 'index';					// si delai est différent de 0, choix d'aller à la page suivante ou de revenir à la première page ('next'/'index')
 
 <!-- Display -->
 var zoom = -3;								// ajustage de la valeur de zoom
-var refresh = 8000;							// temps entre 2 rafraîchissements (en millisecondes)
+var refresh = 15000;							// temps entre 2 rafraîchissements (en millisecondes)
 
 // ############################################################################################################
 // #### vvvvv   USER VALUES below vvvvv   #######
@@ -101,12 +101,12 @@ var refresh = 8000;							// temps entre 2 rafraîchissements (en millisecondes)
 				
         $.PageArray = [
 		
-            //page 1
+            
 			
 			//	['idx','value','cellule','description','1=lastseen 2=icon 3=both ou J+x(popup météo)','pas de thermostat','override css','Alarme ou valeur max de thermostat'],
 			
 	
-				
+			//page 1
 				['exterieur','Temp',           		'cell3',                        	''],	// températures exterieure
 				
 				
@@ -125,7 +125,7 @@ var refresh = 8000;							// temps entre 2 rafraîchissements (en millisecondes)
 				['rgb2_bleu','Level',          		'cell21',                      		'rgb2_blue','2'],	// rgb
 				['rgb2_show','Status',          		'cell6',                      		'rgb2_show','2'],	// rgb
 				
-				['reveil','Wakeup',         		'cell2',                        	'','','','color:#E51CFD'],	// réveil 
+				['','Hide',         		'cell2',                        	''],	// réveil 
 																				               
                  
 			   
@@ -133,13 +133,13 @@ var refresh = 8000;							// temps entre 2 rafraîchissements (en millisecondes)
 				['le salon','Level',          		'cell8',                        	'Salon','2'],
 				               
                 ['mpd_goa','Status',        		'cell23',                       	'Goa','','','color:#6594FE;font-family:brankovic;font-size:100%'],	// boutons PushOn ou pushOff
-                ['mdp_metal','Status',        		'cell20',                       	'Metal','','','color:#6594FE;font-family:brankovic;font-size:100%'],
+                ['mpd_metal','Status',        		'cell20',                       	'Metal','','','color:#6594FE;font-family:brankovic;font-size:100%'],
 				['mpd_spoon','Status',        		'cell5',                       		'Spoon','','','color:#6594FE;font-family:brankovic;font-size:100%'],
 				['mpd_reggae','Status',   				'cell10',                       	'Reggae','','','color:#6594FE;font-family:brankovic;font-size:100%'],
 				['mpd_rock','Status',        		'cell15',                       	'Rock','','','color:#6594FE;font-family:brankovic;font-size:100%'],
 			  
                 ['exterieur','ForecastStr',    		'cell25',                       	''],	// icon météo (idx du capteur de température extérieur virtuel Weather Underground)
-			    ['','Clock',            		'cell1',                       		'','','','font-family:digital;color:#8BFD1C;font-size:160%'],	// heure et date
+			    ['','Hide',            		'cell1',                       		''],	// heure et date
 				
 							
 				['','SunBoth',					'desc_cell25',						'','','','color:#F2DDB3;font-size:19px;font-weight:bold'],	// heures soleil dans la description de la cellule 25
@@ -212,8 +212,9 @@ var refresh = 8000;							// temps entre 2 rafraîchissements (en millisecondes)
 				['','Hide',         			'clock_12',                      	''],
 				['','Hide',         			'clock_13',                      	''],
 				['','Hide',         			'clock_14',                      	''],
-				['reveil','Wakeup',         		'clock_16',                        	'','','','color:#3A5486;font-size:130%'],	// Date 
-				['','Date',         			'clock_15',                        	'','','','color:#3A5486;font-size:130%'],	// réveil 
+				['reveil','Wakeup',         		'clock_16',                        	'','','','color:#3A5486;font-size:130%'],	// réveil 
+				['','Date',         			'clock_15',                        	'','','','color:#3A5486;font-size:130%'],	// date
+			//	['','MonthYear',         			'clock_15',                        	'','','','color:#3A5486;font-size:130%'],	// date
 				['exterieur','ForecastStr',    		'clock_2',                       	''],	// icon météo (idx du capteur de température extérieur virtuel Weather Underground)
 				
 				['','SunBoth',					'desc_clock_2',						'','','','color:#F2DDB3;font-size:19px;font-weight:bold'],	// heures soleil dans la description de la cellule clock_2
@@ -238,6 +239,7 @@ var refresh = 8000;							// temps entre 2 rafraîchissements (en millisecondes)
 // ############################################################################################################
 // #### ^^^^^   USER VALUES above ^^^^^   #######
 // ############################################################################################################
+
 
 
 
