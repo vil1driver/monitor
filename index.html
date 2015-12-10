@@ -11,45 +11,27 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <link rel="shortcut icon" type="image/x-icon" href="icons/favicon.ico">
 <link rel="stylesheet" href="css/global.css">
-<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
-<script type="text/javascript" src="js/jskata.nofreeze.js"></script>
-<script type="text/javascript" src="js/frontpage_settings.js"></script>
-<script type="text/javascript" src="js/frontpage.min.js"></script>
-<script type="text/javascript" src="js/swipe.js"></script>	
-<script type="text/javascript" src="js/highcharts.js"></script>	
-<script type="text/javascript">
-//<!--
-		
-<!-- import pages -->	
-$(function(){
-
-	$(".clock").load("pages/clock.html");									<!-- load clock page --> 
-	$(".page1").load("pages/page1.html");									<!-- load page 1 -->
-    $(".page2").load("pages/page2.html");									<!-- load page 2 -->
-    $(".page3").load("pages/page3.html");									<!-- load page 3 -->
-    $(".page4").load("pages/page4.html");									<!-- load page 4 -->
-	$(".page5").load("pages/page5.html");									<!-- load page 5 -->
-	$(".logs").load("pages/logs.html");										<!-- load logs -->
-
-	
-});
-	
-
-//-->
-</script>
+<script src="js/jquery-2.1.4.min.js"></script>
+<script src="js/jskata.nofreeze.js"></script>
+<script src="js/frontpage_settings.js"></script>
+<script src="js/frontpage.min.js"></script>
+<script src="js/swipe.js"></script>	
+<script src="js/highcharts.js"></script>	
 </head>
 <body  bgcolor="#000">
 <div id='slider' class='swipe'>
 <div class='swipe-wrap'>
 
 
-<div class="clock"></div>	<!-- clock page -->
-<div class="page1"></div>	<!-- Page 1 -->
-<div class="page2"></div>	<!-- Page 2 -->
-<div class="page3"></div>	<!-- Page 3 -->
-<div class="page4"></div>	<!-- Page 4 -->
-<div class="page5"></div>	<!-- Page 5 -->
-<div class="logs"></div>	<!-- logs -->
+
+<!-- import pages -->
+<div><script>  $('div').filter(':last').load("pages/clock.html");   </script></div>	<!-- clock -->
+<div><script>  $('div').filter(':last').load("pages/page1.html");   </script></div>	<!-- page 1 -->
+<div><script>  $('div').filter(':last').load("pages/page2.html");   </script></div>	<!-- page 1 -->
+<div><script>  $('div').filter(':last').load("pages/page3.html");   </script></div>	<!-- page 1 -->
+<div><script>  $('div').filter(':last').load("pages/page4.html");   </script></div>	<!-- page 1 -->
+<div><script>  $('div').filter(':last').load("pages/page5.html");   </script></div>	<!-- page 5 -->
+<div><script>  $('div').filter(':last').load("pages/logs.html");   </script></div>	<!-- logs -->
 
 
 

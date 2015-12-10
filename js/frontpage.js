@@ -67,8 +67,7 @@ function LoadMeteoWidget() {
 		$('#popup_meteo1').html(['<img src="http://www.prevision-meteo.ch/uploads/widget/',city,'_1.png?timestamp=',new Date().getTime(),'" width="650" height="250" alt="Ville inconnue..">'].join(''));
 		$('#popup_meteo2').html(['<img src="http://www.prevision-meteo.ch/uploads/widget/',city,'_2.png?timestamp=',new Date().getTime(),'" width="650" height="250" alt="Ville inconnue..">'].join(''));
 		$('#popup_meteo3').html(['<img src="http://www.prevision-meteo.ch/uploads/widget/',city,'_3.png?timestamp=',new Date().getTime(),'" width="650" height="250" alt="Ville inconnue..">'].join(''));
-	}	
-	 setInterval(LoadMeteoWidget, 3600000); 	// refresh every hours
+	}
 }
 
 function RefreshGraphData(xIDX, vdesc, vtype, vrange, vpara, vunit) {
