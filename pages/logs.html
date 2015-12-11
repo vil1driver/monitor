@@ -31,8 +31,6 @@ function RefreshLogData() {
 
     
     $.ajax({
-        dataType: "json",
-        async: true,
         url: $.domoticzurl + "/json.htm?type=command&param=getlog&jsoncallback=?",
     }).done(function(data) {
         var arrData = [];
@@ -76,6 +74,6 @@ function RefreshLogData() {
     $.refreshTimerLog = setInterval(RefreshLogData, 2000);
 }
 
-RefreshLogData();
+new RefreshLogData();
 
 </script>

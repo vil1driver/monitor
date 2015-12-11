@@ -191,7 +191,7 @@ var refresh = 8000;							// temps entre 2 rafraîchissements (en millisecondes)
 				
 				
 				
-        ];
+        []];
         $.PageArray_Scenes = [		// placez ci dessous vos groupes et scènes
             
 			//	['idx','value','cellule','description','icon name (ex: Light, Blinds, WallSocket, Generic,..)','override css'],
@@ -200,7 +200,7 @@ var refresh = 8000;							// temps entre 2 rafraîchissements (en millisecondes)
                 ['0','',  				'',                    		'','',''],
                 ['0','',  				'',                    		'','',''],
 			
-        ];
+        []];
 
 // ############################################################################################################
 // #### ^^^^^   USER VALUES above ^^^^^   #######

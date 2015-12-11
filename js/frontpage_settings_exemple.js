@@ -225,7 +225,7 @@ var refresh = 8000;							// temps entre 2 rafraîchissements (en millisecondes)
 				
 				 
 					
-        ];
+        []];
         $.PageArray_Scenes = [		// placez ci dessous vos groupes et scènes
             
 			//	['idx','value','cellule','description','icon name (ex: Light, Blinds, WallSocket, Generic,..)','override css'],
@@ -234,7 +234,7 @@ var refresh = 8000;							// temps entre 2 rafraîchissements (en millisecondes)
 				['apéro','Status',         			'cell19',                       	'Apéro','','color:#E4D422;font-size:90%'],	// scène 
 				['toute la maison','Status',         		'cell24',                     		'Toute la maison','Light'],	// groupe avec icon Light
 			
-        ];
+        []];
 
 // ############################################################################################################
 // #### ^^^^^   USER VALUES above ^^^^^   #######
