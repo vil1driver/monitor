@@ -7,7 +7,7 @@ $(function(){
 	setTimeout(LoadMeteoWidget , 3000);
 	
 // reload page every hours
-//	setTimeout(function () {location.reload();}, 1 * 60 * 60 * 1000);
+	setTimeout(function () {location.reload();}, 1 * 60 * 60 * 1000);
 });
 
 // no text selected

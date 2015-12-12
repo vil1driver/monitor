@@ -1,10 +1,13 @@
-//"use strict";
-// Javascript for Domoticz frontpage
+// in dev mode comment this to enable console.log
+console.log = function() {}
+
+// set default params for all ajax calls
 $.ajaxSetup({
 			dataType: "json",
             async: true,
 			cache: false 
 			});
+			
 // Create popup
 var tempo;
 function lightbox_open(id, timeout, txt){
@@ -74,7 +77,7 @@ function LoadMeteoWidget() {
 		$('#popup_meteo2').html(['<img src="http://www.prevision-meteo.ch/uploads/widget/',city,'_2.png?timestamp=',new Date().getTime(),'" width="650" height="250" alt="Ville inconnue..">'].join(''));
 		$('#popup_meteo3').html(['<img src="http://www.prevision-meteo.ch/uploads/widget/',city,'_3.png?timestamp=',new Date().getTime(),'" width="650" height="250" alt="Ville inconnue..">'].join(''));
 	}
-	setInterval(LoadMeteoWidget, 3600000); // rechargement toutes les heures
+	setInterval(LoadMeteoWidget, 3600000); // reload every hours
 }
 
 function RefreshGraphData(xIDX, vdesc, vtype, vrange, vpara, vunit) {
@@ -242,21 +245,24 @@ var error = 0;
 function RefreshData()
 {
         clearInterval($.refreshTimer);
-		//console.log('refresh');
+		console.log('refresh');
+	
+		
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 		
 	$.ajax({
             url: [$.domoticzurl,'/json.htm?type=command&param=getSunRiseSet&jsoncallback=?'].join('')
         }).done(function(data) {
+		var one = new Date();
 		if (typeof data !== 'undefined') {
                         $.each(data, function(i,item){
 				if ( i === 'Sunrise' ) {
-					//console.log("Opgang: ", item);
+					console.log("sunrise: ", item);
 					var_sunrise = item.substring(0, 5);
 					
 				}
 				else if ( i === 'Sunset' ) {
-					//console.log("Ondergang: ", item);
+					console.log("sunset: ", item);
 					var_sunset = item.substring(0, 5);
 					
 				}
@@ -287,7 +293,7 @@ function RefreshData()
 		//console.log(mdate);
 	  
 		if (mdate >= '1222') { 
-			//console.log('winter'); 
+			console.log('season: winter'); 
 			if ( typeof bg_day_winter !== 'undefined' && bg_day_winter !== '') {
 				bg_day = bg_day_winter;
 			}
@@ -296,7 +302,7 @@ function RefreshData()
 			}
 		} 
 		else if (mdate >= '0923') { 
-			//console.log('autumn'); 
+			console.log('season: autumn'); 
 			if ( typeof bg_day_autumn !== 'undefined' && bg_day_autumn !== '') {
 				bg_day = bg_day_autumn;
 			}
@@ -305,7 +311,7 @@ function RefreshData()
 			}
 		} 
 		else if (mdate >= '0621') { 
-			//console.log('summer'); 
+			console.log('season: summer'); 
 			if ( typeof bg_day_summer !== 'undefined' && bg_day_summer !== '') {
 				bg_day = bg_day_summer;
 			}
@@ -314,7 +320,7 @@ function RefreshData()
 			}
 		} 
 		else { 
-		//console.log('spring'); 
+		console.log('season: spring'); 
 			if ( typeof bg_day_spring !== 'undefined' && bg_day_spring !== '') {
 				bg_day = bg_day_spring;
 			}
@@ -381,11 +387,15 @@ function RefreshData()
 			}	
 		}
 												
-		//	console.log("connection success");
+		console.log("connection success");
 		$('#popup_offline').fadeOut(fad_Duration);
         $('#fade2').fadeOut(fad_Duration);
 		error = 0;	
 			
+		
+		one = new Date() - one;
+		console.log('sunset/background/clock/meteo: ' + one + 'ms');	
+		
 	}).fail(function() {
 		error += 1;
 		console.log(['ERROR connect to ',$.domoticzurl].join(''));
@@ -394,7 +404,7 @@ function RefreshData()
 			$('#popup_offline').fadeIn(fad_Duration);
 			$('#fade2').fadeIn(fad_Duration);
 		}else{
-			new RefreshData();
+			RefreshData();
 		}	
 			
 	});
@@ -405,7 +415,9 @@ function RefreshData()
 		$.ajax({
             url: [$.domoticzurl,'/json.htm?type=devices&plan=',$.roomplan,'&jsoncallback=?'].join('')
         }).done(function(data) {
-                
+		
+				var two = new Date();
+		                
 				if (typeof data.result !== 'undefined') {
      
 						$.each(data.result, function(i,item){
@@ -1109,7 +1121,8 @@ function RefreshData()
                                 });
                         });
                 }
-				
+		two = new Date() - two;
+		console.log('switchs: ' + two + 'ms');			
         });
 		
 
@@ -1120,6 +1133,9 @@ function RefreshData()
 		$.ajax({
             url: [$.domoticzurl,'/json.htm?type=scenes&plan=',$.roomplan,'&jsoncallback=?'].join('')
         }).done(function(data) {
+		
+				var three = new Date();
+		
                 if (typeof data.result !== 'undefined') {
 
                         $.each(data.result, function(i,item){
@@ -1223,6 +1239,10 @@ function RefreshData()
                         });
                 }
 				
+			three = new Date() - three;
+			console.log('scenes/groups: ' + three + 'ms');	
+			
+				
         });
 		
 		
@@ -1260,8 +1280,8 @@ function GetCams()
 						
 							$(['div.',vlabel].join('')).html(['<img src=',src_1,' alt=',src_2,' class=\'camera\' >'].join(''));
 							$(['div.',vlabel,' img'].join('')).error(function(){
-																	//console.log('vlabel: '+this.parentNode.className);
-																	//console.log('on error: '+this.src);
+																	console.log('vlabel: '+this.parentNode.className);
+																	console.log('on error: '+this.src);
 																	this.onerror=null;
 																	if( this.src === this.alt)
 																	{
@@ -1269,7 +1289,7 @@ function GetCams()
 																	}else{
 																		this.src = this.alt;
 																	}	
-																	//console.log('replace: '+this.src);
+																	console.log('replace: '+this.src);
 																});
 							$(['div.',vlabel,' img'].join('')).click(function(){
 																	$('#popup_camera').html(['<img src=',this.src,' >'].join(''));
@@ -1291,7 +1311,7 @@ function SceneToggle(idx, switchcmd)
 				 url: [$.domoticzurl,'/json.htm?type=command&param=switchscene&idx=',idx,'&switchcmd=',switchcmd,'&level=0'].join(''),
 				 success: function(){
 					console.log('SUCCES');
-					new RefreshData();
+					RefreshData();
 				 },
 				 error: function(){
 					console.log('ERROR');
@@ -1306,7 +1326,7 @@ function SwitchToggle(idx, switchcmd)
 				 url: [$.domoticzurl,'/json.htm?type=command&param=switchlight&idx=',idx,'&switchcmd=',switchcmd,'&level=0'].join(''),
 				 success: function(){
 					console.log('SUCCES');
-					new RefreshData();
+					RefreshData();
 				 },
 				 error: function(){
 					console.log('ERROR');
@@ -1327,7 +1347,7 @@ if (level === txt_off) {
                 url: [$.domoticzurl,'/json.htm?type=command&param=switchlight&idx=',idx,'&switchcmd=Set Level&level=',currentlevel].join(''),
                 success: function(){
                         console.log('SUCCES');
-						new RefreshData();
+						RefreshData();
 				},
                 error: function(){
                         console.log('ERROR');
@@ -1348,7 +1368,7 @@ else
                         url: [$.domoticzurl,'/json.htm?type=command&param=switchlight&idx=',idx,'&switchcmd=Set Level&level=',d].join(''),
                         success: function(){
                                 console.log('SUCCES');
-								new RefreshData();
+								RefreshData();
                         },
                         error: function(){
                                 console.log('ERROR');
@@ -1366,7 +1386,7 @@ else
                         url: [$.domoticzurl,'/json.htm?type=command&param=switchlight&idx=',idx,'&switchcmd=Set Level&level=',d].join(''),
 						success: function(){
                                 console.log('SUCCES');
-								new RefreshData();
+								RefreshData();
                         },
                         error: function(){
                                 console.log('ERROR');
@@ -1391,7 +1411,7 @@ function DimLevel100(OpenDicht,level,idx)
                         url: [$.domoticzurl,'/json.htm?type=command&param=switchlight&idx=',idx,'&switchcmd=Set Level&level=',d].join(''),
                         success: function(){
                                 console.log('SUCCES');
-								new RefreshData();
+								RefreshData();
                         },
                         error: function(){
                                 console.log('ERROR');
@@ -1410,7 +1430,7 @@ function DimLevel100(OpenDicht,level,idx)
                         url: [$.domoticzurl,'/json.htm?type=command&param=switchlight&idx=',idx,'&switchcmd=Set Level&level=',d].join(''),
                         success: function(){
                                 console.log('SUCCES');
-								new RefreshData();
+								RefreshData();
                         },
                         error: function(){
                                 console.log('ERROR');
@@ -1442,7 +1462,7 @@ function ChangeTherm(dimtype,stepsize,idx,currentvalue,thermmax)
 			 url: [$.domoticzurl,'/json.htm?type=command&param=udevice&idx=',idx,'&nvalue=0&svalue=',newvalue].join(''),
 			 success: function(){
 				console.log('SUCCES');
-				new RefreshData();
+				RefreshData();
 			 },
 			 error: function(){
 				console.log('ERROR');
@@ -1552,5 +1572,3 @@ function goodmorning(v) {
 	
 	return ret_str;
 }	
-	
-
