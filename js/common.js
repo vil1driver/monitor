@@ -1,6 +1,4 @@
-﻿//"use strict";
-
-$(function(){
+﻿$(function(){
 // load content
 	setTimeout(RefreshData, 150);
 	setTimeout(GetCams , 1000);

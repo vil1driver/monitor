@@ -4,7 +4,7 @@
 	font-family: arimo;
 	font-weight: normal;
 	color: #999;
-	font-size: 20px;
+	font-size: 12px;
 	margin-top: -20px;
 	height: 20px;
 	line-height: 65px;
@@ -153,6 +153,7 @@
 	height: 100px;
 	border: 6px solid rgba( 0,0,0,0.8);
 }
+
 .centre
 {
 	border: 6px solid rgba(0,0,0,1);
