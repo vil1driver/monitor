@@ -1,12 +1,13 @@
 // in dev mode comment this to enable console.log
 console.log = function() {}
 
+
 // set default params for all ajax calls
 $.ajaxSetup({
 			dataType: "json",
             async: true,
 			cache: false 
-			});
+});
 			
 // Create popup
 var tempo;
@@ -32,36 +33,36 @@ function lightbox_close(id){
 
 // help box open popup
 function helpBox_open(id){
-		$('#popup_help').html('<div>Bad value, click <a target="_blank" href="'+$.domoticzurl+'/json.htm?type=devices&rid='+id+'">here</a> to show what you can use..</div>');
-		$('#popup_help').fadeIn(fad_Duration);
-		$('#fade').fadeIn(fad_Duration);
-		$('#popup_help').click(helpBox_close);
-		tempo = setTimeout(helpBox_close, 30000);
+	$('#popup_help').html('<div>Bad value, click <a target="_blank" href="'+$.domoticzurl+'/json.htm?type=devices&rid='+id+'">here</a> to show what you can use..</div>');
+	$('#popup_help').fadeIn(fad_Duration);
+	$('#fade').fadeIn(fad_Duration);
+	$('#popup_help').click(helpBox_close);
+	tempo = setTimeout(helpBox_close, 30000);
 }
 
 // help box close popup
 function helpBox_close(){
-        $('#popup_help').fadeOut(fad_Duration);
-        $('#fade').fadeOut(fad_Duration);
-		clearTimeout(tempo);
+	$('#popup_help').fadeOut(fad_Duration);
+	$('#fade').fadeOut(fad_Duration);
+	clearTimeout(tempo);
 }
 
 // show security panel
 function showPanel() {
-$('#popup_secpanel').html(['<object type="text/html" data="',$.domoticzurl,'/secpanel/index.html" width="100%" height="100%"></object>'].join(''));
-$('#popup_secpanel').fadeIn(fad_Duration);
-$('#fade').fadeIn(fad_Duration);
-$('#fade').click(closePanel);
-tempo = setTimeout(closePanel,60000);
+	$('#popup_secpanel').html(['<object type="text/html" data="',$.domoticzurl,'/secpanel/index.html" width="100%" height="100%"></object>'].join(''));
+	$('#popup_secpanel').fadeIn(fad_Duration);
+	$('#fade').fadeIn(fad_Duration);
+	$('#fade').click(closePanel);
+	tempo = setTimeout(closePanel,60000);
 }
 
 // close security panel
 function closePanel() {
-$('#popup_secpanel').fadeOut(fad_Duration);
-$('#fade').fadeOut(fad_Duration);
-$("#fade").off("click");
-$('#popup_secpanel').html('');
-clearTimeout(tempo);
+	$('#popup_secpanel').fadeOut(fad_Duration);
+	$('#fade').fadeOut(fad_Duration);
+	$("#fade").off("click");
+	$('#popup_secpanel').html('');
+	clearTimeout(tempo);
 }
 
 // Load meteo widget
@@ -430,7 +431,7 @@ function RefreshData()
 								  function() { ii++; },
 								  // this is what will be executed
 								  function fct() {
-										if( $.PageArray[ii][0] === item.idx || $.PageArray[ii][0] === item.Name ) {         				// Domoticz idx number
+										if( $.PageArray[ii][0] === item.idx || $.PageArray[ii][0] === item.Name ) {         				// Domoticz idx number or device name
                                                 var vtype=      $.PageArray[ii][1];             		// Domotitcz type (like Temp, Humidity)
                                                 var vlabel=     $.PageArray[ii][2];                     // cell number from HTML layout
                                                 var vdesc=      $.PageArray[ii][3];                     // description
@@ -442,8 +443,8 @@ function RefreshData()
                                                 var vstatus=    item.Status;
 												var vls=  		item.LastUpdate;						// ´Last Seen´
 												var vdimmercurrent=  item.LevelInt;  				// What is the dim level
-											
-                                                if (typeof vdata === 'undefined') {
+												
+												if (typeof vdata === 'undefined') {
                                                         //vdata="?!";
 														vdata=['<span onclick="helpBox_open(',item.idx,')">?!</span>'].join('');
                                                 } else {
@@ -512,7 +513,7 @@ function RefreshData()
 															if (item.MaxDimLevel === 100) {
 																if (lastseen === '2') {
 																	var hlp = ['<img src="',$.domoticzurl,'/images/Light48_On.png" width=48 onclick="SwitchToggle(',item.idx,', \'Off\');lightbox_open(\'switch\', ',switch_timeout,', ',txt_switch_off,')" style=',alarmcss,'>'].join('');
-																	vdesc=String(vdesc).replace( vdesc,[vdesc,'<span class="percent">',vdata,'<span style="font-size:70%;"> &#37;</span></span>'].join(''));
+																	vdesc=[vdesc,'<span class="percent">',vdata,'<span style="font-size:70%;"> &#37;</span></span>'].join('');
 																} else {
 																	var hlp = ['<span onclick="SwitchToggle(',item.idx,', \'Off\');lightbox_open(\'switch\', ',switch_timeout,', ',txt_switch_off,')" style=',alarmcss,'>',vdata,'</span>'].join('');
 																}
@@ -521,7 +522,7 @@ function RefreshData()
 															} else {
 																if (lastseen === '2') {
 																	var hlp = ['<img src="',$.domoticzurl,'/images/Light48_On.png" width=48 onclick="SwitchToggle(',item.idx,', \'Off\');lightbox_open(\'switch\', ',switch_timeout,', ',txt_switch_off,')" style=',alarmcss,'>'].join('');
-																	vdesc=String(vdesc).replace( vdesc,[vdesc,'<span class="percent">',vdata,'<span style="font-size:70%;"> &#37;</span></span>'].join(''));
+																	vdesc=[vdesc,'<span class="percent">',vdata,'<span style="font-size:70%;"> &#37;</span></span>'].join('');
 																} else {
 																	var hlp = ['<span onclick="SwitchToggle(',item.idx,', \'Off\');lightbox_open(\'switch\', ',switch_timeout,', ',txt_switch_off,')" style=',alarmcss,'>',vdata,'</span>'].join('');
 																}
@@ -529,8 +530,8 @@ function RefreshData()
 																var min = ['<img src=icons/min.png align=left hspace=10 vspace=4 width=30 onclick="DimLevel16(\'min\',',vdata,',',item.idx,',',vdimmercurrent,')">'].join('');
 															}
                                                         }
-                                                        vdata = min.concat(hlp,plus);
-                                                        //console.log(vdata);
+                                                        vdata = [min,hlp,plus].join('');
+														//console.log(vdata);
 												} 
 
 											
@@ -541,7 +542,7 @@ function RefreshData()
 														var hlp = ['<span style=',vattr,'>',vdata,'</span>'].join('');
 														var plus = ['<img src=icons/plus.png align=right vspace=4 width=30 onclick="ChangeTherm(\'plus\',',vplusmin,',',item.idx,',',vdata,',',valarm,')">'].join('');
 														var min = ['<img src=icons/min.png align=left vspace=4 width=30 onclick="ChangeTherm(\'min\',',vplusmin,',',item.idx,',',vdata,',',valarm,')">'].join('');
-														vdata = min.concat(hlp,plus);
+														vdata = [min,hlp,plus].join('');
 														//console.log(vdata);
 												}
 												
@@ -559,9 +560,9 @@ function RefreshData()
 														}
 														var stop = ['<img src=',$.domoticzurl,'/images/blindsstop.png  hspace=1 height=40 onclick="SwitchToggle(',item.idx,', \'Stop\');lightbox_open(\'switch\', ',switch_timeout,', ',txt_blind_stop,')">'].join('');
 														if(item.Type === 'RFY') {
-															vdata = down.concat(stop,up);
+															vdata = [down,stop,up].join('');
 														} else	{
-															vdata = down.concat(up);
+															vdata = [down,up].join('');
 														}	
 														//console.log(vdata);
 													}
@@ -576,9 +577,9 @@ function RefreshData()
 														}
 														var stop = ['<img src=',$.domoticzurl,'/images/blindsstop.png  hspace=1 height=40 onclick="SwitchToggle(',item.idx,', \'Stop\');lightbox_open(\'switch\', ',switch_timeout,', ',txt_blind_stop,')">'].join('');
 														if(item.Type === 'RFY') {
-															vdata = down.concat(stop,up);
+															vdata = [down,stop,up].join('');
 														} else	{
-															vdata = down.concat(up);
+															vdata = [down,up].join('');
 														}
 														//console.log(vdata);
 													}
@@ -592,7 +593,7 @@ function RefreshData()
 																var up = ['<img src=',$.domoticzurl,'/images/blindsopen48sel.png  hspace=1 width=40 onclick="SwitchToggle(',item.idx,', \'Off\');lightbox_open(\'switch\', ',switch_timeout,', ',txt_blind_up,')">'].join('');
 														}
 														var stop = ['<img src=',$.domoticzurl,'/images/blindsstop.png  hspace=1 height=40 onclick="SwitchToggle(',item.idx,', \'Stop\');lightbox_open(\'switch\', ',switch_timeout,', ',txt_blind_stop,')">'].join('');
-														vdata = down.concat(stop,up);
+														vdata = [down,stop,up].join('');
 														//console.log(vdata);
 													}
 													if (item.SwitchType === 'Blinds Percentage') {
@@ -618,8 +619,8 @@ function RefreshData()
 																var min = ['<img src=icons/min.png  vspace=4 hspace=4 width=30 onclick="DimLevel100(\'plus\',',vdata,',',item.idx,')">'].join('');
 														}
 														
-														vdesc=String(vdesc).replace( vdesc,[vdesc,'<span class="percent">',(100-vdata),'<span style="font-size:50%;"> &#37;</span></span>'].join(''));
-														vdata = min.concat(down,up,plus);
+														vdesc = [vdesc,'<span class="percent">',(100-vdata),'<span style="font-size:50%;"> &#37;</span></span>'].join('');
+														vdata = [min,down,up,plus].join('');
 														//console.log(vdata);
 													}
 													if (item.SwitchType === 'Blinds Percentage Inverted') {
@@ -646,8 +647,8 @@ function RefreshData()
 																var min = ['<img src=icons/min.png vspace=4 hspace=4 width=30 onclick="DimLevel100(\'min\',',vdata,',',item.idx,')">'].join('');
 														
 														}
-														vdesc=String(vdesc).replace( vdesc,[vdesc,'<span class="percent">',vdata,'<span style="font-size:50%;"> &#37;</span></span>'].join(''));
-														vdata = min.concat(down,up,plus);
+														vdesc = [vdesc,'<span class="percent">',vdata,'<span style="font-size:50%;"> &#37;</span></span>'].join('');
+														vdata = [min,down,up,plus].join('');
 														//console.log(vdata);
 													}
 													
@@ -659,65 +660,65 @@ function RefreshData()
 												
 																		
                                                 if (vdata === 'Sunny' && IsNight === 'Yes') {
-                                                        vdata= String(vdata).replace( "Sunny",['<img src=icons/meteo/night-clear.png width=155 height=155 onclick="lightbox_open(\'meteo',lastseen,'\', 25400)">'].join(''));
+                                                        vdata = ['<img src=icons/meteo/night-clear.png width=155 height=155 onclick="lightbox_open(\'meteo',lastseen,'\', 25400)">'].join('');
                                                 }
                                                 if (vdata === 'Partly Cloudy' && IsNight === 'Yes') {
-                                                        vdata= String(vdata).replace( "Partly Cloudy",['<img src=icons/meteo/night-partlycloudy.png width=155 height=155 onclick="lightbox_open(\'meteo',lastseen,'\', 25400)">'].join(''));
+                                                        vdata = ['<img src=icons/meteo/night-partlycloudy.png width=155 height=155 onclick="lightbox_open(\'meteo',lastseen,'\', 25400)">'].join('');
                                                 }
                                                 if (vdata === 'Cloudy' && IsNight === 'Yes') {
-                                                        vdata= String(vdata).replace( "Cloudy",['<img src=icons/meteo/night-cloudy.png width=155 height=155 onclick="lightbox_open(\'meteo',lastseen,'\', 25400)">'].join(''));
+                                                        vdata = ['<img src=icons/meteo/night-cloudy.png width=155 height=155 onclick="lightbox_open(\'meteo',lastseen,'\', 25400)">'].join('');
                                                 }
                                                 if (vdata === 'Clear' && IsNight === 'Yes') {
-                                                        vdata= String(vdata).replace( "Clear",['<img src=icons/meteo/night-clear.png width=155 height=155 onclick="lightbox_open(\'meteo',lastseen,'\', 25400)">'].join(''));
+                                                        vdata = ['<img src=icons/meteo/night-clear.png width=155 height=155 onclick="lightbox_open(\'meteo',lastseen,'\', 25400)">'].join('');
                                                 }
                                                 if (vdata === 'Rain' && IsNight === 'Yes') {
-                                                        vdata= String(vdata).replace( "Rain",['<img src=icons/meteo/night-rain.png width=155 height=155 onclick="lightbox_open(\'meteo',lastseen,'\', 25400)">'].join(''));
+                                                        vdata = ['<img src=icons/meteo/night-rain.png width=155 height=155 onclick="lightbox_open(\'meteo',lastseen,'\', 25400)">'].join('');
                                                 }
                                                 if (vdata === 'Snow' && IsNight === 'Yes') {
-                                                        vdata= String(vdata).replace( "Snow",['<img src=icons/meteo/night-snow.png width=155 height=155 onclick="lightbox_open(\'meteo',lastseen,'\', 25400)">'].join(''));
+                                                        vdata = ['<img src=icons/meteo/night-snow.png width=155 height=155 onclick="lightbox_open(\'meteo',lastseen,'\', 25400)">'].join('');
                                                 }
                                                 if (vdata === 'Fog' && IsNight === 'Yes') {
-                                                        vdata= String(vdata).replace( "Fog",['<img src=icons/meteo/night-fog.png width=155 height=155 onclick="lightbox_open(\'meteo',lastseen,'\', 25400)">'].join(''));
+                                                        vdata = ['<img src=icons/meteo/night-fog.png width=155 height=155 onclick="lightbox_open(\'meteo',lastseen,'\', 25400)">'].join('');
                                                 }
                                                 if (vdata === 'Hail' && IsNight === 'Yes') {
-                                                        vdata= String(vdata).replace( "Hail",['<img src=icons/meteo/night-hail.png width=155 height=155 onclick="lightbox_open(\'meteo',lastseen,'\', 25400)">'].join(''));
+                                                        vdata = ['<img src=icons/meteo/night-hail.png width=155 height=155 onclick="lightbox_open(\'meteo',lastseen,'\', 25400)">'].join('');
                                                 }
                                                 if (vdata === 'Thunderstom' && IsNight === 'Yes') {
-                                                        vdata= String(vdata).replace( "Thunderstorm",['<img src=icons/meteo/night-thunder.png width=155 height=155 onclick="lightbox_open(\'meteo',lastseen,'\', 25400)">'].join(''));
+                                                        vdata = ['<img src=icons/meteo/night-thunder.png width=155 height=155 onclick="lightbox_open(\'meteo',lastseen,'\', 25400)">'].join('');
                                                 }
                                                 if (vdata === 'Sleet' && IsNight === 'Yes')  {
-                                                        vdata= String(vdata).replace( "Sleet",['<img src=icons/meteo/night-sleet.png width=155 height=155 onclick="lightbox_open(\'meteo',lastseen,'\', 25400)">'].join(''));  
+                                                        vdata = ['<img src=icons/meteo/night-sleet.png width=155 height=155 onclick="lightbox_open(\'meteo',lastseen,'\', 25400)">'].join('');  
                                                 }
 											// replace forecast (text) with an image (THIS IS THE DAY part)
 												if (vdata === 'Sunny' && IsNight === 'No') {
-                                                        vdata= String(vdata).replace( "Sunny",['<img src=icons/meteo/day-sun.png width=155 height=155 onclick="lightbox_open(\'meteo',lastseen,'\', 25400)">'].join(''));
+                                                        vdata = ['<img src=icons/meteo/day-sun.png width=155 height=155 onclick="lightbox_open(\'meteo',lastseen,'\', 25400)">'].join('');
                                                 }
                                                 if (vdata === 'Partly Cloudy' && IsNight === 'No') {
-                                                        vdata= String(vdata).replace( "Partly Cloudy",['<img src=icons/meteo/day-partlycloudy.png width=155 height=155 onclick="lightbox_open(\'meteo',lastseen,'\', 25400)">'].join(''));
+                                                        vdata = ['<img src=icons/meteo/day-partlycloudy.png width=155 height=155 onclick="lightbox_open(\'meteo',lastseen,'\', 25400)">'].join('');
                                                 }
                                                 if (vdata === 'Cloudy' && IsNight === 'No') {
-                                                        vdata= String(vdata).replace( "Cloudy",['<img src=icons/meteo/day-cloudy.png width=155 height=155 onclick="lightbox_open(\'meteo',lastseen,'\', 25400)">'].join(''));
+                                                        vdata = ['<img src=icons/meteo/day-cloudy.png width=155 height=155 onclick="lightbox_open(\'meteo',lastseen,'\', 25400)">'].join('');
                                                 }
                                                 if (vdata === 'Clear' && IsNight === 'No') {
-                                                        vdata= String(vdata).replace( "Clear",['<img src=icons/meteo/day-sun.png width=155 height=155 onclick="lightbox_open(\'meteo',lastseen,'\', 25400)">'].join(''));
+                                                        vdata = ['<img src=icons/meteo/day-sun.png width=155 height=155 onclick="lightbox_open(\'meteo',lastseen,'\', 25400)">'].join('');
                                                 }
                                                 if (vdata === 'Rain' && IsNight === 'No') {
-                                                        vdata= String(vdata).replace( "Rain",['<img src=icons/meteo/day-rain.png width=155 height=155 onclick="lightbox_open(\'meteo',lastseen,'\', 25400)">'].join(''));
+                                                        vdata = ['<img src=icons/meteo/day-rain.png width=155 height=155 onclick="lightbox_open(\'meteo',lastseen,'\', 25400)">'].join('');
                                                 }
                                                 if (vdata === 'Snow' && IsNight === 'No') {
-                                                        vdata= String(vdata).replace( "Snow",['<img src=icons/meteo/day-snow.png width=155 height=155 onclick="lightbox_open(\'meteo',lastseen,'\', 25400)">'].join(''));
+                                                        vdata = ['<img src=icons/meteo/day-snow.png width=155 height=155 onclick="lightbox_open(\'meteo',lastseen,'\', 25400)">'].join('');
                                                 }
                                                 if (vdata === 'Fog' && IsNight === 'No') {
-                                                        vdata= String(vdata).replace( "Fog",['<img src=icons/meteo/day-fog.png width=155 height=155 onclick="lightbox_open(\'meteo',lastseen,'\', 25400)">'].join(''));
+                                                        vdata = ['<img src=icons/meteo/day-fog.png width=155 height=155 onclick="lightbox_open(\'meteo',lastseen,'\', 25400)">'].join('');
                                                 }
                                                 if (vdata === 'Hail' && IsNight === 'No') {
-                                                        vdata= String(vdata).replace( "Hail",['<img src=icons/meteo/day-hail.png width=155 height=155 onclick="lightbox_open(\'meteo',lastseen,'\', 25400)">'].join(''));
+                                                        vdata = ['<img src=icons/meteo/day-hail.png width=155 height=155 onclick="lightbox_open(\'meteo',lastseen,'\', 25400)">'].join('');
                                                 }
                                                 if (vdata === 'Thunderstom' && IsNight === 'No') {
-                                                        vdata= String(vdata).replace( "Thunderstorm",['<img src=icons/meteo/day-thunder.png width=155 height=155 onclick="lightbox_open(\'meteo',lastseen,'\', 25400)">'].join(''));
+                                                        vdata = ['<img src=icons/meteo/day-thunder.png width=155 height=155 onclick="lightbox_open(\'meteo',lastseen,'\', 25400)">'].join('');
                                                 }
                                                 if (vdata === 'Sleet' && IsNight === 'No')  {
-                                                        vdata= String(vdata).replace( "Sleet",['<img src=icons/meteo/day-sleet.png width=155 height=155 onclick="lightbox_open(\'meteo',lastseen,'\', 25400)">'].join(''));  
+                                                        vdata = ['<img src=icons/meteo/day-sleet.png width=155 height=155 onclick="lightbox_open(\'meteo',lastseen,'\', 25400)">'].join('');  
                                                 }
 												
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////													
@@ -808,33 +809,33 @@ function RefreshData()
 														var icon = 'security48.png'
 														if (vdata === 'Normal') {
 															//vdata= String(vdata).replace( vdata,"<img src='icons/alarm_off.png'  width=48>");
-															vdata= String(vdata).replace( vdata,['<img src=',$.domoticzurl,'/images/',icon,'  width=48>'].join(''));
+															vdata = ['<img src=',$.domoticzurl,'/images/',icon,'  width=48>'].join('');
 														}
 														if (vdata === 'Arm Home') {
 															//vdata= String(vdata).replace( vdata,"<img src='icons/alarm_home.png'  width=48>");
-															vdata= String(vdata).replace( vdata,['<img src=',$.domoticzurl,'/images/',icon,'  width=48>'].join(''));
+															vdata = ['<img src=',$.domoticzurl,'/images/',icon,'  width=48>'].join('');
 														}
 														if (vdata === 'Arm Away') {
 															//vdata= String(vdata).replace( vdata,"<img src='icons/alarm_away.png'  width=48>");
-															vdata= String(vdata).replace( vdata,['<img src=',$.domoticzurl,'/images/',icon,'  width=48>'].join(''));
+															vdata = ['<img src=',$.domoticzurl,'/images/',icon,'  width=48>'].join('');
 														}
 													} else {
-														var	icon_On = item.Image.concat('48_On.png');
-														var	icon_Off = item.Image.concat('48_Off.png');
+														var	icon_On = [item.Image,'48_On.png'].join('');
+														var	icon_Off = [item.Image,'48_Off.png'].join('');
 													}
 													
 													if (vdata === txt_on || vdata === txt_open) {
-														vdata= String(vdata).replace( vdata,['<img src=',$.domoticzurl,'/images/',icon_On,' width=48>'].join(''));
+														vdata = ['<img src=',$.domoticzurl,'/images/',icon_On,' width=48>'].join('');
 													}
 													if (vdata === txt_off || vdata === txt_closed) {
-														vdata= String(vdata).replace( vdata,['<img src=',$.domoticzurl,'/images/',icon_Off,'  width=48>'].join(''));
+														vdata = ['<img src=',$.domoticzurl,'/images/',icon_Off,'  width=48>'].join('');
 													} 
 												}	
                                                									
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////													
 
                                                 // if alarm threshold is defined, make value red
-                                                if (typeof valarm !== 'undefined' && vtype !== 'SetPoint') {
+                                                 if (typeof valarm !== 'undefined' && vtype !== 'SetPoint') {
                                                     alarmcss='';
 													if ( eval(valarm.replace(/x/g, "Number(vdata)")) ) {  
                                                         alarmcss=';color:red;';
@@ -846,78 +847,80 @@ function RefreshData()
 														//	for(var i = 0; i < element.length; i++){
 															var i = 0;
 															jsKata.nofreeze.forloop(
-																  // the condition
-																  function() { return i < element.length;  }, 
-																  // the incrementor
-																  function() { i++; },
-																  // this is what will be executed
-																  function fct() {
-																		element[i].classList.add('blink_me');
-																		//console.log(element[i].className);
-																	});
+																// the condition
+																function() { return i < element.length;  }, 
+																// the incrementor
+																function() { i++; },
+																// this is what will be executed
+																function fct() {
+																	element[i].classList.add('blink_me');
+																	//console.log(element[i].className);
+																}
+															);
 														}		
 													}
 													else if ( $('.'+vlabel ).hasClass( "blink_me" ) ) {
-															// Get desired elements
-															var element = document.getElementsByClassName(vlabel);
+														// Get desired elements
+														var element = document.getElementsByClassName(vlabel);
 
-															// Iterate through the retrieved elements and add the necessary class names.
+														// Iterate through the retrieved elements and add the necessary class names.
 														//	for(var i = 0; i < element.length; i++){
-															var i = 0;
-															jsKata.nofreeze.forloop(
-																  // the condition
-																  function() { return i < element.length;  }, 
-																  // the incrementor
-																  function() { i++; },
-																  // this is what will be executed
-																  function fct() {
-																		element[i].classList.remove('blink_me');
-																		//console.log(element[i].className);
-																	});
+														var i = 0;
+														jsKata.nofreeze.forloop(
+															// the condition
+															function() { return i < element.length;  }, 
+															// the incrementor
+															function() { i++; },
+															// this is what will be executed
+															function fct() {
+																element[i].classList.remove('blink_me');
+																//console.log(element[i].className);
+															}
+														);
 													}
-												}
-												
+												}  
+												 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 											
 												// temp color 
 												if(vtype === 'Temp') {
-														 if (parseInt(vdata, 10) >= 35) { vattr=String(vattr).replace( vattr,['color:',T35,';',vattr].join('') ); } 
-													else if (parseInt(vdata, 10) >= 34) { vattr=String(vattr).replace( vattr,['color:',T34,';',vattr].join('') ); } 
-													else if (parseInt(vdata, 10) >= 33) { vattr=String(vattr).replace( vattr,['color:',T33,';',vattr].join('') ); } 
-													else if (parseInt(vdata, 10) >= 32) { vattr=String(vattr).replace( vattr,['color:',T32,';',vattr].join('') ); } 
-													else if (parseInt(vdata, 10) >= 31) { vattr=String(vattr).replace( vattr,['color:',T31,';',vattr].join('') ); } 
-													else if (parseInt(vdata, 10) >= 30) { vattr=String(vattr).replace( vattr,['color:',T30,';',vattr].join('') ); } 
-													else if (parseInt(vdata, 10) >= 29) { vattr=String(vattr).replace( vattr,['color:',T29,';',vattr].join('') ); } 
-													else if (parseInt(vdata, 10) >= 28) { vattr=String(vattr).replace( vattr,['color:',T28,';',vattr].join('') ); } 
-													else if (parseInt(vdata, 10) >= 27) { vattr=String(vattr).replace( vattr,['color:',T27,';',vattr].join('') ); } 
-													else if (parseInt(vdata, 10) >= 26) { vattr=String(vattr).replace( vattr,['color:',T26,';',vattr].join('') ); } 
-													else if (parseInt(vdata, 10) >= 25) { vattr=String(vattr).replace( vattr,['color:',T25,';',vattr].join('') ); } 
-													else if (parseInt(vdata, 10) >= 24) { vattr=String(vattr).replace( vattr,['color:',T24,';',vattr].join('') ); } 
-													else if (parseInt(vdata, 10) >= 23) { vattr=String(vattr).replace( vattr,['color:',T23,';',vattr].join('') ); } 
-													else if (parseInt(vdata, 10) >= 22) { vattr=String(vattr).replace( vattr,['color:',T22,';',vattr].join('') ); } 
-													else if (parseInt(vdata, 10) >= 21) { vattr=String(vattr).replace( vattr,['color:',T21,';',vattr].join('') ); } 
-													else if (parseInt(vdata, 10) >= 20) { vattr=String(vattr).replace( vattr,['color:',T20,';',vattr].join('') ); } 
-													else if (parseInt(vdata, 10) >= 19) { vattr=String(vattr).replace( vattr,['color:',T19,';',vattr].join('') ); } 
-													else if (parseInt(vdata, 10) >= 18) { vattr=String(vattr).replace( vattr,['color:',T18,';',vattr].join('') ); } 
-													else if (parseInt(vdata, 10) >= 17) { vattr=String(vattr).replace( vattr,['color:',T17,';',vattr].join('') ); } 
-													else if (parseInt(vdata, 10) >= 16) { vattr=String(vattr).replace( vattr,['color:',T16,';',vattr].join('') ); } 
-													else if (parseInt(vdata, 10) >= 15) { vattr=String(vattr).replace( vattr,['color:',T15,';',vattr].join('') ); } 
-													else if (parseInt(vdata, 10) >= 14) { vattr=String(vattr).replace( vattr,['color:',T14,';',vattr].join('') ); } 
-													else if (parseInt(vdata, 10) >= 13) { vattr=String(vattr).replace( vattr,['color:',T13,';',vattr].join('') ); } 
-													else if (parseInt(vdata, 10) >= 12) { vattr=String(vattr).replace( vattr,['color:',T12,';',vattr].join('') ); } 
-													else if (parseInt(vdata, 10) >= 11) { vattr=String(vattr).replace( vattr,['color:',T11,';',vattr].join('') ); } 
-													else if (parseInt(vdata, 10) >= 10) { vattr=String(vattr).replace( vattr,['color:',T10,';',vattr].join('') ); } 
-													else if (parseInt(vdata, 10) >= 9) { vattr=String(vattr).replace( vattr,['color:',T09,';',vattr].join('') ); } 
-													else if (parseInt(vdata, 10) >= 8) { vattr=String(vattr).replace( vattr,['color:',T08,';',vattr].join('') ); } 
-													else if (parseInt(vdata, 10) >= 7) { vattr=String(vattr).replace( vattr,['color:',T07,';',vattr].join('') ); } 
-													else if (parseInt(vdata, 10) >= 6) { vattr=String(vattr).replace( vattr,['color:',T06,';',vattr].join('') ); } 
-													else if (parseInt(vdata, 10) >= 5) { vattr=String(vattr).replace( vattr,['color:',T05,';',vattr].join('') ); } 
-													else if (parseInt(vdata, 10) >= 4) { vattr=String(vattr).replace( vattr,['color:',T04,';',vattr].join('') ); } 
-													else if (parseInt(vdata, 10) >= 3) { vattr=String(vattr).replace( vattr,['color:',T03,';',vattr].join('') ); } 
-													else if (parseInt(vdata, 10) >= 2) { vattr=String(vattr).replace( vattr,['color:',T02,';',vattr].join('') ); } 
-													else if (parseInt(vdata, 10) >= 1) { vattr=String(vattr).replace( vattr,['color:',T01,';',vattr].join('') ); } 
-													else if (parseInt(vdata, 10) >= 0) { vattr=String(vattr).replace( vattr,['color:',T00,';',vattr].join('') ); }
-																				  else  { vattr=String(vattr).replace( vattr,['color:',T000,';',vattr].join('') ); }	
+														 if (parseInt(vdata, 10) >= 35) { vattr=['color:',T35,';',vattr].join(''); } 
+													else if (parseInt(vdata, 10) >= 34) { vattr=['color:',T34,';',vattr].join(''); } 
+													else if (parseInt(vdata, 10) >= 33) { vattr=['color:',T33,';',vattr].join(''); } 
+													else if (parseInt(vdata, 10) >= 32) { vattr=['color:',T32,';',vattr].join(''); } 
+													else if (parseInt(vdata, 10) >= 31) { vattr=['color:',T31,';',vattr].join(''); } 
+													else if (parseInt(vdata, 10) >= 30) { vattr=['color:',T30,';',vattr].join(''); } 
+													else if (parseInt(vdata, 10) >= 29) { vattr=['color:',T29,';',vattr].join(''); } 
+													else if (parseInt(vdata, 10) >= 28) { vattr=['color:',T28,';',vattr].join(''); } 
+													else if (parseInt(vdata, 10) >= 27) { vattr=['color:',T27,';',vattr].join(''); } 
+													else if (parseInt(vdata, 10) >= 26) { vattr=['color:',T26,';',vattr].join(''); } 
+													else if (parseInt(vdata, 10) >= 25) { vattr=['color:',T25,';',vattr].join(''); } 
+													else if (parseInt(vdata, 10) >= 24) { vattr=['color:',T24,';',vattr].join(''); } 
+													else if (parseInt(vdata, 10) >= 23) { vattr=['color:',T23,';',vattr].join(''); } 
+													else if (parseInt(vdata, 10) >= 22) { vattr=['color:',T22,';',vattr].join(''); } 
+													else if (parseInt(vdata, 10) >= 21) { vattr=['color:',T21,';',vattr].join(''); } 
+													else if (parseInt(vdata, 10) >= 20) { vattr=['color:',T20,';',vattr].join(''); } 
+													else if (parseInt(vdata, 10) >= 19) { vattr=['color:',T19,';',vattr].join(''); } 
+													else if (parseInt(vdata, 10) >= 18) { vattr=['color:',T18,';',vattr].join(''); } 
+													else if (parseInt(vdata, 10) >= 17) { vattr=['color:',T17,';',vattr].join(''); } 
+													else if (parseInt(vdata, 10) >= 16) { vattr=['color:',T16,';',vattr].join(''); } 
+													else if (parseInt(vdata, 10) >= 15) { vattr=['color:',T15,';',vattr].join(''); } 
+													else if (parseInt(vdata, 10) >= 14) { vattr=['color:',T14,';',vattr].join(''); } 
+													else if (parseInt(vdata, 10) >= 13) { vattr=['color:',T13,';',vattr].join(''); } 
+													else if (parseInt(vdata, 10) >= 12) { vattr=['color:',T12,';',vattr].join(''); } 
+													else if (parseInt(vdata, 10) >= 11) { vattr=['color:',T11,';',vattr].join(''); } 
+													else if (parseInt(vdata, 10) >= 10) { vattr=['color:',T10,';',vattr].join(''); } 
+													else if (parseInt(vdata, 10) >= 9) { vattr=['color:',T09,';',vattr].join(''); } 
+													else if (parseInt(vdata, 10) >= 8) { vattr=['color:',T08,';',vattr].join(''); } 
+													else if (parseInt(vdata, 10) >= 7) { vattr=['color:',T07,';',vattr].join(''); } 
+													else if (parseInt(vdata, 10) >= 6) { vattr=['color:',T06,';',vattr].join(''); } 
+													else if (parseInt(vdata, 10) >= 5) { vattr=['color:',T05,';',vattr].join(''); } 
+													else if (parseInt(vdata, 10) >= 4) { vattr=['color:',T04,';',vattr].join(''); } 
+													else if (parseInt(vdata, 10) >= 3) { vattr=['color:',T03,';',vattr].join(''); } 
+													else if (parseInt(vdata, 10) >= 2) { vattr=['color:',T02,';',vattr].join(''); } 
+													else if (parseInt(vdata, 10) >= 1) { vattr=['color:',T01,';',vattr].join(''); } 
+													else if (parseInt(vdata, 10) >= 0) { vattr=['color:',T00,';',vattr].join(''); }
+																				  else  { vattr=['color:',T000,';',vattr].join(''); }	
 												}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
@@ -926,71 +929,71 @@ function RefreshData()
 												
 												// Adds °C after the temperature
 										 		if(vtype === 'Temp'){   
-													vdata= String(vdata).replace( vdata,['<span onclick="RefreshGraphData(',item.idx,',\'',vdesc,'\',\'temp\',\'day\',\'te\',\'Température &#8451;\')">',vdata,'<sup style="font-size:50%;" >&#8451;</sup></span>'].join(''));
+													vdata = ['<span onclick="RefreshGraphData(',item.idx,',\'',vdesc,'\',\'temp\',\'day\',\'te\',\'Température &#8451;\')">',vdata,'<sup style="font-size:50%;" >&#8451;</sup></span>'].join('');
 												}
 												// Adds % after the humidity
 												if(vtype === 'Humidity'){       
-													vdata= String(vdata).replace( vdata,['<span onclick="RefreshGraphData(',item.idx,',\'',vdesc,'\',\'temp\',\'day\',\'hu\',\'Humidité &#37;\')">',vdata,'<span style="font-size:50%;"> &#37;</span></span>'].join(''));
+													vdata = ['<span onclick="RefreshGraphData(',item.idx,',\'',vdesc,'\',\'temp\',\'day\',\'hu\',\'Humidité &#37;\')">',vdata,'<span style="font-size:50%;"> &#37;</span></span>'].join('');
 												}
 												// Adds hPa after Barometer
 												if(vtype === 'Barometer'){
-													vdata= String(vdata).replace( vdata,[vdata,'<span style="font-size:50%;"> hPa</span>'].join(''));
+													vdata = [vdata,'<span style="font-size:50%;"> hPa</span>'].join('');
 												}
 												// Adds Km/h after the wind
 												if(vtype === 'Speed' || vtype === 'Gust'){       
-													vdata= String(vdata).replace( vdata,['<span onclick="RefreshGraphData(',item.idx,',\'',vdesc,'\',\'wind\',\'day\',\'sp\',\'Vitesse km/h\')">',vdata,'<span style="font-size:50%;"> km/h</span></span>'].join(''));
+													vdata = ['<span onclick="RefreshGraphData(',item.idx,',\'',vdesc,'\',\'wind\',\'day\',\'sp\',\'Vitesse km/h\')">',vdata,'<span style="font-size:50%;"> km/h</span></span>'].join('');
 												}
 												// Adds mm after the rain
 												if(item.Type === 'Rain'){       
-													vdata= String(vdata).replace( vdata,['<span onclick="RefreshGraphData(',item.idx,',\'',vdesc,'\',\'rain\',\'day\',\'mm\',\'Précipitations mm\')">',vdata,'<span style="font-size:50%;"> mm</span></span>'].join(''));
+													vdata = ['<span onclick="RefreshGraphData(',item.idx,',\'',vdesc,'\',\'rain\',\'day\',\'mm\',\'Précipitations mm\')">',vdata,'<span style="font-size:50%;"> mm</span></span>'].join('');
 												}
 												// Adds UVI after UV
 												if(item.Type === 'UV'){
-													vdata= String(vdata).replace( vdata,[vdata,'<span style="font-size:50%;"> UVI</span>'].join(''));
+													vdata = [vdata,'<span style="font-size:50%;"> UVI</span>'].join('');
 												}
 												// Adds % after percentage
 												if(vtype === 'Data' && item.SubType === 'Percentage'){       
-													vdata= String(vdata).replace( vdata,['<span onclick="RefreshGraphData(',item.idx,',\'',vdesc,'\',\'Percentage\',\'day\',\'v\',\'Pourcentage &#37;\')">',Math.ceil(vdata),'<span style="font-size:50%;"> &#37;</span></span>'].join(''));
+													vdata = ['<span onclick="RefreshGraphData(',item.idx,',\'',vdesc,'\',\'Percentage\',\'day\',\'v\',\'Pourcentage &#37;\')">',Math.ceil(vdata),'<span style="font-size:50%;"> &#37;</span></span>'].join('');
 												}
 												// Adds Watt after the Usage
 												if(vtype === 'Usage' && (item.SubType === 'Energy' || item.SubType === 'CM119 / CM160' || item.SubType === 'CM180' || item.SubType === 'kWh')){       
 													if(item.Type === 'P1 Smart Meter') {
-														vdata= String(vdata).replace( vdata,['<span onclick="RefreshGraphData(',item.idx,',\'',vdesc,'\',\'counter\',\'day\',\'p1\',\'Electricité Watt\')">',Math.ceil(vdata),'<span style="font-size:50%;"> Watt</span></span>'].join(''));
+														vdata = ['<span onclick="RefreshGraphData(',item.idx,',\'',vdesc,'\',\'counter\',\'day\',\'p1\',\'Electricité Watt\')">',Math.ceil(vdata),'<span style="font-size:50%;"> Watt</span></span>'].join('');
 													}else{	
-														vdata= String(vdata).replace( vdata,['<span onclick="RefreshGraphData(',item.idx,',\'',vdesc,'\',\'counter&method=1\',\'day\',\'v\',\'Electricité Watt\')">',Math.ceil(vdata),'<span style="font-size:50%;"> Watt</span></span>'].join(''));
+														vdata = ['<span onclick="RefreshGraphData(',item.idx,',\'',vdesc,'\',\'counter&method=1\',\'day\',\'v\',\'Electricité Watt\')">',Math.ceil(vdata),'<span style="font-size:50%;"> Watt</span></span>'].join('');
 													}
 												}
 												// Adds Kwh after the CounterToday
 												if(vtype === 'CounterToday' && (item.SubType === 'Energy' || item.SubType === 'CM119 / CM160' || item.SubType === 'CM180' || item.SubType === 'kWh')){       
-													vdata= String(vdata).replace( vdata,[Math.ceil(vdata*10)/10,'<span style="font-size:50%;"> kWh</span>'].join(''));
+													vdata = [Math.ceil(vdata*10)/10,'<span style="font-size:50%;"> kWh</span>'].join('');
 												}
 												// Adds Kwh after the Counter and convert float to integer
 												if((vtype === 'Counter' || vtype === 'Data') && (item.SubType === 'Energy' || item.SubType === 'CM119 / CM160' || item.SubType === 'CM180' || item.SubType === 'kWh')){       
-													vdata= String(vdata).replace( vdata,[Math.ceil(vdata),'<span style="font-size:50%;"> kWh</span>'].join(''));
+													vdata = [Math.ceil(vdata),'<span style="font-size:50%;"> kWh</span>'].join('');
 												}
 												// Adds € after price
 												if(vtype === 'Euro'){       
-													vdata= String(vdata).replace( vdata,[Math.ceil(vdata*100)/100,'<span style="font-size:50%;"> &#8364;</span>'].join(''));
+													vdata = [Math.ceil(vdata*100)/100,'<span style="font-size:50%;"> &#8364;</span>'].join('');
 												}
 												// Adds m³ after volume for incremental counter
 												if(item.Type === 'Counter Incremental' && (item.SwitchTypeVal === '1' || item.SwitchTypeVal === '2')){
-													vdata= String(vdata).replace( vdata,[vdata,'<span style="font-size:50%;"> m&#179;</span>'].join(''));
+													vdata = [vdata,'<span style="font-size:50%;"> m&#179;</span>'].join('');
 												}
 												// Adds Kwh after energy for incremental counter
 												if(item.Type === 'Counter Incremental' && (item.SwitchTypeVal === '0' || item.SwitchTypeVal === '4')){
-													vdata= String(vdata).replace( vdata,[vdata,'<span style="font-size:50%;"> kWh</span>'].join(''));
+													vdata = [vdata,'<span style="font-size:50%;"> kWh</span>'].join('');
 												}
 												// Adds Watt/m² after solar radiation
 												if(item.SubType === 'Solar Radiation'){
-													vdata= String(vdata).replace( vdata,[vdata,'<span style="font-size:50%;"> W/m&#178;</span>'].join(''));
+													vdata = [vdata,'<span style="font-size:50%;"> W/m&#178;</span>'].join('');
 												}
 												// graph for counter without unit
 												if(item.Type === 'RFXMeter' && item.SwitchTypeVal === '3'){       
-													vdata= String(vdata).replace( vdata,['<span onclick="RefreshGraphData(',item.idx,',\'',vdesc,'\',\'counter\',\'day\',\'v\',\'Compteur\')">',vdata,'</span>'].join(''));
+													vdata = ['<span onclick="RefreshGraphData(',item.idx,',\'',vdesc,'\',\'counter\',\'day\',\'v\',\'Compteur\')">',vdata,'</span>'].join('');
 												}
 												// adds V after voltage
 												if(vtype === 'Voltage'){       
-													vdata= String(vdata).replace( vdata,['<span onclick="RefreshGraphData(',item.idx,',\'',vdesc,'\',\'counter\',\'day\',\'v\',\'Tension V\')">',Math.ceil(vdata*100)/100,'<span style="font-size:50%;"> V</span></span>'].join(''));
+													vdata = ['<span onclick="RefreshGraphData(',item.idx,',\'',vdesc,'\',\'counter\',\'day\',\'v\',\'Tension V\')">',Math.ceil(vdata*100)/100,'<span style="font-size:50%;"> V</span></span>'].join('');
 												}
 												
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////													
@@ -1009,11 +1012,13 @@ function RefreshData()
 													$(['div.',vlabel].join('')).html(['<div ',switchclick,' style=',vattr,alarmcss,'>',vdata,'</div>'].join(''));
 												}
 												
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////							
-
-                                                 if ($(['div.desc_',vlabel].join('')).length > 0) {
+												if ($(['div.desc_',vlabel].join('')).length > 0) {
 													$(['div.desc_',vlabel].join('')).html(vdesc);
-												}	 
+												}
+				
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+												
                                         }
                                         else if ( $.PageArray[ii][1] === 'Text' ) { 			//Special nummer, link in cell (test)
                                                 var vlabel=     $.PageArray[ii][2];             // cell number from HTML layout
@@ -1029,7 +1034,6 @@ function RefreshData()
 										else if ( $.PageArray[ii][1] === 'Hide' ) { 			//Special nummer, link in cell (test)
                                                 var vlabel=     $.PageArray[ii][2];             // cell number from HTML layout
                                                 var vdata=      $.PageArray[ii][3];             // description (link in this case
-                                                var vdesc = '';
                                                 var valarm= '';             // alarm value to turn text to red
                                                 
 												$(['div.',vlabel].join('')).html('');
@@ -1040,7 +1044,6 @@ function RefreshData()
 										else if ( $.PageArray[ii][1] === 'Link' ) { 			//Special nummer, link in cell (test)
                                                 var vlabel=     $.PageArray[ii][2];             // cell number from HTML layout
                                                 var vdata=      $.PageArray[ii][3];             // description (link in this case
-                                                var vdesc= '';
                                                 var valarm=  '';             // alarm value to turn text to red
                                                 
                                                 $(['div.',vlabel].join('')).html(['<div>',vdata,'</div>'].join(''));
@@ -1051,7 +1054,6 @@ function RefreshData()
 										else if ( $.PageArray[ii][1] === 'Clock' ) { 			//Special nummer, Clock in cell (test)
                                                 var vlabel=     $.PageArray[ii][2];             // cell number from HTML layout
                                                 var vdata=      currentTime();             		// Get present time
-                                                var vdesc= '';
                                                 var vattr=    $.PageArray[ii][6];             	// extra css attributes
                                                 var valarm=   '';             // alarm value to turn text to red
                                                 
@@ -1063,7 +1065,6 @@ function RefreshData()
 										else if ( $.PageArray[ii][1] === 'Date' ) { 			//Special nummer, Date in cell (test)
                                                 var vlabel=     $.PageArray[ii][2];             // cell number from HTML layout
                                                 var vdata=      currentDate();             		// Get present time
-                                                var vdesc = '';
                                                 var vattr=    $.PageArray[ii][6];             	// extra css attributes
                                                 var valarm=    '';             // alarm value to turn text to red
                                                 
@@ -1075,7 +1076,6 @@ function RefreshData()
 										else if ( $.PageArray[ii][1] === 'MonthYear' ) { 			//Special nummer, Date in cell (test)
                                                 var vlabel=     $.PageArray[ii][2];             // cell number from HTML layout
                                                 var vdata=      currentMonthYear();             		// Get present time
-                                                var vdesc = '';
                                                 var vattr=    $.PageArray[ii][6];             	// extra css attributes
                                                 var valarm=   '';             // alarm value to turn text to red
                                                 
@@ -1086,7 +1086,6 @@ function RefreshData()
 										}	
                                         else if ( $.PageArray[ii][1] === 'SunRise' ) { 			//Special nummer, zonsop/onder in cell (test)
                                                 var vlabel=     $.PageArray[ii][2];             // cell number from HTML layout
-                                                var vdesc = '';
                                                 var vattr=    $.PageArray[ii][6];             	// extra css attributes
                                                 var valarm=   '';             // alarm value to turn text to red
 
@@ -1097,7 +1096,6 @@ function RefreshData()
 										}	
                                         else if ( $.PageArray[ii][1] === 'SunSet' ) { 			//Special nummer, zonsop/onder in cell (test)
                                                 var vlabel=     $.PageArray[ii][2];             // cell number from HTML layout
-                                                var vdesc = '';
                                                 var vattr=    $.PageArray[ii][6];             	// extra css attributes
                                                 var valarm=    '';             // alarm value to turn text to red
 
@@ -1108,7 +1106,6 @@ function RefreshData()
 										}	
                                         else if ( $.PageArray[ii][1] === 'SunBoth' ) { 			//Special nummer, zonsop/onder in cell (test)
                                                 var vlabel=     $.PageArray[ii][2];             // cell number from HTML layout
-                                                var vdesc = '';
                                                 var vattr=    $.PageArray[ii][6];             	// extra css attributes
                                                 var valarm=   '';             // alarm value to turn text to red
 												
@@ -1117,7 +1114,9 @@ function RefreshData()
 													$(['div.desc_',vlabel].join('')).html(txt_sunboth);
 												} 
 										}
-                                        
+                                
+								
+								 
                                 });
                         });
                 }
@@ -1155,7 +1154,8 @@ function RefreshData()
 												var vicon=   	$.PageArray_Scenes[ii][4];							//Name of custom icon
                                                 var vattr=    	$.PageArray_Scenes[ii][5];                      // extra css attributes
                                                 var vdata=      item[vtype];                            		// current value
-                                                if (typeof vdata === 'undefined') {
+												
+												if (typeof vdata === 'undefined') {
                                                       //  vdata="?!";
                                                         vdata=['<span onclick="helpBox_open(',item.idx,')">?!</span>'].join('');
                                                 } else {
@@ -1190,7 +1190,7 @@ function RefreshData()
 												if (vdata === 'Mixed' ) {
                                                         var min = ['<span style="font-size:100%;position:relative;left:-10px;color:#1B9772;" onclick="SceneToggle(',item.idx,', \'On\');lightbox_open(\'switch\', ',switch_timeout,', ',txt_switch_on,')">',txt_on,'</span>'].join('');
 														var plus = ['<span  style="font-size:100%;position:relative;left:10px;color:#E24E2A;" onclick="SceneToggle(',item.idx,', \'Off\');lightbox_open(\'switch\', ',switch_timeout,', ',txt_switch_off,')">',txt_off,'</span>'].join('');
-														vdata = min.concat(plus);
+														vdata = [min,plus].join('');
 														
                                                 }
 
@@ -1200,8 +1200,8 @@ function RefreshData()
 												
 													if ( isNaN(vicon) && typeof vicon !== 'undefined') {
 														
-														var	icon_On = vicon.concat('48_On.png');
-														var	icon_Off = vicon.concat('48_Off.png');
+														var	icon_On = [vicon,'48_On.png'].join('');
+														var	icon_Off = [vicon,'48_Off.png'].join('');
 														
 														if (vicon === 'Blinds') {
 															icon_On = 'blindsopen48sel.png';
@@ -1209,15 +1209,17 @@ function RefreshData()
 														}	
 														
 														if (vdata === txt_on) {
-															vdata= String(vdata).replace( vdata,['<img src="',$.domoticzurl,'/images/',icon_On,'" width=48>'].join(''));
+															vdata = ['<img src="',$.domoticzurl,'/images/',icon_On,'" width=48>'].join('');
 														}
 														else if (vdata === txt_off) {
-															vdata= String(vdata).replace( vdata,['<img src="',$.domoticzurl,'/images/',icon_Off,'"  width=48>'].join(''));
+															vdata= ['<img src="',$.domoticzurl,'/images/',icon_Off,'"  width=48>'].join('');
 														} else  {
-															min=String(vdata).replace( vdata,['<img src="',$.domoticzurl,'/images/',icon_On,'"  hspace=10 width=48 onclick="SceneToggle(',item.idx,', \'On\');lightbox_open(\'switch\', ',switch_timeout,', ',txt_switch_on,')">'].join(''));
-															plus=String(vdata).replace( vdata,['<img src="',$.domoticzurl,'/images/',icon_Off,'"  hspace=10 width=48 onclick="SceneToggle(',item.idx,', \'Off\');lightbox_open(\'switch\', ',switch_timeout,', ',txt_switch_off,')">'].join(''));
-															vdata = min.concat(plus);
-														}	
+															min = ['<img src="',$.domoticzurl,'/images/',icon_On,'"  hspace=10 width=48 onclick="SceneToggle(',item.idx,', \'On\');lightbox_open(\'switch\', ',switch_timeout,', ',txt_switch_on,')">'].join('');
+															plus = ['<img src="',$.domoticzurl,'/images/',icon_Off,'"  hspace=10 width=48 onclick="SceneToggle(',item.idx,', \'Off\');lightbox_open(\'switch\', ',switch_timeout,', ',txt_switch_off,')">'].join('');
+															vdata = [min,plus].join('');
+															
+														}
+														
 													}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////													
@@ -1234,6 +1236,10 @@ function RefreshData()
                                                 if ($(['div.desc_',vlabel].join('')).length > 0) {
 													$(['div.desc_',vlabel].join('')).html(vdesc);
                                                 }
+												
+												
+								 
+												
                                         }
                                 });
                         });
@@ -1246,8 +1252,8 @@ function RefreshData()
         });
 		
 		
-        $.refreshTimer = setInterval(RefreshData, refresh); // auto refresh page 8 secondes
-		
+        $.refreshTimer = setInterval(RefreshData, refresh); // auto refresh page
+	
 }
 
 		
@@ -1484,16 +1490,14 @@ function currentTime() {
     if (m.length === 1) { 
 	m = '0'+ m;
     }
-	var days = ["Dimanche","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi"];
-    var day = days[today.getDay().toString()];
+	var day = days[today.getDay().toString()];
 	
     var dag=today.getDate().toString();
     dag = dag.trim();
     if (dag.length === 1) { 
 	dag = '0'+ dag;
     }
-	var months = ["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Aout","Septembre","Octobre","Novembre","Décembre"];
-    var maand = months[(today.getMonth()).toString()];
+	var maand = months[(today.getMonth()).toString()];
 	
     if (showMonth === true){
 		// with month
@@ -1508,7 +1512,6 @@ function currentTime() {
 // date
 function currentDate() {
     var today=new Date();
-    var days = ["Dimanche","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi"];
     var day = days[today.getDay().toString()];
 	
     var dag=today.getDate().toString();
@@ -1516,8 +1519,7 @@ function currentDate() {
     if (dag.length === 1) { 
 	dag = '0'+ dag;
     }
-	var months = ["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Aout","Septembre","Octobre","Novembre","Décembre"];
-    var maand = months[(today.getMonth()).toString()];
+	var maand = months[(today.getMonth()).toString()];
 	
     if (showMonth === true){
 		// with month
@@ -1532,7 +1534,6 @@ function currentDate() {
 // month and year
 function currentMonthYear() {
     var today=new Date();
-    var months = ["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Aout","Septembre","Octobre","Novembre","Décembre"];
     var maand = months[(today.getMonth()).toString()];
 	var year = today.getFullYear().toString();
     var ret_str = ['<span style="font-size:60%;position:relative;top:-5px;">',maand,'</span><br><span style="font-size:55%;position:relative;top:-40px;">',year,'</span>'].join('');
@@ -1545,9 +1546,7 @@ function goodmorning(v) {
 	var h = v.substring(0, 2);
 	var m = v.substring(3, 5);
 	var date = v.substring(8, 10);
-	var days = ["Dimanche","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi"];
 	var day = days[v.substring(6, 7)-1];
-	var months = ["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Aout","Septembre","Octobre","Novembre","Décembre"];
 	var month = months[v.substring(11, 13).replace(/^0+/, '')-1];
 	var year = v.substring(14,18);
 	

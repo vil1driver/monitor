@@ -1,5 +1,5 @@
 ﻿
-<!-- Change the text for on/off switches -->
+// Change the text for on/off switches
 var txt_on = 'On';
 var txt_off = 'Off';
 var txt_closed = 'Fermée';
@@ -7,8 +7,10 @@ var txt_open = 'Ouverte';
 var txt_sunboth='Soleil';
 var txt_sunset='Coucher soleil';
 var txt_sunrise='Lever soleil';
+var days = ["Dimanche","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi"];
+var months = ["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Aout","Septembre","Octobre","Novembre","Décembre"];
 
-<!-- Change the text displayed in PopUps -->
+// Change the text displayed in PopUps
 var txt_switch_protected = '\'Interdit\'';
 var txt_switch_on = '\'Switch On\'';
 var txt_switch_off = '\'Switch Off\'';
@@ -16,7 +18,7 @@ var txt_blind_up = '\'Ouverture\'';
 var txt_blind_down = '\'Fermeture\'';
 var txt_blind_stop = '\'Arrêt\'';
 
-<!-- Change backgrounds images,size and brightness -->
+// Change backgrounds images,size and brightness
 var bg_day = 'pissanli.jpg';			// image de fond le jour, laisser vide pour fond noir
 var bg_night = 'romantic.jpg';			// image de fond la nuit, laisser vide pour fond noir
 var bg_day_spring = '';									// image de fond pour la saison printemps
@@ -31,7 +33,7 @@ var bg_size = 'cover';					// taille de l'image de fond (ex: '1024px 768px') 'co
 var bg_dayBright = 0.5;					// luminosité du fond le jour (0=normal 1=noir)
 var bg_nightBright = 0.5;				// luminosité du fond la nuit (0=normal 1=noir)
 
-<!-- Change colors of temps -->
+// Change colors of temps
 var T35 = '#FF0000';						// couleur de la température à 35°C
 var T34 = '#FE1400';
 var T33 = '#FD2800';
@@ -70,22 +72,22 @@ var T01 = '#AEE6F0';
 var T00 = '#AEE3F5';
 var T000 = '#EBF4F7';						// couleur de la température sous 0°C
 
-<!-- Change the timeout of the PopUp -->
+// Change the timeout of the PopUp
 var switch_protected_timeout = '1000';		// durée d'affichage (en milisecondes)
 var switch_timeout = '1000';
 var fad_Duration = 200;					// durée de l'animation (en milisecondes)
 
-<!-- Special items -->
+// Special items
 var city = 'paris';		// localité pour la popup météo (lors du clic sur l'icon météo)
 var blink = false;							// faire clignoter les valeurs en alarme (true/false)
 var showMonth = false;						// affichage du mois dans la date (true/false)
 
-<!-- Swipe options -->
+// Swipe options
 var speed = 300;							// durée de l'animation (en milisecondes)
 var delai = 0;								// défilement automatique, temps avant changement de page (en milisecondes)
 var direction = 'next';						// si delai est différent de 0, choix d'aller à la page suivante ou de revenir à la première page ('next'/'index')
 
-<!-- Display -->
+// Display
 var zoom = 0;								// ajustage de la valeur de zoom (valeurs négatives autorisées)
 var refresh = 8000;							// temps entre 2 rafraîchissements (en millisecondes)
 
