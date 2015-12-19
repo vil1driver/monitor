@@ -1,4 +1,4 @@
-@font-face
+﻿@font-face
 {
   font-family: 'arimo';
   src: 	url(../fonts/arimo.woff2) format('woff2'),
@@ -28,6 +28,11 @@ body,html
 body
 {
 	background-color: #000;
+}
+
+body:after{
+    display:none;
+    content: url(../icons/offline.png);
 }
 
 html::after
@@ -157,6 +162,14 @@ img[alt] {
     height: 250px;
     margin-left: -325px;
     margin-top: -155px;      
+}
+
+#popup_meteo0:after, #popup_meteo1:after, #popup_meteo2:after, #popup_meteo3:after
+{
+    content: "\A Waiting..";
+	width: 650px;
+	height: 250px;
+	line-height: 15px;
 }
 
 #popup_graph

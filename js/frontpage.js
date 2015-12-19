@@ -84,6 +84,8 @@ $(window).bind('mousewheel DOMMouseScroll', function(event){
 $.ajaxSetup({
 			dataType: "json",
             async: true,
+			global: false,
+			timeout: 1500,
 			cache: false 
 });
 			
@@ -146,15 +148,15 @@ function closePanel() {
 // Load meteo widget
 function LoadMeteoWidget() {
 	if (city === '') {
-		$('#popup_meteo0').html('<div width="650" height="250" valign="center" line-height="15px">Veuillez indiquer votre ville dans les paramètres<br>exemple:<br>var city = \'paris\'</div>');	
-		$('#popup_meteo1').html('<div width="650" height="250" valign="center" line-height="15px">Veuillez indiquer votre ville dans les paramètres<br>exemple:<br>var city = \'paris\'</div>');	
-		$('#popup_meteo2').html('<div width="650" height="250" valign="center" line-height="15px">Veuillez indiquer votre ville dans les paramètres<br>exemple:<br>var city = \'paris\'</div>');	
-		$('#popup_meteo3').html('<div width="650" height="250" valign="center" line-height="15px">Veuillez indiquer votre ville dans les paramètres<br>exemple:<br>var city = \'paris\'</div>');	
+		$('#popup_meteo0').html('<div>Veuillez indiquer votre ville dans les paramètres<br>exemple:<br>var city = \'paris\'</div>');	
+		$('#popup_meteo1').html('<div>Veuillez indiquer votre ville dans les paramètres<br>exemple:<br>var city = \'paris\'</div>');	
+		$('#popup_meteo2').html('<div>Veuillez indiquer votre ville dans les paramètres<br>exemple:<br>var city = \'paris\'</div>');	
+		$('#popup_meteo3').html('<div>Veuillez indiquer votre ville dans les paramètres<br>exemple:<br>var city = \'paris\'</div>');	
 	}else{
-		$('#popup_meteo0').html(['<img src="http://www.prevision-meteo.ch/uploads/widget/',city,'_0.png?timestamp=',new Date().getTime(),'" width="650" height="250" alt="Ville inconnue..">'].join(''));
-		$('#popup_meteo1').html(['<img src="http://www.prevision-meteo.ch/uploads/widget/',city,'_1.png?timestamp=',new Date().getTime(),'" width="650" height="250" alt="Ville inconnue..">'].join(''));
-		$('#popup_meteo2').html(['<img src="http://www.prevision-meteo.ch/uploads/widget/',city,'_2.png?timestamp=',new Date().getTime(),'" width="650" height="250" alt="Ville inconnue..">'].join(''));
-		$('#popup_meteo3').html(['<img src="http://www.prevision-meteo.ch/uploads/widget/',city,'_3.png?timestamp=',new Date().getTime(),'" width="650" height="250" alt="Ville inconnue..">'].join(''));
+		$('#popup_meteo0').html(['<img src="http://www.prevision-meteo.ch/uploads/widget/',city,'_0.png?timestamp=',new Date().getTime(),'" alt="Ville inconnue..">'].join(''));
+		$('#popup_meteo1').html(['<img src="http://www.prevision-meteo.ch/uploads/widget/',city,'_1.png?timestamp=',new Date().getTime(),'" alt="Ville inconnue..">'].join(''));
+		$('#popup_meteo2').html(['<img src="http://www.prevision-meteo.ch/uploads/widget/',city,'_2.png?timestamp=',new Date().getTime(),'" alt="Ville inconnue..">'].join(''));
+		$('#popup_meteo3').html(['<img src="http://www.prevision-meteo.ch/uploads/widget/',city,'_3.png?timestamp=',new Date().getTime(),'" alt="Ville inconnue..">'].join(''));
 	}
 	setInterval(LoadMeteoWidget, 3600000); // reload every hours
 }
@@ -240,7 +242,7 @@ function createGraph(seriesData, vdesc, vunit) {
         },
         plotOptions: {
         
-        area: { animation: false, enableMouseTracking: false, stickyTracking: true, shadow: false, dataLabels: { style: { textShadow: false } } },
+ /*        area: { animation: false, enableMouseTracking: false, stickyTracking: true, shadow: false, dataLabels: { style: { textShadow: false } } },
         arearange: { animation: false, enableMouseTracking: false, stickyTracking: true, shadow: false, dataLabels: { style: { textShadow: false } } },
         areaspline: { animation: false, enableMouseTracking: false, stickyTracking: true, shadow: false, dataLabels: { style: { textShadow: false } } },
         areasplinerange: { animation: false, enableMouseTracking: false, stickyTracking: true, shadow: false, dataLabels: { style: { textShadow: false } } },
@@ -252,9 +254,9 @@ function createGraph(seriesData, vdesc, vunit) {
         errorbar: { animation: false, enableMouseTracking: false, stickyTracking: true, shadow: false, dataLabels: { style: { textShadow: false } } },
         funnel: { animation: false, enableMouseTracking: false, stickyTracking: true, shadow: false, dataLabels: { style: { textShadow: false } } },
         gauge: { animation: false, enableMouseTracking: false, stickyTracking: true, shadow: false, dataLabels: { style: { textShadow: false } } },
-        heatmap: { animation: false, enableMouseTracking: false, stickyTracking: true, shadow: false, dataLabels: { style: { textShadow: false } } },
-        line: { animation: false, enableMouseTracking: false, stickyTracking: true, shadow: false, dataLabels: { style: { textShadow: false } } },
-        pie: { animation: false, enableMouseTracking: false, stickyTracking: true, shadow: false, dataLabels: { style: { textShadow: false } } },
+        heatmap: { animation: false, enableMouseTracking: false, stickyTracking: true, shadow: false, dataLabels: { style: { textShadow: false } } }, */
+        line: { animation: false, enableMouseTracking: false, stickyTracking: true, shadow: false, dataLabels: { style: { textShadow: false } } }
+   /*      pie: { animation: false, enableMouseTracking: false, stickyTracking: true, shadow: false, dataLabels: { style: { textShadow: false } } },
         polygon: { animation: false, enableMouseTracking: false, stickyTracking: true, shadow: false, dataLabels: { style: { textShadow: false } } },
         pyramid: { animation: false, enableMouseTracking: false, stickyTracking: true, shadow: false, dataLabels: { style: { textShadow: false } } },
         scatter: { animation: false, enableMouseTracking: false, stickyTracking: true, shadow: false, dataLabels: { style: { textShadow: false } } },
@@ -262,7 +264,7 @@ function createGraph(seriesData, vdesc, vunit) {
         solidgauge: { animation: false, enableMouseTracking: false, stickyTracking: true, shadow: false, dataLabels: { style: { textShadow: false } } },
         spline: { animation: false, enableMouseTracking: false, stickyTracking: true, shadow: false, dataLabels: { style: { textShadow: false } } },
         treemap: { animation: false, enableMouseTracking: false, stickyTracking: true, shadow: false, dataLabels: { style: { textShadow: false } } },
-        waterfall: { animation: false, enableMouseTracking: false, stickyTracking: true, shadow: false, dataLabels: { style: { textShadow: false } } }
+        waterfall: { animation: false, enableMouseTracking: false, stickyTracking: true, shadow: false, dataLabels: { style: { textShadow: false } } } */
    
 		
 		
@@ -1077,7 +1079,7 @@ function RefreshData()
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////													
 
 												// if extra css attributes. Make switch not switchable when it is protected, just give message.
-												if (typeof vattr === 'undefined') {
+											 	if (typeof vattr === 'undefined') {
 													if (item.Protected === true) {
 														$(['div.',vlabel].join('')).html(['<div onClick="lightbox_open(\'protected\', ',switch_protected_timeout,', ',txt_switch_protected,')" style=',alarmcss,'>',vdata,'</div>'].join(''));
 													} else { 
@@ -1093,7 +1095,7 @@ function RefreshData()
 												if ($(['div.desc_',vlabel].join('')).length > 0) {
 													$(['div.desc_',vlabel].join('')).html(vdesc);
 												}
-				
+												
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 												
@@ -1136,7 +1138,7 @@ function RefreshData()
                                                 var valarm=   '';             // alarm value to turn text to red
                                                 
                                                 $(['div.',vlabel].join('')).html(['<div style=',vattr,'>',vdata,'</div>'].join(''));
-                                                 if ($(['div.desc_',vlabel].join('')).length > 0) {
+                                                if ($(['div.desc_',vlabel].join('')).length > 0) {
 													$(['div.desc_',vlabel].join('')).html('');
 												}	 
 										}
@@ -1147,7 +1149,7 @@ function RefreshData()
                                                 var valarm=    '';             // alarm value to turn text to red
                                                 
                                                 $(['div.',vlabel].join('')).html(['<div style=',vattr,'>',vdata,'</div>'].join(''));
-                                                 if ($(['div.desc_',vlabel].join('')).length > 0) {
+                                                if ($(['div.desc_',vlabel].join('')).length > 0) {
 													$(['div.desc_',vlabel].join('')).html('');
 												}	 
 										}
@@ -1158,7 +1160,7 @@ function RefreshData()
                                                 var valarm=   '';             // alarm value to turn text to red
                                                 
                                                 $(['div.',vlabel].join('')).html(['<div style=',vattr,'>',vdata,'</div>'].join(''));
-                                                 if ($(['div.desc_',vlabel].join('')).length > 0) {
+                                                if ($(['div.desc_',vlabel].join('')).length > 0) {
 													$(['div.desc_',vlabel].join('')).html('');
 												}	 
 										}	
@@ -1168,7 +1170,7 @@ function RefreshData()
                                                 var valarm=   '';             // alarm value to turn text to red
 
                                                 $(['div.',vlabel].join('')).html(['<div style=',vattr,'>',var_sunrise,'</div>'].join(''));
-                                                 if ($(['div.desc_',vlabel].join('')).length > 0) {
+                                                if ($(['div.desc_',vlabel].join('')).length > 0) {
 													$(['div.desc_',vlabel].join('')).html(txt_sunrise);
 												}	 
 										}	
@@ -1178,7 +1180,7 @@ function RefreshData()
                                                 var valarm=    '';             // alarm value to turn text to red
 
                                                 $(['div.',vlabel].join('')).html(['<div style=',vattr,'>',var_sunset,'</div>'].join(''));
-                                                 if ($(['div.desc_',vlabel].join('')).length > 0) {
+                                                if ($(['div.desc_',vlabel].join('')).length > 0) {
 													$(['div.desc_',vlabel].join('')).html(txt_sunset);
 												}	 
 										}	
@@ -1188,18 +1190,20 @@ function RefreshData()
                                                 var valarm=   '';             // alarm value to turn text to red
 												
                                                 $(['div.',vlabel].join('')).html(['<div style=',vattr,'><img src=icons/sun.png  height="15" width="15" style="PADDING-RIGHT: 2px;">',var_sunrise,'<img src=icons/moon.png  height="15" width="15" style="PADDING-LEFT: 15px;">',var_sunset,'</div>'].join(''));
-                                                 if ($(['div.desc_',vlabel].join('')).length > 0) {
+                                                if ($(['div.desc_',vlabel].join('')).length > 0) {
 													$(['div.desc_',vlabel].join('')).html(txt_sunboth);
 												} 
 										}
                                 
-								
+										
+										
 								 
                                 });
                         });
                 }
 		two = new Date() - two;
-		console.log('switchs: ' + two + 'ms');			
+		console.log('switchs: ' + two + 'ms');
+				
         });
 		
 
@@ -1319,6 +1323,8 @@ function RefreshData()
 								 
 												
                                         }
+										
+
                                 });
                         });
                 }
@@ -1385,6 +1391,8 @@ function GetCams()
 								$(['div.desc_',vlabel].join('')).html('');
 							}
 					}
+					
+					
 		});	
 }
 
@@ -1649,3 +1657,4 @@ function goodmorning(v) {
 	
 	return ret_str;
 }	
+
