@@ -472,10 +472,14 @@ function RefreshData()
 		}
 												
 		console.log("connection success");
-		$('#popup_offline').fadeOut(fad_Duration);
-        $('#fade2').fadeOut(fad_Duration);
-		error = 0;	
-			
+		if(error != 0){
+			error = 0;
+			GetCams();
+		}	
+		if($('#popup_offline').css('display') === 'block'){
+			$('#popup_offline').fadeOut(fad_Duration);
+			$('#fade2').fadeOut(fad_Duration);
+		}
 		
 		one = new Date() - one;
 		console.log('sunset/background/clock/meteo: ' + one + 'ms');	
@@ -483,11 +487,12 @@ function RefreshData()
 	}).fail(function() {
 		error += 1;
 		console.log(['ERROR connect to ',$.domoticzurl].join(''));
-		if( error >= 3 ) 
+		if( error >= 3 && $('#popup_offline').css('display') === 'none') 
 		{
 			$('#popup_offline').fadeIn(fad_Duration);
 			$('#fade2').fadeIn(fad_Duration);
-		}else{
+		}
+		else{
 			RefreshData();
 		}	
 			
@@ -1373,7 +1378,8 @@ function GetCams()
 																	if( this.src === this.alt)
 																	{
 																		this.src = [location.href.replace(/\/$/, ''),'/icons/offline.jpg'].join('');
-																	}else{
+																	}
+																	else{
 																		this.src = this.alt;
 																	}	
 																	console.log('replace: '+this.src);

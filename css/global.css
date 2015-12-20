@@ -127,8 +127,10 @@ span.percent {
 }
 
 img[alt] {
-	color : transparent;
+	color: transparent;
+	text-shadow: none;
 }
+
 	
 #popup_switch, #popup_graph, #popup_protected,
 #popup_meteo0, #popup_meteo1, #popup_meteo2, #popup_meteo3,
