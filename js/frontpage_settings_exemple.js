@@ -78,7 +78,8 @@ var switch_timeout = '600';
 var fad_Duration = 0;						// durée de l'animation (en milisecondes)
 
 // Special items
-var city = 'saint-jacques-de-la-lande';		// localité pour la popup météo (lors du clic sur l'icon météo)
+var city = 'saint-jacques-de-la-lande';							// localité pour la popup météo option 0,1,2,3 (lors du clic sur l'icon météo) cf http://www.prevision-meteo.ch/
+var place = 'France/Brittany/Saint-Jacques-de-la-Lande';		// localité pour la popup météo option 4 (lors du clic sur l'icon météo) cf http://www.yr.no/
 var blink = true;							// faire clignoter les valeurs en alarme (true/false)
 var showMonth = false;						// affichage du mois dans la date (true/false)
 
@@ -140,7 +141,7 @@ var refresh = 8000;							// temps entre 2 rafraîchissements (en millisecondes)
 				['mpd_reggae','Status',   				'cell10',                       	'Reggae','','','color:#6594FE;font-family:brankovic;font-size:100%'],
 				['mpd_rock','Status',        		'cell15',                       	'Rock','','','color:#6594FE;font-family:brankovic;font-size:100%'],
 			  
-                ['exterieur','ForecastStr',    		'cell25',                       	''],	// icon météo (idx du capteur de température extérieur virtuel Weather Underground)
+                ['exterieur','ForecastStr',    		'cell25',                       	'','4'],	// icon météo (idx du capteur de température extérieur virtuel Weather Underground)
 			    ['','Hide',            		'cell1',                       		''],	// heure et date
 				
 							

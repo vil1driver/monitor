@@ -133,7 +133,7 @@ img[alt] {
 
 	
 #popup_switch, #popup_graph, #popup_protected,
-#popup_meteo0, #popup_meteo1, #popup_meteo2, #popup_meteo3,
+#popup_meteo0, #popup_meteo1, #popup_meteo2, #popup_meteo3, #popup_meteo4,
 #popup_secpanel, #popup_help, #popup_camera
 {
     display: none;
@@ -174,6 +174,22 @@ img[alt] {
 	line-height: 15px;
 }
 
+#popup_meteo4
+{
+    width: 828px;
+    height: 272px;
+    margin-left: -415px;
+    margin-top: -160px;      
+}
+
+#popup_meteo4:after
+{
+    content: "\A Waiting..";
+	width: 828px;
+	height: 272px;
+	line-height: 15px;
+}
+ 
 #popup_graph
 {
     width: 850px;

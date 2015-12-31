@@ -75,10 +75,11 @@ var T000 = '#EBF4F7';						// couleur de la température sous 0°C
 // Change the timeout of the PopUp
 var switch_protected_timeout = '1000';		// durée d'affichage (en milisecondes)
 var switch_timeout = '1000';
-var fad_Duration = 200;					// durée de l'animation (en milisecondes)
+var fad_Duration = 200;						// durée de l'animation (en milisecondes)
 
 // Special items
-var city = 'paris';		// localité pour la popup météo (lors du clic sur l'icon météo)
+var city = 'paris';								// localité pour la popup météo option 0,1,2,3 (lors du clic sur l'icon météo) cf http://www.prevision-meteo.ch/
+var place = 'France/Île-de-France/Paris/';		// localité pour la popup météo option 4 (lors du clic sur l'icon météo) cf http://www.yr.no/
 var blink = false;							// faire clignoter les valeurs en alarme (true/false)
 var showMonth = false;						// affichage du mois dans la date (true/false)
 

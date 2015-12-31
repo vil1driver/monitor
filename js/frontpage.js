@@ -1,5 +1,5 @@
 // in dev mode comment this to enable console.log
-console.log = function() {}
+//console.log = function() {}
 
 
 // on document ready (start)
@@ -159,6 +159,13 @@ function LoadMeteoWidget() {
 		$('#popup_meteo2').html(['<img src="http://www.prevision-meteo.ch/uploads/widget/',city,'_2.png?timestamp=',new Date().getTime(),'" alt="Ville inconnue..">'].join(''));
 		$('#popup_meteo3').html(['<img src="http://www.prevision-meteo.ch/uploads/widget/',city,'_3.png?timestamp=',new Date().getTime(),'" alt="Ville inconnue..">'].join(''));
 	}
+	if (place === ''){
+		$('#popup_meteo4').html('<div>Veuillez indiquer votre ville dans les paramètres<br>exemple:<br>var place = \'France/Brittany/Paris\'</div>');	
+	}
+	else{
+		$('#popup_meteo4').html(['<img src="http://www.yr.no/place/',place,'/meteogram.png?timestamp=',new Date().getTime(),'" alt="Ville inconnue..">'].join(''));
+	}
+	
 	setInterval(LoadMeteoWidget, 3600000); // reload every hours
 }
 
@@ -243,33 +250,7 @@ function createGraph(seriesData, vdesc, vunit) {
 			reflow: false
         },
         plotOptions: {
-        
- /*        area: { animation: false, enableMouseTracking: false, stickyTracking: true, shadow: false, dataLabels: { style: { textShadow: false } } },
-        arearange: { animation: false, enableMouseTracking: false, stickyTracking: true, shadow: false, dataLabels: { style: { textShadow: false } } },
-        areaspline: { animation: false, enableMouseTracking: false, stickyTracking: true, shadow: false, dataLabels: { style: { textShadow: false } } },
-        areasplinerange: { animation: false, enableMouseTracking: false, stickyTracking: true, shadow: false, dataLabels: { style: { textShadow: false } } },
-        bar: { animation: false, enableMouseTracking: false, stickyTracking: true, shadow: false, dataLabels: { style: { textShadow: false } } },
-        boxplot: { animation: false, enableMouseTracking: false, stickyTracking: true, shadow: false, dataLabels: { style: { textShadow: false } } },
-        bubble: { animation: false, enableMouseTracking: false, stickyTracking: true, shadow: false, dataLabels: { style: { textShadow: false } } },
-        column: { animation: false, enableMouseTracking: false, stickyTracking: true, shadow: false, dataLabels: { style: { textShadow: false } } },
-        columnrange: { animation: false, enableMouseTracking: false, stickyTracking: true, shadow: false, dataLabels: { style: { textShadow: false } } },
-        errorbar: { animation: false, enableMouseTracking: false, stickyTracking: true, shadow: false, dataLabels: { style: { textShadow: false } } },
-        funnel: { animation: false, enableMouseTracking: false, stickyTracking: true, shadow: false, dataLabels: { style: { textShadow: false } } },
-        gauge: { animation: false, enableMouseTracking: false, stickyTracking: true, shadow: false, dataLabels: { style: { textShadow: false } } },
-        heatmap: { animation: false, enableMouseTracking: false, stickyTracking: true, shadow: false, dataLabels: { style: { textShadow: false } } }, */
-        line: { animation: false, enableMouseTracking: false, stickyTracking: true, shadow: false, dataLabels: { style: { textShadow: false } } }
-   /*      pie: { animation: false, enableMouseTracking: false, stickyTracking: true, shadow: false, dataLabels: { style: { textShadow: false } } },
-        polygon: { animation: false, enableMouseTracking: false, stickyTracking: true, shadow: false, dataLabels: { style: { textShadow: false } } },
-        pyramid: { animation: false, enableMouseTracking: false, stickyTracking: true, shadow: false, dataLabels: { style: { textShadow: false } } },
-        scatter: { animation: false, enableMouseTracking: false, stickyTracking: true, shadow: false, dataLabels: { style: { textShadow: false } } },
-        series: { animation: false, enableMouseTracking: false, stickyTracking: true, shadow: false, dataLabels: { style: { textShadow: false } } },
-        solidgauge: { animation: false, enableMouseTracking: false, stickyTracking: true, shadow: false, dataLabels: { style: { textShadow: false } } },
-        spline: { animation: false, enableMouseTracking: false, stickyTracking: true, shadow: false, dataLabels: { style: { textShadow: false } } },
-        treemap: { animation: false, enableMouseTracking: false, stickyTracking: true, shadow: false, dataLabels: { style: { textShadow: false } } },
-        waterfall: { animation: false, enableMouseTracking: false, stickyTracking: true, shadow: false, dataLabels: { style: { textShadow: false } } } */
-   
-		
-		
+			line: { animation: false, enableMouseTracking: false, stickyTracking: true, shadow: false, dataLabels: { style: { textShadow: false } } }
 		},
 		
         subtitle: {
@@ -329,8 +310,7 @@ function RefreshData()
 {
         clearInterval($.refreshTimer);
 		console.log('refresh');
-	
-		
+			
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 		
 	$.ajax({
@@ -487,7 +467,7 @@ function RefreshData()
 	}).fail(function() {
 		error += 1;
 		console.log(['ERROR connect to ',$.domoticzurl].join(''));
-		if( error >= 3 && $('#popup_offline').css('display') === 'none') 
+		if( error >= 10 && $('#popup_offline').css('display') === 'none') 
 		{
 			$('#popup_offline').fadeIn(fad_Duration);
 			$('#fade2').fadeIn(fad_Duration);
@@ -924,15 +904,15 @@ function RefreshData()
 														vdesc = vdata;
 														var icon = 'security48.png'
 														if (vdata === 'Normal') {
-															//vdata= "<img src='icons/alarm_off.png'  width=48>";
+															//vdata= '<img src='icons/alarm_off.png'  width=48>';
 															vdata = ['<img src=',$.domoticzurl,'/images/',icon,'  width=48>'].join('');
 														}
 														else if (vdata === 'Arm Home') {
-															//vdata= "<img src='icons/alarm_home.png'  width=48>";
+															//vdata= '<img src='icons/alarm_home.png'  width=48>';
 															vdata = ['<img src=',$.domoticzurl,'/images/',icon,'  width=48>'].join('');
 														}
 														else if (vdata === 'Arm Away') {
-															//vdata= "<img src='icons/alarm_away.png'  width=48>";
+															//vdata= '<img src='icons/alarm_away.png'  width=48>';
 															vdata = ['<img src=',$.domoticzurl,'/images/',icon,'  width=48>'].join('');
 														}
 													}
