@@ -382,13 +382,22 @@ function RefreshData()
 				bg_night = bg_night_summer; 
 			}
 		} 
-		else { 
+		else if (mdate >= '0319') { 
 		console.log('season: spring'); 
 			if ( typeof bg_day_spring !== 'undefined' && bg_day_spring !== '') {
 				bg_day = bg_day_spring;
 			}
 			if ( typeof bg_night_spring !== 'undefined' && bg_night_spring !== '') {
 				bg_night = bg_night_spring; 
+			}
+		}
+		else { 
+			console.log('season: winter'); 
+			if ( typeof bg_day_winter !== 'undefined' && bg_day_winter !== '') {
+				bg_day = bg_day_winter;
+			}
+			if ( typeof bg_night_winter !== 'undefined' && bg_night_winter !== '') {
+				bg_night = bg_night_winter; 
 			}
 		} 
  
