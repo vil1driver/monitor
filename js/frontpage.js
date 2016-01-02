@@ -879,65 +879,74 @@ function RefreshData()
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////													
 
 												// Replace Status with icon if needed
-												if (vtype !== 'ForecastStr' && (lastseen === '2' || lastseen === '3')) {
-												 	if (item.SwitchType === 'Dusk Sensor') {
-														var icon_On = 'uvdark.png';
-														var icon_Off = 'uvsunny.png';
-													}
-													else if (item.SwitchType === 'Door Lock') {
-														var icon_On = 'door48open.png';
-														var icon_Off = 'door48.png';
-													}
-													else if (item.SwitchType === 'Doorbell') {
-														var icon_Off = 'doorbell48.png';
-													}
-													else if (item.SwitchType === 'Contact') {
-														var icon_On = 'contact48_open.png';
-														var icon_Off = 'contact48.png';
-													}
-													else if (item.SwitchType === 'Motion Sensor') {
-														var icon_On = 'motion48-on.png';
-														var icon_Off = 'motion48-off.png';
-													}
-													else if (item.SwitchType === 'Push On Button') {
-														var icon_Off = 'push48.png';
-													}
-													else if (item.SwitchType === 'Push Off Button') {
-														var icon_On = 'pushoff48.png';
-													}
-													else if (item.SwitchType === 'Smoke Detector') {
-														var icon_On = 'smoke48on.png';
-														var icon_Off = 'smoke48off.png';
-													}
-													else if (item.SubType === 'Security Panel') {
-														vdesc = vdata;
-														var icon = 'security48.png'
-														if (vdata === 'Normal') {
-															//vdata= '<img src='icons/alarm_off.png'  width=48>';
-															vdata = ['<img src=',$.domoticzurl,'/images/',icon,'  width=48>'].join('');
+												if (vtype !== 'ForecastStr' && typeof lastseen !== 'undefined') {
+													if (lastseen === '2' || lastseen === '3') {
+														if (item.SwitchType === 'Dusk Sensor') {
+															var icon_On = 'uvdark.png';
+															var icon_Off = 'uvsunny.png';
 														}
-														else if (vdata === 'Arm Home') {
-															//vdata= '<img src='icons/alarm_home.png'  width=48>';
-															vdata = ['<img src=',$.domoticzurl,'/images/',icon,'  width=48>'].join('');
+														else if (item.SwitchType === 'Door Lock') {
+															var icon_On = 'door48open.png';
+															var icon_Off = 'door48.png';
 														}
-														else if (vdata === 'Arm Away') {
-															//vdata= '<img src='icons/alarm_away.png'  width=48>';
-															vdata = ['<img src=',$.domoticzurl,'/images/',icon,'  width=48>'].join('');
+														else if (item.SwitchType === 'Doorbell') {
+															var icon_Off = 'doorbell48.png';
+														}
+														else if (item.SwitchType === 'Contact') {
+															var icon_On = 'contact48_open.png';
+															var icon_Off = 'contact48.png';
+														}
+														else if (item.SwitchType === 'Motion Sensor') {
+															var icon_On = 'motion48-on.png';
+															var icon_Off = 'motion48-off.png';
+														}
+														else if (item.SwitchType === 'Push On Button') {
+															var icon_Off = 'push48.png';
+														}
+														else if (item.SwitchType === 'Push Off Button') {
+															var icon_On = 'pushoff48.png';
+														}
+														else if (item.SwitchType === 'Smoke Detector') {
+															var icon_On = 'smoke48on.png';
+															var icon_Off = 'smoke48off.png';
+														}
+														else if (item.SubType === 'Security Panel') {
+															vdesc = vdata;
+															var icon = 'security48.png'
+															if (vdata === 'Normal') {
+																//vdata= '<img src='icons/alarm_off.png'  width=48>';
+																vdata = ['<img src=',$.domoticzurl,'/images/',icon,'  width=48>'].join('');
+															}
+															else if (vdata === 'Arm Home') {
+																//vdata= '<img src='icons/alarm_home.png'  width=48>';
+																vdata = ['<img src=',$.domoticzurl,'/images/',icon,'  width=48>'].join('');
+															}
+															else if (vdata === 'Arm Away') {
+																//vdata= '<img src='icons/alarm_away.png'  width=48>';
+																vdata = ['<img src=',$.domoticzurl,'/images/',icon,'  width=48>'].join('');
+															}
+														}
+														else {
+															var	icon_On = [item.Image,'48_On.png'].join('');
+															var	icon_Off = [item.Image,'48_Off.png'].join('');
+														}
+														
+														if (vdata === txt_on || vdata === txt_open) {
+															vdata = ['<img src=',$.domoticzurl,'/images/',icon_On,' width=48>'].join('');
+														}
+														else if (vdata === txt_off || vdata === txt_closed) {
+															vdata = ['<img src=',$.domoticzurl,'/images/',icon_Off,'  width=48>'].join('');
+														} 
+													}	
+													else if (lastseen !== '0' && lastseen !== '1') {
+														if (vdata === txt_on || vdata === txt_open) {
+															vdata = ['<img src=icons/',lastseen,'48_On.png width=48>'].join('');
+														}
+														else if (vdata === txt_off || vdata === txt_closed) {
+															vdata = ['<img src=icons/',lastseen,'48_Off.png width=48>'].join('');
 														}
 													}
-													else {
-														var	icon_On = [item.Image,'48_On.png'].join('');
-														var	icon_Off = [item.Image,'48_Off.png'].join('');
-													}
-													
-													if (vdata === txt_on || vdata === txt_open) {
-														vdata = ['<img src=',$.domoticzurl,'/images/',icon_On,' width=48>'].join('');
-													}
-													else if (vdata === txt_off || vdata === txt_closed) {
-														vdata = ['<img src=',$.domoticzurl,'/images/',icon_Off,'  width=48>'].join('');
-													} 
 												}	
-                                               									
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////													
 												
                                                 // if alarm threshold is defined, make value red
