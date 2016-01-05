@@ -533,6 +533,7 @@ function RefreshData()
                                                         // remove too much text
                                                         vdata= String(vdata).split("Watt",1)[0];
                                                         vdata= String(vdata).split("kWh",1)[0];
+                                                        vdata= String(vdata).split("V",1)[0];
                                                         vdata= String(vdata).split("%",1)[0];
                                                         vdata= String(vdata).split(" Level:",1)[0];
                                                         vdata= String(vdata).replace("Set","On");
@@ -540,7 +541,7 @@ function RefreshData()
                                                         vdata= String(vdata).replace("true","protected");
                                                 }
 												
-												
+												console.log(item.Name+' : '+vdata);
 												
                                                 alarmcss='';
 												
@@ -1073,7 +1074,7 @@ function RefreshData()
 														vdata = ['<span onclick="RefreshGraphData(',item.idx,',\'',vdesc,'\',\'counter\',\'day\',\'v\',\'Compteur\')">',vdata,'</span>'].join('');
 													}
 													// adds V after voltage
-													else if(vtype === 'Voltage'){       
+													else if(vtype === 'Voltage' || item.SubType === 'Voltage'){       
 														vdata = ['<span onclick="RefreshGraphData(',item.idx,',\'',vdesc,'\',\'counter\',\'day\',\'v\',\'Tension V\')">',Math.ceil(vdata*100)/100,'<span style="font-size:50%;"> V</span></span>'].join('');
 													}
 												
