@@ -163,7 +163,7 @@ function LoadMeteoWidget() {
 		$('#popup_meteo4').html('<div>Veuillez indiquer votre ville dans les paramètres<br>exemple:<br>var place = \'France/Brittany/Paris\'</div>');	
 	}
 	else{
-		$('#popup_meteo4').html(['<img src="http://www.yr.no/place/',place,'/meteogram.png?timestamp=',new Date().getTime(),'" alt="Ville inconnue..">'].join(''));
+		$('#popup_meteo4').html(['<img src="http://www.yr.no/place/',place,'/avansert_meteogram.png?timestamp=',new Date().getTime(),'" alt="Ville inconnue..">'].join(''));
 	}
 	
 	setInterval(LoadMeteoWidget, 3600000); // reload every hours
