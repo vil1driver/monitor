@@ -521,6 +521,10 @@ function RefreshData()
 												var vls=  		item.LastUpdate;						// ´Last Seen´
 												var vdimmercurrent=  item.LevelInt;  				// What is the dim level
 												
+												if(vtype === 'Euro'){       
+													vdata=item.Data;
+												}
+												
 												if (typeof vdata === 'undefined') {
                                                         //vdata="?!";
 														vdata=['<span onclick="helpBox_open(',item.idx,')">?!</span>'].join('');
@@ -536,9 +540,7 @@ function RefreshData()
                                                         vdata= String(vdata).replace("true","protected");
                                                 }
 												
-												if(vtype === 'Euro'){       
-													vdata=item.Data;
-												}
+												
 												
                                                 alarmcss='';
 												
