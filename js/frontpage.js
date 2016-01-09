@@ -1,10 +1,12 @@
+"use strict"; // this runs in strict mode
+
 // in dev mode comment this to enable console.log
 //console.log = function() {}
 
 
 // on document ready (start)
 $(function(){
-
+		
 	setTimeout(RefreshData, 150);
 	setTimeout(GetCams , 1000);
 	setTimeout(LoadMeteoWidget , 3000);
@@ -12,22 +14,6 @@ $(function(){
 // reload page every hours
 	setTimeout(function () {location.reload();}, 1 * 60 * 60 * 1000);
 
-
-// no text selected
-function ffalse(){
-		return false;
-}
-function ftrue(){
-		return true;
-}
-document.onselectstart = "return false";
-if(window.sidebar){
-	document.onmousedown = ffalse;
-	document.onclick = ftrue;
-}
-
-// no right clic		
-document.oncontextmenu = "return false";
 
 // viewport auto detect aspect ratio and best scale
 var def = 962 - zoom;	//962
@@ -43,7 +29,7 @@ if (delai == 0){
 	autoRestart = true;
 }	
 
-var mySwipe = new Swipe(document.getElementById('slider'),{
+var mySwipe = Swipe(document.getElementById('slider'),{
     startSlide: 0,
 	speed: speed,
     auto: delai,
@@ -351,7 +337,7 @@ function RefreshData()
 		maandmdate = ['0',maandmdate].join('');
 		}
 		
-		mdate = [maandmdate,dagmdate].join('');
+		var mdate = [maandmdate,dagmdate].join('');
 		
 		//console.log(mdate);
 	  
@@ -526,8 +512,7 @@ function RefreshData()
 												}
 												
 												if (typeof vdata === 'undefined') {
-                                                        //vdata="?!";
-														vdata=['<span onclick="helpBox_open(',item.idx,')">?!</span>'].join('');
+                                                        vdata='?!';
                                                 }
 												else {
                                                         // remove too much text
@@ -542,8 +527,8 @@ function RefreshData()
                                                 }
 												
 												console.log(item.Name+' : '+vdata);
-												
-                                                alarmcss='';
+												var switchclick='';
+                                                var alarmcss='';
 												
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 						
@@ -842,7 +827,7 @@ function RefreshData()
                                                 											
 												// create switchable value when item is switch
 												
-													switchclick='';
+												//	switchclick='';
 													
 													if (vdata === 'Off' || item.SwitchType === 'Doorbell') {
 															switchclick = ['onclick="SwitchToggle(',item.idx,', \'On\');lightbox_open(\'switch\', ',switch_timeout,', ',txt_switch_on,')"'].join('');
@@ -1136,6 +1121,17 @@ function RefreshData()
 													$(['div.desc_',vlabel].join('')).html('');
 												}	
                                         }
+										else if ( $.PageArray[ii][1] === 'Swipe' ) { 			//Special nummer, link in cell (test)
+                                                var vlabel=     $.PageArray[ii][2];             // cell number from HTML layout
+                                                var vdata=      $.PageArray[ii][3];             // description (link in this case
+												var vattr=    $.PageArray[ii][6];             	// extra css attributes
+                                                var valarm=  '';             // alarm value to turn text to red
+                                                
+                                                $(['div.',vlabel].join('')).html(['<div onclick="mySwipe.next()" style=',vattr,'>',vdata,'</div>'].join(''));
+                                                if ($(['div.desc_',vlabel].join('')).length > 0) {
+													$(['div.desc_',vlabel].join('')).html('');
+												}	
+                                        }
 										else if ( $.PageArray[ii][1] === 'Clock' ) { 			//Special nummer, Clock in cell (test)
                                                 var vlabel=     $.PageArray[ii][2];             // cell number from HTML layout
                                                 var vdata=      currentTime();             		// Get present time
@@ -1241,8 +1237,7 @@ function RefreshData()
                                                 var vdata=      item[vtype];                            		// current value
 												
 												if (typeof vdata === 'undefined') {
-                                                      //  vdata="?!";
-                                                        vdata=['<span onclick="helpBox_open(',item.idx,')">?!</span>'].join('');
+													vdata='?!';
                                                 }
 												else {
                                                         // remove too much text
@@ -1253,8 +1248,8 @@ function RefreshData()
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////													
 
                                                 // create switchable value when item is scene
-                                                switchclick='';
-                                                alarmcss='';
+                                                var switchclick='';
+                                                var alarmcss='';
                                             
                                                												
 												if (vdata === 'Off'  || item.Type === 'Scene' ) {
@@ -1538,7 +1533,7 @@ function DimLevel100(OpenDicht,level,idx)
 // thermostat
 function ChangeTherm(dimtype,stepsize,idx,currentvalue,thermmax)
 {
-	 newvalue='';
+	 var newvalue='';
 	  //console.log(dimtype,stepsize,idx,currentvalue,thermmax)
 	 if (dimtype === 'plus') { 
 		if ((currentvalue + stepsize) > thermmax){
