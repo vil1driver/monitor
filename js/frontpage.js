@@ -21,46 +21,6 @@ var actual = document.documentElement.clientWidth;
 var scale = Math.ceil((actual/def)*100)/100;
 document.querySelector("meta[name=viewport]").setAttribute('content','width=device-width, initial-scale='+scale+', maximum-scale='+scale+', user-scalable=no');
 
-// swipe function
-var autoRestart;
-if (delai == 0){
-	autoRestart = false;
-}else{
-	autoRestart = true;
-}	
-
-var mySwipe = Swipe(document.getElementById('slider'),{
-    startSlide: 0,
-	speed: speed,
-    auto: delai,
-	direction: direction,
-    autoRestart: autoRestart,
-    continuous: true,
-	draggable: false,
-    disableScroll: false,
-    stopPropagation: true
-});
-
-mySwipe.setup();
-
-// swipe on keypad
-$("body").keydown(function(e) {
-   if(e.keyCode === 37) { // left key
-	  mySwipe.prev();
-   } else if(e.keyCode === 39) { // right key
-	  mySwipe.next();
-   }
-});
-	
-// swipe on mouse wheel	
-$(window).bind('mousewheel DOMMouseScroll', function(event){
-	if (event.originalEvent.wheelDelta > 0 || event.originalEvent.detail < 0) {
-		mySwipe.prev();
-	}
-	else {
-		mySwipe.next();
-	}
-});
 	
 });
 // on document ready (end)
@@ -1117,17 +1077,6 @@ function RefreshData()
                                                 var valarm=  '';             // alarm value to turn text to red
                                                 
                                                 $(['div.',vlabel].join('')).html(['<div>',vdata,'</div>'].join(''));
-                                                if ($(['div.desc_',vlabel].join('')).length > 0) {
-													$(['div.desc_',vlabel].join('')).html('');
-												}	
-                                        }
-										else if ( $.PageArray[ii][1] === 'Swipe' ) { 			//Special nummer, link in cell (test)
-                                                var vlabel=     $.PageArray[ii][2];             // cell number from HTML layout
-                                                var vdata=      $.PageArray[ii][3];             // description (link in this case
-												var vattr=    $.PageArray[ii][6];             	// extra css attributes
-                                                var valarm=  '';             // alarm value to turn text to red
-                                                
-                                                $(['div.',vlabel].join('')).html(['<div onclick="mySwipe.next()" style=',vattr,'>',vdata,'</div>'].join(''));
                                                 if ($(['div.desc_',vlabel].join('')).length > 0) {
 													$(['div.desc_',vlabel].join('')).html('');
 												}	
