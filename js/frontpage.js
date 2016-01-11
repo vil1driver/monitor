@@ -25,6 +25,20 @@ document.querySelector("meta[name=viewport]").setAttribute('content','width=devi
 });
 // on document ready (end)
 
+// no text selected
+function ffalse(){
+		return false;
+}
+function ftrue(){
+		return true;
+}
+document.onselectstart = "return false";
+if(window.sidebar){
+	document.onmousedown = ffalse;
+	document.onclick = ftrue;
+}
+
+
 
 // set default params for all ajax calls
 $.ajaxSetup({
@@ -1071,7 +1085,7 @@ function RefreshData()
 													$(['div.desc_',vlabel].join('')).html('');
 												}	
                                         }
-										else if ( $.PageArray[ii][1] === 'Link' ) { 			//Special nummer, link in cell (test)
+										else if ( $.PageArray[ii][1] === 'Html' ) { 			//Special nummer, link in cell (test)
                                                 var vlabel=     $.PageArray[ii][2];             // cell number from HTML layout
                                                 var vdata=      $.PageArray[ii][3];             // description (link in this case
                                                 var valarm=  '';             // alarm value to turn text to red
