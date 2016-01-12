@@ -89,7 +89,6 @@ var delai = 0;								// défilement automatique, temps avant changement de page
 var direction = 'next';						// si delai est différent de 0, choix d'aller à la page suivante ou de revenir à la première page ('next'/'index')
 
 // Display
-var zoom = 0;								// ajustage de la valeur de zoom (valeurs négatives autorisées)
 var refresh = 8000;							// temps entre 2 rafraîchissements (en millisecondes)
 
 // ############################################################################################################
