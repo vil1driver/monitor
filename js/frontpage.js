@@ -13,14 +13,6 @@ $(function(){
 	
 // reload page every hours
 	setTimeout(function () {location.reload();}, 1 * 60 * 60 * 1000);
-
-
-// viewport auto detect aspect ratio and best scale
-var def = 962 - zoom;	//962
-var actual = document.documentElement.clientWidth;
-var scale = Math.ceil((actual/def)*100)/100;
-document.querySelector("meta[name=viewport]").setAttribute('content','width=device-width, initial-scale='+scale+', maximum-scale='+scale+', user-scalable=no');
-
 	
 });
 // on document ready (end)

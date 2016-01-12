@@ -1,18 +1,23 @@
 ﻿@font-face
-{
-  font-family: 'arimo';
-  src: 	url(../fonts/arimo.woff2) format('woff2'),
-		url(../fonts/arimo.woff) format('woff');
+{	
+	font-family: 'arimo';
+	src: 	url(../fonts/arimo.woff2) format('woff2'),
+			url(../fonts/arimo.woff) format('woff');
 }
 @font-face
 {
-  font-family: 'brankovic';
-  src: 	url(../fonts/brankovic.ttf) format('truetype');
+	font-family: 'brankovic';
+	src: 	url(../fonts/brankovic.ttf) format('truetype');
 }
 @font-face
 {
-  font-family: 'digital';
-  src: 	url(../fonts/digital.ttf) format('truetype');
+	font-family: 'digital';
+	src: 	url(../fonts/digital.ttf) format('truetype');
+}
+
+@viewport {
+	width: device-width;
+	zoom: 1;
 }
 
 .autoHide {
