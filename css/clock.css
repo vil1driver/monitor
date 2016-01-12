@@ -1,5 +1,6 @@
-﻿.ls_clock_1,.ls_clock_2,.ls_clock_3,.ls_clock_4,.ls_clock_5,.ls_clock_6,.ls_clock_7,
-.ls_clock_8,.ls_clock_9,.ls_clock_10,.ls_clock_11,.ls_clock_12,.ls_clock_13,.ls_clock_14,.ls_clock_space
+﻿.ls_clock1,.ls_clock2,.ls_clock3,.ls_clock4,.ls_clock5,.ls_clock6,.ls_clock7,
+.ls_clock8,.ls_clock9,.ls_clock10,.ls_clock11,.ls_clock12,.ls_clock13,.ls_clock14,.ls_clockspace,
+.ls_clock17, .ls_clock18, .ls_clock19, .ls_clock20, .ls_clock21
  {
 	font-family: arimo;
 	font-weight: normal;
@@ -11,8 +12,9 @@
 	text-shadow: 1px 1px 5px black;
 }
 
-.desc_clock_1,.desc_clock_2,.desc_clock_3,.desc_clock_4,.desc_clock_5,.desc_clock_6,.desc_clock_7,
-.desc_clock_8,.desc_clock_9,.desc_clock_10,.desc_clock_11,.desc_clock_12,.desc_clock_13,.desc_clock_14,.desc_clock_space
+.desc_clock1,.desc_clock2,.desc_clock3,.desc_clock4,.desc_clock5,.desc_clock6,.desc_clock7,
+.desc_clock8,.desc_clock9,.desc_clock10,.desc_clock11,.desc_clock12,.desc_clock13,.desc_clock14,.desc_clockspace,
+.desc_clock17, .desc_clock18, .desc_clock19, .desc_clock20, .desc_clock21
  {
 	font-family: arimo;
 	font-weight: normal;
@@ -24,7 +26,7 @@
 	text-shadow: 1px 1px 4px black;
 }
 
-.clock_1,.clock_2
+.clock1,.clock2
 {
 	font-family: arimo;
 	font-weight: bold;
@@ -41,8 +43,9 @@
 	
 }
 
-.clock_3,.clock_4,.clock_5,.clock_6,.clock_7,
-.clock_8,.clock_9,.clock_10,.clock_11,.clock_12,.clock_13,.clock_14
+.clock3,.clock4,.clock5,.clock6,.clock7,
+.clock8,.clock9,.clock10,.clock11,.clock12,.clock13,.clock14,
+.clock17, .clock18, .clock19, .clock20, .clock21
 {
 	font-family: arimo;
 	font-weight: bold;
@@ -57,7 +60,17 @@
 	text-shadow: 1px 1px 4px black;
 }
 
-.clock_15
+.clock17, .clock18, .clock20, .clock21
+{
+	width: 162px;
+}
+
+.clock19
+{ 
+	width: 184px; 
+}
+
+.clock15
 {
     position: absolute;
     width: 162px;
@@ -73,7 +86,7 @@
 	line-height: 55px; 
 }
 
-.clock_16
+.clock16
 {
     position: absolute;
     width: 162px;
@@ -89,7 +102,7 @@
 	line-height: 55px; 
 }
 
-.clock_space
+.clockspace
 {
 	font-family: arimo;
 	font-weight: bold;

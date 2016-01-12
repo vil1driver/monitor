@@ -2,7 +2,8 @@
 .ls_cell2_5, .ls_cell2_6, .ls_cell2_7, .ls_cell2_8, .ls_cell2_9,
 .ls_cell2_10, .ls_cell2_11, .ls_cell2_12, .ls_cell2_13, .ls_cell2_14,
 .ls_cell2_15, .ls_cell2_16, .ls_cell2_17, .ls_cell2_18, .ls_cell2_19,
-.ls_cell2_20, .ls_cell2_21, .ls_cell2_22, .ls_cell2_24, .ls_cell2_26, .ls_cell2_23, .ls_cell2_24, .ls_cell2_25
+.ls_cell2_20, .ls_cell2_21, .ls_cell2_22, .ls_cell2_24, .ls_cell2_26, .ls_cell2_23, .ls_cell2_24, .ls_cell2_25,
+.ls_cell2_27, .ls_cell2_28, .ls_cell2_29, .ls_cell2_30, .ls_cell2_31
 {
 	font-family: arimo;
 	font-weight: normal;
@@ -19,7 +20,8 @@
 .desc_cell2_5, .desc_cell2_6, .desc_cell2_7, .desc_cell2_8, .desc_cell2_9,
 .desc_cell2_10, .desc_cell2_11, .desc_cell2_12, .desc_cell2_13, .desc_cell2_14,
 .desc_cell2_15, .desc_cell2_16, .desc_cell2_17, .desc_cell2_18, .desc_cell2_19,
-.desc_cell2_20, .desc_cell2_21, .desc_cell2_22, .desc_cell2_24, .desc_cell2_26, .desc_cell2_23, .desc_cell2_24, .desc_cell2_25
+.desc_cell2_20, .desc_cell2_21, .desc_cell2_22, .desc_cell2_24, .desc_cell2_26, .desc_cell2_23, .desc_cell2_24, .desc_cell2_25,
+.desc_cell2_27, .desc_cell2_28, .desc_cell2_29, .desc_cell2_30, .desc_cell2_31
 {
 	font-family: arimo;
 	font-weight: normal;
@@ -55,7 +57,8 @@
 .cell2_6, .cell2_7, .cell2_8, .cell2_9, .cell2_10, 
 .cell2_11, .cell2_12, .cell2_13, .cell2_14, .cell2_15, 
 .cell2_16, .cell2_17, .cell2_18, .cell2_19, .cell2_20, 
-.cell2_21, .cell2_22, .cell2_24, .cell2_26, .cell2_23   
+.cell2_21, .cell2_22, .cell2_24, .cell2_26, .cell2_23,
+.cell2_27, .cell2_28, .cell2_29, .cell2_30, .cell2_31
 {
 	font-family: arimo;
 	font-weight: bold;
@@ -72,7 +75,7 @@
 	
 }
 
-.cell2_8, .cell2_13, .cell2_18, .cell2_24
+.cell2_8, .cell2_13, .cell2_18, .cell2_24, .cell2_29
 { 
 	width: 184px; 
 }

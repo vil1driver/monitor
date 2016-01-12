@@ -1,0 +1,64 @@
+﻿.showlog
+{
+	width:950px;
+	height:490px;
+	overflow-y:scroll;
+	padding: 10px;
+	font-family: arimo;
+	font-weight: normal;
+	font-size: 17px;
+	text-align:left;
+	color: #F2DDB3;
+	text-shadow: 1px 1px 4px black;
+}
+
+.ls_logs1, .ls_logs2, .ls_logs3, .ls_logs4, .ls_logs5
+ {
+	font-family: arimo;
+	font-weight: normal;
+	color: #999;
+	font-size: 12px;
+	margin-top: -20px;
+	height: 20px;
+	line-height: 65px;
+	text-shadow: 1px 1px 5px black;
+	
+}
+
+.desc_logs1, .desc_logs2, .desc_logs3, .desc_logs4, .desc_logs5
+{
+	font-family: arimo;
+	font-weight: normal;
+/*	color: #999; */
+	color: #F2DDB3;
+	font-size: 17px;
+	margin-top: -20px;
+	height: 25px;
+	line-height: 15px;
+	text-shadow: 1px 1px 4px black;
+	
+}
+
+
+.logs1, .logs2, .logs3, .logs4, .logs5
+{
+	font-family: arimo;
+	font-weight: bold;
+	width: 162px;
+	padding: 10px;
+/*	border: 1px solid #1E1E1F; */
+	border: 1px solid transparent;
+	border-radius: 0px;
+	height: 58px;
+	line-height: 55px; 		
+	color: #999;
+	font-size:40px;
+	text-shadow: 1px 1px 4px black;
+	
+}
+
+.logs3
+{ 
+	width: 184px; 
+}
+

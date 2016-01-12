@@ -15,7 +15,15 @@
   src: 	url(../fonts/digital.ttf) format('truetype');
 }
 
+.autoHide {
+	display:none;
+}
 
+@media screen and (min-height: 620px) {
+    .autoHide {
+        display:block;
+    }
+}
 
 body,html
 {

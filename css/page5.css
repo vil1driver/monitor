@@ -135,11 +135,12 @@
 	text-shadow: 1px 1px 4px black;
 }
 
-.cell5_5, .cell5_6, .cell5_7, .cell5_8, .cell5_9
+.cell5_5, .cell5_6, .cell5_7, .cell5_8, .cell5_9,
+.cell5_10, .cell5_11, .cell5_12, .cell5_13, .cell5_14
  {
 	font-family: arimo;
 	font-weight: bold;
-	width: 161px;
+	width: 162px;
 	padding: 10px;
 	border: 1px solid transparent;
 	border-radius: 0px;
@@ -148,10 +149,13 @@
 	color: #999;
 	font-size:40px;
 	text-shadow: 1px 1px 4px black;
-	margin: 2px;
-	margin-top: -2px;
+/* 	margin: 2px;
+	margin-top: -2px; */
 }
-
+.cell5_7, .cell5_12
+{ 
+	width: 184px; 
+}
 .desc_cell5_1, .desc_cell5_2, .desc_cell5_3, .desc_cell5_4
 {
     font-family: arimo;
@@ -164,7 +168,8 @@
 	text-shadow: 1px 1px 4px black;
 }
 
-.desc_cell5_5, .desc_cell5_6, .desc_cell5_7, .desc_cell5_8, .desc_cell5_9
+.desc_cell5_5, .desc_cell5_6, .desc_cell5_7, .desc_cell5_8, .desc_cell5_9,
+.desc_cell5_10, .desc_cell5_11, .desc_cell5_12, .desc_cell5_13, .desc_cell5_14
  {
 	font-family: arimo;
 	font-weight: normal;
@@ -177,7 +182,8 @@
 }
 
 .ls_cell5_1, .ls_cell5_2, .ls_cell5_3, .ls_cell5_4,
-.ls_cell5_5, .ls_cell5_6, .ls_cell5_7, .ls_cell5_8, .ls_cell5_9
+.ls_cell5_5, .ls_cell5_6, .ls_cell5_7, .ls_cell5_8, .ls_cell5_9,
+.ls_cell5_10, .ls_cell5_11, .ls_cell5_12, .ls_cell5_13, .ls_cell5_14
  {
 	font-family: arimo;
 	font-weight: normal;
