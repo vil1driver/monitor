@@ -24,7 +24,7 @@
 	display:none;
 }
 
-@media screen and (min-height: 620px) {
+@media screen and (min-height: 610px) {
     .autoHide {
         display:block;
     }
