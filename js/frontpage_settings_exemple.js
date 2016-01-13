@@ -33,7 +33,7 @@ var bg_size = 'cover';												// taille de l'image de fond (ex: '1024px 768p
 var bg_dayBright = 0.5;												// luminosité du fond le jour (0=normal 1=noir)
 var bg_nightBright = 0.5;											// luminosité du fond la nuit (0=normal 1=noir)
 
-//Change colors of temps
+// Change colors of temps
 var T35 = '#FF0000';						// couleur de la température à 35°C
 var T34 = '#FE1400';
 var T33 = '#FD2800';
