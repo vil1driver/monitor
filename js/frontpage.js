@@ -63,22 +63,6 @@ function lightbox_close(id){
 		clearTimeout(tempo);
 }
 
-// help box open popup
-function helpBox_open(id){
-	$('#popup_help').html('<div>Bad value, click <a target="_blank" href="'+$.domoticzurl+'/json.htm?type=devices&rid='+id+'">here</a> to show what you can use..</div>');
-	$('#popup_help').fadeIn(fad_Duration);
-	$('#fade').fadeIn(fad_Duration);
-	$('#popup_help').click(helpBox_close);
-	tempo = setTimeout(helpBox_close, 30000);
-}
-
-// help box close popup
-function helpBox_close(){
-	$('#popup_help').fadeOut(fad_Duration);
-	$('#fade').fadeOut(fad_Duration);
-	clearTimeout(tempo);
-}
-
 // show security panel
 function showPanel() {
 	$('#popup_secpanel').html(['<object type="text/html" data="',$.domoticzurl,'/secpanel/index.html" width="100%" height="100%"></object>'].join(''));
@@ -94,6 +78,22 @@ function closePanel() {
 	$('#fade').fadeOut(fad_Duration);
 	$("#fade").off("click");
 	$('#popup_secpanel').html('');
+	clearTimeout(tempo);
+}
+
+// show freebox remote
+function showFreeRemote() {
+	$('#popup_freeRemote').fadeIn(fad_Duration);
+	$('#fade').fadeIn(fad_Duration);
+	$('#fade').click(closeFreeRemote);
+	tempo = setTimeout(closeFreeRemote,60000);
+}
+
+// close freebox remote
+function closeFreeRemote() {
+	$('#popup_freeRemote').fadeOut(fad_Duration);
+	$('#fade').fadeOut(fad_Duration);
+	$("#fade").off("click");
 	clearTimeout(tempo);
 }
 
@@ -1065,6 +1065,17 @@ function RefreshData()
 												$(['div.',vlabel].join('')).html(['<div style=',vattr,'>',vdesc,'</div>'].join(''));
 												if ($(['div.desc_',vlabel].join('')).length > 0) {
 													$(['div.desc_',vlabel].join('')).html('');
+												}
+										}
+										else if ( $.PageArray[ii][1] === 'FreeRemote' ) { 			//Special nummer, link in cell (test)
+                                                var vlabel=     $.PageArray[ii][2];             // cell number from HTML layout
+                                                var vdesc = 	$.PageArray[ii][3];				// description (text in this case
+												var vattr=    $.PageArray[ii][6];             	// extra css attributes
+                                                var valarm=     '';             // alarm value to turn text to red
+												
+												$(['div.',vlabel].join('')).html('<img src="icons/freeRemote.png" width=48 height=48 onclick="showFreeRemote()"></img>');
+												if ($(['div.desc_',vlabel].join('')).length > 0) {
+													$(['div.desc_',vlabel].join('')).html(vdesc);
 												}
 										}
 										else if ( $.PageArray[ii][1] === 'Hide' ) { 			//Special nummer, link in cell (test)

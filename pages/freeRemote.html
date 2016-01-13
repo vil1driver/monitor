@@ -1,0 +1,75 @@
+<!-- load page stylesheet -->
+<script>
+$('head').append('<link rel="stylesheet" href="css/freeRemote.css">');
+</script>
+<script src="js/freeRemote.js"></script>
+
+
+<div id="telecommande">
+	<div id="top">
+		<span data-navigation="list" class="left button av">AV</span>
+		<span data-navigation="power" class="right button"><i class="fa fa-power-off"></i></span>
+	</div>
+	<div id="boutton_free" data-navigation="home">
+		Free
+	</div>
+	<div id="pave_num">
+		<div>
+			<div class="button" data-navigation="1" data-keycode="49">1</div>
+			<div class="button" data-navigation="2" data-keycode="50">2</div>
+			<div class="button" data-navigation="3" data-keycode="51">3</div>
+		</div>
+		<div>
+			<div class="button" data-navigation="4" data-keycode="52">4</div>
+			<div class="button" data-navigation="5" data-keycode="53">5</div>
+			<div class="button" data-navigation="6" data-keycode="54">6</div>
+		</div>
+		<div>
+			<div class="button" data-navigation="7" data-keycode="55">7</div>
+			<div class="button" data-navigation="8" data-keycode="56">8</div>
+			<div class="button" data-navigation="9" data-keycode="57">9</div>
+		</div>
+		<div>
+			<div class="button no_hover">&nbsp;</div>
+			<div class="button" data-navigation="0" data-keycode="48">0</div>
+			<div class="button no_hover">&nbsp;</div>
+		</div>
+	</div>
+	<div id="croix">
+		<div>
+			<div class="button" data-navigation="red"><i class="fa fa-undo undo"></i></div>
+			<div class="button" data-navigation="up" data-keycode="38"><i class="fa fa-caret-up"></i></div>
+			<div class="button" data-navigation="blue"><i class="fa fa-search search"></i></div>
+		</div>
+		<div>
+			<div class="button" data-navigation="left"  data-keycode="37"><i class="fa fa-caret-left"></i></div>
+			<div class="button ok" data-navigation="ok" data-keycode="13">OK</div>
+			<div class="button" data-navigation="right" data-keycode="39"><i class="fa fa-caret-right"></i></div>
+		</div>
+		<div>
+			<div class="button menu" data-navigation="green">M</div>
+			<div class="button" data-navigation="down" data-keycode="40"><i class="fa fa-caret-down"></i></div>
+			<div class="button info" data-navigation="yellow">I</div>
+		</div>
+	</div>
+	<div id="plus_moins">
+		<div id="volume" class="button no_hover">
+			<div class="button" data-navigation="vol_inc" data-keycode="107">+</div>
+			<div class="button pt17 no_hover">VOL</div>
+			<div class="button" data-navigation="vol_dec" data-keycode="109">-</div>
+			<i class="fa fa-backward button" data-lg-press="bwd" data-navigation="prev"></i>
+		</div>
+		<div id="mid" class="button no_hover">
+			<i class="button fa fa-volume-off" data-navigation="mute"></i>
+			<span class="button no_hover"></span>
+			<i class="button fa fa-circle" data-navigation="rec" style="color:red;"></i>
+			<i class="fa fa-play button" data-navigation="play"></i>
+		</div>
+		<div id="prog" class="button no_hover">
+			<div class="button" data-navigation="prgm_inc" data-keycode="106">+</div>
+			<div class="button pt12 no_hover">PROG</div>
+			<div class="button" data-navigation="prgm_dec" data-keycode="111">-</div>
+			<i class="fa fa-forward button" data-lg-press="fwd" data-navigation="next"></i>
+		</div>
+	</div>
+</div>
