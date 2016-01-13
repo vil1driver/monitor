@@ -204,27 +204,27 @@ var refresh = 8000;							// temps entre 2 rafraîchissements (en millisecondes)
 				
 		// clock page
 			
-				['','Hide',         			'clock_3',                      	''],
-				['','Hide',         			'clock_5',                      	''],
-				['','Hide',         			'clock_6',                      	''],
-				['','Hide',         			'clock_7',                      	''],
-				['','Hide',         			'clock_8',                      	''],
-				['','Hide',         			'clock_10',                      	''],
-				['','Hide',         			'clock_11',                      	''],
-				['','Hide',         			'clock_12',                      	''],
-				['','Hide',         			'clock_13',                      	''],
-				['','Hide',         			'clock_14',                      	''],
-				['reveil','Wakeup',         		'clock_16',                        	'','','','color:#3A5486;font-size:130%'],	// réveil 
-				['','Date',         			'clock_15',                        	'','','','color:#3A5486;font-size:130%'],	// date
-			//	['','MonthYear',         			'clock_15',                        	'','','','color:#3A5486;font-size:130%'],	// date
-				['exterieur','ForecastStr',    		'clock_2',                       	''],	// icon météo (idx du capteur de température extérieur virtuel Weather Underground)
+				['','Hide',         			'clock3',                      	''],
+				['','Hide',         			'clock5',                      	''],
+				['','Hide',         			'clock6',                      	''],
+				['','Hide',         			'clock7',                      	''],
+				['','Hide',         			'clock8',                      	''],
+				['','Hide',         			'clock10',                      	''],
+				['','Hide',         			'clock11',                      	''],
+				['','Hide',         			'clock12',                      	''],
+				['','Hide',         			'clock13',                      	''],
+				['','Hide',         			'clock14',                      	''],
+				['reveil','Wakeup',         		'clock16',                        	'','','','color:#3A5486;font-size:130%'],	// réveil 
+				['','Date',         			'clock15',                        	'','','','color:#3A5486;font-size:130%'],	// date
+			//	['','MonthYear',         			'clock15',                        	'','','','color:#3A5486;font-size:130%'],	// date
+				['exterieur','ForecastStr',    		'clock2',                       	''],	// icon météo (idx du capteur de température extérieur virtuel Weather Underground)
 				
-				['','SunBoth',					'desc_clock_2',						'','','','color:#F2DDB3;font-size:19px;font-weight:bold'],	// heures soleil dans la description de la cellule clock_2
-				['exterieur','Temp',           		'clock_1',                        	''],	// températures exterieure
-			 //	['','Camera',					'clock_4',							'http://webcam.st-malo.com/mjpg/video.mjpg','http://webcam.st-malo.com/axis-cgi/mjpg/video.cgi','',''],	// camera 1	
-			 	['','Camera',					'clock_4',							'http://192.168.22.100:2550','','',''],	// camera 1	
-			 //	['','Hide',					'clock_4',							''],	
-			  	['saint','Data',					'clock_9',							'','','','color:#4dd2ff'],	// saint du jour
+				['','SunBoth',					'desc_clock2',						'','','','color:#F2DDB3;font-size:19px;font-weight:bold'],	// heures soleil dans la description de la cellule clock2
+				['exterieur','Temp',           		'clock1',                        	''],	// températures exterieure
+			 //	['','Camera',					'clock4',							'http://webcam.st-malo.com/mjpg/video.mjpg','http://webcam.st-malo.com/axis-cgi/mjpg/video.cgi','',''],	// camera 1	
+			 	['','Camera',					'clock4',							'http://192.168.22.100:2550','','',''],	// camera 1	
+			 //	['','Hide',					'clock4',							''],	
+			  	['saint','Data',					'clock9',							'','','','color:#4dd2ff'],	// saint du jour
 				
 				 
 					
