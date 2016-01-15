@@ -10,6 +10,7 @@ $('head').append('<link rel="stylesheet" href="css/trafic.css">');
 
 function initMap() {
   var map = new google.maps.Map(document.getElementsByClassName('map')[0], {
+	disableDefaultUI: true,
     zoom: 14,
     center: {lat: 48.0761279, lng: -1.7084094}
   });
