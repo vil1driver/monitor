@@ -1,0 +1,63 @@
+﻿<!-- load page stylesheet -->
+<script>
+$('head').append('<link rel="stylesheet" href="css/trafic.css">');
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?callback=initMap" async defer></script>
+<!-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&signed_in=true" async defer></script> -->
+
+<script>
+
+function initMap() {
+  var map = new google.maps.Map(document.getElementsByClassName('map')[0], {
+    zoom: 14,
+    center: {lat: 48.0761279, lng: -1.7084094}
+  });
+
+  var trafficLayer = new google.maps.TrafficLayer();
+  trafficLayer.setMap(map);
+  
+  //setInterval(initMap, 600000);
+}
+
+</script>
+
+<!-- Page -->
+<div class="cnt v-wrap">
+<div class="v-box">
+<!-- contenu -->
+
+<!--
+le contenu de votre page ne doit pas dépasser les dimensions suivantes
+largeur: 962px
+hauteur: 541px
+-->
+
+<div>
+<div class="frame">
+<div class="map"></div>
+</div>
+</div>
+
+<div class="autoHide">
+<div class="frame">
+	<div class="ls_trafic1"></div><div class="trafic1">--</div><div class="desc_trafic1">trafic1</div>
+</div>
+<div class="frame">
+	<div class="ls_trafic2"></div><div class="trafic2">--</div><div class="desc_trafic2">trafic2</div>
+</div>
+<div class="frame">
+	<div class="ls_trafic3"></div><div class="trafic3">--</div><div class="desc_trafic3">trafic3</div>
+</div>
+<div class="frame">
+	<div class="ls_trafic4"></div><div class="trafic4">--</div><div class="desc_trafic4">trafic4</div>
+</div>
+<div class="frame">
+	<div class="ls_trafic5"></div><div class="trafic5">--</div><div class="desc_trafic5">trafic5</div>
+</div>
+</div>	
+
+<!-- fin contenu -->
+</div>
+</div>
+<!-- fin page -->
