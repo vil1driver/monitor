@@ -1,7 +1,14 @@
 ﻿.map 
 {
 	width: 935px;
-	height: 510px;
+	height: 505px;
+}
+
+@media screen and (min-height: 610px) {
+    .map 
+	{
+		height: 590px;
+	}
 }
 
 .avoid-clicks {
