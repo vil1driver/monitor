@@ -18,8 +18,12 @@ function initMap() {
   var trafficLayer = new google.maps.TrafficLayer();
   trafficLayer.setMap(map);
   
-  //setInterval(initMap, 600000);
+  setInterval(initMap, 600000);
 }
+
+$('.reload').click(function(){
+    initMap();
+});
 
 </script>
 
@@ -35,7 +39,7 @@ hauteur: 541px
 -->
 
 <div>
-<div class="frame">
+<div class="frame reload">
 <div class="map avoid-clicks"></div>
 </div>
 </div>
