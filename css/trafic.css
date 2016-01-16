@@ -3,18 +3,11 @@
 	width: 935px;
 	height: 510px;
 }
-.map::after
-{
-   content:"";
-   position:absolute;
-   left:0;
-   right:0;
-   top:0;
-   bottom:0;
-   background:rgba(0,0,0,0);
-   z-index:1000;
+
+.avoid-clicks {
+  pointer-events: none;
 }
-	  
+  
 .ls_trafic1, .ls_trafic2, .ls_trafic3, .ls_trafic4, .ls_trafic5  
  {
 	font-family: arimo;
