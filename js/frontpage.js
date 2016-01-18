@@ -15,7 +15,7 @@ $(function(){
 	setTimeout(function () {location.reload();}, 1 * 60 * 60 * 1000);
 	
 });
-// on document ready (end)
+
 
 // no text selected
 function ffalse(){
@@ -31,7 +31,6 @@ if(window.sidebar){
 }
 
 
-
 // set default params for all ajax calls
 $.ajaxSetup({
 			dataType: "json",
@@ -45,7 +44,7 @@ $.ajaxSetup({
 var tempo;
 function lightbox_open(id, timeout, txt){
 		if (typeof txt !== 'undefined') {
-			$(['#popup_',id].join('')).html(['<div>',txt,'</div>'].join(''));
+			$(['#popup_',id].join('')).html(txt);
 		}
         $(['#popup_',id].join('')).fadeIn(fad_Duration);
 		$('#fade').fadeIn(fad_Duration);
@@ -77,7 +76,7 @@ function closePanel() {
 	$('#popup_secpanel').fadeOut(fad_Duration);
 	$('#fade').fadeOut(fad_Duration);
 	$("#fade").off("click");
-	$('#popup_secpanel').html('');
+	$('#popup_secpanel').empty();
 	clearTimeout(tempo);
 }
 
@@ -99,11 +98,12 @@ function closeFreeRemote() {
 
 // Load meteo widget
 function LoadMeteoWidget() {
+	
 	if (city === ''){
-		$('#popup_meteo0').html('<div>Veuillez indiquer votre ville dans les paramètres<br>exemple:<br>var city = \'paris\'</div>');	
-		$('#popup_meteo1').html('<div>Veuillez indiquer votre ville dans les paramètres<br>exemple:<br>var city = \'paris\'</div>');	
-		$('#popup_meteo2').html('<div>Veuillez indiquer votre ville dans les paramètres<br>exemple:<br>var city = \'paris\'</div>');	
-		$('#popup_meteo3').html('<div>Veuillez indiquer votre ville dans les paramètres<br>exemple:<br>var city = \'paris\'</div>');	
+		$('#popup_meteo0').html('<span>Veuillez indiquer votre ville dans les paramètres<br>exemple:<br>var city = \'paris\'</span>');	
+		$('#popup_meteo1').html('<span>Veuillez indiquer votre ville dans les paramètres<br>exemple:<br>var city = \'paris\'</span>');	
+		$('#popup_meteo2').html('<span>Veuillez indiquer votre ville dans les paramètres<br>exemple:<br>var city = \'paris\'</span>');	
+		$('#popup_meteo3').html('<span>Veuillez indiquer votre ville dans les paramètres<br>exemple:<br>var city = \'paris\'</span>');	
 	}
 	else{
 		$('#popup_meteo0').html(['<img src="http://www.prevision-meteo.ch/uploads/widget/',city,'_0.png?timestamp=',new Date().getTime(),'" alt="Ville inconnue..">'].join(''));
@@ -112,7 +112,7 @@ function LoadMeteoWidget() {
 		$('#popup_meteo3').html(['<img src="http://www.prevision-meteo.ch/uploads/widget/',city,'_3.png?timestamp=',new Date().getTime(),'" alt="Ville inconnue..">'].join(''));
 	}
 	if (place === ''){
-		$('#popup_meteo4').html('<div>Veuillez indiquer votre ville dans les paramètres<br>exemple:<br>var place = \'France/Brittany/Paris\'</div>');	
+		$('#popup_meteo4').html('<span>Veuillez indiquer votre ville dans les paramètres<br>exemple:<br>var place = \'France/Brittany/Paris\'</span>');	
 	}
 	else{
 		$('#popup_meteo4').html(['<img src="http://www.yr.no/place/',place,'/avansert_meteogram.png?timestamp=',new Date().getTime(),'" alt="Ville inconnue..">'].join(''));
@@ -380,16 +380,20 @@ function RefreshData()
 			IsNight = 'Yes';
 			if ( typeof bg_day !== 'undefined' ) {
 				// night background
-				$(['<style>html::after{background:rgba(0,0,0,',bg_nightBright,')}</style>'].join('')).appendTo('head');
+			
+				$('.black').css('background', ['rgba(0,0,0,',bg_nightBright,')'].join(''));
+				
 				document.body.style.background=['black url(icons/',bg_night,') no-repeat top center fixed'].join('');
 				document.body.style.backgroundSize=bg_size;
 				// night clock background
 				if ($('div.horloge').length > 0) {
-					$('div.horloge').css('-webkit-filter', 'invert(1)');
-					$('div.horloge').css('filter', 'invert(1)');
-					$('div.horloge').css('border', '10px solid #C5AB79');
-					$('div.horloge').css('box-shadow', '0 0 10px #ffffff, 0 0 50px 10px #cccccc inset');
-					$('<style>.horloge:before {box-shadow: -2px -2px 5px #ffffff inset, -2px 2px 5px #ffffff inset, 2px -2px 5px #ffffff inset, 2px 2px 5px #ffffff inset}</style>').appendTo('head');
+				
+					if ($('div.horloge').hasClass('day')) {
+						$('div.horloge').removeClass('day');
+					}	
+					if (!$('div.horloge').hasClass('night')) {
+						$('div.horloge').addClass('night');
+					}	
 				}
 			}	
 		}
@@ -398,16 +402,21 @@ function RefreshData()
 			IsNight = 'No';
 			if ( typeof bg_night !== 'undefined' ) {
 				// day background
-				$(['<style>html::after{background:rgba(0,0,0,',bg_dayBright,')}</style>'].join('')).appendTo('head');
+			
+				$('.black').css('background', ['rgba(0,0,0,',bg_dayBright,')'].join(''));
+			
+			
 				document.body.style.background=['black url(icons/',bg_day,') no-repeat top center fixed'].join('');													
 				document.body.style.backgroundSize=bg_size;
 				// day clock background
 				if ($('div.horloge').length > 0) {
-					$('div.horloge').css('-webkit-filter', 'invert(0)');
-					$('div.horloge').css('filter', 'invert(0)');
-					$('div.horloge').css('border', '10px solid #3A5486');
-					$('div.horloge').css('box-shadow', '0 0 10px #000000, 0 0 50px 10px #CCCCCC inset');
-					$('<style>.horloge:before {box-shadow: -2px -2px 5px #000000 inset, -2px 2px 5px #000000 inset, 2px -2px 5px #000000 inset, 2px 2px 5px #000000 inset}</style>').appendTo('head');
+				
+					if ($('div.horloge').hasClass('night')) {
+						$('div.horloge').removeClass('night');
+					}	
+					if (!$('div.horloge').hasClass('day')) {
+						$('div.horloge').addClass('day');
+					}	
 				}	
 			}	
 		}
@@ -492,7 +501,7 @@ function RefreshData()
                                                         vdata= String(vdata).replace("true","protected");
                                                 }
 												
-												console.log(item.Name+' : '+vdata);
+											//	console.log(item.Name+' : '+vdata);
 												var switchclick='';
                                                 var alarmcss='';
 												
@@ -1036,16 +1045,16 @@ function RefreshData()
 												
 													if (typeof vattr === 'undefined') {
 														if (item.Protected === true) {
-															$(['div.',vlabel].join('')).html(['<div onClick="lightbox_open(\'protected\', ',switch_protected_timeout,', ',txt_switch_protected,')" style=',alarmcss,'>',vdata,'</div>'].join(''));
+															$(['div.',vlabel].join('')).html(['<span onClick="lightbox_open(\'protected\', ',switch_protected_timeout,', ',txt_switch_protected,')" style=',alarmcss,'>',vdata,'</span>'].join(''));
 														} else { 
-															$(['div.',vlabel].join('')).html(['<div ',switchclick,' style=',alarmcss,'>',vdata,'</div>'].join(''));
+															$(['div.',vlabel].join('')).html(['<span ',switchclick,' style=',alarmcss,'>',vdata,'</span>'].join(''));
 														}
 													} 
 													else if (item.Protected === true) {
-														$(['div.',vlabel].join('')).html(['<div onClick="lightbox_open(\'protected\', ',switch_protected_timeout,', ',txt_switch_protected,')" style=',vattr,alarmcss,'>',vdata,'</div>'].join(''));
+														$(['div.',vlabel].join('')).html(['<span onClick="lightbox_open(\'protected\', ',switch_protected_timeout,', ',txt_switch_protected,')" style=',vattr,alarmcss,'>',vdata,'</span>'].join(''));
 													}
 													else {
-														$(['div.',vlabel].join('')).html(['<div ',switchclick,' style=',vattr,alarmcss,'>',vdata,'</div>'].join(''));
+														$(['div.',vlabel].join('')).html(['<span ',switchclick,' style=',vattr,alarmcss,'>',vdata,'</span>'].join(''));
 													}
 													
 													if ($(['div.desc_',vlabel].join('')).length > 0) {
@@ -1062,9 +1071,9 @@ function RefreshData()
 												var vattr=    $.PageArray[ii][6];             	// extra css attributes
                                                 var valarm=     '';             // alarm value to turn text to red
 												
-												$(['div.',vlabel].join('')).html(['<div style=',vattr,'>',vdesc,'</div>'].join(''));
+												$(['div.',vlabel].join('')).html(['<span style=',vattr,'>',vdesc,'</span>'].join(''));
 												if ($(['div.desc_',vlabel].join('')).length > 0) {
-													$(['div.desc_',vlabel].join('')).html('');
+													$(['div.desc_',vlabel].join('')).empty();
 												}
 										}
 										else if ( $.PageArray[ii][1] === 'FreeRemote' ) { 			//Special nummer, link in cell (test)
@@ -1083,9 +1092,9 @@ function RefreshData()
                                                 var vdata=      $.PageArray[ii][3];             // description (link in this case
                                                 var valarm= '';             // alarm value to turn text to red
                                                 
-												$(['div.',vlabel].join('')).html('');
+												$(['div.',vlabel].join('')).empty();
                                                 if ($(['div.desc_',vlabel].join('')).length > 0) {
-													$(['div.desc_',vlabel].join('')).html('');
+													$(['div.desc_',vlabel].join('')).empty();
 												}	
                                         }
 										else if ( $.PageArray[ii][1] === 'Html' ) { 			//Special nummer, link in cell (test)
@@ -1093,9 +1102,9 @@ function RefreshData()
                                                 var vdata=      $.PageArray[ii][3];             // description (link in this case
                                                 var valarm=  '';             // alarm value to turn text to red
                                                 
-                                                $(['div.',vlabel].join('')).html(['<div>',vdata,'</div>'].join(''));
+                                                $(['div.',vlabel].join('')).html(vdata);
                                                 if ($(['div.desc_',vlabel].join('')).length > 0) {
-													$(['div.desc_',vlabel].join('')).html('');
+													$(['div.desc_',vlabel].join('')).empty();
 												}	
                                         }
 										else if ( $.PageArray[ii][1] === 'Clock' ) { 			//Special nummer, Clock in cell (test)
@@ -1104,9 +1113,9 @@ function RefreshData()
                                                 var vattr=    $.PageArray[ii][6];             	// extra css attributes
                                                 var valarm=   '';             // alarm value to turn text to red
                                                 
-                                                $(['div.',vlabel].join('')).html(['<div style=',vattr,'>',vdata,'</div>'].join(''));
+                                                $(['div.',vlabel].join('')).html(['<span style=',vattr,'>',vdata,'</span>'].join(''));
                                                 if ($(['div.desc_',vlabel].join('')).length > 0) {
-													$(['div.desc_',vlabel].join('')).html('');
+													$(['div.desc_',vlabel].join('')).empty();
 												}	 
 										}
 										else if ( $.PageArray[ii][1] === 'Date' ) { 			//Special nummer, Date in cell (test)
@@ -1115,9 +1124,9 @@ function RefreshData()
                                                 var vattr=    $.PageArray[ii][6];             	// extra css attributes
                                                 var valarm=    '';             // alarm value to turn text to red
                                                 
-                                                $(['div.',vlabel].join('')).html(['<div style=',vattr,'>',vdata,'</div>'].join(''));
+                                                $(['div.',vlabel].join('')).html(['<span style=',vattr,'>',vdata,'</span>'].join(''));
                                                 if ($(['div.desc_',vlabel].join('')).length > 0) {
-													$(['div.desc_',vlabel].join('')).html('');
+													$(['div.desc_',vlabel].join('')).empty();
 												}	 
 										}
 										else if ( $.PageArray[ii][1] === 'MonthYear' ) { 			//Special nummer, Date in cell (test)
@@ -1126,9 +1135,9 @@ function RefreshData()
                                                 var vattr=    $.PageArray[ii][6];             	// extra css attributes
                                                 var valarm=   '';             // alarm value to turn text to red
                                                 
-                                                $(['div.',vlabel].join('')).html(['<div style=',vattr,'>',vdata,'</div>'].join(''));
+                                                $(['div.',vlabel].join('')).html(['<span style=',vattr,'>',vdata,'</span>'].join(''));
                                                 if ($(['div.desc_',vlabel].join('')).length > 0) {
-													$(['div.desc_',vlabel].join('')).html('');
+													$(['div.desc_',vlabel].join('')).empty();
 												}	 
 										}	
                                         else if ( $.PageArray[ii][1] === 'SunRise' ) { 			//Special nummer, zonsop/onder in cell (test)
@@ -1136,7 +1145,7 @@ function RefreshData()
                                                 var vattr=    $.PageArray[ii][6];             	// extra css attributes
                                                 var valarm=   '';             // alarm value to turn text to red
 
-                                                $(['div.',vlabel].join('')).html(['<div style=',vattr,'>',var_sunrise,'</div>'].join(''));
+                                                $(['div.',vlabel].join('')).html(['<span style=',vattr,'>',var_sunrise,'</span>'].join(''));
                                                 if ($(['div.desc_',vlabel].join('')).length > 0) {
 													$(['div.desc_',vlabel].join('')).html(txt_sunrise);
 												}	 
@@ -1146,7 +1155,7 @@ function RefreshData()
                                                 var vattr=    $.PageArray[ii][6];             	// extra css attributes
                                                 var valarm=    '';             // alarm value to turn text to red
 
-                                                $(['div.',vlabel].join('')).html(['<div style=',vattr,'>',var_sunset,'</div>'].join(''));
+                                                $(['div.',vlabel].join('')).html(['<span style=',vattr,'>',var_sunset,'</span>'].join(''));
                                                 if ($(['div.desc_',vlabel].join('')).length > 0) {
 													$(['div.desc_',vlabel].join('')).html(txt_sunset);
 												}	 
@@ -1156,7 +1165,7 @@ function RefreshData()
                                                 var vattr=    $.PageArray[ii][6];             	// extra css attributes
                                                 var valarm=   '';             // alarm value to turn text to red
 												
-                                                $(['div.',vlabel].join('')).html(['<div style=',vattr,'><img src=icons/sun.png  height="15" width="15" style="PADDING-RIGHT: 2px;">',var_sunrise,'<img src=icons/moon.png  height="15" width="15" style="PADDING-LEFT: 15px;">',var_sunset,'</div>'].join(''));
+                                                $(['div.',vlabel].join('')).html(['<span style=',vattr,'><img src=icons/sun.png  height="15" width="15" style="PADDING-RIGHT: 2px;">',var_sunrise,'<img src=icons/moon.png  height="15" width="15" style="PADDING-LEFT: 15px;">',var_sunset,'</span>'].join(''));
                                                 if ($(['div.desc_',vlabel].join('')).length > 0) {
 													$(['div.desc_',vlabel].join('')).html(txt_sunboth);
 												} 
@@ -1274,10 +1283,10 @@ function RefreshData()
 
                                                 // if extra css attributes
                                                 if (typeof vattr === 'undefined') {
-                                                        $(['div.',vlabel].join('')).html(['<div ',switchclick,' style=',alarmcss,'>',vdata,'</div>'].join(''));
+                                                        $(['div.',vlabel].join('')).html(['<span ',switchclick,' style=',alarmcss,'>',vdata,'</span>'].join(''));
                                                 }
 												else {
-                                                        $(['div.',vlabel].join('')).html(['<div ',switchclick,' style=',vattr+alarmcss,'>',vdata,'</div>'].join(''));
+                                                        $(['div.',vlabel].join('')).html(['<span ',switchclick,' style=',vattr+alarmcss,'>',vdata,'</span>'].join(''));
                                                 }
 
                                                 if ($(['div.desc_',vlabel].join('')).length > 0) {
@@ -1353,7 +1362,7 @@ function GetCams()
 							
 															
 							if ($(['div.desc_',vlabel].join('')).length > 0) {
-								$(['div.desc_',vlabel].join('')).html('');
+								$(['div.desc_',vlabel].join('')).empty();
 							}
 					}
 					
@@ -1622,4 +1631,25 @@ function goodmorning(v) {
 	
 	return ret_str;
 }	
+
+function rss(feedUrl) {
+	//domoticz feed 'https://github.com/domoticz/domoticz/commits/master.atom';
+	$.ajax({
+	  url      : document.location.protocol + '//ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=10&callback=?&q=' + encodeURIComponent(feedUrl),
+	  dataType : 'json',
+	  success  : function (data) {
+		if (data.responseData.feed && data.responseData.feed.entries) {
+		  $.each(data.responseData.feed.entries, function (i, e) {
+			console.log("------------------------");
+			console.log("title      : " + e.title);
+			console.log("author     : " + e.author);
+			console.log("description: " + e.description);
+		  });
+		}
+		
+		// show result html here
+		
+	  }
+	});
+}
 

@@ -131,23 +131,49 @@
 	margin: 40px auto;
 	position: relative;
 	width: 400px;
-	border: 10px solid #3A5486;
+/* 	border: 10px solid #3A5486; */
 	border-radius: 50%;
 	background: url("../icons/clockFace.png") no-repeat scroll center 25% rgba(255,255,255,1);
 	background-size: 400px 400px;
-	box-shadow: 0 0 10px #000000, 0 0 50px 10px #CCCCCC inset;
+/* 	box-shadow: 0 0 10px #000000, 0 0 50px 10px #CCCCCC inset; */
 }
 
+.day
+{
+	-webkit-filter: invert(0);
+	filter: invert(0);
+	border: 10px solid #3A5486;
+	box-shadow: 0 0 10px #000000, 0 0 50px 10px #cccccc inset;
+}
+
+.night
+{
+	-webkit-filter: invert(1);
+	filter: invert(1);
+	border: 10px solid #C5AB79;
+	box-shadow: 0 0 10px #ffffff, 0 0 50px 10px #cccccc inset;
+}
+					
 .horloge:before 
 {
 	border-radius: 50%;
-	box-shadow: -2px -2px 5px #000000 inset, -2px 2px 5px #000000 inset, 2px -2px 5px #000000 inset, 2px 2px 5px #000000 inset;
+	/* box-shadow: -2px -2px 5px #000000 inset, -2px 2px 5px #000000 inset, 2px -2px 5px #000000 inset, 2px 2px 5px #000000 inset; */
 	position: absolute;
 	content: '';
 	left: 0;
 	top: 0;
 	right: 0;
 	bottom: 0;
+}
+
+.day:before 
+{
+	box-shadow: -2px -2px 5px #000000 inset, -2px 2px 5px #000000 inset, 2px -2px 5px #000000 inset, 2px 2px 5px #000000 inset;
+}
+
+.night:before 
+{
+	box-shadow: -2px -2px 5px #ffffff inset, -2px 2px 5px #ffffff inset, 2px -2px 5px #ffffff inset, 2px 2px 5px #ffffff inset;
 }
 
 .seconde
