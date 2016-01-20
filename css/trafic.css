@@ -1,11 +1,11 @@
-﻿.map 
+﻿#map 
 {
 	width: 935px;
 	height: 505px;
 }
 
 @media screen and (min-height: 610px) {
-    .map 
+    #map 
 	{
 		height: 590px;
 	}
@@ -13,54 +13,5 @@
 
 .avoid-clicks {
   pointer-events: none;
-}
-
-.ls_trafic1, .ls_trafic2, .ls_trafic3, .ls_trafic4, .ls_trafic5  
- {
-	font-family: arimo;
-	font-weight: normal;
-	color: #999;
-	font-size: 12px;
-	margin-top: -20px;
-	height: 20px;
-	line-height: 65px;
-	text-shadow: 1px 1px 5px black;
-	
-}
-
-.desc_trafic1, .desc_trafic2, .desc_trafic3, .desc_trafic4, .desc_trafic5
-{
-	font-family: arimo;
-	font-weight: normal;
-/*	color: #999; */
-	color: #F2DDB3;
-	font-size: 17px;
-	margin-top: -20px;
-	height: 25px;
-	line-height: 15px;
-	text-shadow: 1px 1px 4px black;
-	
-}
-
-.trafic1, .trafic2, .trafic3, .trafic4, .trafic5
-{
-	font-family: arimo;
-	font-weight: bold;
-	width: 162px;
-	padding: 10px;
-/*	border: 1px solid #1E1E1F; */
-	border: 1px solid transparent;
-	border-radius: 0px;
-	height: 58px;
-	line-height: 55px; 		
-	color: #999;
-	font-size:40px;
-	text-shadow: 1px 1px 4px black;
-	
-}
-
-.trafic3,
-{ 
-	width: 184px; 
 }
 

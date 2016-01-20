@@ -16,26 +16,26 @@ hauteur: 541px
 			
 <div>
 <div class="frame">
-<div class="showlog"></div>
+<div id="showlog"></div>
 </div>
 </div>
             
 
 <div class="autoHide">
 <div class="frame">
-	<div class="ls_logs1"></div><div class="logs1">--</div><div class="desc_logs1">logs1</div>
+	<div id="ls_logs1"></div><div id="logs1">--</div><div id="desc_logs1">logs1</div>
 </div>
 <div class="frame">
-	<div class="ls_logs2"></div><div class="logs2">--</div><div class="desc_logs2">logs2</div>
+	<div id="ls_logs2"></div><div id="logs2">--</div><div id="desc_logs2">logs2</div>
 </div>
 <div class="frame">
-	<div class="ls_logs3"></div><div class="logs3">--</div><div class="desc_logs3">logs3</div>
+	<div id="ls_logs3"></div><div id="logs3">--</div><div id="desc_logs3">logs3</div>
 </div>
 <div class="frame">
-	<div class="ls_logs4"></div><div class="logs4">--</div><div class="desc_logs4">logs4</div>
+	<div id="ls_logs4"></div><div id="logs4">--</div><div id="desc_logs4">logs4</div>
 </div>
 <div class="frame">
-	<div class="ls_logs5"></div><div class="logs5">--</div><div class="desc_logs5">logs5</div>
+	<div id="ls_logs5"></div><div id="logs5">--</div><div id="desc_logs5">logs5</div>
 </div>
 </div>
 
@@ -88,7 +88,7 @@ function RefreshLogData() {
             
         }
 
-        $('.showlog').html(text);
+        $('#showlog').html(text);
         //console.log(text);
     });
 

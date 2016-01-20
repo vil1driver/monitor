@@ -9,7 +9,7 @@ $('head').append('<link rel="stylesheet" href="css/trafic.css">');
 <script>
 
 function initMap() {
-  var map = new google.maps.Map(document.getElementsByClassName('map')[0], {
+  var map = new google.maps.Map(document.getElementById('map'), {
 	disableDefaultUI: true,
     zoom: 14,
     center: {lat: 48.0761279, lng: -1.7084094}
@@ -21,7 +21,7 @@ function initMap() {
   setInterval(initMap, 600000);
 }
 
-$('.reload').click(function(){
+$('#reload').click(function(){
     initMap();
 });
 
@@ -39,28 +39,10 @@ hauteur: 541px
 -->
 
 <div>
-<div class="frame reload">
-<div class="map avoid-clicks"></div>
+<div id='reload' class="frame">
+<div id='map' class="avoid-clicks"></div>
 </div>
 </div>
-<!-- 
-<div class="autoHide">
-<div class="frame">
-	<div class="ls_trafic1"></div><div class="trafic1">--</div><div class="desc_trafic1">trafic1</div>
-</div>
-<div class="frame">
-	<div class="ls_trafic2"></div><div class="trafic2">--</div><div class="desc_trafic2">trafic2</div>
-</div>
-<div class="frame">
-	<div class="ls_trafic3"></div><div class="trafic3">--</div><div class="desc_trafic3">trafic3</div>
-</div>
-<div class="frame">
-	<div class="ls_trafic4"></div><div class="trafic4">--</div><div class="desc_trafic4">trafic4</div>
-</div>
-<div class="frame">
-	<div class="ls_trafic5"></div><div class="trafic5">--</div><div class="desc_trafic5">trafic5</div>
-</div>
-</div>	 -->
 
 <!-- fin contenu -->
 </div>

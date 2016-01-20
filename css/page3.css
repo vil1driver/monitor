@@ -1,9 +1,9 @@
-.ls_cell3_1, .ls_cell3_2, .ls_cell3_3, .ls_cell3_4,
-.ls_cell3_5, .ls_cell3_6, .ls_cell3_7, .ls_cell3_8, .ls_cell3_9,
-.ls_cell3_10, .ls_cell3_11, .ls_cell3_12, .ls_cell3_13, .ls_cell3_14,
-.ls_cell3_15, .ls_cell3_16, .ls_cell3_17, .ls_cell3_18, .ls_cell3_19,
-.ls_cell3_20, .ls_cell3_21, .ls_cell3_22, .ls_cell3_24, .ls_cell3_26, .ls_cell3_23, .ls_cell3_24, .ls_cell3_25,
-.ls_cell3_27, .ls_cell3_28, .ls_cell3_29, .ls_cell3_30, .ls_cell3_31
+#ls_cell3_1, #ls_cell3_2, #ls_cell3_3, #ls_cell3_4,
+#ls_cell3_5, #ls_cell3_6, #ls_cell3_7, #ls_cell3_8, #ls_cell3_9,
+#ls_cell3_10, #ls_cell3_11, #ls_cell3_12, #ls_cell3_13, #ls_cell3_14,
+#ls_cell3_15, #ls_cell3_16, #ls_cell3_17, #ls_cell3_18, #ls_cell3_19,
+#ls_cell3_20, #ls_cell3_21, #ls_cell3_22, #ls_cell3_24, #ls_cell3_26, #ls_cell3_23, #ls_cell3_24, #ls_cell3_25,
+#ls_cell3_27, #ls_cell3_28, #ls_cell3_29, #ls_cell3_30, #ls_cell3_31
  {
 	font-family: arimo;
 	font-weight: normal;
@@ -16,12 +16,12 @@
 	
 }
 
-.desc_cell3_1, .desc_cell3_2, .desc_cell3_3, .desc_cell3_4,
-.desc_cell3_5, .desc_cell3_6, .desc_cell3_7, .desc_cell3_8, .desc_cell3_9,
-.desc_cell3_10, .desc_cell3_11, .desc_cell3_12, .desc_cell3_13, .desc_cell3_14,
-.desc_cell3_15, .desc_cell3_16, .desc_cell3_17, .desc_cell3_18, .desc_cell3_19,
-.desc_cell3_20, .desc_cell3_21, .desc_cell3_22, .desc_cell3_24, .desc_cell3_26, .desc_cell3_23, .desc_cell3_24, .desc_cell3_25,
-.desc_cell3_27, .desc_cell3_28, .desc_cell3_29, .desc_cell3_30, .desc_cell3_31
+#desc_cell3_1, #desc_cell3_2, #desc_cell3_3, #desc_cell3_4,
+#desc_cell3_5, #desc_cell3_6, #desc_cell3_7, #desc_cell3_8, #desc_cell3_9,
+#desc_cell3_10, #desc_cell3_11, #desc_cell3_12, #desc_cell3_13, #desc_cell3_14,
+#desc_cell3_15, #desc_cell3_16, #desc_cell3_17, #desc_cell3_18, #desc_cell3_19,
+#desc_cell3_20, #desc_cell3_21, #desc_cell3_22, #desc_cell3_24, #desc_cell3_26, #desc_cell3_23, #desc_cell3_24, #desc_cell3_25,
+#desc_cell3_27, #desc_cell3_28, #desc_cell3_29, #desc_cell3_30, #desc_cell3_31
  {
 	font-family: arimo;
 	font-weight: normal;
@@ -35,7 +35,7 @@
 	
 }
  
-.cell3_3, .cell3_25 
+#cell3_3, #cell3_25 
 {
 	font-family: arimo;
 	font-weight: bold;
@@ -53,12 +53,12 @@
 	
 }
  
-.cell3_1, .cell3_2, .cell3_4, .cell3_5, 
-.cell3_6, .cell3_7, .cell3_8, .cell3_9, .cell3_10, 
-.cell3_11, .cell3_12, .cell3_13, .cell3_14, .cell3_15, 
-.cell3_16, .cell3_17, .cell3_18, .cell3_19, .cell3_20, 
-.cell3_21, .cell3_22, .cell3_24, .cell3_26, .cell3_23,
-.cell3_27, .cell3_28, .cell3_29, .cell3_30, .cell3_31
+#cell3_1, #cell3_2, #cell3_4, #cell3_5, 
+#cell3_6, #cell3_7, #cell3_8, #cell3_9, #cell3_10, 
+#cell3_11, #cell3_12, #cell3_13, #cell3_14, #cell3_15, 
+#cell3_16, #cell3_17, #cell3_18, #cell3_19, #cell3_20, 
+#cell3_21, #cell3_22, #cell3_24, #cell3_26, #cell3_23,
+#cell3_27, #cell3_28, #cell3_29, #cell3_30, #cell3_31
      {
 	font-family: arimo;
 	font-weight: bold;
@@ -75,7 +75,7 @@
 	
 }
 
-.cell3_8, .cell3_13, .cell3_18, .cell3_24, .cell3_29
+#cell3_8, #cell3_13, #cell3_18, #cell3_24, #cell3_29
 { 
 	width: 184px; 
 }

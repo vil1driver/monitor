@@ -1,6 +1,6 @@
-﻿.ls_clock1,.ls_clock2,.ls_clock3,.ls_clock4,.ls_clock5,.ls_clock6,.ls_clock7,
-.ls_clock8,.ls_clock9,.ls_clock10,.ls_clock11,.ls_clock12,.ls_clock13,.ls_clock14,.ls_clockspace,
-.ls_clock17, .ls_clock18, .ls_clock19, .ls_clock20, .ls_clock21
+﻿#ls_clock1,#ls_clock2,#ls_clock3,#ls_clock4,#ls_clock5,#ls_clock6,#ls_clock7,
+#ls_clock8,#ls_clock9,#ls_clock10,#ls_clock11,#ls_clock12,#ls_clock13,#ls_clock14,.ls_clockspace,
+#ls_clock17, #ls_clock18, #ls_clock19, #ls_clock20, #ls_clock21
  {
 	font-family: arimo;
 	font-weight: normal;
@@ -13,9 +13,9 @@
 	
 }
 
-.desc_clock1,.desc_clock2,.desc_clock3,.desc_clock4,.desc_clock5,.desc_clock6,.desc_clock7,
-.desc_clock8,.desc_clock9,.desc_clock10,.desc_clock11,.desc_clock12,.desc_clock13,.desc_clock14,.desc_clockspace,
-.desc_clock17, .desc_clock18, .desc_clock19, .desc_clock20, .desc_clock21
+#desc_clock1,#desc_clock2,#desc_clock3,#desc_clock4,#desc_clock5,#desc_clock6,#desc_clock7,
+#desc_clock8,#desc_clock9,#desc_clock10,#desc_clock11,#desc_clock12,#desc_clock13,#desc_clock14,.desc_clockspace,
+#desc_clock17, #desc_clock18, #desc_clock19, #desc_clock20, #desc_clock21
  {
 	font-family: arimo;
 	font-weight: normal;
@@ -28,7 +28,7 @@
 	
 }
 
-.clock1,.clock2
+#clock1,#clock2
 {
 	font-family: arimo;
 	font-weight: bold;
@@ -45,9 +45,9 @@
 	
 }
 
-.clock3,.clock4,.clock5,.clock6,.clock7,
-.clock8,.clock9,.clock10,.clock11,.clock12,.clock13,.clock14,
-.clock17, .clock18, .clock19, .clock20, .clock21
+#clock3,#clock4,#clock5,#clock6,#clock7,
+#clock8,#clock9,#clock10,#clock11,#clock12,#clock13,#clock14,
+#clock17, #clock18, #clock19, #clock20, #clock21
 {
 	font-family: arimo;
 	font-weight: bold;
@@ -62,17 +62,17 @@
 	text-shadow: 1px 1px 4px black;
 }
 
-.clock17, .clock18, .clock20, .clock21
+#clock17, #clock18, #clock20, #clock21
 {
 	width: 162px;
 }
 
-.clock19
+#clock19
 { 
 	width: 184px; 
 }
 
-.clock15
+#clock15
 {
     position: absolute;
     width: 162px;
@@ -88,7 +88,7 @@
 	line-height: 55px; 
 }
 
-.clock16
+#clock16
 {
     position: absolute;
     width: 162px;

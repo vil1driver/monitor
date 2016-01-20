@@ -1,9 +1,9 @@
-.ls_cell1, .ls_cell2, .ls_cell3, .ls_cell4,
-.ls_cell5, .ls_cell6, .ls_cell7, .ls_cell8, .ls_cell9,
-.ls_cell10, .ls_cell11, .ls_cell12, .ls_cell13, .ls_cell14,
-.ls_cell15, .ls_cell16, .ls_cell17, .ls_cell18, .ls_cell19,
-.ls_cell20, .ls_cell21, .ls_cell22, .ls_cell24, .ls_cell26, .ls_cell23, .ls_cell24, .ls_cell25,
-.ls_cell27, .ls_cell28, .ls_cell29, .ls_cell30, .ls_cell31  
+#ls_cell1, #ls_cell2, #ls_cell3, #ls_cell4,
+#ls_cell5, #ls_cell6, #ls_cell7, #ls_cell8, #ls_cell9,
+#ls_cell10, #ls_cell11, #ls_cell12, #ls_cell13, #ls_cell14,
+#ls_cell15, #ls_cell16, #ls_cell17, #ls_cell18, #ls_cell19,
+#ls_cell20, #ls_cell21, #ls_cell22, #ls_cell24, #ls_cell26, #ls_cell23, #ls_cell24, #ls_cell25,
+#ls_cell27, #ls_cell28, #ls_cell29, #ls_cell30, #ls_cell31  
  {
 	font-family: arimo;
 	font-weight: normal;
@@ -16,12 +16,12 @@
 	
 }
 
-.desc_cell1, .desc_cell2, .desc_cell3, .desc_cell4,
-.desc_cell5, .desc_cell6, .desc_cell7, .desc_cell8, .desc_cell9,
-.desc_cell10, .desc_cell11, .desc_cell12, .desc_cell13, .desc_cell14,
-.desc_cell15, .desc_cell16, .desc_cell17, .desc_cell18, .desc_cell19,
-.desc_cell20, .desc_cell21, .desc_cell22, .desc_cell24, .desc_cell26, .desc_cell23, .desc_cell24, .desc_cell25,
-.desc_cell27, .desc_cell28, .desc_cell29, .desc_cell30, .desc_cell31
+#desc_cell1, #desc_cell2, #desc_cell3, #desc_cell4,
+#desc_cell5, #desc_cell6, #desc_cell7, #desc_cell8, #desc_cell9,
+#desc_cell10, #desc_cell11, #desc_cell12, #desc_cell13, #desc_cell14,
+#desc_cell15, #desc_cell16, #desc_cell17, #desc_cell18, #desc_cell19,
+#desc_cell20, #desc_cell21, #desc_cell22, #desc_cell24, #desc_cell26, #desc_cell23, #desc_cell24, #desc_cell25,
+#desc_cell27, #desc_cell28, #desc_cell29, #desc_cell30, #desc_cell31
 {
 	font-family: arimo;
 	font-weight: normal;
@@ -35,7 +35,7 @@
 	
 }
 
-.cell3, .cell25
+#cell3, #cell25
 {
 	font-family: arimo;
 	font-weight: bold;
@@ -53,12 +53,12 @@
 	
 }
 
-.cell1, .cell2, .cell4, .cell5, 
-.cell6, .cell7, .cell8, .cell9, .cell10, 
-.cell11, .cell12, .cell13, .cell14, .cell15, 
-.cell16, .cell17, .cell18, .cell19, .cell20, 
-.cell21, .cell22, .cell24, .cell26, .cell23,
-.cell27, .cell28, .cell29, .cell30, .cell31
+#cell1, #cell2, #cell4, #cell5, 
+#cell6, #cell7, #cell8, #cell9, #cell10, 
+#cell11, #cell12, #cell13, #cell14, #cell15, 
+#cell16, #cell17, #cell18, #cell19, #cell20, 
+#cell21, #cell22, #cell24, #cell26, #cell23,
+#cell27, #cell28, #cell29, #cell30, #cell31
 {
 	font-family: arimo;
 	font-weight: bold;
@@ -75,7 +75,7 @@
 	
 }
 
-.cell8, .cell13, .cell18, .cell24, .cell29
+#cell8, #cell13, #cell18, #cell24, #cell29
 { 
 	width: 184px; 
 }

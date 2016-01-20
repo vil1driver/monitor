@@ -381,18 +381,18 @@ function RefreshData()
 			if ( typeof bg_day !== 'undefined' ) {
 				// night background
 			
-				$('.black').css('background', ['rgba(0,0,0,',bg_nightBright,')'].join(''));
+				$('#black').css('background', ['rgba(0,0,0,',bg_nightBright,')'].join(''));
 				
 				document.body.style.background=['black url(icons/',bg_night,') no-repeat top center fixed'].join('');
 				document.body.style.backgroundSize=bg_size;
 				// night clock background
-				if ($('div.horloge').length > 0) {
+				if ($('.horloge').length > 0) {
 				
-					if ($('div.horloge').hasClass('day')) {
-						$('div.horloge').removeClass('day');
+					if ($('.horloge').hasClass('day')) {
+						$('.horloge').removeClass('day');
 					}	
-					if (!$('div.horloge').hasClass('night')) {
-						$('div.horloge').addClass('night');
+					if (!$('.horloge').hasClass('night')) {
+						$('.horloge').addClass('night');
 					}	
 				}
 			}	
@@ -403,19 +403,19 @@ function RefreshData()
 			if ( typeof bg_night !== 'undefined' ) {
 				// day background
 			
-				$('.black').css('background', ['rgba(0,0,0,',bg_dayBright,')'].join(''));
+				$('#black').css('background', ['rgba(0,0,0,',bg_dayBright,')'].join(''));
 			
 			
 				document.body.style.background=['black url(icons/',bg_day,') no-repeat top center fixed'].join('');													
 				document.body.style.backgroundSize=bg_size;
 				// day clock background
-				if ($('div.horloge').length > 0) {
+				if ($('.horloge').length > 0) {
 				
-					if ($('div.horloge').hasClass('night')) {
-						$('div.horloge').removeClass('night');
+					if ($('.horloge').hasClass('night')) {
+						$('.horloge').removeClass('night');
 					}	
-					if (!$('div.horloge').hasClass('day')) {
-						$('div.horloge').addClass('day');
+					if (!$('.horloge').hasClass('day')) {
+						$('.horloge').addClass('day');
 					}	
 				}	
 			}	
@@ -517,8 +517,8 @@ function RefreshData()
 												if (typeof lastseen === 'undefined' || lastseen === '') {
 													lastseen = '0';
 												}
-												if (vtype !== 'ForecastStr' && (lastseen === '1' || lastseen === '3') && ($(['div.ls_',vlabel].join('')).length > 0)) { 
-													$(['div.ls_',vlabel].join('')).html(vls);
+												if (vtype !== 'ForecastStr' && (lastseen === '1' || lastseen === '3') && ($(['#ls_',vlabel].join('')).length > 0)) { 
+													$(['#ls_',vlabel].join('')).html(vls);
 												}													
 						
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
@@ -918,12 +918,12 @@ function RefreshData()
 														alarmcss='';
 														if ( eval(valarm.replace(/x/g, "Number(vdata)")) ) {  
 															alarmcss=';color:red;';
-															if (blink === true && !$('.'+vlabel).hasClass("blink_me")) {
-																$('.'+vlabel).addClass('blink_me');
+															if (blink === true && !$('#'+vlabel).hasClass("blink_me")) {
+																$('#'+vlabel).addClass('blink_me');
 															}		
 														}
-														else if ( $('.'+vlabel ).hasClass( "blink_me" ) ) {
-															$('.'+vlabel).removeClass('blink_me');
+														else if ( $('#'+vlabel ).hasClass( "blink_me" ) ) {
+															$('#'+vlabel).removeClass('blink_me');
 														}
 													}  
 											
@@ -1045,20 +1045,20 @@ function RefreshData()
 												
 													if (typeof vattr === 'undefined') {
 														if (item.Protected === true) {
-															$(['div.',vlabel].join('')).html(['<span onClick="lightbox_open(\'protected\', ',switch_protected_timeout,', ',txt_switch_protected,')" style=',alarmcss,'>',vdata,'</span>'].join(''));
+															$(['#',vlabel].join('')).html(['<span onClick="lightbox_open(\'protected\', ',switch_protected_timeout,', ',txt_switch_protected,')" style=',alarmcss,'>',vdata,'</span>'].join(''));
 														} else { 
-															$(['div.',vlabel].join('')).html(['<span ',switchclick,' style=',alarmcss,'>',vdata,'</span>'].join(''));
+															$(['#',vlabel].join('')).html(['<span ',switchclick,' style=',alarmcss,'>',vdata,'</span>'].join(''));
 														}
 													} 
 													else if (item.Protected === true) {
-														$(['div.',vlabel].join('')).html(['<span onClick="lightbox_open(\'protected\', ',switch_protected_timeout,', ',txt_switch_protected,')" style=',vattr,alarmcss,'>',vdata,'</span>'].join(''));
+														$(['#',vlabel].join('')).html(['<span onClick="lightbox_open(\'protected\', ',switch_protected_timeout,', ',txt_switch_protected,')" style=',vattr,alarmcss,'>',vdata,'</span>'].join(''));
 													}
 													else {
-														$(['div.',vlabel].join('')).html(['<span ',switchclick,' style=',vattr,alarmcss,'>',vdata,'</span>'].join(''));
+														$(['#',vlabel].join('')).html(['<span ',switchclick,' style=',vattr,alarmcss,'>',vdata,'</span>'].join(''));
 													}
 													
-													if ($(['div.desc_',vlabel].join('')).length > 0) {
-														$(['div.desc_',vlabel].join('')).html(vdesc);
+													if ($(['#desc_',vlabel].join('')).length > 0) {
+														$(['#desc_',vlabel].join('')).html(vdesc);
 													}
 											
 
@@ -1071,9 +1071,9 @@ function RefreshData()
 												var vattr=    $.PageArray[ii][6];             	// extra css attributes
                                                 var valarm=     '';             // alarm value to turn text to red
 												
-												$(['div.',vlabel].join('')).html(['<span style=',vattr,'>',vdesc,'</span>'].join(''));
-												if ($(['div.desc_',vlabel].join('')).length > 0) {
-													$(['div.desc_',vlabel].join('')).empty();
+												$(['#',vlabel].join('')).html(['<span style=',vattr,'>',vdesc,'</span>'].join(''));
+												if ($(['#desc_',vlabel].join('')).length > 0) {
+													$(['#desc_',vlabel].join('')).empty();
 												}
 										}
 										else if ( $.PageArray[ii][1] === 'FreeRemote' ) { 			//Special nummer, link in cell (test)
@@ -1082,9 +1082,9 @@ function RefreshData()
 												var vattr=    $.PageArray[ii][6];             	// extra css attributes
                                                 var valarm=     '';             // alarm value to turn text to red
 												
-												$(['div.',vlabel].join('')).html('<img src="icons/freeRemote.png" width=48 height=48 onclick="showFreeRemote()"></img>');
-												if ($(['div.desc_',vlabel].join('')).length > 0) {
-													$(['div.desc_',vlabel].join('')).html(vdesc);
+												$(['#',vlabel].join('')).html('<img src="icons/freeRemote.png" width=48 height=48 onclick="showFreeRemote()"></img>');
+												if ($(['#desc_',vlabel].join('')).length > 0) {
+													$(['#desc_',vlabel].join('')).html(vdesc);
 												}
 										}
 										else if ( $.PageArray[ii][1] === 'Hide' ) { 			//Special nummer, link in cell (test)
@@ -1092,9 +1092,9 @@ function RefreshData()
                                                 var vdata=      $.PageArray[ii][3];             // description (link in this case
                                                 var valarm= '';             // alarm value to turn text to red
                                                 
-												$(['div.',vlabel].join('')).empty();
-                                                if ($(['div.desc_',vlabel].join('')).length > 0) {
-													$(['div.desc_',vlabel].join('')).empty();
+												$(['#',vlabel].join('')).empty();
+                                                if ($(['#desc_',vlabel].join('')).length > 0) {
+													$(['#desc_',vlabel].join('')).empty();
 												}	
                                         }
 										else if ( $.PageArray[ii][1] === 'Html' ) { 			//Special nummer, link in cell (test)
@@ -1102,9 +1102,9 @@ function RefreshData()
                                                 var vdata=      $.PageArray[ii][3];             // description (link in this case
                                                 var valarm=  '';             // alarm value to turn text to red
                                                 
-                                                $(['div.',vlabel].join('')).html(vdata);
-                                                if ($(['div.desc_',vlabel].join('')).length > 0) {
-													$(['div.desc_',vlabel].join('')).empty();
+                                                $(['#',vlabel].join('')).html(vdata);
+                                                if ($(['#desc_',vlabel].join('')).length > 0) {
+													$(['#desc_',vlabel].join('')).empty();
 												}	
                                         }
 										else if ( $.PageArray[ii][1] === 'Clock' ) { 			//Special nummer, Clock in cell (test)
@@ -1113,9 +1113,9 @@ function RefreshData()
                                                 var vattr=    $.PageArray[ii][6];             	// extra css attributes
                                                 var valarm=   '';             // alarm value to turn text to red
                                                 
-                                                $(['div.',vlabel].join('')).html(['<span style=',vattr,'>',vdata,'</span>'].join(''));
-                                                if ($(['div.desc_',vlabel].join('')).length > 0) {
-													$(['div.desc_',vlabel].join('')).empty();
+                                                $(['#',vlabel].join('')).html(['<span style=',vattr,'>',vdata,'</span>'].join(''));
+                                                if ($(['#desc_',vlabel].join('')).length > 0) {
+													$(['#desc_',vlabel].join('')).empty();
 												}	 
 										}
 										else if ( $.PageArray[ii][1] === 'Date' ) { 			//Special nummer, Date in cell (test)
@@ -1124,9 +1124,9 @@ function RefreshData()
                                                 var vattr=    $.PageArray[ii][6];             	// extra css attributes
                                                 var valarm=    '';             // alarm value to turn text to red
                                                 
-                                                $(['div.',vlabel].join('')).html(['<span style=',vattr,'>',vdata,'</span>'].join(''));
-                                                if ($(['div.desc_',vlabel].join('')).length > 0) {
-													$(['div.desc_',vlabel].join('')).empty();
+                                                $(['#',vlabel].join('')).html(['<span style=',vattr,'>',vdata,'</span>'].join(''));
+                                                if ($(['#desc_',vlabel].join('')).length > 0) {
+													$(['#desc_',vlabel].join('')).empty();
 												}	 
 										}
 										else if ( $.PageArray[ii][1] === 'MonthYear' ) { 			//Special nummer, Date in cell (test)
@@ -1135,9 +1135,9 @@ function RefreshData()
                                                 var vattr=    $.PageArray[ii][6];             	// extra css attributes
                                                 var valarm=   '';             // alarm value to turn text to red
                                                 
-                                                $(['div.',vlabel].join('')).html(['<span style=',vattr,'>',vdata,'</span>'].join(''));
-                                                if ($(['div.desc_',vlabel].join('')).length > 0) {
-													$(['div.desc_',vlabel].join('')).empty();
+                                                $(['#',vlabel].join('')).html(['<span style=',vattr,'>',vdata,'</span>'].join(''));
+                                                if ($(['#desc_',vlabel].join('')).length > 0) {
+													$(['#desc_',vlabel].join('')).empty();
 												}	 
 										}	
                                         else if ( $.PageArray[ii][1] === 'SunRise' ) { 			//Special nummer, zonsop/onder in cell (test)
@@ -1145,9 +1145,9 @@ function RefreshData()
                                                 var vattr=    $.PageArray[ii][6];             	// extra css attributes
                                                 var valarm=   '';             // alarm value to turn text to red
 
-                                                $(['div.',vlabel].join('')).html(['<span style=',vattr,'>',var_sunrise,'</span>'].join(''));
-                                                if ($(['div.desc_',vlabel].join('')).length > 0) {
-													$(['div.desc_',vlabel].join('')).html(txt_sunrise);
+                                                $(['#',vlabel].join('')).html(['<span style=',vattr,'>',var_sunrise,'</span>'].join(''));
+                                                if ($(['#desc_',vlabel].join('')).length > 0) {
+													$(['#desc_',vlabel].join('')).html(txt_sunrise);
 												}	 
 										}	
                                         else if ( $.PageArray[ii][1] === 'SunSet' ) { 			//Special nummer, zonsop/onder in cell (test)
@@ -1155,9 +1155,9 @@ function RefreshData()
                                                 var vattr=    $.PageArray[ii][6];             	// extra css attributes
                                                 var valarm=    '';             // alarm value to turn text to red
 
-                                                $(['div.',vlabel].join('')).html(['<span style=',vattr,'>',var_sunset,'</span>'].join(''));
-                                                if ($(['div.desc_',vlabel].join('')).length > 0) {
-													$(['div.desc_',vlabel].join('')).html(txt_sunset);
+                                                $(['#',vlabel].join('')).html(['<span style=',vattr,'>',var_sunset,'</span>'].join(''));
+                                                if ($(['#desc_',vlabel].join('')).length > 0) {
+													$(['#desc_',vlabel].join('')).html(txt_sunset);
 												}	 
 										}	
                                         else if ( $.PageArray[ii][1] === 'SunBoth' ) { 			//Special nummer, zonsop/onder in cell (test)
@@ -1165,9 +1165,9 @@ function RefreshData()
                                                 var vattr=    $.PageArray[ii][6];             	// extra css attributes
                                                 var valarm=   '';             // alarm value to turn text to red
 												
-                                                $(['div.',vlabel].join('')).html(['<span style=',vattr,'><img src=icons/sun.png  height="15" width="15" style="PADDING-RIGHT: 2px;">',var_sunrise,'<img src=icons/moon.png  height="15" width="15" style="PADDING-LEFT: 15px;">',var_sunset,'</span>'].join(''));
-                                                if ($(['div.desc_',vlabel].join('')).length > 0) {
-													$(['div.desc_',vlabel].join('')).html(txt_sunboth);
+                                                $(['#',vlabel].join('')).html(['<span style=',vattr,'><img src=icons/sun.png  height="15" width="15" style="PADDING-RIGHT: 2px;">',var_sunrise,'<img src=icons/moon.png  height="15" width="15" style="PADDING-LEFT: 15px;">',var_sunset,'</span>'].join(''));
+                                                if ($(['#desc_',vlabel].join('')).length > 0) {
+													$(['#desc_',vlabel].join('')).html(txt_sunboth);
 												} 
 										}
                                 
@@ -1283,14 +1283,14 @@ function RefreshData()
 
                                                 // if extra css attributes
                                                 if (typeof vattr === 'undefined') {
-                                                        $(['div.',vlabel].join('')).html(['<span ',switchclick,' style=',alarmcss,'>',vdata,'</span>'].join(''));
+                                                        $(['#',vlabel].join('')).html(['<span ',switchclick,' style=',alarmcss,'>',vdata,'</span>'].join(''));
                                                 }
 												else {
-                                                        $(['div.',vlabel].join('')).html(['<span ',switchclick,' style=',vattr+alarmcss,'>',vdata,'</span>'].join(''));
+                                                        $(['#',vlabel].join('')).html(['<span ',switchclick,' style=',vattr+alarmcss,'>',vdata,'</span>'].join(''));
                                                 }
 
-                                                if ($(['div.desc_',vlabel].join('')).length > 0) {
-													$(['div.desc_',vlabel].join('')).html(vdesc);
+                                                if ($(['#desc_',vlabel].join('')).length > 0) {
+													$(['#desc_',vlabel].join('')).html(vdesc);
                                                 }
 												
 												
@@ -1341,8 +1341,8 @@ function GetCams()
 								src_2 = [location.href.replace(/\/$/, ''),'/icons/offline.jpg'].join('');
 							}	
 						
-							$(['div.',vlabel].join('')).html(['<img src=',src_1,' alt=',src_2,' class=\'camera\' >'].join(''));
-							$(['div.',vlabel,' img'].join('')).error(function(){
+							$(['#',vlabel].join('')).html(['<img src=',src_1,' alt=',src_2,' class=\'camera\' >'].join(''));
+							$(['#',vlabel,' img'].join('')).error(function(){
 																	console.log('vlabel: '+this.parentNode.className);
 																	console.log('on error: '+this.src);
 																	this.onerror=null;
@@ -1355,14 +1355,14 @@ function GetCams()
 																	}	
 																	console.log('replace: '+this.src);
 																});
-							$(['div.',vlabel,' img'].join('')).click(function(){
+							$(['#',vlabel,' img'].join('')).click(function(){
 																	$('#popup_camera').html(['<img src=',this.src,' >'].join(''));
 																	lightbox_open('camera', 25400);
 																});
 							
 															
-							if ($(['div.desc_',vlabel].join('')).length > 0) {
-								$(['div.desc_',vlabel].join('')).empty();
+							if ($(['#desc_',vlabel].join('')).length > 0) {
+								$(['#desc_',vlabel].join('')).empty();
 							}
 					}
 					

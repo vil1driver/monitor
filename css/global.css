@@ -54,7 +54,7 @@ body:after{
     content: url(../icons/offline.png);
 }
 
-.black
+#black
 {
    content:"";
    position:absolute;
@@ -320,3 +320,4 @@ img[alt] {
     50% { opacity: 0.5; }
     100% { opacity: 1.0; }
 }
+

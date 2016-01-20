@@ -1,9 +1,9 @@
-.ls_cell4_1, .ls_cell4_1a, .ls_cell4_2, .ls_cell4_2a, .ls_cell4_3, .ls_cell4_4, .ls_cell4_4a,
-.ls_cell4_5, .ls_cell4_5a, .ls_cell4_6, .ls_cell4_7, .ls_cell4_8, .ls_cell4_9,
-.ls_cell4_10, .ls_cell4_11, .ls_cell4_12, .ls_cell4_13, .ls_cell4_14,
-.ls_cell4_15, .ls_cell4_16, .ls_cell4_17, .ls_cell4_18, .ls_cell4_19,
-.ls_cell4_20, .ls_cell4_21,
-.ls_cell4_22, .ls_cell4_23, .ls_cell4_24, .ls_cell4_25, .ls_cell4_26
+#ls_cell4_1, #ls_cell4_1a, #ls_cell4_2, #ls_cell4_2a, #ls_cell4_3, #ls_cell4_4, #ls_cell4_4a,
+#ls_cell4_5, #ls_cell4_5a, #ls_cell4_6, #ls_cell4_7, #ls_cell4_8, #ls_cell4_9,
+#ls_cell4_10, #ls_cell4_11, #ls_cell4_12, #ls_cell4_13, #ls_cell4_14,
+#ls_cell4_15, #ls_cell4_16, #ls_cell4_17, #ls_cell4_18, #ls_cell4_19,
+#ls_cell4_20, #ls_cell4_21,
+#ls_cell4_22, #ls_cell4_23, #ls_cell4_24, #ls_cell4_25, #ls_cell4_26
  {
 	font-family: arimo;
 	font-weight: normal;
@@ -15,12 +15,12 @@
 	text-shadow: 1px 1px 5px black;
 }
 
-.desc_cell4_1, .desc_cell4_2, .desc_cell4_3, .desc_cell4_4,
-.desc_cell4_5, .desc_cell4_6, .desc_cell4_7, .desc_cell4_8, .desc_cell4_9,
-.desc_cell4_10, .desc_cell4_11, .desc_cell4_12, .desc_cell4_13, .desc_cell4_14,
-.desc_cell4_15, .desc_cell4_16, .desc_cell4_17, .desc_cell4_18, .desc_cell4_19,
-.desc_cell4_20, .desc_cell4_21,
-.desc_cell4_22, .desc_cell4_23, .desc_cell4_24, .desc_cell4_25, .desc_cell4_26
+#desc_cell4_1, #desc_cell4_2, #desc_cell4_3, #desc_cell4_4,
+#desc_cell4_5, #desc_cell4_6, #desc_cell4_7, #desc_cell4_8, #desc_cell4_9,
+#desc_cell4_10, #desc_cell4_11, #desc_cell4_12, #desc_cell4_13, #desc_cell4_14,
+#desc_cell4_15, #desc_cell4_16, #desc_cell4_17, #desc_cell4_18, #desc_cell4_19,
+#desc_cell4_20, #desc_cell4_21,
+#desc_cell4_22, #desc_cell4_23, #desc_cell4_24, #desc_cell4_25, #desc_cell4_26
  {
 	font-family: arimo;
 	font-weight: normal;
@@ -34,7 +34,7 @@
 	
 }
 
-.cell4_3, .cell4_21
+#cell4_3, #cell4_21
 {
 	font-family: arimo;
 	font-weight: bold;
@@ -50,11 +50,11 @@
 	text-shadow: 1px 1px 4px black;
 }
 
-.cell4_1, .cell4_2, .cell4_4, .cell4_5, 
-.cell4_6, .cell4_7, .cell4_8, .cell4_9, .cell4_10, 
-.cell4_11, .cell4_12, .cell4_13, .cell4_14, .cell4_15, 
-.cell4_16, .cell4_17, .cell4_18, .cell4_19, .cell4_20,
-.cell4_22, .cell4_23, .cell4_24, .cell4_25, .cell4_26
+#cell4_1, #cell4_2, #cell4_4, #cell4_5, 
+#cell4_6, #cell4_7, #cell4_8, #cell4_9, #cell4_10, 
+#cell4_11, #cell4_12, #cell4_13, #cell4_14, #cell4_15, 
+#cell4_16, #cell4_17, #cell4_18, #cell4_19, #cell4_20,
+#cell4_22, #cell4_23, #cell4_24, #cell4_25, #cell4_26
 {
 	font-family: arimo;
 	font-weight: bold;
@@ -69,7 +69,7 @@
 	text-shadow: 1px 1px 4px black;	
 }
 
-.cell4_1a, .cell4_1b, .cell4_2a, .cell4_2b, .cell4_4a, .cell4_4b, .cell4_5a, .cell4_5b
+#cell4_1a, #cell4_1b, #cell4_2a, #cell4_2b, #cell4_4a, #cell4_4b, #cell4_5a, #cell4_5b
 {
 	font-family: arimo;
 	font-weight: bold;
@@ -81,16 +81,16 @@
 	text-shadow: 1px 1px 4px black;
 }
 
-.cell4_6,  .cell4_7, .cell4_8, .cell4_9, .cell4_10,  
-.cell4_11, .cell4_12, .cell4_13, .cell4_14, .cell4_15,
-.cell4_16, .cell4_17, .cell4_18, .cell4_19, .cell4_20,
-.cell4_22, .cell4_23, .cell4_24, .cell4_25, .cell4_26
+#cell4_6,  #cell4_7, #cell4_8, #cell4_9, #cell4_10,  
+#cell4_11, #cell4_12, #cell4_13, #cell4_14, #cell4_15,
+#cell4_16, #cell4_17, #cell4_18, #cell4_19, #cell4_20,
+#cell4_22, #cell4_23, #cell4_24, #cell4_25, #cell4_26
 {
 	height: 63px;
 	line-height: 55px;
 }
  
-.cell4_8, .cell4_13, .cell4_18, .cell4_24 
+#cell4_8, #cell4_13, #cell4_18, #cell4_24 
 { 
 	width: 184px; 
 }
