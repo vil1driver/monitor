@@ -979,7 +979,7 @@ function RefreshData()
 													}
 													// Adds hPa after Barometer
 													else if(vtype === 'Barometer'){
-														vdata = [vdata,'<span style="font-size:50%;"> hPa</span>'].join('');
+														vdata = ['<span onclick="RefreshGraphData(',item.idx,',\'',vdesc,'\',\'temp\',\'day\',\'ba\',\'Baromètre hpa\')">',vdata,'<span style="font-size:50%;"> hPa</span></span>'].join('');
 													}
 													// Adds Km/h after the wind
 													else if(vtype === 'Speed' || vtype === 'Gust'){       
