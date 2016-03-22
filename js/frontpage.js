@@ -889,6 +889,10 @@ function RefreshData()
 																vdata = ['<img src=',$.domoticzurl,'/images/',icon,'  width=48>'].join('');
 															}
 														}
+														else if (item.SubType === 'Alert') {
+															var icon_On = ['Alert48_',vdata,'.png'].join('');
+															vdata = txt_on;
+														}
 														else {
 															var	icon_On = [item.Image,'48_On.png'].join('');
 															var	icon_Off = [item.Image,'48_Off.png'].join('');
