@@ -493,11 +493,13 @@ function RefreshData()
                                                         // remove too much text
                                                         vdata= String(vdata).split("Watt",1)[0];
                                                         vdata= String(vdata).split("kWh",1)[0];
+                                                        vdata= String(vdata).split("km",1)[0];
+                                                        vdata= String(vdata).split("Liter",1)[0];
                                                         vdata= String(vdata).split("V",1)[0];
                                                         vdata= String(vdata).split("%",1)[0];
                                                         vdata= String(vdata).split(" Level:",1)[0];
-                                                        vdata= String(vdata).replace("Set","On");
                                                         vdata= String(vdata).split("m3",1)[0];
+														vdata= String(vdata).replace("Set","On");
                                                         vdata= String(vdata).replace("true","protected");
                                                 }
 												
@@ -1032,6 +1034,10 @@ function RefreshData()
 													// Adds Watt/m² after solar radiation
 													else if(item.SubType === 'Solar Radiation'){
 														vdata = [vdata,'<span style="font-size:50%;"> W/m&#178;</span>'].join('');
+													}
+													// Adds km after visibility for WU
+													else if(item.SubType === 'Visibility'){
+														vdata = [vdata,'<span style="font-size:50%;"> km</span>'].join('');
 													}
 													// graph for counter without unit
 													else if(item.Type === 'RFXMeter' && item.SwitchTypeVal === '3'){       
