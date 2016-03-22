@@ -1004,7 +1004,7 @@ function RefreshData()
 														vdata = ['<span onclick="RefreshGraphData(',item.idx,',\'',vdesc,'\',\'Percentage\',\'day\',\'v\',\'Pourcentage &#37;\')">',Math.ceil(vdata),'<span style="font-size:50%;"> &#37;</span></span>'].join('');
 													}
 													// Adds Watt after the Usage
-													else if(vtype === 'Usage' && (item.SubType === 'Energy' || item.SubType === 'CM119 / CM160' || item.SubType === 'CM180' || item.SubType === 'kWh')){       
+													else if((vtype === 'Usage' || vtype === 'Data') && (item.SubType === 'Energy' || item.SubType === 'CM119 / CM160' || item.SubType === 'CM180' || item.SubType === 'kWh' || item.SubType === 'Electric')){       
 														if(item.Type === 'P1 Smart Meter') {
 															vdata = ['<span onclick="RefreshGraphData(',item.idx,',\'',vdesc,'\',\'counter\',\'day\',\'p1\',\'Electricité Watt\')">',Math.ceil(vdata),'<span style="font-size:50%;"> Watt</span></span>'].join('');
 														}else{	
@@ -1012,20 +1012,27 @@ function RefreshData()
 														}
 													}
 													// Adds Kwh after the CounterToday
-													else if(vtype === 'CounterToday' && (item.SubType === 'Energy' || item.SubType === 'CM119 / CM160' || item.SubType === 'CM180' || item.SubType === 'kWh')){       
+													else if((vtype === 'CounterToday' || vtype === 'Data') && (item.SubType === 'Energy' || item.SubType === 'CM119 / CM160' || item.SubType === 'CM180' || item.SubType === 'kWh' || item.SubType === 'Electric' || item.SubType === 'RFXMeter counter')){       
 														vdata = [Math.ceil(vdata*10)/10,'<span style="font-size:50%;"> kWh</span>'].join('');
 													}
 													// Adds Kwh after the Counter and convert float to integer
-													else if((vtype === 'Counter' || vtype === 'Data') && (item.SubType === 'Energy' || item.SubType === 'CM119 / CM160' || item.SubType === 'CM180' || item.SubType === 'kWh')){       
+													else if((vtype === 'Counter' || vtype === 'Data') && (item.SubType === 'Energy' || item.SubType === 'CM119 / CM160' || item.SubType === 'CM180' || item.SubType === 'kWh' || item.SubType === 'Electric')){       
 														vdata = [Math.ceil(vdata),'<span style="font-size:50%;"> kWh</span>'].join('');
 													}
 													// Adds € after price
 													else if(vtype === 'Euro'){       
 														vdata = [Math.ceil(vdata*100)/100,'<span style="font-size:50%;"> &#8364;</span>'].join('');
 													}
-													// Adds m³ after volume for incremental counter
-													else if(item.Type === 'Counter Incremental' && (item.SwitchTypeVal === '1' || item.SwitchTypeVal === '2')){
-														vdata = [vdata,'<span style="font-size:50%;"> m&#179;</span>'].join('');
+													// for incremental counter or RFXMeter
+													else if((item.Type === 'Counter Incremental' || item.Type === 'RFXMeter') && (item.SwitchTypeVal === '1' || item.SwitchTypeVal === '2')){
+														// Adds m³ after volume
+														if(vtype === 'Data' || vtype === 'Counter'){
+															vdata = [vdata,'<span style="font-size:50%;"> m&#179;</span>'].join('');
+														}
+														// Adds L after volume today
+														if(vtype === 'CounterToday'){
+															vdata = [vdata,'<span style="font-size:50%;"> L</span>'].join('');
+														}
 													}
 													// Adds Kwh after energy for incremental counter
 													else if(item.Type === 'Counter Incremental' && (item.SwitchTypeVal === '0' || item.SwitchTypeVal === '4')){
