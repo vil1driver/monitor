@@ -36,7 +36,7 @@ $.ajaxSetup({
 			dataType: "json",
             async: true,
 			global: false,
-			timeout: 1500,
+			timeout: 3000,
 			cache: false 
 });
 			
