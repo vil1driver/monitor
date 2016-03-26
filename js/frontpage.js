@@ -1024,7 +1024,7 @@ function RefreshData()
 														vdata = [Math.ceil(vdata*100)/100,'<span style="font-size:50%;"> &#8364;</span>'].join('');
 													}
 													// for incremental counter or RFXMeter
-													else if((item.Type === 'Counter Incremental' || item.Type === 'RFXMeter') && (item.SwitchTypeVal === '1' || item.SwitchTypeVal === '2')){
+													else if((item.Type === 'Counter Incremental' || item.Type === 'RFXMeter') && (item.SwitchTypeVal == '1' || item.SwitchTypeVal == '2')){
 														// Adds m³ after volume
 														if(vtype === 'Data' || vtype === 'Counter'){
 															vdata = [vdata,'<span style="font-size:50%;"> m&#179;</span>'].join('');
@@ -1035,7 +1035,7 @@ function RefreshData()
 														}
 													}
 													// Adds Kwh after energy for incremental counter
-													else if(item.Type === 'Counter Incremental' && (item.SwitchTypeVal === '0' || item.SwitchTypeVal === '4')){
+													else if(item.Type === 'Counter Incremental' && (item.SwitchTypeVal == '0' || item.SwitchTypeVal == '4')){
 														vdata = [vdata,'<span style="font-size:50%;"> kWh</span>'].join('');
 													}
 													// Adds Watt/m² after solar radiation
@@ -1047,7 +1047,7 @@ function RefreshData()
 														vdata = [vdata,'<span style="font-size:50%;"> km</span>'].join('');
 													}
 													// graph for counter without unit
-													else if(item.Type === 'RFXMeter' && item.SwitchTypeVal === '3'){       
+													else if(item.Type === 'RFXMeter' && item.SwitchTypeVal == '3'){       
 														vdata = ['<span onclick="RefreshGraphData(',item.idx,',\'',vdesc,'\',\'counter\',\'day\',\'v\',\'Compteur\')">',vdata,'</span>'].join('');
 													}
 													// adds V after voltage
