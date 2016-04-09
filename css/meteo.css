@@ -64,10 +64,11 @@
 	
 }
 
-#meteo8, #meteo13, #meteo18, #meteo24, #meteo29
+#meteo8
 { 
 	width: 184px; 
 }
+
 #desc_jour0, #desc_jour1, #desc_jour2, #desc_jour3, 
 #temp_day_0_1H00, #temp_day_0_3H00, #temp_day_0_5H00, #temp_day_0_7H00, #temp_day_0_9H00, #temp_day_0_11H00, 
 #temp_day_0_13H00, #temp_day_0_15H00, #temp_day_0_17H00, #temp_day_0_19H00, #temp_day_0_21H00, #temp_day_0_23H00,
@@ -117,4 +118,27 @@
 #jour0, #jour1, #jour2, #jour3
 {
 	font-size:27px;
+	color:#F2DDB3;
+}
+
+#sep
+{
+  position: absolute;
+  margin-top: -40px;
+  margin-left: 0px;
+  border : 0;
+  height : 160px;
+  width : 1px;
+  background-image: -webkit-linear-gradient(top, transparent, #F2DDB3, transparent);
+  background-image: -moz-linear-gradient(top, transparent, #F2DDB3, transparent);
+  background-image: -ms-linear-gradient(top, transparent, #F2DDB3, transparent);
+  background-image: -o-linear-gradient(top, transparent, #F2DDB3, transparent);
+  background-image: linear-gradient(top, transparent, #F2DDB3, transparent);
+}
+
+@media screen and (min-height: 610px) {
+    #sep
+	{
+	height : 250px;
+	}	
 }
