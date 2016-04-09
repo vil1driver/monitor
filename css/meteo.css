@@ -112,13 +112,14 @@
 	color: #999;
 	font-size:40px;
 	text-shadow: 1px 1px 4px black;
-	
 }
 
 #jour0, #jour1, #jour2, #jour3
 {
+	width: 55px;
 	font-size:27px;
 	color:#F2DDB3;
+	text-align: left;
 }
 
 #sep
