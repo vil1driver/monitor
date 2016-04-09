@@ -69,17 +69,17 @@ $( "#temp_day_0_" + index ).append( color(value.TMP2m) + '<sup style="font-size:
 	$.each(json.fcst_day_1.hourly_data, function( index, value ) { 
 //console.log( index + ": " + value.ICON );
 $( "#day_1_" + index ).append( "<img src=\"" + value.ICON + "\" alt=\"\" />" )
-$( "#temp_day_1_" + index ).append( color(value.TMP2m) + '<sup style="font-size:50%;" >&#8451;</sup>' );
+$( "#temp_day_1_" + index ).append( color(value.TMP2m) + '<sup style="font-size:50%;" >&#8451;</sup></span>' );
 });
 	$.each(json.fcst_day_2.hourly_data, function( index, value ) { 
 //console.log( index + ": " + value.ICON );
 $( "#day_2_" + index ).append( "<img src=\"" + value.ICON + "\" alt=\"\" />" )
-$( "#temp_day_2_" + index ).append( color(value.TMP2m) + '<sup style="font-size:50%;" >&#8451;</sup>' );
+$( "#temp_day_2_" + index ).append( color(value.TMP2m) + '<sup style="font-size:50%;" >&#8451;</sup></span>' );
 }); 
 	$.each(json.fcst_day_3.hourly_data, function( index, value ) { 
 //console.log( index + ": " + value.ICON );
 $( "#day_3_" + index ).append( "<img src=\"" + value.ICON + "\" alt=\"\" />" )
-$( "#temp_day_3_" + index ).append( color(value.TMP2m) + '<sup style="font-size:50%;" >&#8451;</sup>' );
+$( "#temp_day_3_" + index ).append( color(value.TMP2m) + '<sup style="font-size:50%;" >&#8451;</sup></span>' );
 }); 	
 
 });
