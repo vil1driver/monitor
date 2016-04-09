@@ -1,0 +1,319 @@
+<!-- load page stylesheet -->
+<script>
+$('head').append('<link rel="stylesheet" href="css/meteo.css">');
+</script>
+
+<script type="text/javascript" language="javascript">
+var maintenant=new Date();
+var jour = maintenant.getDay();
+var tab_jour = new Array("Dim.", "Lun.", "Mar.", "Mer.", "Jeu.", "Ven.", "Sam.");
+$( "#jour0").append( tab_jour[jour] );
+jour = jour +1 > 6 ? 0 : jour +1;
+$( "#jour1").append( tab_jour[jour] );
+jour = jour +1 > 6 ? 0 : jour +1;
+$( "#jour2").append( tab_jour[jour] );
+jour = jour +1 > 6 ? 0 : jour +1;
+$( "#jour3").append( tab_jour[jour] );
+
+var JsonAddress = "http://www.prevision-meteo.ch/services/json/"+city;
+
+
+function color(temp) {
+	if (parseInt(temp, 10) >= 35) { return '<span style="color:'+T35+'">'+temp; } 
+	else if (parseInt(temp, 10) >= 34) { return '<span style="color:'+T34+'">'+temp; } 
+	else if (parseInt(temp, 10) >= 33) { return '<span style="color:'+T33+'">'+temp; } 
+	else if (parseInt(temp, 10) >= 32) { return '<span style="color:'+T32+'">'+temp; } 
+	else if (parseInt(temp, 10) >= 31) { return '<span style="color:'+T31+'">'+temp; } 
+	else if (parseInt(temp, 10) >= 30) { return '<span style="color:'+T30+'">'+temp; } 
+	else if (parseInt(temp, 10) >= 29) { return '<span style="color:'+T29+'">'+temp; } 
+	else if (parseInt(temp, 10) >= 28) { return '<span style="color:'+T28+'">'+temp; } 
+	else if (parseInt(temp, 10) >= 27) { return '<span style="color:'+T27+'">'+temp; } 
+	else if (parseInt(temp, 10) >= 26) { return '<span style="color:'+T26+'">'+temp; } 
+	else if (parseInt(temp, 10) >= 25) { return '<span style="color:'+T25+'">'+temp; } 
+	else if (parseInt(temp, 10) >= 24) { return '<span style="color:'+T24+'">'+temp; } 
+	else if (parseInt(temp, 10) >= 23) { return '<span style="color:'+T23+'">'+temp; } 
+	else if (parseInt(temp, 10) >= 22) { return '<span style="color:'+T22+'">'+temp; } 
+	else if (parseInt(temp, 10) >= 21) { return '<span style="color:'+T21+'">'+temp; } 
+	else if (parseInt(temp, 10) >= 20) { return '<span style="color:'+T20+'">'+temp; } 
+	else if (parseInt(temp, 10) >= 19) { return '<span style="color:'+T19+'">'+temp; } 
+	else if (parseInt(temp, 10) >= 18) { return '<span style="color:'+T18+'">'+temp; } 
+	else if (parseInt(temp, 10) >= 17) { return '<span style="color:'+T17+'">'+temp; } 
+	else if (parseInt(temp, 10) >= 16) { return '<span style="color:'+T16+'">'+temp; } 
+	else if (parseInt(temp, 10) >= 15) { return '<span style="color:'+T15+'">'+temp; } 
+	else if (parseInt(temp, 10) >= 14) { return '<span style="color:'+T14+'">'+temp; } 
+	else if (parseInt(temp, 10) >= 13) { return '<span style="color:'+T13+'">'+temp; } 
+	else if (parseInt(temp, 10) >= 12) { return '<span style="color:'+T12+'">'+temp; } 
+	else if (parseInt(temp, 10) >= 11) { return '<span style="color:'+T11+'">'+temp; } 
+	else if (parseInt(temp, 10) >= 10) { return '<span style="color:'+T10+'">'+temp; } 
+	else if (parseInt(temp, 10) >= 9) { return '<span style="color:'+T09+'">'+temp; } 
+	else if (parseInt(temp, 10) >= 8) { return '<span style="color:'+T08+'">'+temp; } 
+	else if (parseInt(temp, 10) >= 7) { return '<span style="color:'+T07+'">'+temp; } 
+	else if (parseInt(temp, 10) >= 6) { return '<span style="color:'+T06+'">'+temp; } 
+	else if (parseInt(temp, 10) >= 5) { return '<span style="color:'+T05+'">'+temp; } 
+	else if (parseInt(temp, 10) >= 4) { return '<span style="color:'+T04+'">'+temp; } 
+	else if (parseInt(temp, 10) >= 3) { return '<span style="color:'+T03+'">'+temp; } 
+	else if (parseInt(temp, 10) >= 2) { return '<span style="color:'+T02+'">'+temp; } 
+	else if (parseInt(temp, 10) >= 1) { return '<span style="color:'+T01+'">'+temp; } 
+	else if (parseInt(temp, 10) >= 0) { return '<span style="color:'+T00+'">'+temp; }
+	else  { return '<span style="color:'+T000+'">'+temp; }
+}																					  
+																					  
+																					  
+$.getJSON(JsonAddress, function (json) {
+	
+ 	$.each(json.fcst_day_0.hourly_data, function( index, value ) { 
+//console.log( index + ": " + value.ICON );
+$( "#day_0_" + index ).append( "<img src=\"" + value.ICON + "\" alt=\"\" />" );
+$( "#temp_day_0_" + index ).append( color(value.TMP2m) + '<sup style="font-size:50%;" >&#8451;</sup></span>' );
+});
+	$.each(json.fcst_day_1.hourly_data, function( index, value ) { 
+//console.log( index + ": " + value.ICON );
+$( "#day_1_" + index ).append( "<img src=\"" + value.ICON + "\" alt=\"\" />" )
+$( "#temp_day_1_" + index ).append( color(value.TMP2m) + '<sup style="font-size:50%;" >&#8451;</sup>' );
+});
+	$.each(json.fcst_day_2.hourly_data, function( index, value ) { 
+//console.log( index + ": " + value.ICON );
+$( "#day_2_" + index ).append( "<img src=\"" + value.ICON + "\" alt=\"\" />" )
+$( "#temp_day_2_" + index ).append( color(value.TMP2m) + '<sup style="font-size:50%;" >&#8451;</sup>' );
+}); 
+	$.each(json.fcst_day_3.hourly_data, function( index, value ) { 
+//console.log( index + ": " + value.ICON );
+$( "#day_3_" + index ).append( "<img src=\"" + value.ICON + "\" alt=\"\" />" )
+$( "#temp_day_3_" + index ).append( color(value.TMP2m) + '<sup style="font-size:50%;" >&#8451;</sup>' );
+}); 	
+
+});
+
+</script>
+
+<!-- Page -->
+<div class="cnt v-wrap">
+<div class="v-box">
+<!-- contenu -->    
+
+<!--
+le contenu de votre page ne doit pas dépasser les dimensions suivantes
+largeur: 962px
+hauteur: 541px
+-->
+
+
+<div>
+<div class="frame">
+	<div id="ls_meteo1"></div><div id="meteo1">--</div><div id="desc_meteo1">meteo1</div>
+	<div id="ls_meteo2"></div><div id="meteo2">--</div><div id="desc_meteo2">meteo2</div>
+</div>
+<div class="frame">
+	<div id="ls_meteo3"></div><div id="meteo3">--</div><div id="desc_meteo3">meteo3</div>
+</div>
+<div class="frame">
+	<div id="ls_meteo25"></div><div id="meteo25">--</div><div id="desc_meteo25">meteo25</div>
+</div>
+<div class="frame">
+	<div id="ls_meteo4"></div><div id="meteo4">--</div><div id="desc_meteo4">meteo4</div>
+	<div id="ls_meteo5"></div><div id="meteo5">--</div><div id="desc_meteo5">meteo5</div>
+</div>
+</div>
+
+<div>
+<div class="frame">
+	<div id="ls_meteo6"></div><div id="meteo6">--</div><div id="desc_meteo6">meteo6</div>
+</div>
+<div class="frame">
+	<div id="ls_meteo7"></div><div id="meteo7">--</div><div id="desc_meteo7">meteo7</div>
+</div>
+<div class="frame">
+	<div id="ls_meteo8"></div><div id="meteo8">--</div><div id="desc_meteo8">meteo8</div>
+</div>
+<div class="frame">
+	<div id="ls_meteo9"></div><div id="meteo9">--</div><div id="desc_meteo9">meteo9</div>
+</div>
+<div class="frame">
+	<div id="ls_meteo10"></div><div id="meteo10">--</div><div id="desc_meteo10">meteo10</div>
+</div>
+</div> 
+<!-- ================================================================================================== -->
+ 
+<div class="stage">
+</div> 
+<div>
+<div class="frame">
+			<div id="desc_jour0"></div><div id="jour0"></div>
+</div>
+</div>
+<div class="frame">
+			<div id="day_0_1H00"></div><div id="temp_day_0_1H00"></div>
+</div>
+<div class="frame">
+			<div id="day_0_3H00"></div><div id="temp_day_0_3H00"></div>
+</div>
+<div class="frame">
+			<div id="day_0_5H00"></div><div id="temp_day_0_5H00"></div>
+</div>
+<div class="frame">
+			<div id="day_0_7H00"></div><div id="temp_day_0_7H00"></div>
+</div>
+<div class="frame">
+			<div id="day_0_9H00"></div><div id="temp_day_0_9H00"></div>
+</div>
+<div class="frame">
+			<div id="day_0_11H00"></div><div id="temp_day_0_11H00"></div>
+</div>
+<div class="frame">
+			<div id="day_0_13H00"></div><div id="temp_day_0_13H00"></div>
+</div>
+<div class="frame">
+			<div id="day_0_15H00"></div><div id="temp_day_0_15H00"></div>
+</div>
+<div class="frame">
+			<div id="day_0_17H00"></div><div id="temp_day_0_17H00"></div>
+</div>
+<div class="frame">
+			<div id="day_0_19H00"></div><div id="temp_day_0_19H00"></div>
+</div>
+<div class="frame">
+			<div id="day_0_21H00"></div><div id="temp_day_0_21H00"></div>
+</div>
+<div class="frame">
+			<div id="day_0_23H00"></div><div id="temp_day_0_23H00"></div>
+</div>
+</div>
+
+<div class="stage">
+</div> 
+<div>
+<div class="frame">
+			<div id="desc_jour1"></div><div id="jour1"></div>
+</div>
+<div class="frame">
+			<div id="day_1_1H00"></div><div id="temp_day_1_1H00"></div>
+</div>
+<div class="frame">
+			<div id="day_1_3H00"></div><div id="temp_day_1_3H00"></div>
+</div>
+<div class="frame">
+			<div id="day_1_5H00"></div><div id="temp_day_1_5H00"></div>
+</div>
+<div class="frame">
+			<div id="day_1_7H00"></div><div id="temp_day_1_7H00"></div>
+</div>
+<div class="frame">
+			<div id="day_1_9H00"></div><div id="temp_day_1_9H00"></div>
+</div>
+<div class="frame">
+			<div id="day_1_11H00"></div><div id="temp_day_1_11H00"></div>
+</div>
+<div class="frame">
+			<div id="day_1_13H00"></div><div id="temp_day_1_13H00"></div>
+</div>
+<div class="frame">
+			<div id="day_1_15H00"></div><div id="temp_day_1_15H00"></div>
+</div>
+<div class="frame">
+			<div id="day_1_17H00"></div><div id="temp_day_1_17H00"></div>
+</div>
+<div class="frame">
+			<div id="day_1_19H00"></div><div id="temp_day_1_19H00"></div>
+</div>
+<div class="frame">
+			<div id="day_1_21H00"></div><div id="temp_day_1_21H00"></div>
+</div>
+<div class="frame">
+			<div id="day_1_23H00"></div><div id="temp_day_1_23H00"></div>
+</div>
+</div>
+
+<div class="stage">
+</div> 
+<div>
+<div class="frame">
+			<div id="desc_jour2"></div><div id="jour2"></div>
+</div>
+<div class="frame">
+			<div id="day_2_1H00"></div><div id="temp_day_2_1H00"></div>
+</div>
+<div class="frame">
+			<div id="day_2_3H00"></div><div id="temp_day_2_3H00"></div>
+</div>
+<div class="frame">
+			<div id="day_2_5H00"></div><div id="temp_day_2_5H00"></div>
+</div>
+<div class="frame">
+			<div id="day_2_7H00"></div><div id="temp_day_2_7H00"></div>
+</div>
+<div class="frame">
+			<div id="day_2_9H00"></div><div id="temp_day_2_9H00"></div>
+</div>
+<div class="frame">
+			<div id="day_2_11H00"></div><div id="temp_day_2_11H00"></div>
+</div>
+<div class="frame">
+			<div id="day_2_13H00"></div><div id="temp_day_2_13H00"></div>
+</div>
+<div class="frame">
+			<div id="day_2_15H00"></div><div id="temp_day_2_15H00"></div>
+</div>
+<div class="frame">
+			<div id="day_2_17H00"></div><div id="temp_day_2_17H00"></div>
+</div>
+<div class="frame">
+			<div id="day_2_19H00"></div><div id="temp_day_2_19H00"></div>
+</div>
+<div class="frame">
+			<div id="day_2_21H00"></div><div id="temp_day_2_21H00"></div>
+</div>
+<div class="frame">
+			<div id="day_2_23H00"></div><div id="temp_day_2_23H00"></div>
+</div>
+</div>
+
+<div class="stage">
+</div> 
+<div class="autoHide">
+<div class="frame">
+			<div id="desc_jour3"></div><div id="jour3"></div>
+</div>
+<div class="frame">
+			<div id="day_3_1H00"></div><div id="temp_day_3_1H00"></div>
+</div>
+<div class="frame">
+			<div id="day_3_3H00"></div><div id="temp_day_3_3H00"></div>
+</div>
+<div class="frame">
+			<div id="day_3_5H00"></div><div id="temp_day_3_5H00"></div>
+</div>
+<div class="frame">
+			<div id="day_3_7H00"></div><div id="temp_day_3_7H00"></div>
+</div>
+<div class="frame">
+			<div id="day_3_9H00"></div><div id="temp_day_3_9H00"></div>
+</div>
+<div class="frame">
+			<div id="day_3_11H00"></div><div id="temp_day_3_11H00"></div>
+</div>
+<div class="frame">
+			<div id="day_3_13H00"></div><div id="temp_day_3_13H00"></div>
+</div>
+<div class="frame">
+			<div id="day_3_15H00"></div><div id="temp_day_3_15H00"></div>
+</div>
+<div class="frame">
+			<div id="day_3_17H00"></div><div id="temp_day_3_17H00"></div>
+</div>
+<div class="frame">
+			<div id="day_3_19H00"></div><div id="temp_day_3_19H00"></div>
+</div>
+<div class="frame">
+			<div id="day_3_21H00"></div><div id="temp_day_3_21H00"></div>
+</div>
+<div class="frame">
+			<div id="day_3_23H00"></div><div id="temp_day_3_23H00"></div>
+</div>
+</div>
+
+
+
+<!-- fin contenu -->
+</div>
+</div>
+<!-- fin page -->
