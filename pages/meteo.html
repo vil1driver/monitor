@@ -85,14 +85,21 @@ $( "#temp_day_3_" + index ).append( color(value.TMP2m) + '<sup style="font-size:
 });
 
 
+function ghost(){
 
 	for (i = 1, hour = new Date().getHours() ; i < hour ; i=i+2) { 
 
+		if (!$("#day_0_"+i+"H00").hasClass('ghost')) {
+			$("#day_0_"+i+"H00").addClass('ghost');
 		}
+		if (!$("#temp_day_0_"+i+"H00").hasClass('ghost')) {
+			$("#temp_day_0_"+i+"H00").addClass('ghost');
 		}	
 	}
 }
 
+$(ghost);
+setTimeout( ghost, 5*60*1000);
 
 </script>
 
