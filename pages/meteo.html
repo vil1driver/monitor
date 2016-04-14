@@ -3,16 +3,16 @@
 $('head').append('<link rel="stylesheet" href="css/meteo.css">');
 </script>
 
-<script type="text/javascript" language="javascript">
+<script>
 var maintenant=new Date();
 var jour = maintenant.getDay();
 var tab_jour = new Array("Dim.", "Lun.", "Mar.", "Mer.", "Jeu.", "Ven.", "Sam.");
 $( "#jour0").append( tab_jour[jour] );
-jour = jour +1 > 6 ? 0 : jour +1;
+jour = jour == 6 ? 0 : jour +1;
 $( "#jour1").append( tab_jour[jour] );
-jour = jour +1 > 6 ? 0 : jour +1;
+jour = jour == 6 ? 0 : jour +1;
 $( "#jour2").append( tab_jour[jour] );
-jour = jour +1 > 6 ? 0 : jour +1;
+jour = jour == 6 ? 0 : jour +1;
 $( "#jour3").append( tab_jour[jour] );
 
 var JsonAddress = "http://www.prevision-meteo.ch/services/json/"+city;
@@ -57,8 +57,8 @@ function color(temp) {
 	else if (parseInt(temp, 10) >= 0) { return '<span style="color:'+T00+'">'+temp; }
 	else  { return '<span style="color:'+T000+'">'+temp; }
 }																					  
-																					  
-																					  
+
+
 $.getJSON(JsonAddress, function (json) {
 	
  	$.each(json.fcst_day_0.hourly_data, function( index, value ) { 
@@ -83,6 +83,16 @@ $( "#temp_day_3_" + index ).append( color(value.TMP2m) + '<sup style="font-size:
 }); 	
 
 });
+
+
+
+	for (i = 1, hour = new Date().getHours() ; i < hour ; i=i+2) { 
+
+		}
+		}	
+	}
+}
+
 
 </script>
 
@@ -130,6 +140,9 @@ hauteur: 541px
 </div>
 <div class="frame">
 	<div id="ls_meteo10"></div><div id="meteo10">--</div><div id="desc_meteo10">meteo10</div>
+</div>
+<div class="frame">
+	<div id="ls_meteo11"></div><div id="meteo11">--</div><div id="desc_meteo11">meteo11</div>
 </div>
 </div> 
 <!-- ================================================================================================== -->
