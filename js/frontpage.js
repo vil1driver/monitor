@@ -937,7 +937,7 @@ function RefreshData()
 											
 												// // graphs and units and temps color 
 												
-													if(vtype === 'Temp') {
+													if(vtype === 'Temp' || vtype === 'Chill') {
 															 if (parseInt(vdata, 10) >= 35) { vattr=['color:',T35,';',vattr].join(''); } 
 														else if (parseInt(vdata, 10) >= 34) { vattr=['color:',T34,';',vattr].join(''); } 
 														else if (parseInt(vdata, 10) >= 33) { vattr=['color:',T33,';',vattr].join(''); } 
