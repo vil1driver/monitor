@@ -499,6 +499,7 @@ function RefreshData()
                                                         vdata= String(vdata).split("%",1)[0];
                                                         vdata= String(vdata).split(" Level:",1)[0];
                                                         vdata= String(vdata).split("m3",1)[0];
+														vdata= String(vdata).split("Lux",1)[0];
 														vdata= String(vdata).replace("Set","On");
                                                         vdata= String(vdata).replace("true","protected");
                                                 }
@@ -999,9 +1000,17 @@ function RefreshData()
 													else if(item.Type === 'UV'){
 														vdata = [vdata,'<span style="font-size:50%;"> UVI</span>'].join('');
 													}
+													// Adds lx after luminous flux
+													else if(item.Type === 'Lux'){       
+														vdata = [vdata,'<span style="font-size:50%;"> lx</span>'].join('');
+													}
 													// Adds % after percentage
 													else if(vtype === 'Data' && item.SubType === 'Percentage'){       
 														vdata = ['<span onclick="RefreshGraphData(',item.idx,',\'',vdesc,'\',\'Percentage\',\'day\',\'v\',\'Pourcentage &#37;\')">',Math.ceil(vdata),'<span style="font-size:50%;"> &#37;</span></span>'].join('');
+													}
+													// Adds % after Leaf Wetness
+													else if(vtype === 'Data' && item.SubType === 'Leaf Wetness'){
+														vdata = ['<span onclick="RefreshGraphData(',item.idx,',\'',vdesc,'\',\'Leaf Wetness\',\'day\',\'v\',\'Pourcentage &#37;\')">',Math.ceil(vdata),'<span style="font-size:50%;"> &#37;</span></span>'].join('');
 													}
 													// Adds Watt after the Usage
 													else if((vtype === 'Usage' || vtype === 'Data') && (item.SubType === 'Energy' || item.SubType === 'CM119 / CM160' || item.SubType === 'CM180' || item.SubType === 'kWh' || item.SubType === 'Electric')){       
