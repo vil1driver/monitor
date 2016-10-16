@@ -915,6 +915,9 @@ function RefreshData()
 														else if (vdata === txt_off || vdata === txt_closed) {
 															vdata = ['<img src=icons/',lastseen,'48_Off.png width=48>'].join('');
 														}
+														else if (item.SwitchType === 'Push On Button' || item.SwitchType === 'Push Off Button') {
+															vdata = ['<img src=icons/',lastseen,'.png width=48>'].join('');
+														}
 													}
 												}	
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////													
