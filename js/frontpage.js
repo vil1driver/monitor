@@ -586,6 +586,25 @@ function RefreshData()
 											
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 
+											// selector
+											
+												if(vtype === 'Level' && item.SwitchType === 'Selector') {
+
+													// Tableau contenant le nom des levels
+													var mots = item.LevelNames.split("|");
+													//console.log(12,item.LevelNames);
+													for (var i = 0; i < mots.length; i++) {
+														if (i==parseInt(item.Level)/10) {
+															vdata = mots[i];
+														}
+													}
+												
+													switchclick = ['onclick="ShowSelector(',item.idx,',\'',item.LevelNames,'\')"'].join(''); 
+
+												}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+
 											//Thermostat
 											
 												if(vtype === 'SetPoint' && vplusmin > 0) {
@@ -807,7 +826,7 @@ function RefreshData()
 												
 												//	switchclick='';
 													
-													if (vdata === 'Off' || item.SwitchType === 'Doorbell') {
+													if ((vdata === 'Off' || item.SwitchType === 'Doorbell') && item.SwitchType != 'Selector') {
 															switchclick = ['onclick="SwitchToggle(',item.idx,', \'On\');lightbox_open(\'switch\', ',switch_timeout,', ',txt_switch_on,')"'].join('');
 
 															if ( item.SwitchType === 'Push On Button' && lastseen != '2' && lastseen != '3') {
@@ -820,7 +839,7 @@ function RefreshData()
 															}
 													}
 													
-													if (vdata === 'On') {
+													if ((vdata === 'On' ) && item.SwitchType != 'Selector') {
 															switchclick = ['onclick="SwitchToggle(',item.idx,', \'Off\');lightbox_open(\'switch\', ',switch_timeout,', ',txt_switch_off,')"'].join('');
 
 															if ( item.SwitchType === 'Push Off Button' && lastseen != '2' && lastseen != '3') {
@@ -1660,6 +1679,36 @@ function goodmorning(v) {
 	
 	return ret_str;
 }	
+
+function ShowSelector(idx,mots) {
+
+	//console.log(idx,mots);
+	var levels = mots.split("|");
+	//console.log(levels);
+	$( "#popup_selector").html("");
+	for (var i = 0; i < levels.length; i++) {
+		
+		//console.log('level ',i,' ',levels[i],10*i);
+		$( "#popup_selector").append( ['<span onclick="SwitchSelector(',idx,',',10*i,')">',levels[i],'</span><br>'].join(''));
+				
+	}
+	lightbox_open('selector', 25000);
+}
+
+function SwitchSelector(idx,lvl) {
+
+	$.ajax({
+			url: [$.domoticzurl,'/json.htm?type=command&param=switchlight&idx=',idx,'&switchcmd=Set%20Level&level=',lvl].join(''),
+			success: function(){
+				console.log('SUCCES');
+				RefreshData();
+			},
+			error: function(){
+				console.log('ERROR');
+			}
+	});
+}
+
 
 function rss(feedUrl) {
 	//domoticz feed 'https://github.com/domoticz/domoticz/commits/master.atom';
