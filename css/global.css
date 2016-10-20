@@ -179,9 +179,7 @@ img[alt] {
 
 #popup_selector
 {
-	/*top: calc(50% - attr(height) / 2);
-    left: calc(50% - attr(width) / 2);*/
-	top:120px;
+	top:-30px;
 	left:none;
 	font-size: 30px;
 	width: auto;
@@ -190,7 +188,8 @@ img[alt] {
 	min-height: 75px;
 	line-height: 45px;
     padding: 0px 30px 0px 30px;
-	/*margin: 100 auto;*/
+	margin-top: 50vh; /* poussé de la moitié de hauteur de viewport */
+	transform: translateY(-50%); /* tiré de la moitié de sa propre hauteur */
 	
 }
 
