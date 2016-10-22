@@ -203,6 +203,13 @@ var refresh = 8000;							// temps entre 2 rafraîchissements (en millisecondes)
                 ['0','',  				'',                    		'','',''],
 			
         []];
+		$.PageArray_UserVariable = [      // placez ci dessous vos userVariable
+            
+			//['idx','value','cellule','description','override css'],
+           
+            ['0','Value','','',''],
+          
+        []];
 
 // ############################################################################################################
 // #### ^^^^^   USER VALUES above ^^^^^   #######

@@ -1358,6 +1358,65 @@ function RefreshData()
         });
 		
 		
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////													
+		
+		      // affichage de la partie UserVariable
+
+      $.ajax({url: [$.domoticzurl,'/json.htm?type=command&param=getuservariables&jsoncallback=?'].join('')}).done(function(data) {
+      
+         var four = new Date();
+      
+                   if (typeof data.result !== 'undefined') {
+
+                      $.each(data.result, function(i,item){
+                          //    for( var ii = 0, len = $.PageArray_UserVariable.length; ii < len; ii++ ) {
+                         var ii = 0, len = $.PageArray_UserVariable.length;
+               jsKata.nofreeze.forloop(
+                    // the condition
+                  function() { return ii < len;  }, 
+                    // the incrementor
+                  function() { ii++; },
+                  // this is what will be executed
+                  function fct() {
+                     if( $.PageArray_UserVariable[ii][0] === item.idx || $.PageArray_UserVariable[ii][0] === item.Name ) {
+
+                        // Domoticz idx number
+                             var vtype=      $.PageArray_UserVariable[ii][1];         // Domotitcz type (like Temp, Humidity)
+                             var vlabel=     $.PageArray_UserVariable[ii][2];         // cell number from HTML layout
+                             var vdesc=      $.PageArray_UserVariable[ii][3];         // description
+                             var vattr=       $.PageArray_UserVariable[ii][4];         // extra css attributes
+                             var vdata=      item[vtype];                            // current value
+                                    
+                        if (typeof vdata === 'undefined') {
+                           vdata='?!';
+                             }
+                     
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////													
+
+                                  // if extra css attributes
+                                  if (typeof vattr === 'undefined') {
+                                     $(['#',vlabel].join('')).html(['<span>',vdata,'</span>'].join(''));
+                                  }
+                        else {
+                                     $(['#',vlabel].join('')).html(['<span style=',vattr,'>',vdata,'</span>'].join(''));
+                                  }
+
+                                  if ($(['#desc_',vlabel].join('')).length > 0) {
+                           $(['#desc_',vlabel].join('')).html(vdesc);
+                                  }                      
+                                    
+                                              }
+
+                                      });
+                              });
+                   }
+            
+         four = new Date() - four;
+         console.log('UserVariable : ' + four + 'ms');   
+         
+            
+        });
+		
         $.refreshTimer = setInterval(RefreshData, refresh); // auto refresh page
 	
 }

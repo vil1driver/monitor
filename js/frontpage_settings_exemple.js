@@ -238,6 +238,13 @@ var refresh = 8000;							// temps entre 2 rafraîchissements (en millisecondes)
 				['toute la maison','Status',         		'cell24',                     		'Toute la maison','Light'],	// groupe avec icon Light
 			
         []];
+		$.PageArray_UserVariable = [      // placez ci dessous vos userVariable
+            
+			//['idx','value','cellule','description','override css'],
+           
+            ['reveilmatin','Value','cell5_9','',''],
+          
+        []];
 
 // ############################################################################################################
 // #### ^^^^^   USER VALUES above ^^^^^   #######
