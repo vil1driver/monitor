@@ -598,8 +598,7 @@ function RefreshData()
 															vdata = mots[i];
 														}
 													}
-												
-													switchclick = ['onclick="ShowSelector(',item.idx,',\'',item.LevelNames,'\')"'].join(''); 
+													switchclick = ['onclick="ShowSelector(',item.idx,',\'',item.LevelNames,'\',',item.LevelOffHidden,')"'].join(''); 
 
 												}
 
@@ -1680,7 +1679,7 @@ function goodmorning(v) {
 	return ret_str;
 }	
 
-function ShowSelector(idx,mots) {
+function ShowSelector(idx,mots,LevelOffHidden) {
 
 	//console.log(idx,mots);
 	var levels = mots.split("|");
@@ -1689,8 +1688,9 @@ function ShowSelector(idx,mots) {
 	for (var i = 0; i < levels.length; i++) {
 		
 		//console.log('level ',i,' ',levels[i],10*i);
-		$( "#popup_selector").append( ['<span onclick="SwitchSelector(',idx,',',10*i,')">',levels[i],'</span><br>'].join(''));
-				
+		if ((LevelOffHidden && levels[i] != 'Off') || !LevelOffHidden) {
+			$( "#popup_selector").append( ['<span onclick="SwitchSelector(',idx,',',10*i,')">',levels[i],'</span><br>'].join(''));
+		}		
 	}
 	lightbox_open('selector', 25000);
 }
