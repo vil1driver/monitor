@@ -598,6 +598,7 @@ function RefreshData()
 															vdata = mots[i];
 														}
 													}
+												//console.log(item.LevelOffHidden);
 													switchclick = ['onclick="ShowSelector(',item.idx,',\'',item.LevelNames,'\',',item.LevelOffHidden,')"'].join(''); 
 
 												}
