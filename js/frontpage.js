@@ -43,6 +43,9 @@ $.ajaxSetup({
 // Create popup
 var tempo;
 function lightbox_open(id, timeout, txt){
+		if (timeout == '0') {
+			return;
+		}	
 		if (typeof txt !== 'undefined') {
 			$(['#popup_',id].join('')).html(txt);
 		}
