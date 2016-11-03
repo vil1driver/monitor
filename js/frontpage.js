@@ -928,7 +928,10 @@ function RefreshData()
 														}
 														else if (vdata === txt_off || vdata === txt_closed) {
 															vdata = ['<img src=',$.domoticzurl,'/images/',icon_Off,'  width=48>'].join('');
-														} 
+														}
+														else if(vtype === 'Level' && item.SwitchType === 'Selector') {
+															vdata = ['<img src=icons/',vdata.replace(/ /g,"%20"),'.png width=48>'].join('');
+														}
 													}	
 													else if (lastseen !== '0' && lastseen !== '1') {
 														if (vdata === txt_on || vdata === txt_open) {
