@@ -1487,9 +1487,15 @@ function SceneToggle(idx, switchcmd, Protected)
 		 
          $.ajax({
 				 url: [$.domoticzurl,'/json.htm?type=command&param=switchscene&idx=',idx,'&switchcmd=',switchcmd,'&level=0&passcode=',pswd].join(''),
-				 success: function(){
-					console.log('SUCCES');
-					RefreshData();
+				 success: function(result){
+					
+					if (result.message === 'WRONG CODE'){
+						console.log('WRONG CODE');
+						lightbox_open('switch', '1000', 'WRONG CODE');
+					}else{
+						console.log('SUCCES');
+						RefreshData();
+					}
 				 },
 				 error: function(){
 					console.log('ERROR');
@@ -1506,9 +1512,15 @@ function SwitchToggle(idx, switchcmd, Protected)
 		 
 		 $.ajax({
 				 url: [$.domoticzurl,'/json.htm?type=command&param=switchlight&idx=',idx,'&switchcmd=',switchcmd,'&level=0&passcode=',pswd].join(''),
-				 success: function(){
-					console.log('SUCCES');
-					RefreshData();
+				 success: function(result){
+					
+					if (result.message === 'WRONG CODE'){
+						console.log('WRONG CODE');
+						lightbox_open('switch', '1000', 'WRONG CODE');
+					}else{
+						console.log('SUCCES');
+						RefreshData();
+					}
 				 },
 				 error: function(){
 					console.log('ERROR');
@@ -1533,10 +1545,16 @@ if (level === txt_off) {
 	//console.log("In uit",currentlevel);
         $.ajax({
                 url: [$.domoticzurl,'/json.htm?type=command&param=switchlight&idx=',idx,'&switchcmd=Set Level&level=',currentlevel,'&passcode=',pswd].join(''),
-                success: function(){
-                        console.log('SUCCES');
+                success: function(result){
+					
+					if (result.message === 'WRONG CODE'){
+						console.log('WRONG CODE');
+						lightbox_open('switch', '1000', 'WRONG CODE');
+					}else{
+						console.log('SUCCES');
 						RefreshData();
-				},
+					}
+				 },
                 error: function(){
                         console.log('ERROR');
                 }
@@ -1554,10 +1572,16 @@ else
                 }
                 $.ajax({
                         url: [$.domoticzurl,'/json.htm?type=command&param=switchlight&idx=',idx,'&switchcmd=Set Level&level=',d,'&passcode=',pswd].join(''),
-                        success: function(){
-                                console.log('SUCCES');
+                        success: function(result){
+					
+							if (result.message === 'WRONG CODE'){
+								console.log('WRONG CODE');
+								lightbox_open('switch', '1000', 'WRONG CODE');
+							}else{
+								console.log('SUCCES');
 								RefreshData();
-                        },
+							}
+						 },
                         error: function(){
                                 console.log('ERROR');
                         }
@@ -1572,10 +1596,16 @@ else
                 }
                 $.ajax({
                         url: [$.domoticzurl,'/json.htm?type=command&param=switchlight&idx=',idx,'&switchcmd=Set Level&level=',d,'&passcode=',pswd].join(''),
-						success: function(){
-                                console.log('SUCCES');
+						success: function(result){
+					
+							if (result.message === 'WRONG CODE'){
+								console.log('WRONG CODE');
+								lightbox_open('switch', '1000', 'WRONG CODE');
+							}else{
+								console.log('SUCCES');
 								RefreshData();
-                        },
+							}
+						 },
                         error: function(){
                                 console.log('ERROR');
                         }
@@ -1601,10 +1631,16 @@ function DimLevel100(OpenDicht,level,idx, Protected)
                 }
                 $.ajax({
                         url: [$.domoticzurl,'/json.htm?type=command&param=switchlight&idx=',idx,'&switchcmd=Set Level&level=',d,'&passcode=',pswd].join(''),
-                        success: function(){
-                                console.log('SUCCES');
+                        success: function(result){
+					
+							if (result.message === 'WRONG CODE'){
+								console.log('WRONG CODE');
+								lightbox_open('switch', '1000', 'WRONG CODE');
+							}else{
+								console.log('SUCCES');
 								RefreshData();
-                        },
+							}
+						 },
                         error: function(){
                                 console.log('ERROR');
                         }
@@ -1620,10 +1656,16 @@ function DimLevel100(OpenDicht,level,idx, Protected)
                 }
                 $.ajax({
                         url: [$.domoticzurl,'/json.htm?type=command&param=switchlight&idx=',idx,'&switchcmd=Set Level&level=',d,'&passcode=',pswd].join(''),
-                        success: function(){
-                                console.log('SUCCES');
+                        success: function(result){
+					
+							if (result.message === 'WRONG CODE'){
+								console.log('WRONG CODE');
+								lightbox_open('switch', '1000', 'WRONG CODE');
+							}else{
+								console.log('SUCCES');
 								RefreshData();
-                        },
+							}
+						 },
                         error: function(){
                                 console.log('ERROR');
                         }
@@ -1656,10 +1698,16 @@ function ChangeTherm(dimtype,stepsize,idx,currentvalue,thermmax, Protected)
 	}
 	 $.ajax({
 			 url: [$.domoticzurl,'/json.htm?type=command&param=udevice&idx=',idx,'&nvalue=0&svalue=',newvalue,'&passcode=',pswd].join(''),
-			 success: function(){
-				console.log('SUCCES');
-				RefreshData();
-			 },
+			 success: function(result){
+					
+					if (result.message === 'WRONG CODE'){
+						console.log('WRONG CODE');
+						lightbox_open('switch', '1000', 'WRONG CODE');
+					}else{
+						console.log('SUCCES');
+						RefreshData();
+					}
+				 },
 			 error: function(){
 				console.log('ERROR');
 			 }
@@ -1786,10 +1834,16 @@ function SwitchSelector(idx,lvl, Protected) {
 		 
 		 $.ajax({
 			url: [$.domoticzurl,'/json.htm?type=command&param=switchlight&idx=',idx,'&switchcmd=Set%20Level&level=',lvl,'&passcode=',pswd].join(''),
-			success: function(){
-				console.log('SUCCES');
-				RefreshData();
-			},
+			success: function(result){
+					
+					if (result.message === 'WRONG CODE'){
+						console.log('WRONG CODE');
+						lightbox_open('switch', '1000', 'WRONG CODE');
+					}else{
+						console.log('SUCCES');
+						RefreshData();
+					}
+				 },
 			error: function(){
 				console.log('ERROR');
 			}
