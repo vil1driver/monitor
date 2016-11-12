@@ -1491,6 +1491,7 @@ function SceneToggle(idx, switchcmd, Protected)
 					
 					if (result.message === 'WRONG CODE'){
 						console.log('WRONG CODE');
+						lightbox_open('switch', '1000', txt_wrong_code);
 					}else{
 						console.log('SUCCES');
 						RefreshData();
@@ -1515,6 +1516,7 @@ function SwitchToggle(idx, switchcmd, Protected)
 					
 					if (result.message === 'WRONG CODE'){
 						console.log('WRONG CODE');
+						lightbox_open('switch', '1000', txt_wrong_code);
 					}else{
 						console.log('SUCCES');
 						RefreshData();
@@ -1547,6 +1549,7 @@ if (level === txt_off) {
 					
 					if (result.message === 'WRONG CODE'){
 						console.log('WRONG CODE');
+						lightbox_open('switch', '1000', txt_wrong_code);
 					}else{
 						console.log('SUCCES');
 						RefreshData();
@@ -1573,6 +1576,7 @@ else
 					
 							if (result.message === 'WRONG CODE'){
 								console.log('WRONG CODE');
+								lightbox_open('switch', '1000', txt_wrong_code);
 							}else{
 								console.log('SUCCES');
 								RefreshData();
@@ -1596,6 +1600,7 @@ else
 					
 							if (result.message === 'WRONG CODE'){
 								console.log('WRONG CODE');
+								lightbox_open('switch', '1000', txt_wrong_code);
 							}else{
 								console.log('SUCCES');
 								RefreshData();
@@ -1630,6 +1635,7 @@ function DimLevel100(OpenDicht,level,idx, Protected)
 					
 							if (result.message === 'WRONG CODE'){
 								console.log('WRONG CODE');
+								lightbox_open('switch', '1000', txt_wrong_code);
 							}else{
 								console.log('SUCCES');
 								RefreshData();
@@ -1654,6 +1660,7 @@ function DimLevel100(OpenDicht,level,idx, Protected)
 					
 							if (result.message === 'WRONG CODE'){
 								console.log('WRONG CODE');
+								lightbox_open('switch', '1000', txt_wrong_code);
 							}else{
 								console.log('SUCCES');
 								RefreshData();
@@ -1695,6 +1702,7 @@ function ChangeTherm(dimtype,stepsize,idx,currentvalue,thermmax, Protected)
 					
 					if (result.message === 'WRONG CODE'){
 						console.log('WRONG CODE');
+						lightbox_open('switch', '1000', txt_wrong_code);
 					}else{
 						console.log('SUCCES');
 						RefreshData();
@@ -1830,6 +1838,7 @@ function SwitchSelector(idx,lvl, Protected) {
 					
 					if (result.message === 'WRONG CODE'){
 						console.log('WRONG CODE');
+						lightbox_open('switch', '1000', txt_wrong_code);
 					}else{
 						console.log('SUCCES');
 						RefreshData();
