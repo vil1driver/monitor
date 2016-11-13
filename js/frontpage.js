@@ -1479,8 +1479,12 @@ function GetCams()
 function SceneToggle(idx, switchcmd, txt, Protected)
 {
 
-	if (Protected == true) {
-			var pswd = prompt("mot de pass");		 
+		var pswd;
+		if (Protected == true) {
+			pswd = prompt("Mot de pass");
+			if (pswd === null) {
+				return; //break out of the function early
+			}
 		 }
 		 
          $.ajax({
@@ -1508,8 +1512,12 @@ function SceneToggle(idx, switchcmd, txt, Protected)
 //switch state of a switch
 function SwitchToggle(idx, switchcmd, txt, Protected)
 {
-         if (Protected == true) {
-			var pswd = prompt("mot de pass");		 
+        var pswd;
+		if (Protected == true) {
+			pswd = prompt("Mot de pass");
+			if (pswd === null) {
+				return; //break out of the function early
+			}
 		 }
 		 
 		 $.ajax({
@@ -1538,8 +1546,12 @@ function SwitchToggle(idx, switchcmd, txt, Protected)
 function DimLevel16(OpenDicht,level,idx,currentlevel, Protected)
 {
 
-if (Protected == true) {
-			var pswd = prompt("mot de pass");		 
+		var pswd;
+		if (Protected == true) {
+			pswd = prompt("Mot de pass");
+			if (pswd === null) {
+				return; //break out of the function early
+			}
 		 }
 		 
 		 
@@ -1625,8 +1637,12 @@ else
 function DimLevel100(OpenDicht,level,idx, Protected)
 {
 
-        if (Protected == true) {
-			var pswd = prompt("mot de pass");		 
+        var pswd;
+		if (Protected == true) {
+			pswd = prompt("Mot de pass");
+			if (pswd === null) {
+				return; //break out of the function early
+			}
 		 }
 		 
 		 if (OpenDicht === "plus")
@@ -1682,8 +1698,12 @@ function DimLevel100(OpenDicht,level,idx, Protected)
 // thermostat
 function ChangeTherm(dimtype,stepsize,idx,currentvalue,thermmax, Protected)
 {
-	 if (Protected == true) {
-			var pswd = prompt("mot de pass");		 
+		var pswd;
+		if (Protected == true) {
+			pswd = prompt("Mot de pass");
+			if (pswd === null) {
+				return; //break out of the function early
+			}
 		 }
 		 
 		 var newvalue='';
@@ -1834,8 +1854,12 @@ function ShowSelector(idx,mots,LevelOffHidden, Protected) {
 
 function SwitchSelector(idx,lvl, Protected) {
 
-	if (Protected == true) {
-			var pswd = prompt("mot de pass");		 
+		var pswd;
+		if (Protected == true) {
+			pswd = prompt("Mot de pass");
+			if (pswd === null) {
+				return; //break out of the function early
+			}
 		 }
 		 
 		 $.ajax({
