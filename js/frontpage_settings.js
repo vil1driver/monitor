@@ -11,13 +11,12 @@ var days = ["Dimanche","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi"];
 var months = ["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Aout","Septembre","Octobre","Novembre","Décembre"];
 
 // Change the text displayed in PopUps
-var txt_switch_protected = '\'Interdit\'';
 var txt_switch_on = '\'Switch On\'';
 var txt_switch_off = '\'Switch Off\'';
 var txt_blind_up = '\'Ouverture\'';
 var txt_blind_down = '\'Fermeture\'';
 var txt_blind_stop = '\'Arrêt\'';
-var txt_wrong_code = '\'Mot de pass erroné\'';
+var txt_wrong_code = 'Mot de pass erroné';
 
 // Change backgrounds images,size and brightness
 var bg_day = 'pissanli.jpg';			// image de fond le jour, laisser vide pour fond noir
@@ -74,8 +73,9 @@ var T00 = '#AEE3F5';
 var T000 = '#EBF4F7';						// couleur de la température sous 0°C
 
 // Change the timeout of the PopUp
-var switch_timeout = '1000';				// durée d'affichage (en milisecondes)
-var fad_Duration = 200;						// durée de l'animation (en milisecondes)
+var switch_timeout = 1000;					// durée d'affichage (en milisecondes)  [ 0 = désactivée ]
+var wrongCode_timeout = 1500;				// durée d'affichage (en milisecondes)
+var fad_Duration = 200;						// durée de l'animation (en milisecondes)  [ 0 = désactivée ]
 
 // Special items
 var city = 'paris';								// localité pour la popup météo option 0,1,2,3 (lors du clic sur l'icon météo) cf http://www.prevision-meteo.ch/
