@@ -1491,7 +1491,6 @@ function SceneToggle(idx, switchcmd, txt, Protected)
 				 url: [$.domoticzurl,'/json.htm?type=command&param=switchscene&idx=',idx,'&switchcmd=',switchcmd,'&level=0&passcode=',pswd].join(''),
 				 success: function(result){
 					
-					//console.log(result);
 					if (result.message === 'WRONG CODE'){
 						console.log('WRONG CODE');
 						lightbox_open('switch',wrongCode_timeout,txt_wrong_code);
@@ -1501,10 +1500,14 @@ function SceneToggle(idx, switchcmd, txt, Protected)
 							lightbox_open('switch',switch_timeout,txt);
 						}
 						RefreshData();
+					}else{
+						lightbox_open('switch',1500,result.status);
+						console.log(result);
 					}
 				 },
-				 error: function(){
-					console.log('ERROR');
+				 error: function(result){
+					lightbox_open('switch',1500,result.statusText);
+					console.log(result.status);
 				 }
 		});
 }
@@ -1524,7 +1527,6 @@ function SwitchToggle(idx, switchcmd, txt, Protected)
 				 url: [$.domoticzurl,'/json.htm?type=command&param=switchlight&idx=',idx,'&switchcmd=',switchcmd,'&level=0&passcode=',pswd].join(''),
 				 success: function(result){
 					
-					//console.log(result);
 					if (result.message === 'WRONG CODE'){
 						console.log('WRONG CODE');
 						lightbox_open('switch',wrongCode_timeout,txt_wrong_code);
@@ -1534,10 +1536,14 @@ function SwitchToggle(idx, switchcmd, txt, Protected)
 							lightbox_open('switch',switch_timeout,txt);
 						}
 						RefreshData();
+					}else{
+						lightbox_open('switch',1500,result.status);
+						console.log(result);
 					}
 				 },
-				 error: function(){
-					console.log('ERROR');
+				 error: function(result){
+					lightbox_open('switch',1500,result.statusText);
+					console.log(result.status);
 				 }
         });
 }
@@ -1571,11 +1577,15 @@ if (level === txt_off) {
 					}else if (result.status === 'OK'){
 						console.log('SUCCES');
 						RefreshData();
+					}else{
+						lightbox_open('switch',1500,result.status);
+						console.log(result);
 					}
 				 },
-                error: function(){
-                        console.log('ERROR');
-                }
+                error: function(result){
+					lightbox_open('switch',1500,result.statusText);
+					console.log(result.status);
+				 }
         });
 }
 else
@@ -1598,11 +1608,15 @@ else
 							}else if (result.status === 'OK'){
 								console.log('SUCCES');
 								RefreshData();
+							}else{
+								lightbox_open('switch',1500,result.status);
+								console.log(result);
 							}
 						 },
-                        error: function(){
-                                console.log('ERROR');
-                        }
+                        error: function(result){
+							lightbox_open('switch',1500,result.statusText);
+							console.log(result.status);
+						 }
                 });
           }
           else
@@ -1622,11 +1636,15 @@ else
 							}else if (result.status === 'OK'){
 								console.log('SUCCES');
 								RefreshData();
+							}else{
+								lightbox_open('switch',1500,result.status);
+								console.log(result);
 							}
 						 },
-                        error: function(){
-                                console.log('ERROR');
-                        }
+                        error: function(result){
+							lightbox_open('switch',1500,result.statusText);
+							console.log(result.status);
+						 }
                 });
           }
         }
@@ -1661,11 +1679,15 @@ function DimLevel100(OpenDicht,level,idx, Protected)
 							}else if (result.status === 'OK'){
 								console.log('SUCCES');
 								RefreshData();
+							}else{
+								lightbox_open('switch',1500,result.status);
+								console.log(result);
 							}
 						 },
-                        error: function(){
-                                console.log('ERROR');
-                        }
+                        error: function(result){
+							lightbox_open('switch',1500,result.statusText);
+							console.log(result.status);
+						 }
                 });
           }
           else
@@ -1686,11 +1708,15 @@ function DimLevel100(OpenDicht,level,idx, Protected)
 							}else if (result.status === 'OK'){
 								console.log('SUCCES');
 								RefreshData();
+							}else{
+								lightbox_open('switch',1500,result.status);
+								console.log(result);
 							}
 						 },
-                        error: function(){
-                                console.log('ERROR');
-                        }
+                        error: function(result){
+							lightbox_open('switch',1500,result.statusText);
+							console.log(result.status);
+						 }
                 });
           }
 }
@@ -1732,11 +1758,15 @@ function ChangeTherm(dimtype,stepsize,idx,currentvalue,thermmax, Protected)
 					}else if (result.status === 'OK'){
 						console.log('SUCCES');
 						RefreshData();
+					}else{
+						lightbox_open('switch',1500,result.status);
+						console.log(result);
 					}
 				 },
-			 error: function(){
-				console.log('ERROR');
-			 }
+			 error: function(result){
+					lightbox_open('switch',1500,result.statusText);
+					console.log(result.status);
+				 }
  	});
  		
 }
@@ -1872,11 +1902,15 @@ function SwitchSelector(idx,lvl, Protected) {
 					}else if (result.status === 'OK'){
 						console.log('SUCCES');
 						RefreshData();
+					}else{
+						lightbox_open('switch',1500,result.status);
+						console.log(result);
 					}
 				 },
-			error: function(){
-				console.log('ERROR');
-			}
+			error: function(result){
+					lightbox_open('switch',1500,result.statusText);
+					console.log(result.status);
+				 }
 	});
 }
 
