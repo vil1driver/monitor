@@ -1482,7 +1482,7 @@ function SceneToggle(idx, switchcmd, txt, Protected)
 {
 
 		var pswd;
-		if (Protected == true) {
+		if (Protected) {
 			pswd = prompt("Mot de pass");
 			if (pswd === null) {
 				return; //break out of the function early
@@ -1518,7 +1518,7 @@ function SceneToggle(idx, switchcmd, txt, Protected)
 function SwitchToggle(idx, switchcmd, txt, Protected)
 {
         var pswd;
-		if (Protected == true) {
+		if (Protected) {
 			pswd = prompt("Mot de pass");
 			if (pswd === null) {
 				return; //break out of the function early
@@ -1555,7 +1555,7 @@ function DimLevel16(OpenDicht,level,idx,currentlevel, Protected)
 {
 
 		var pswd;
-		if (Protected == true) {
+		if (Protected) {
 			pswd = prompt("Mot de pass");
 			if (pswd === null) {
 				return; //break out of the function early
@@ -1658,7 +1658,7 @@ function DimLevel100(OpenDicht,level,idx, Protected)
 {
 
         var pswd;
-		if (Protected == true) {
+		if (Protected) {
 			pswd = prompt("Mot de pass");
 			if (pswd === null) {
 				return; //break out of the function early
@@ -1727,7 +1727,7 @@ function DimLevel100(OpenDicht,level,idx, Protected)
 function ChangeTherm(dimtype,stepsize,idx,currentvalue,thermmax, Protected)
 {
 		var pswd;
-		if (Protected == true) {
+		if (Protected) {
 			pswd = prompt("Mot de pass");
 			if (pswd === null) {
 				return; //break out of the function early
@@ -1887,7 +1887,7 @@ function ShowSelector(idx,mots,LevelOffHidden, Protected) {
 function SwitchSelector(idx,lvl, Protected) {
 
 		var pswd;
-		if (Protected == true) {
+		if (Protected) {
 			pswd = prompt("Mot de pass");
 			if (pswd === null) {
 				return; //break out of the function early
