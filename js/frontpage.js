@@ -1,8 +1,9 @@
-"use strict"; // this runs in strict mode
+"use strict"; // this runs in strict mode (jslint)
+
 
 // debug
 if (!debug) {
-console.log = function() {}
+console.log = function() {};
 }
 
 // on document ready (start)
@@ -108,16 +109,16 @@ function LoadMeteoWidget() {
 		$('#popup_meteo3').html('<span>Veuillez indiquer votre ville dans les paramètres<br>exemple:<br>var city = \'paris\'</span>');	
 	}
 	else{
-		$('#popup_meteo0').html(['<img src="http://www.prevision-meteo.ch/uploads/widget/',city,'_0.png?timestamp=',new Date().getTime(),'" alt="Ville inconnue..">'].join(''));
-		$('#popup_meteo1').html(['<img src="http://www.prevision-meteo.ch/uploads/widget/',city,'_1.png?timestamp=',new Date().getTime(),'" alt="Ville inconnue..">'].join(''));
-		$('#popup_meteo2').html(['<img src="http://www.prevision-meteo.ch/uploads/widget/',city,'_2.png?timestamp=',new Date().getTime(),'" alt="Ville inconnue..">'].join(''));
-		$('#popup_meteo3').html(['<img src="http://www.prevision-meteo.ch/uploads/widget/',city,'_3.png?timestamp=',new Date().getTime(),'" alt="Ville inconnue..">'].join(''));
+		$('#popup_meteo0').html(['<img src="http://www.prevision-meteo.ch/uploads/widget/',city,'_0.png?timestamp=',Date.now(),'" alt="Ville inconnue..">'].join(''));
+		$('#popup_meteo1').html(['<img src="http://www.prevision-meteo.ch/uploads/widget/',city,'_1.png?timestamp=',Date.now(),'" alt="Ville inconnue..">'].join(''));
+		$('#popup_meteo2').html(['<img src="http://www.prevision-meteo.ch/uploads/widget/',city,'_2.png?timestamp=',Date.now(),'" alt="Ville inconnue..">'].join(''));
+		$('#popup_meteo3').html(['<img src="http://www.prevision-meteo.ch/uploads/widget/',city,'_3.png?timestamp=',Date.now(),'" alt="Ville inconnue..">'].join(''));
 	}
 	if (place === ''){
 		$('#popup_meteo4').html('<span>Veuillez indiquer votre ville dans les paramètres<br>exemple:<br>var place = \'France/Brittany/Paris\'</span>');	
 	}
 	else{
-		$('#popup_meteo4').html(['<img src="http://www.yr.no/place/',place,'/avansert_meteogram.png?timestamp=',new Date().getTime(),'" alt="Ville inconnue..">'].join(''));
+		$('#popup_meteo4').html(['<img src="http://www.yr.no/place/',place,'/avansert_meteogram.png?timestamp=',Date.now(),'" alt="Ville inconnue..">'].join(''));
 	}
 	
 	setInterval(LoadMeteoWidget, 3600000); // reload every hours
@@ -534,7 +535,8 @@ function RefreshData()
 												}
 													
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
-												
+											var val, plus, min;
+											
                                             //Dimmer
                                             
 												if(vtype === 'Level' && item.SwitchType === 'Dimmer') {
@@ -548,37 +550,37 @@ function RefreshData()
 													
                                                         if (vdata === txt_off) {
 															if (lastseen === '2') {
-																var val = ['<img src="',$.domoticzurl,'/images/Light48_Off.png" width=48 onclick="SwitchToggle(',item.idx,', \'On\',',txt_switch_on,',',item.Protected,')" style=',alarmcss,'>'].join('');
+																val = ['<img src="',$.domoticzurl,'/images/Light48_Off.png" width=48 onclick="SwitchToggle(',item.idx,', \'On\',',txt_switch_on,',',item.Protected,')" style=',alarmcss,'>'].join('');
                                                             }
 															else {
-																var val = ['<span onclick="SwitchToggle(',item.idx,', \'On\',',txt_switch_on,',',item.Protected,')" style=',alarmcss,'>',vdata,'</span>'].join('');
+																val = ['<span onclick="SwitchToggle(',item.idx,', \'On\',',txt_switch_on,',',item.Protected,')" style=',alarmcss,'>',vdata,'</span>'].join('');
 															}
-															var plus = "";
-                                                            var min = "";
+															plus = "";
+                                                            min = "";
                                                         }
                                                         else
                                                         {
 															if (item.MaxDimLevel === 100) {
 																if (lastseen === '2') {
-																	var val = ['<img src="',$.domoticzurl,'/images/Light48_On.png" width=48 onclick="SwitchToggle(',item.idx,', \'Off\',',txt_switch_off,',',item.Protected,')" style=',alarmcss,'>'].join('');
+																	val = ['<img src="',$.domoticzurl,'/images/Light48_On.png" width=48 onclick="SwitchToggle(',item.idx,', \'Off\',',txt_switch_off,',',item.Protected,')" style=',alarmcss,'>'].join('');
 																	vdesc=[vdesc,'<span class="percent">',vdata,'<span style="font-size:70%;"> &#37;</span></span>'].join('');
 																}
 																else {
-																	var val = ['<span onclick="SwitchToggle(',item.idx,', \'Off\',',txt_switch_off,',',item.Protected,')" style=',alarmcss,'>',vdata,'</span>'].join('');
+																	val = ['<span onclick="SwitchToggle(',item.idx,', \'Off\',',txt_switch_off,',',item.Protected,')" style=',alarmcss,'>',vdata,'</span>'].join('');
 																}
-																var plus = ['<img src=icons/plus.png align=right hspace=10 vspace=4 width=30 onclick="DimLevel100(\'plus\',',vdata,',',item.idx,',',item.Protected,')">'].join('');
-																var min = ['<img src=icons/min.png align=left hspace=10 vspace=4 width=30 onclick="DimLevel100(\'min\',',vdata,',',item.idx,',',item.Protected,')">'].join('');
+																plus = ['<img src=icons/plus.png align=right hspace=10 vspace=4 width=30 onclick="DimLevel100(\'plus\',',vdata,',',item.idx,',',item.Protected,')">'].join('');
+																min = ['<img src=icons/min.png align=left hspace=10 vspace=4 width=30 onclick="DimLevel100(\'min\',',vdata,',',item.idx,',',item.Protected,')">'].join('');
 															}
 															else {
 																if (lastseen === '2') {
-																	var val = ['<img src="',$.domoticzurl,'/images/Light48_On.png" width=48 onclick="SwitchToggle(',item.idx,', \'Off\',',txt_switch_off,',',item.Protected,')" style=',alarmcss,'>'].join('');
+																	val = ['<img src="',$.domoticzurl,'/images/Light48_On.png" width=48 onclick="SwitchToggle(',item.idx,', \'Off\',',txt_switch_off,',',item.Protected,')" style=',alarmcss,'>'].join('');
 																	vdesc=[vdesc,'<span class="percent">',vdata,'<span style="font-size:70%;"> &#37;</span></span>'].join('');
 																}
 																else {
-																	var val = ['<span onclick="SwitchToggle(',item.idx,', \'Off\',',txt_switch_off,',',item.Protected,')" style=',alarmcss,'>',vdata,'</span>'].join('');
+																	val = ['<span onclick="SwitchToggle(',item.idx,', \'Off\',',txt_switch_off,',',item.Protected,')" style=',alarmcss,'>',vdata,'</span>'].join('');
 																}
-																var plus = ['<img src=icons/plus.png align=right hspace=10 vspace=4 width=30 onclick="DimLevel16(\'plus\',',vdata,',',item.idx,',',vdimmercurrent,',',item.Protected,')">'].join('');
-																var min = ['<img src=icons/min.png align=left hspace=10 vspace=4 width=30 onclick="DimLevel16(\'min\',',vdata,',',item.idx,',',vdimmercurrent,',',item.Protected,')">'].join('');
+																plus = ['<img src=icons/plus.png align=right hspace=10 vspace=4 width=30 onclick="DimLevel16(\'plus\',',vdata,',',item.idx,',',vdimmercurrent,',',item.Protected,')">'].join('');
+																min = ['<img src=icons/min.png align=left hspace=10 vspace=4 width=30 onclick="DimLevel16(\'min\',',vdata,',',item.idx,',',vdimmercurrent,',',item.Protected,')">'].join('');
 															}
                                                         }
                                                         vdata = [min,val,plus].join('');
@@ -595,7 +597,7 @@ function RefreshData()
 													// Tableau contenant le nom des levels
 													var mots = item.LevelNames.split("|");
 													//console.log(12,item.LevelNames);
-													for (var i = 0; i < mots.length; i++) {
+													for (i = 0; i < mots.length; i++) {
 														if (i==parseInt(item.Level)/10) {
 															vdata = mots[i];
 														}
@@ -610,9 +612,9 @@ function RefreshData()
 											//Thermostat
 											
 												if(vtype === 'SetPoint' && vplusmin > 0) {
-														var val = ['<span style=',vattr,'>',vdata,'</span>'].join('');
-														var plus = ['<img src=icons/plus.png align=right vspace=4 width=30 onclick="ChangeTherm(\'plus\',',vplusmin,',',item.idx,',',vdata,',',valarm,',',item.Protected,')">'].join('');
-														var min = ['<img src=icons/min.png align=left vspace=4 width=30 onclick="ChangeTherm(\'min\',',vplusmin,',',item.idx,',',vdata,',',valarm,',',item.Protected,')">'].join('');
+														val = ['<span style=',vattr,'>',vdata,'</span>'].join('');
+														plus = ['<img src=icons/plus.png align=right vspace=4 width=30 onclick="ChangeTherm(\'plus\',',vplusmin,',',item.idx,',',vdata,',',valarm,',',item.Protected,')">'].join('');
+														min = ['<img src=icons/min.png align=left vspace=4 width=30 onclick="ChangeTherm(\'min\',',vplusmin,',',item.idx,',',vdata,',',valarm,',',item.Protected,')">'].join('');
 														vdata = [min,val,plus].join('');
 														//console.log(vdata);
 												}
@@ -677,21 +679,21 @@ function RefreshData()
 															vdata = 100;
 															var down = ['<img src=',$.domoticzurl,'/images/blinds48sel.png  hspace=1 width=40 onclick="SwitchToggle(',item.idx,', \'On\',',txt_blind_down,',',item.Protected,')">'].join('');
 															var up = ['<img src=',$.domoticzurl,'/images/blindsopen48.png  hspace=1 width=40 onclick="SwitchToggle(',item.idx,', \'Off\',',txt_blind_up,',',item.Protected,')">'].join('');
-															var plus = ['<img src=icons/plus.png  vspace=4 hspace=4 width=30 onclick="DimLevel100(\'min\',',vdata,',',item.idx,',',item.Protected,')">'].join('');
-															var min = ['<img src=icons/min.png  vspace=4 hspace=4 width=30 onclick="DimLevel100(\'plus\',',vdata,',',item.idx,',',item.Protected,')">'].join('');
+															plus = ['<img src=icons/plus.png  vspace=4 hspace=4 width=30 onclick="DimLevel100(\'min\',',vdata,',',item.idx,',',item.Protected,')">'].join('');
+															min = ['<img src=icons/min.png  vspace=4 hspace=4 width=30 onclick="DimLevel100(\'plus\',',vdata,',',item.idx,',',item.Protected,')">'].join('');
 														
 													}
 													else if (item.Status === 'Open') {
 															var down = ['<img src=',$.domoticzurl,'/images/blinds48.png  hspace=1 width=40 onclick="SwitchToggle(',item.idx,', \'On\',',txt_blind_down,',',item.Protected,')">'].join('');
 															var up = ['<img src=',$.domoticzurl,'/images/blindsopen48sel.png  hspace=1 width=40 onclick="SwitchToggle(',item.idx,', \'Off\',',txt_blind_up,',',item.Protected,')">'].join('');
-															var plus = ['<img src=icons/plus.png  vspace=4 hspace=4 width=30 onclick="DimLevel100(\'min\',',vdata,',',item.idx,',',item.Protected,')">'].join('');
-															var min = ['<img src=icons/min.png  vspace=4 hspace=4 width=30 onclick="DimLevel100(\'plus\',',vdata,',',item.idx,',',item.Protected,')">'].join('');
+															plus = ['<img src=icons/plus.png  vspace=4 hspace=4 width=30 onclick="DimLevel100(\'min\',',vdata,',',item.idx,',',item.Protected,')">'].join('');
+															min = ['<img src=icons/min.png  vspace=4 hspace=4 width=30 onclick="DimLevel100(\'plus\',',vdata,',',item.idx,',',item.Protected,')">'].join('');
 													}
 													else {
 															var down = ['<img src=',$.domoticzurl,'/images/blinds48.png  hspace=1 width=40 onclick="SwitchToggle(',item.idx,', \'On\',',txt_blind_down,',',item.Protected,')">'].join('');
 															var up = ['<img src=',$.domoticzurl,'/images/blindsopen48sel.png  hspace=1 width=40 onclick="SwitchToggle(',item.idx,', \'Off\',',txt_blind_up,',',item.Protected,')">'].join('');
-															var plus = ['<img src=icons/plus.png  vspace=4 hspace=4 width=30 onclick="DimLevel100(\'min\',',vdata,',',item.idx,',',item.Protected,')">'].join('');
-															var min = ['<img src=icons/min.png  vspace=4 hspace=4 width=30 onclick="DimLevel100(\'plus\',',vdata,',',item.idx,',',item.Protected,')">'].join('');
+															plus = ['<img src=icons/plus.png  vspace=4 hspace=4 width=30 onclick="DimLevel100(\'min\',',vdata,',',item.idx,',',item.Protected,')">'].join('');
+															min = ['<img src=icons/min.png  vspace=4 hspace=4 width=30 onclick="DimLevel100(\'plus\',',vdata,',',item.idx,',',item.Protected,')">'].join('');
 													}
 													
 													vdesc = [vdesc,'<span class="percent">',(100-vdata),'<span style="font-size:50%;"> &#37;</span></span>'].join('');
@@ -703,23 +705,23 @@ function RefreshData()
 													if(item.Status === 'Closed') {
 															var down = ['<img src=',$.domoticzurl,'/images/blinds48sel.png  hspace=1 width=40 onclick="SwitchToggle(',item.idx,', \'Off\',',txt_blind_down,',',item.Protected,')">'].join('');
 															var up = ['<img src=',$.domoticzurl,'/images/blindsopen48.png  hspace=1 width=40 onclick="SwitchToggle(',item.idx,', \'On\',',txt_blind_up,',',item.Protected,')">'].join('');
-															var plus = ['<img src=icons/plus.png vspace=4 hspace=4 width=30 onclick="DimLevel100(\'plus\',',vdata,',',item.idx,',',item.Protected,')">'].join('');
-															var min = ['<img src=icons/min.png vspace=4 hspace=4 width=30 onclick="DimLevel100(\'min\',',vdata,',',item.idx,',',item.Protected,')">'].join('');
+															plus = ['<img src=icons/plus.png vspace=4 hspace=4 width=30 onclick="DimLevel100(\'plus\',',vdata,',',item.idx,',',item.Protected,')">'].join('');
+															min = ['<img src=icons/min.png vspace=4 hspace=4 width=30 onclick="DimLevel100(\'min\',',vdata,',',item.idx,',',item.Protected,')">'].join('');
 															
 													}
 													else if (item.Status === 'Open') {
 															vdata = 100;
 															var down = ['<img src=',$.domoticzurl,'/images/blinds48.png  hspace=1 width=40 onclick="SwitchToggle(',item.idx,', \'Off\',',txt_blind_down,',',item.Protected,')">'].join('');
 															var up = ['<img src=',$.domoticzurl,'/images/blindsopen48sel.png  hspace=1 width=40 onclick="SwitchToggle(',item.idx,', \'On\',',txt_blind_up,',',item.Protected,')">'].join('');
-															var plus = ['<img src=icons/plus.png vspace=4 hspace=4 width=30 onclick="DimLevel100(\'plus\',',vdata,',',item.idx,',',item.Protected,')">'].join('');
-															var min = ['<img src=icons/min.png vspace=4 hspace=4 width=30 onclick="DimLevel100(\'min\',',vdata,',',item.idx,',',item.Protected,')">'].join('');
+															plus = ['<img src=icons/plus.png vspace=4 hspace=4 width=30 onclick="DimLevel100(\'plus\',',vdata,',',item.idx,',',item.Protected,')">'].join('');
+															min = ['<img src=icons/min.png vspace=4 hspace=4 width=30 onclick="DimLevel100(\'min\',',vdata,',',item.idx,',',item.Protected,')">'].join('');
 													
 													}
 													else {
 															var down = ['<img src=',$.domoticzurl,'/images/blinds48.png  hspace=1 width=40 onclick="SwitchToggle(',item.idx,', \'Off\',',txt_blind_down,',',item.Protected,')">'].join('');
 															var up = ['<img src=',$.domoticzurl,'/images/blindsopen48sel.png  hspace=1 width=40 onclick="SwitchToggle(',item.idx,', \'On\',',txt_blind_up,',',item.Protected,')">'].join('');
-															var plus = ['<img src=icons/plus.png vspace=4 hspace=4 width=30 onclick="DimLevel100(\'plus\',',vdata,',',item.idx,',',item.Protected,')">'].join('');
-															var min = ['<img src=icons/min.png vspace=4 hspace=4 width=30 onclick="DimLevel100(\'min\',',vdata,',',item.idx,',',item.Protected,')">'].join('');
+															plus = ['<img src=icons/plus.png vspace=4 hspace=4 width=30 onclick="DimLevel100(\'plus\',',vdata,',',item.idx,',',item.Protected,')">'].join('');
+															min = ['<img src=icons/min.png vspace=4 hspace=4 width=30 onclick="DimLevel100(\'min\',',vdata,',',item.idx,',',item.Protected,')">'].join('');
 													
 													}
 													vdesc = [vdesc,'<span class="percent">',vdata,'<span style="font-size:50%;"> &#37;</span></span>'].join('');
@@ -1269,9 +1271,8 @@ function RefreshData()
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////													
 
                                                 // create switchable value when item is scene
-                                                var switchclick='';
-                                                var alarmcss='';
-                                            
+                                                var switchclick, alarmcss, min, plus;
+                                                                                            
                                                												
 												if (vdata === 'Off'  || item.Type === 'Scene' ) {
                                                         switchclick = ['onclick="SceneToggle(',item.idx,', \'On\',',txt_switch_on,',',item.Protected,')"'].join('');
@@ -1291,8 +1292,8 @@ function RefreshData()
                                                         vdata = txt_on;
                                                 }
 												else if (vdata === 'Mixed' ) {
-                                                        var min = ['<span style="font-size:100%;position:relative;left:-10px;color:#1B9772;" onclick="SceneToggle(',item.idx,', \'On\',',txt_switch_on,',',item.Protected,')">',txt_on,'</span>'].join('');
-														var plus = ['<span  style="font-size:100%;position:relative;left:10px;color:#E24E2A;" onclick="SceneToggle(',item.idx,', \'Off\',',txt_switch_off,',',item.Protected,')">',txt_off,'</span>'].join('');
+                                                        min = ['<span style="font-size:100%;position:relative;left:-10px;color:#1B9772;" onclick="SceneToggle(',item.idx,', \'On\',',txt_switch_on,',',item.Protected,')">',txt_on,'</span>'].join('');
+														plus = ['<span  style="font-size:100%;position:relative;left:10px;color:#E24E2A;" onclick="SceneToggle(',item.idx,', \'Off\',',txt_switch_off,',',item.Protected,')">',txt_off,'</span>'].join('');
 														vdata = [min,plus].join('');
 														
                                                 }
@@ -1873,7 +1874,7 @@ function ShowSelector(idx,mots,LevelOffHidden, Protected) {
 	var levels = mots.split("|");
 	//console.log(levels);
 	$( "#popup_selector").html("");
-	for (var i = 0; i < levels.length; i++) {
+	for (i = 0; i < levels.length; i++) {
 		
 		//console.log('level ',i,' ',levels[i],10*i);
 		if ((LevelOffHidden && levels[i] != 'Off') || !LevelOffHidden) {
