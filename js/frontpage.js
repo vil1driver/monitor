@@ -1,8 +1,9 @@
 "use strict"; // this runs in strict mode
 
-// in dev mode comment this to enable console.log
-//console.log = function() {}
-
+// debug
+if (!debug) {
+console.log = function() {}
+}
 
 // on document ready (start)
 $(function(){

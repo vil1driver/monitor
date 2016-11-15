@@ -92,6 +92,9 @@ var direction = 'index';					// si delai est différent de 0, choix d'aller à l
 var connectTimeout = 3000;					// durée avant d'afficher un domoticz offline (en millisecondes)
 var refresh = 8000;							// temps entre 2 rafraîchissements (en millisecondes)
 
+// Debug
+var debug = false;							// affichage des infos de debug dans la console (true/false)
+
 // ############################################################################################################
 // #### vvvvv   USER VALUES below vvvvv   #######
 // ############################################################################################################
