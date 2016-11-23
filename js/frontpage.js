@@ -1049,6 +1049,7 @@ function RefreshData()
 														}
 														else if (item.SwitchType === 'Push On Button' || item.SwitchType === 'Push Off Button') {
 															vdata = ['<img src=icons/',lastseen,'.png width=48>'].join('');
+															vdesc = $.PageArray[ii][3];
 														}
 													}
 												}	
@@ -1418,7 +1419,11 @@ function RefreshData()
 															icon_Off = 'blinds48sel.png';
 														}	
 														
-														if (vdata === txt_on) {
+														if (item.Type === 'Scene'){
+															vdesc=      $.PageArray_Scenes[ii][3]; 
+															vdata = ['<img src="icons/',vicon.replace(/ /g,"%20"),'.png" width=48>'].join('');
+														}
+														else if (vdata === txt_on) {
 															vdata = ['<img src="',$.domoticzurl,'/images/',icon_On,'" width=48>'].join('');
 														}
 														else if (vdata === txt_off) {
