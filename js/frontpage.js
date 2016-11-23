@@ -486,7 +486,7 @@ function RefreshData()
 		
 		if ( t1 > t3 || t1 < t2) {
 			// night
-			IsNight = 'Yes';
+			IsNight = true;
 			if ( typeof bg_day !== 'undefined' ) {
 				// night background
 			
@@ -508,7 +508,7 @@ function RefreshData()
 		}
 		else {
 			// day
-			IsNight = 'No';
+			IsNight = false;
 			if ( typeof bg_night !== 'undefined' ) {
 				// day background
 			
