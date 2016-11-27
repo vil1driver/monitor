@@ -1,0 +1,85 @@
+#ls_pluie_1, #ls_pluie_2, #ls_pluie_3, #ls_pluie_4, #ls_pluie_5, #ls_pluie_6, 
+#ls_pluie_7, #ls_pluie_8, #ls_pluie_9, #ls_pluie_10, #ls_pluie_11, #ls_pluie_12, 
+#ls_pluie_13, #ls_pluie_14, #ls_pluie_15, #ls_pluie_16, #ls_pluie_17, #ls_pluie_18, 
+#ls_pluie_19, #ls_pluie_20, #ls_pluie_21, #ls_pluie_22, #ls_pluie_23, #ls_pluie_24, 
+#ls_pluie_25, #ls_pluie_26, #ls_pluie_27, #ls_pluie_28, #ls_pluie_29, #ls_pluie_30,
+#ls_pluie_31, #ls_pluie_32, #ls_pluie_33, #ls_pluie_34, #ls_pluie_35, #ls_pluie_36
+ {
+	font-family: arimo;
+	font-weight: normal;
+	color: #999;
+	font-size: 12px;
+	margin-top: -20px;
+	height: 20px;
+	line-height: 65px;
+	text-shadow: 1px 1px 5px black;
+	
+}
+
+#desc_pluie_1, #desc_pluie_2, #desc_pluie_3, #desc_pluie_4, #desc_pluie_5, #desc_pluie_6, 
+#desc_pluie_7, #desc_pluie_8, #desc_pluie_9, #desc_pluie_10, #desc_pluie_11, #desc_pluie_12, 
+#desc_pluie_13, #desc_pluie_14, #desc_pluie_15, #desc_pluie_16, #desc_pluie_17, #desc_pluie_18, 
+#desc_pluie_19, #desc_pluie_20, #desc_pluie_21, #desc_pluie_22, #desc_pluie_23, #desc_pluie_24, 
+#desc_pluie_25, #desc_pluie_26, #desc_pluie_27, #desc_pluie_28, #desc_pluie_29, #desc_pluie_30,
+#desc_pluie_31, #desc_pluie_32, #desc_pluie_33, #desc_pluie_34, #desc_pluie_35, #desc_pluie_36
+ {
+	font-family: arimo;
+	font-weight: normal;
+/*	color: #999; */
+	color: #F2DDB3;
+	font-size: 17px;
+	margin-top: -20px;
+	height: 25px;
+	line-height: 15px;
+	text-shadow: 1px 1px 4px black;
+	
+}
+ 
+#pluie_3, #pluie_4 
+{
+	font-family: arimo;
+	font-weight: bold;
+	width: 304px;
+	padding: 5px;
+	border: 1px solid #1E1E1F; 
+	border: 1px solid transparent;
+/*	border-radius: 0px;*/
+	height: 152.5px;	
+	line-height: 170px; 
+	font-size: 100px;	
+	color: #999;
+	margin: 0px ;
+	text-shadow: 1px 1px 4px black;
+	
+	
+}
+ 
+#pluie_1, #pluie_2, #pluie_5, #pluie_6, 
+#pluie_7, #pluie_8, #pluie_9, #pluie_10, #pluie_11, #pluie_12, 
+#pluie_13, #pluie_14, #pluie_15, #pluie_16, #pluie_17, #pluie_18, 
+#pluie_19, #pluie_20, #pluie_21, #pluie_22, #pluie_23, #pluie_24, 
+#pluie_25, #pluie_26, #pluie_27, #pluie_28, #pluie_29, #pluie_30,
+#pluie_31, #pluie_32, #pluie_33, #pluie_34, #pluie_35, #pluie_36
+     {
+	font-family: arimo;
+	font-weight: bold;
+	width: 134px;
+	padding: 10px;
+/*	border: 1px solid #ffffff; */
+	border: 1px solid transparent;
+	border-radius: 0px;
+	height: 58px;
+	line-height: 55px; 		
+	color: #999;
+	font-size:40px;
+	text-shadow: 1px 1px 4px black;
+	margin: 0px ;
+}
+#pluie_13, #pluie_14, #pluie_15, #pluie_16, #pluie_17, #pluie_18, 
+#pluie_19, #pluie_20, #pluie_21, #pluie_22, #pluie_23, #pluie_24, 
+#pluie_25, #pluie_26, #pluie_27, #pluie_28, #pluie_29, #pluie_30
+{
+	line-height: 15px; 		
+}
+
+
