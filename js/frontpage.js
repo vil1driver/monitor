@@ -487,29 +487,30 @@ function RefreshData()
 		if ( t1 > t3 || t1 < t2) {
 			// night
 			IsNight = true;
-			if ( typeof bg_day !== 'undefined' ) {
+			if ( typeof bg_night !== 'undefined' && bg_night !== '') {
 				// night background
 			
 				$('#black').css('background', ['rgba(0,0,0,',bg_nightBright,')'].join(''));
 				
 				document.body.style.background=['black url(icons/',bg_night,') no-repeat top center fixed'].join('');
 				document.body.style.backgroundSize=bg_size;
-				// night clock background
-				if ($('.horloge').length > 0) {
 				
-					if ($('.horloge').hasClass('day')) {
-						$('.horloge').removeClass('day');
-					}	
-					if (!$('.horloge').hasClass('night')) {
-						$('.horloge').addClass('night');
-					}	
-				}
-			}	
+			}
+			// night clock background
+			if ($('.horloge').length > 0) {
+			
+				if ($('.horloge').hasClass('day')) {
+					$('.horloge').removeClass('day');
+				}	
+				if (!$('.horloge').hasClass('night')) {
+					$('.horloge').addClass('night');
+				}	
+			}
 		}
 		else {
 			// day
 			IsNight = false;
-			if ( typeof bg_night !== 'undefined' ) {
+			if ( typeof bg_day !== 'undefined' && bg_day !== '') {
 				// day background
 			
 				$('#black').css('background', ['rgba(0,0,0,',bg_dayBright,')'].join(''));
@@ -517,17 +518,18 @@ function RefreshData()
 			
 				document.body.style.background=['black url(icons/',bg_day,') no-repeat top center fixed'].join('');													
 				document.body.style.backgroundSize=bg_size;
-				// day clock background
-				if ($('.horloge').length > 0) {
-				
-					if ($('.horloge').hasClass('night')) {
-						$('.horloge').removeClass('night');
-					}	
-					if (!$('.horloge').hasClass('day')) {
-						$('.horloge').addClass('day');
-					}	
+					
+			}
+			// day clock background
+			if ($('.horloge').length > 0) {
+			
+				if ($('.horloge').hasClass('night')) {
+					$('.horloge').removeClass('night');
 				}	
-			}	
+				if (!$('.horloge').hasClass('day')) {
+					$('.horloge').addClass('day');
+				}	
+			}
 		}
 												
 		console.log("connection success");
