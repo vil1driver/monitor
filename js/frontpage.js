@@ -757,7 +757,7 @@ function RefreshData()
 												else if (item.SwitchType === 'Blinds Inverted') {
 													if(vdata === 'Closed') {
 															var down = ['<img src=',$.domoticzurl,'/images/blinds48sel.png  hspace=1 width=40 onclick="SwitchToggle(',item.idx,', \'Off\',',txt_blind_down,',',item.Protected,')">'].join('');
-															var up = ['<img src=',$.domoticzurl,'/images/blindsopen48.png  hspace=1 width=40 onclick="SwitchToggle(',item.idx,', \'On\'),',txt_blind_up,',',item.Protected,')">'].join('');
+															var up = ['<img src=',$.domoticzurl,'/images/blindsopen48.png  hspace=1 width=40 onclick="SwitchToggle(',item.idx,', \'On\',',txt_blind_up,',',item.Protected,')">'].join('');
 													}
 													else if (vdata === 'Open' || vdata === 'Stopped') {
 															var down = ['<img src=',$.domoticzurl,'/images/blinds48.png  hspace=1 width=40 onclick="SwitchToggle(',item.idx,', \'Off\',',txt_blind_down,',',item.Protected,')">'].join('');
