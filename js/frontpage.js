@@ -1,5 +1,10 @@
 "use strict"; // this runs in strict mode (jslint)
 
+// wellcome
+console.log('\n','\n','\n');
+console.log('%cWellcome on Monitor for Domoticz','color: blue; font-size:25px;','\n');
+console.log('%c    Big thanks to all contributors..','color: blue; font-size:19px;','\n','\n','\n');
+
 
 // debug
 if (!debug) {
@@ -337,10 +342,10 @@ function makeChange(idx,vdata,vdesc,dimstep)
 						success: function(result){
 					
 							if (result.message === 'WRONG CODE'){
-								console.log('WRONG CODE');
+								console.warn('WRONG CODE');
 								//lightbox_open('switch',wrongCode_timeout,txt_wrong_code);
 							}else if (result.status === 'OK'){
-								console.log('SUCCES');
+								console.log('%cSend command : Succes','color:green');
 								RefreshData();
 							}else{
 								//lightbox_open('switch',1500,result.status);
@@ -349,7 +354,7 @@ function makeChange(idx,vdata,vdesc,dimstep)
 						 },
                         error: function(result){
 							//lightbox_open('switch',1500,result.statusText);
-							console.log(result.status);
+							console.warn(result.status);
 						 }
                 });
 			  
@@ -372,7 +377,7 @@ function revert()
 function RefreshData()
 {
         clearInterval($.refreshTimer);
-		console.log('\n','refresh');
+		console.log('%cPage refresh', 'color: blue','\n');
 		
 		
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
@@ -535,7 +540,7 @@ function RefreshData()
 			}
 		}
 												
-		console.log("connection success");
+		console.log('%cConnecting to domoticz : Success', 'color: green','\n');
 		if(error != 0){
 			error = 0;
 			GetCams();
@@ -546,7 +551,7 @@ function RefreshData()
 		}
 		
 		one = new Date() - one;
-		console.log('sunset/background/clock/meteo: ' + one + 'ms');	
+		console.log('Get sunset/background/clock/meteo: ' + one + 'ms');	
 		
 	}).fail(function() {
 		error += 1;
@@ -1337,7 +1342,7 @@ function RefreshData()
                         }, { releaseObjects: true });
                 }
 		two = new Date() - two;
-		console.log('switchs: ' + two + 'ms');
+		console.log('Get switchs: ' + two + 'ms');
 				
         });
 		
@@ -1470,7 +1475,7 @@ function RefreshData()
                 }
 				
 			three = new Date() - three;
-			console.log('scenes/groups: ' + three + 'ms');	
+			console.log('Get scenes/groups: ' + three + 'ms');	
 			
 				
         });
@@ -1530,7 +1535,7 @@ function RefreshData()
                    }
             
          four = new Date() - four;
-         console.log('UserVariable : ' + four + 'ms');   
+         console.log('Get user variable : ' + four + 'ms');   
          
             
         });
@@ -1613,10 +1618,10 @@ function SceneToggle(idx, switchcmd, txt, Protected)
 				 success: function(result){
 					
 					if (result.message === 'WRONG CODE'){
-						console.log('WRONG CODE');
+						console.warn('WRONG CODE');
 						lightbox_open('switch',wrongCode_timeout,txt_wrong_code);
 					}else if (result.status === 'OK'){
-						console.log('SUCCES');
+						console.log('%cSend command : Succes','color:green');
 						if (switch_timeout !== 0) {
 							lightbox_open('switch',switch_timeout,txt);
 						}
@@ -1628,7 +1633,7 @@ function SceneToggle(idx, switchcmd, txt, Protected)
 				 },
 				 error: function(result){
 					lightbox_open('switch',1500,result.statusText);
-					console.log(result.status);
+					console.warn(result.status);
 				 }
 		});
 }
@@ -1649,10 +1654,10 @@ function SwitchToggle(idx, switchcmd, txt, Protected)
 				 success: function(result){
 					
 					if (result.message === 'WRONG CODE'){
-						console.log('WRONG CODE');
+						console.warn('WRONG CODE');
 						lightbox_open('switch',wrongCode_timeout,txt_wrong_code);
 					}else if (result.status === 'OK'){
-						console.log('SUCCES');
+						console.log('%cSend command : Succes','color:green');
 						if (switch_timeout !== 0) {
 							lightbox_open('switch',switch_timeout,txt);
 						}
@@ -1664,7 +1669,7 @@ function SwitchToggle(idx, switchcmd, txt, Protected)
 				 },
 				 error: function(result){
 					lightbox_open('switch',1500,result.statusText);
-					console.log(result.status);
+					console.warn(result.status);
 				 }
         });
 }
@@ -1693,10 +1698,10 @@ if (level === txt_off) {
                 success: function(result){
 					
 					if (result.message === 'WRONG CODE'){
-						console.log('WRONG CODE');
+						console.warn('WRONG CODE');
 						lightbox_open('switch',wrongCode_timeout,txt_wrong_code);
 					}else if (result.status === 'OK'){
-						console.log('SUCCES');
+						console.log('%cSend command : Succes','color:green');
 						RefreshData();
 					}else{
 						lightbox_open('switch',1500,result.status);
@@ -1705,7 +1710,7 @@ if (level === txt_off) {
 				 },
                 error: function(result){
 					lightbox_open('switch',1500,result.statusText);
-					console.log(result.status);
+					console.warn(result.status);
 				 }
         });
 }
@@ -1724,10 +1729,10 @@ else
                         success: function(result){
 					
 							if (result.message === 'WRONG CODE'){
-								console.log('WRONG CODE');
+								console.warn('WRONG CODE');
 								lightbox_open('switch',wrongCode_timeout,txt_wrong_code);
 							}else if (result.status === 'OK'){
-								console.log('SUCCES');
+								console.log('%cSend command : Succes','color:green');
 								RefreshData();
 							}else{
 								lightbox_open('switch',1500,result.status);
@@ -1736,7 +1741,7 @@ else
 						 },
                         error: function(result){
 							lightbox_open('switch',1500,result.statusText);
-							console.log(result.status);
+							console.warn(result.status);
 						 }
                 });
           }
@@ -1752,10 +1757,10 @@ else
 						success: function(result){
 					
 							if (result.message === 'WRONG CODE'){
-								console.log('WRONG CODE');
+								console.warn('WRONG CODE');
 								lightbox_open('switch',wrongCode_timeout,txt_wrong_code);
 							}else if (result.status === 'OK'){
-								console.log('SUCCES');
+								console.log('%cSend command : Succes','color:green');
 								RefreshData();
 							}else{
 								lightbox_open('switch',1500,result.status);
@@ -1764,7 +1769,7 @@ else
 						 },
                         error: function(result){
 							lightbox_open('switch',1500,result.statusText);
-							console.log(result.status);
+							console.warn(result.status);
 						 }
                 });
           }
@@ -1795,10 +1800,10 @@ function DimLevel100(OpenDicht,level,idx, Protected)
                         success: function(result){
 					
 							if (result.message === 'WRONG CODE'){
-								console.log('WRONG CODE');
+								console.warn('WRONG CODE');
 								lightbox_open('switch',wrongCode_timeout,txt_wrong_code);
 							}else if (result.status === 'OK'){
-								console.log('SUCCES');
+								console.log('%cSend command : Succes','color:green');
 								RefreshData();
 							}else{
 								lightbox_open('switch',1500,result.status);
@@ -1807,7 +1812,7 @@ function DimLevel100(OpenDicht,level,idx, Protected)
 						 },
                         error: function(result){
 							lightbox_open('switch',1500,result.statusText);
-							console.log(result.status);
+							console.warn(result.status);
 						 }
                 });
           }
@@ -1824,10 +1829,10 @@ function DimLevel100(OpenDicht,level,idx, Protected)
                         success: function(result){
 					
 							if (result.message === 'WRONG CODE'){
-								console.log('WRONG CODE');
+								console.warn('WRONG CODE');
 								lightbox_open('switch',wrongCode_timeout,txt_wrong_code);
 							}else if (result.status === 'OK'){
-								console.log('SUCCES');
+								console.log('%cSend command : Succes','color:green');
 								RefreshData();
 							}else{
 								lightbox_open('switch',1500,result.status);
@@ -1836,7 +1841,7 @@ function DimLevel100(OpenDicht,level,idx, Protected)
 						 },
                         error: function(result){
 							lightbox_open('switch',1500,result.statusText);
-							console.log(result.status);
+							console.warn(result.status);
 						 }
                 });
           }
@@ -1874,10 +1879,10 @@ function ChangeTherm(dimtype,stepsize,idx,currentvalue,thermmax, Protected)
 			 success: function(result){
 					
 					if (result.message === 'WRONG CODE'){
-						console.log('WRONG CODE');
+						console.warn('WRONG CODE');
 						lightbox_open('switch',wrongCode_timeout,txt_wrong_code);
 					}else if (result.status === 'OK'){
-						console.log('SUCCES');
+						console.log('%cSend command : Succes','color:green');
 						RefreshData();
 					}else{
 						lightbox_open('switch',1500,result.status);
@@ -1886,7 +1891,7 @@ function ChangeTherm(dimtype,stepsize,idx,currentvalue,thermmax, Protected)
 				 },
 			 error: function(result){
 					lightbox_open('switch',1500,result.statusText);
-					console.log(result.status);
+					console.warn(result.status);
 				 }
  	});
  		
@@ -2018,10 +2023,10 @@ function SwitchSelector(idx,lvl, Protected) {
 			success: function(result){
 					
 					if (result.message === 'WRONG CODE'){
-						console.log('WRONG CODE');
+						console.warn('WRONG CODE');
 						lightbox_open('switch',wrongCode_timeout,txt_wrong_code);
 					}else if (result.status === 'OK'){
-						console.log('SUCCES');
+						console.log('%cSend command : Succes','color:green');
 						RefreshData();
 					}else{
 						lightbox_open('switch',1500,result.status);
@@ -2030,7 +2035,7 @@ function SwitchSelector(idx,lvl, Protected) {
 				 },
 			error: function(result){
 					lightbox_open('switch',1500,result.statusText);
-					console.log(result.status);
+					console.warn(result.status);
 				 }
 	});
 }
