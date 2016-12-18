@@ -131,6 +131,9 @@ function onMessageArrived(message) {
 
 
 	switch(message.name) { // filtre sur le nom du dispositif
+	
+	
+////////////////////////////////////////////////////////////////////////////////	
 			
 			// si le nom est "d1", changer de page
 			case "d1": 						// nom du bouton de la télécommande
@@ -143,6 +146,7 @@ function onMessageArrived(message) {
 					
 				break;
 				
+////////////////////////////////////////////////////////////////////////////////
 			
 			case "Cafetiere on": // nom du bouton pushOn de mise en route de la cafetière
 
@@ -157,6 +161,8 @@ function onMessageArrived(message) {
 					lightbox_open('switch',25000,'café en préparation');	
 					
 				break;	
+
+////////////////////////////////////////////////////////////////////////////////
 				
 			//lire une musique
 			case "d2": // nom du bouton de la télécommande
@@ -195,6 +201,7 @@ function onMessageArrived(message) {
 				
 				break;
 				
+////////////////////////////////////////////////////////////////////////////////
 				
 			// afficher la caméra en grand
 			case "d3": // nom du bouton de la télécommande
@@ -209,17 +216,27 @@ function onMessageArrived(message) {
 					
 				break;	
 				
+////////////////////////////////////////////////////////////////////////////////
 			
-			// annonce vocale suivant le contenu d'un dummy text
+			// annonces vocales
 			case "tts": // nom du widget text
 			
-								
 				var text = message.svalue1;
 				var oAudio = document.getElementById('myaudio');
-				oAudio.src = "http://www.voxygen.fr/sites/all/modules/voxygen_voices/assets/proxy/index.php?method=redirect&text="+text+"&voice=Fabienne";
+				var launched = false;
+				oAudio.src = "sounds/sncf.mp3";	// ding dong d'alerte  ( http://lasonotheque.org/telecharger.php?format=mp3&id=0396&button=GO%3E )
 				oAudio.play();
+				oAudio.onended = function() {
+									if ( !launched ) {
+										launched = true;
+										oAudio.src = "http://www.voxygen.fr/sites/all/modules/voxygen_voices/assets/proxy/index.php?method=redirect&text="+text+"&voice=Fabienne";
+										oAudio.play();
+									}
+								};
 				
 				break;
+
+////////////////////////////////////////////////////////////////////////////////
 				
 			// afficher une page précise suivant le choix d'un switch sélecteur
 			case "page": // nom du switch sélecteur
@@ -248,6 +265,10 @@ function onMessageArrived(message) {
 				break;	
 	} 
   
+////////////////////////////////////////////////////////////////////////////////
+//// 						END OF USER SETTINGS							////
+////////////////////////////////////////////////////////////////////////////////
+
   
 }
 
