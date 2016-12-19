@@ -91,7 +91,7 @@ en espérant que les quelques exemples vous aideront à en comprendre le fonctio
 
 
 // Create a client instance
-client = new Paho.MQTT.Client(location.hostname, 9001, '', 'monitor');	// mosquitto doit tourner sur la même machine que monitor et domoticz
+client = new Paho.MQTT.Client(location.hostname, 9001, '', 'monitor_'+Date.now());	// mosquitto doit tourner sur la même machine que monitor et domoticz
 
 // set callback handlers
 client.onConnectionLost = onConnectionLost;
