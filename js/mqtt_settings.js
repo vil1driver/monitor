@@ -150,12 +150,8 @@ function onMessageArrived(message) {
 			
 			case "Cafetiere on": // nom du bouton pushOn de mise en route de la cafetière
 
-					mySwipe.slide(1);	// passe à la page 2
-					
-					// annonce la mise en route
-					var oAudio = document.getElementById('myaudio');
-					oAudio.src = "sounds/cofee.mp3";
-					oAudio.play();
+					// passe à la page 2
+					mySwipe.slide(1);
 					
 					// affiche une popup text
 					lightbox_open('switch',25000,'café en préparation');	
@@ -185,18 +181,13 @@ function onMessageArrived(message) {
 				if (message.nvalue == 1){	// status On 
 					
 					oAudio.src = "http://icecast.skyrock.net/s/natio_mp3_128k";
-					//oAudio.src = "sounds/poubellejaune.mp3";
 					oAudio.play();
-					
 				}	
 				
 				if (message.nvalue == 0){	// status Off
 				
 					oAudio.pause();	// stop
 					oAudio.src = "";
-					//oAudio.src = "sounds/poubellegrise.mp3";
-					//oAudio.play();
-					
 				}	
 				
 				break;
@@ -221,10 +212,23 @@ function onMessageArrived(message) {
 			// annonces vocales
 			case "tts": // nom du widget text
 			
+				/*
+								/!\  IMPORTANT  /!\
+				
+				 à fin de pouvoir lancer de l'audio automatiquement
+				 il est nécessaire de désactiver la sécurité suivante
+				 "Exiger un geste de l'utilisateur pour lire des éléments multimédias"
+				 
+				 saisissez cette adresse dans chrome et désactivez l'option
+				 
+				 chrome://flags/#disable-gesture-requirement-for-media-playback
+				 
+				*/
+				
 				var text = message.svalue1;
 				var oAudio = document.getElementById('myaudio');
 				var launched = false;
-				oAudio.src = "sounds/sncf.mp3";	// ding dong d'alerte  ( http://lasonotheque.org/telecharger.php?format=mp3&id=0396&button=GO%3E )
+				oAudio.src = "sounds/bipbip.mp3";	// ding dong d'alerte
 				oAudio.play();
 				oAudio.onended = function() {
 									if ( !launched ) {
