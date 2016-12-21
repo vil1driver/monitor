@@ -149,9 +149,6 @@ function onMessageArrived(message) {
 ////////////////////////////////////////////////////////////////////////////////
 			
 			case "Cafetiere on": // nom du bouton pushOn de mise en route de la cafetière
-
-					// passe à la page 2
-					mySwipe.slide(1);
 					
 					// affiche une popup text
 					lightbox_open('switch',25000,'café en préparation');	

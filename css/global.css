@@ -51,7 +51,9 @@ body
 
 body:after{
     display:none;
-    content: url(../icons/offline.png);
+    content:
+	url(../icons/offline.png)
+	url(../sounds/bipbip.mp3);
 }
 
 #black
