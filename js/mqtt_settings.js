@@ -225,7 +225,7 @@ function onMessageArrived(message) {
 				var text = message.svalue1;
 				var oAudio = document.getElementById('myaudio');
 				var launched = false;
-				oAudio.src = "sounds/bipbip.mp3";	// ding dong d'alerte
+				oAudio.src = "sounds/Arpeggio.ogg";	// ding dong d'alerte
 				oAudio.play();
 				oAudio.onended = function() {
 									if ( !launched ) {
