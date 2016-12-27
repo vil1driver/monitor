@@ -1,7 +1,7 @@
 ﻿/*
 
 Mosquitto va être notre passerelle entre domoticz et la custom page
-la cstom page va par la suite être capable de recevoir directement des messages
+la custom page va par la suite être capable de recevoir directement des messages
 venant de domoticz et agir en conséquence..
 
 
