@@ -52,6 +52,7 @@ function lightbox_open(id, timeout, txt){
 		if (typeof txt !== 'undefined') {
 			$(['#popup_',id].join('')).html(txt);
 		}
+		//$('div[id^="popup_"]').fadeOut(fad_Duration); // before close all div with same prefix id
         $(['#popup_',id].join('')).fadeIn(fad_Duration);
 		$('#fade').fadeIn(fad_Duration);
 		$('#fade').click(function(){lightbox_close(id);});
@@ -62,6 +63,7 @@ function lightbox_open(id, timeout, txt){
 // Close popup
 function lightbox_close(id){
         $(['#popup_',id].join('')).fadeOut(fad_Duration);
+        //$('div[id^="popup_"]').fadeOut(fad_Duration); // close all div with same prefix id
         $('#fade').fadeOut(fad_Duration);
 		$('#fade').off("click");
 		$(['#popup_',id].join('')).off("click");
@@ -373,7 +375,7 @@ function revert()
 }
 
 
-// Main Frontpage fuction
+// Main Frontpage function
 function RefreshData()
 {
         clearInterval($.refreshTimer);
@@ -1569,7 +1571,7 @@ function GetCams()
 
 							
 							if(src_2 === '' || typeof src_2 === 'undefined'){
-								src_2 = [location.href.replace(/\/$/, ''),'/icons/offline.jpg'].join('');
+								src_2 = [location.href.replace( "index.html", "" ).replace(/\/$/, ''),'/icons/offline.jpg'].join('');
 							}	
 						
 							$(['#',vlabel].join('')).html(['<img src=',src_1,' alt=',src_2,' class=\'camera\' >'].join(''));
@@ -1579,7 +1581,7 @@ function GetCams()
 																	this.onerror=null;
 																	if( this.src === this.alt)
 																	{
-																		this.src = [location.href.replace(/\/$/, ''),'/icons/offline.jpg'].join('');
+																		this.src = [location.href.replace( "index.html", "" ).replace(/\/$/, ''),'/icons/offline.jpg'].join('');
 																	}
 																	else{
 																		this.src = this.alt;
