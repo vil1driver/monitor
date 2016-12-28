@@ -250,6 +250,180 @@ var debug = false;							// affichage des infos de debug dans la console (true/f
             ['reveilmatin','Value','cell5_9','',''],
           
         []];
+		
+		
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+
+		// MQTT
+		
+		
+		// called when a message arrives
+		function onMessageArrived(message) {
+			console.log('%cMQTT Message Arrived:','color: #c44800','\n',message.payloadString);
+
+			message = JSON.parse(message.payloadString);
+
+
+
+			switch(message.name) { // filtre sur le nom du dispositif
+			
+			
+		////////////////////////////////////////////////////////////////////////////////	
+					
+					// si le nom est "d1", changer de page
+					case "d1": 						// nom du bouton de la télécommande
+						
+						if (message.nvalue == 1)	// status On 
+							mySwipe.prev(); 		// page précédente
+							
+						if (message.nvalue == 0)	// status Off
+							mySwipe.next(); 		// page suivante
+							
+						break;
+						
+		////////////////////////////////////////////////////////////////////////////////
+					
+					case "Cafetiere on": // nom du bouton pushOn de mise en route de la cafetière
+							
+							// affiche une popup text
+							lightbox_open('switch',25000,'café en préparation');	
+							
+						break;	
+
+		////////////////////////////////////////////////////////////////////////////////
+						
+					//lire une musique
+					case "d2": // nom du bouton de la télécommande
+					
+						/*
+										/!\  IMPORTANT  /!\
+						
+						 à fin de pouvoir lancer de l'audio automatiquement
+						 il est nécessaire de désactiver la sécurité suivante
+						 "Exiger un geste de l'utilisateur pour lire des éléments multimédias"
+						 
+						 saisissez cette adresse dans chrome et désactivez l'option
+						 
+						 chrome://flags/#disable-gesture-requirement-for-media-playback
+						 
+						*/
+						
+						var oAudio = document.getElementById('myaudio');
+
+						if (message.nvalue == 1){	// status On 
+							
+							oAudio.src = "http://icecast.skyrock.net/s/natio_mp3_128k";
+							oAudio.play();
+						}	
+						
+						if (message.nvalue == 0){	// status Off
+						
+							oAudio.pause();	// stop
+							oAudio.src = "";
+						}	
+						
+						break;
+						
+		////////////////////////////////////////////////////////////////////////////////
+						
+					// afficher la caméra en grand
+					case "d3": // nom du bouton de la télécommande
+						
+						if (message.nvalue == 1){		// status On 
+							var source = "http://www.saintveranmeteo.eu/villagesaintveranwebcam.jpg";	// source du flux de la caméra
+							$('#popup_camera').html('<img src='+source+' >');	// charge le flux dans la popup caméra
+							lightbox_open('camera', 25000);	// afficher la popup 25 secondes
+						}	
+						if (message.nvalue == 0)		// status Off
+							lightbox_close('camera');	// fermer la popup
+							
+						break;	
+						
+		////////////////////////////////////////////////////////////////////////////////
+					
+					// annonces vocales
+					case "tts": // nom du widget text
+					
+						/*
+										/!\  IMPORTANT  /!\
+						
+						 à fin de pouvoir lancer de l'audio automatiquement
+						 il est nécessaire de désactiver la sécurité suivante
+						 "Exiger un geste de l'utilisateur pour lire des éléments multimédias"
+						 
+						 saisissez cette adresse dans chrome et désactivez l'option
+						 
+						 chrome://flags/#disable-gesture-requirement-for-media-playback
+						 
+						*/
+						
+						var text = message.svalue1;
+						var oAudio = document.getElementById('myaudio');
+						var launched = false;
+						oAudio.src = "sounds/Arpeggio.ogg";	// ding dong d'alerte
+						oAudio.play();
+						oAudio.onended = function() {
+											if ( !launched ) {
+												launched = true;
+												oAudio.src = "http://www.voxygen.fr/sites/all/modules/voxygen_voices/assets/proxy/index.php?method=redirect&text="+text+"&voice=Fabienne";
+												oAudio.play();
+											}
+										};
+						
+						break;
+
+		////////////////////////////////////////////////////////////////////////////////
+						
+					// afficher une page précise suivant le choix d'un switch sélecteur
+					case "page": // nom du switch sélecteur
+						
+						if (message.svalue1 == 10)   // sélecteur à 10 %
+						   mySwipe.slide(0);   // vers page 1 (la première page est numéroté 0)
+						if (message.svalue1 == 20)
+						   mySwipe.slide(1);   // vers page 2
+						if (message.svalue1 == 30)
+						   mySwipe.slide(2);   // vers page 3
+						if (message.svalue1 == 40)
+						   mySwipe.slide(3);   // vers page 4
+						if (message.svalue1 == 50)
+						   mySwipe.slide(4);   // vers page 5
+						if (message.svalue1 == 60)
+						   mySwipe.slide(5);   // vers page 6
+						if (message.svalue1 == 70)
+						   mySwipe.slide(6);   // vers page 7
+						if (message.svalue1 == 80)
+						   mySwipe.slide(7);   // vers page 8
+						if (message.svalue1 == 90)
+						   mySwipe.slide(8);   // vers page 9
+						if (message.svalue1 == 100)
+						   mySwipe.slide(9);   // vers page 10
+						   
+						break;	
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+			} 
+		  
+		}		
 
 // ############################################################################################################
 // #### ^^^^^   USER VALUES above ^^^^^   #######
