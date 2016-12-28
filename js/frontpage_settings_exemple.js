@@ -18,17 +18,17 @@ var txt_blind_down = '\'Fermeture\'';
 var txt_blind_stop = '\'Arrêt\'';
 var txt_wrong_code = 'Mot de pass erroné';
 
-// Change backgrounds images,size and brightness
-var bg_day = ''; //'pissanli.jpg';									// image de fond le jour, laisser vide pour fond noir
-var bg_night = ''; //'romantic.jpg';								// image de fond la nuit, laisser vide pour fond noir
-var bg_day_spring = 'spring_day.jpg';									// image de fond pour la saison printemps
-var bg_night_spring = 'spring_night.jpg';
-var bg_day_summer = 'pissanli.jpg';									// image de fond pour la saison été
-var bg_night_summer = 'romantic.jpg';
-var bg_day_autumn = 'autumn_day.png';								// image de fond pour la saison automne
-var bg_night_autumn = 'autumn_night.jpg';
-var bg_day_winter = 'winter_day.jpg';								// image de fond pour la saison hiver
-var bg_night_winter = 'winter_night.jpg';
+// Change backgrounds images, size and brightness
+var bg_day = ''; 														// image de fond le jour, laisser vide pour fond noir
+var bg_night = ''; 														// image de fond la nuit, laisser vide pour fond noir
+var bg_day_spring = 'wallpaper/spring_day.jpg';							// image de fond pour la saison printemps
+var bg_night_spring = 'wallpaper/spring_night.jpg';
+var bg_day_summer = 'wallpaper/summer_day.jpg';							// image de fond pour la saison été
+var bg_night_summer = 'wallpaper/summer_night.jpg';
+var bg_day_autumn = 'wallpaper/autumn_day.png';							// image de fond pour la saison automne
+var bg_night_autumn = 'wallpaper/autumn_night.jpg';
+var bg_day_winter = 'wallpaper/winter_day.jpg';							// image de fond pour la saison hiver
+var bg_night_winter = 'wallpaper/winter_night.jpg';
 var bg_size = 'cover';												// taille de l'image de fond (ex: '1024px 768px') 'cover' : "couvre" au mieux tout le fond.
 var bg_dayBright = 0.5;												// luminosité du fond le jour (0=normal 1=noir)
 var bg_nightBright = 0.5;											// luminosité du fond la nuit (0=normal 1=noir)
