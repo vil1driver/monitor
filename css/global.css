@@ -1,18 +1,19 @@
-﻿@font-face
-{	
+﻿@font-face{	
 	font-family: 'arimo';
 	src: 	url(../fonts/arimo.woff2) format('woff2'),
 			url(../fonts/arimo.woff) format('woff');
 }
-@font-face
-{
+@font-face{
 	font-family: 'brankovic';
 	src: 	url(../fonts/brankovic.ttf) format('truetype');
 }
-@font-face
-{
+@font-face{
 	font-family: 'digital';
 	src: 	url(../fonts/digital.ttf) format('truetype');
+}
+@font-face{
+    font-family: 'Audiowide';
+    src: 	url(../fonts/Audiowide.ttf) format('truetype');
 }
 
 @viewport {
@@ -23,6 +24,10 @@
 
 .autoHide {
 	display:none;
+}
+
+div[data-index='1'] {
+	/*display:none;*/
 }
 
 body,html
@@ -49,11 +54,12 @@ body
 	background-color: #000;
 }
 
+/* preload */
 body:after{
     display:none;
     content:
 	url(../icons/offline.png);
-
+  
 }
 
 #black
@@ -152,7 +158,6 @@ img[alt] {
 	text-shadow: none;
 }
 
-	
 #popup_switch, #popup_graph,
 #popup_meteo0, #popup_meteo1, #popup_meteo2, #popup_meteo3, #popup_meteo4,
 #popup_secpanel, #popup_help, #popup_camera, #popup_selector, #popup_range
@@ -288,12 +293,10 @@ img[alt] {
 #popup_secpanel
 {
 	text-align:center;
-	border: none;
-    width: 455px;
-    height: 600px;
-    margin-left: -240px;
-    margin-top: -240px; 
-	border-radius: 0px 0px 0px 0px;		
+	width: 555px;
+    height: 500px;
+    margin-left: -260px;
+    margin-top: -255px; 
 }
 
 #popup_freeRemote

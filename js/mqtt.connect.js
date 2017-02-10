@@ -1,7 +1,7 @@
 ﻿// Create a client instance
 // mosquitto doit tourner sur la même machine que monitor et domoticz
 // dans le cas contraire, indiquer l'ip de la machine a la palce de location.hostname
-client = new Paho.MQTT.Client(location.hostname, 9001, '', 'monitor_'+Date.now());
+client = new Paho.MQTT.Client(location.hostname, 9001, '', 'monitor_'+Date.now().toString().match(/\d{5}$/));
 
 // set callback handlers
 client.onConnectionLost = onConnectionLost;
