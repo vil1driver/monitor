@@ -11,7 +11,7 @@ if (!debug) {
 console.log = function() {};
 }
 
-// on document ready (Sequential load)
+// on document ready (start)
 $(function(){
 		
 	setTimeout(RefreshData, 150);
@@ -70,17 +70,16 @@ function lightbox_close(id){
 		clearTimeout(tempo);
 }
 
-// show security panel popup
+// show security panel
 function showPanel() {
-	//$('#popup_secpanel').html(['<object type="text/html" data="',$.domoticzurl,'/secpanel/index.html" width="100%" height="100%"></object>'].join(''));
-	$('#popup_secpanel').load('pages/secpanel.html');
+	$('#popup_secpanel').html(['<object type="text/html" data="',$.domoticzurl,'/secpanel/index.html" width="100%" height="100%"></object>'].join(''));
 	$('#popup_secpanel').fadeIn(fad_Duration);
 	$('#fade').fadeIn(fad_Duration);
 	$('#fade').click(closePanel);
 	tempo = setTimeout(closePanel,60000);
 }
 
-// close security panel popup
+// close security panel
 function closePanel() {
 	$('#popup_secpanel').fadeOut(fad_Duration);
 	$('#fade').fadeOut(fad_Duration);
@@ -89,7 +88,7 @@ function closePanel() {
 	clearTimeout(tempo);
 }
 
-// show freebox remote popup
+// show freebox remote
 function showFreeRemote() {
 	$('#popup_freeRemote').fadeIn(fad_Duration);
 	$('#fade').fadeIn(fad_Duration);
@@ -97,7 +96,7 @@ function showFreeRemote() {
 	tempo = setTimeout(closeFreeRemote,60000);
 }
 
-// close freebox remote popup
+// close freebox remote
 function closeFreeRemote() {
 	$('#popup_freeRemote').fadeOut(fad_Duration);
 	$('#fade').fadeOut(fad_Duration);
@@ -105,7 +104,7 @@ function closeFreeRemote() {
 	clearTimeout(tempo);
 }
 
-// show range popup
+// show range
 function showRange() {
 	$('#popup_range').fadeIn(fad_Duration);
 	$('#fade').fadeIn(fad_Duration);
@@ -113,7 +112,7 @@ function showRange() {
 	tempo = setTimeout(closeRange,60000);
 }
 
-// close range popup
+// close range
 function closeRange() {
 	$('#popup_range').fadeOut(fad_Duration);
 	$('#fade').fadeOut(fad_Duration);
@@ -148,7 +147,6 @@ function LoadMeteoWidget() {
 	$.refreshMeteoWidget = setInterval(LoadMeteoWidget, 3600000); // reload every hours
 }
 
-// get graph infos
 function RefreshGraphData(xIDX, vdesc, vtype, vrange, vpara, vunit) {
 		
 		$.ajax({
@@ -217,7 +215,7 @@ function RefreshGraphData(xIDX, vdesc, vtype, vrange, vpara, vunit) {
     
 }
 
-// create graph
+
 function createGraph(seriesData, vdesc, vunit) {
     
     $('#popup_graph').highcharts({
@@ -279,7 +277,7 @@ function createGraph(seriesData, vdesc, vunit) {
 			
 }
 
-// init some vars
+
 var var_sunrise, var_sunset;
 var IsNight = false;
 var error = 0;
@@ -337,7 +335,9 @@ function makeChange(idx,vdata,vdesc,dimstep)
 					var d = Math.round(1+parseInt(ui.value)/100*dimstep);
 					if( d < 0 )
 						d = 0;
-
+					
+				
+		
                 
                 $.ajax({
                         url: [$.domoticzurl,'/json.htm?type=command&param=switchlight&idx=',idx,'&switchcmd=Set Level&level=',d].join(''),
@@ -732,12 +732,7 @@ function RefreshData()
 											
 												if(vtype === 'SetPoint' && vplusmin > 0) {
 														val = ['<span style=',vattr,'>',vdata,'</span>'].join('');
-														if(vdata >= valarm) {
-															plus = ['<img src=icons/plusRed.png align=right vspace=4 width=30 onclick="ChangeTherm(\'plus\',',vplusmin,',',item.idx,',',vdata,',',valarm,',',item.Protected,')">'].join('');
-														}
-														else{
-															plus = ['<img src=icons/plus.png align=right vspace=4 width=30 onclick="ChangeTherm(\'plus\',',vplusmin,',',item.idx,',',vdata,',',valarm,',',item.Protected,')">'].join('');
-														}
+														plus = ['<img src=icons/plus.png align=right vspace=4 width=30 onclick="ChangeTherm(\'plus\',',vplusmin,',',item.idx,',',vdata,',',valarm,',',item.Protected,')">'].join('');
 														min = ['<img src=icons/min.png align=left vspace=4 width=30 onclick="ChangeTherm(\'min\',',vplusmin,',',item.idx,',',vdata,',',valarm,',',item.Protected,')">'].join('');
 														vdata = [min,val,plus].join('');
 														//console.log(vdata);
