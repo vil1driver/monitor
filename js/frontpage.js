@@ -1,4 +1,4 @@
-"use strict"; // this runs in strict mode (jslint)
+'use strict'; // this runs in strict mode (jslint)
 
 // wellcome
 console.log('\n','\n','\n');
@@ -11,7 +11,7 @@ if (!debug) {
 console.log = function() {};
 }
 
-// on document ready (start)
+// on document ready (Sequential load)
 $(function(){
 		
 	setTimeout(RefreshData, 150);
@@ -70,16 +70,17 @@ function lightbox_close(id){
 		clearTimeout(tempo);
 }
 
-// show security panel
+// show security panel popup
 function showPanel() {
 	$('#popup_secpanel').html(['<object type="text/html" data="',$.domoticzurl,'/secpanel/index.html" width="100%" height="100%"></object>'].join(''));
+	//$('#popup_secpanel').load('pages/secpanel.html');
 	$('#popup_secpanel').fadeIn(fad_Duration);
 	$('#fade').fadeIn(fad_Duration);
 	$('#fade').click(closePanel);
 	tempo = setTimeout(closePanel,60000);
 }
 
-// close security panel
+// close security panel popup
 function closePanel() {
 	$('#popup_secpanel').fadeOut(fad_Duration);
 	$('#fade').fadeOut(fad_Duration);
@@ -88,7 +89,7 @@ function closePanel() {
 	clearTimeout(tempo);
 }
 
-// show freebox remote
+// show freebox remote popup
 function showFreeRemote() {
 	$('#popup_freeRemote').fadeIn(fad_Duration);
 	$('#fade').fadeIn(fad_Duration);
@@ -96,7 +97,7 @@ function showFreeRemote() {
 	tempo = setTimeout(closeFreeRemote,60000);
 }
 
-// close freebox remote
+// close freebox remote popup
 function closeFreeRemote() {
 	$('#popup_freeRemote').fadeOut(fad_Duration);
 	$('#fade').fadeOut(fad_Duration);
@@ -104,7 +105,7 @@ function closeFreeRemote() {
 	clearTimeout(tempo);
 }
 
-// show range
+// show range popup
 function showRange() {
 	$('#popup_range').fadeIn(fad_Duration);
 	$('#fade').fadeIn(fad_Duration);
@@ -112,7 +113,7 @@ function showRange() {
 	tempo = setTimeout(closeRange,60000);
 }
 
-// close range
+// close range popup
 function closeRange() {
 	$('#popup_range').fadeOut(fad_Duration);
 	$('#fade').fadeOut(fad_Duration);
@@ -123,7 +124,7 @@ function closeRange() {
 // Load meteo widget
 function LoadMeteoWidget() {
 	
-	clearInterval($.refreshMeteoWidget);
+	//clearInterval($.refreshMeteoWidget);
 	
 	if (city === ''){
 		$('#popup_meteo0').html('<span>Veuillez indiquer votre ville dans les paramètres<br>exemple:<br>var city = \'paris\'</span>');	
@@ -144,9 +145,10 @@ function LoadMeteoWidget() {
 		$('#popup_meteo4').html(['<img src="http://www.yr.no/place/',place,'/avansert_meteogram.png?timestamp=',Date.now(),'" alt="Ville inconnue..">'].join(''));
 	}
 	
-	$.refreshMeteoWidget = setInterval(LoadMeteoWidget, 3600000); // reload every hours
+	
 }
 
+// get graph infos
 function RefreshGraphData(xIDX, vdesc, vtype, vrange, vpara, vunit) {
 		
 		$.ajax({
@@ -215,7 +217,7 @@ function RefreshGraphData(xIDX, vdesc, vtype, vrange, vpara, vunit) {
     
 }
 
-
+// create graph
 function createGraph(seriesData, vdesc, vunit) {
     
     $('#popup_graph').highcharts({
@@ -277,7 +279,7 @@ function createGraph(seriesData, vdesc, vunit) {
 			
 }
 
-
+// init some vars
 var var_sunrise, var_sunset;
 var IsNight = false;
 var error = 0;
@@ -335,9 +337,7 @@ function makeChange(idx,vdata,vdesc,dimstep)
 					var d = Math.round(1+parseInt(ui.value)/100*dimstep);
 					if( d < 0 )
 						d = 0;
-					
-				
-		
+
                 
                 $.ajax({
                         url: [$.domoticzurl,'/json.htm?type=command&param=switchlight&idx=',idx,'&switchcmd=Set Level&level=',d].join(''),
@@ -374,19 +374,21 @@ function revert()
    istrue = false;
 }
 
+var refreshTimer;
 
 // Main Frontpage function
 function RefreshData()
 {
-        clearInterval($.refreshTimer);
+        
+		clearTimeout(refreshTimer);
 		console.log('%cPage refresh', 'color: blue','\n');
 		
 		
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 		
 	$.ajax({
-            url: [$.domoticzurl,'/json.htm?type=command&param=getSunRiseSet&jsoncallback=?'].join('')
-        }).done(function(data) {
+            url: [$.domoticzurl,'/json.htm?type=command&param=getSunRiseSet&jsoncallback=?'].join(''),
+        success: function(data) {
 		var one = new Date();
 		if (typeof data !== 'undefined') {
                         $.each(data, function(i,item){
@@ -555,26 +557,28 @@ function RefreshData()
 		one = new Date() - one;
 		console.log('Get sunset/background/clock/meteo: ' + one + 'ms');	
 		
-	}).fail(function() {
-		error += 1;
-		console.log(['ERROR connect to ',$.domoticzurl].join(''));
-		if( error >= 10 && $('#popup_offline').css('display') === 'none') 
-		{
-			$('#popup_offline').fadeIn(fad_Duration);
-			$('#fade2').fadeIn(fad_Duration);
+		},
+		error: function() {
+			error += 1;
+			console.log(['ERROR connect to ',$.domoticzurl].join(''));
+			if( error >= 10 && $('#popup_offline').css('display') === 'none') 
+			{
+				$('#popup_offline').fadeIn(fad_Duration);
+				$('#fade2').fadeIn(fad_Duration);
+			}
+			else{
+				RefreshData();
+			}	
+				
 		}
-		else{
-			RefreshData();
-		}	
-			
 	});
 	
 	
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 	
 		$.ajax({
-            url: [$.domoticzurl,'/json.htm?type=devices&plan=',$.roomplan,'&jsoncallback=?'].join('')
-        }).done(function(data) {
+            url: [$.domoticzurl,'/json.htm?type=devices&plan=',$.roomplan,'&jsoncallback=?'].join(''),
+			success: function(data) {
 		
 				var two = new Date();
 		                
@@ -603,7 +607,7 @@ function RefreshData()
 												var vls=  		item.LastUpdate;						// ´Last Seen´
 												var vdimmercurrent=  item.LevelInt;  				// What is the dim level
 												
-												
+													//console.log(item.Name+' : '+vdata);
 												if(vtype === 'Euro'){       
 													vdata=item.Data;
 												}
@@ -617,7 +621,7 @@ function RefreshData()
                                                         vdata= String(vdata).split("kWh",1)[0];
                                                         vdata= String(vdata).split("km",1)[0];
                                                         vdata= String(vdata).split("Liter",1)[0];
-                                                        vdata= String(vdata).split("V",1)[0];
+                                                        vdata= String(vdata).split(" V",1)[0];
                                                         vdata= String(vdata).split("%",1)[0];
                                                         vdata= String(vdata).split(" Level:",1)[0];
                                                         vdata= String(vdata).split("m3",1)[0];
@@ -626,9 +630,10 @@ function RefreshData()
                                                         vdata= String(vdata).replace("true","protected");
                                                 }
 												
-											//	console.log(item.Name+' : '+vdata);
+												//console.log(item.Name+' : '+vdata);
 												var switchclick='';
                                                 var alarmcss='';
+												var val, plus, min;
 												
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 						
@@ -654,11 +659,11 @@ function RefreshData()
 												}
 													
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
-											var val, plus, min;
+											
 											
                                             //Dimmer
                                             
-												if(vtype === 'Level' && item.SwitchType === 'Dimmer') {
+												else if(vtype === 'Level' && item.SwitchType === 'Dimmer') {
 														if (vstatus === 'Off') {
 															alarmcss=';color:#E24E2A;';	// text color dimmer percentage when OFF
 															vdata = txt_off;
@@ -711,7 +716,7 @@ function RefreshData()
 
 											// selector
 											
-												if(vtype === 'Level' && item.SwitchType === 'Selector') {
+												else if(vtype === 'Level' && item.SwitchType === 'Selector') {
 
 													// Tableau contenant le nom des levels
 													var mots = item.LevelNames.split("|");
@@ -730,9 +735,14 @@ function RefreshData()
 
 											//Thermostat
 											
-												if(vtype === 'SetPoint' && vplusmin > 0) {
+												else if(vtype === 'SetPoint' && vplusmin > 0) {
 														val = ['<span style=',vattr,'>',vdata,'</span>'].join('');
-														plus = ['<img src=icons/plus.png align=right vspace=4 width=30 onclick="ChangeTherm(\'plus\',',vplusmin,',',item.idx,',',vdata,',',valarm,',',item.Protected,')">'].join('');
+														if(vdata >= valarm) {
+															plus = ['<img src=icons/plusRed.png align=right vspace=4 width=30 onclick="ChangeTherm(\'plus\',',vplusmin,',',item.idx,',',vdata,',',valarm,',',item.Protected,')">'].join('');
+														}
+														else{
+															plus = ['<img src=icons/plus.png align=right vspace=4 width=30 onclick="ChangeTherm(\'plus\',',vplusmin,',',item.idx,',',vdata,',',valarm,',',item.Protected,')">'].join('');
+														}
 														min = ['<img src=icons/min.png align=left vspace=4 width=30 onclick="ChangeTherm(\'min\',',vplusmin,',',item.idx,',',vdata,',',valarm,',',item.Protected,')">'].join('');
 														vdata = [min,val,plus].join('');
 														//console.log(vdata);
@@ -743,7 +753,7 @@ function RefreshData()
 											
 											// blinds
 											
-												if (item.SwitchType === 'Blinds') {
+												else if (item.SwitchType === 'Blinds') {
 													if(vdata === 'Closed') {
 															var down = ['<img src=',$.domoticzurl,'/images/blinds48sel.png  hspace=1 width=40 onclick="SwitchToggle(',item.idx,', \'On\',',txt_blind_down,',',item.Protected,')">'].join('');
 															var up = ['<img src=',$.domoticzurl,'/images/blindsopen48.png  hspace=1 width=40 onclick="SwitchToggle(',item.idx,', \'Off\',',txt_blind_up,',',item.Protected,')">'].join('');
@@ -853,7 +863,7 @@ function RefreshData()
 											
 												// replace forecast (text) with an image
 												
-													if (vtype === 'ForecastStr'){
+													else if (vtype === 'ForecastStr'){
 														if (IsNight) {
 															
 																switch (vdata) {
@@ -925,6 +935,12 @@ function RefreshData()
 														}
 													}
 												
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+
+												// security panel keyboard popup
+												else if (item.SubType === 'Security Panel') {
+													switchclick = 'onclick="showPanel()"';
+												}												
 												
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////													
 												
@@ -976,13 +992,7 @@ function RefreshData()
 															
 													}
 												
-												
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 
-												// security panel keyboard popup
-												if (item.SubType === 'Security Panel') {
-													switchclick = 'onclick="showPanel()"';
-												}
 												
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////													
 
@@ -1346,7 +1356,8 @@ function RefreshData()
 		two = new Date() - two;
 		console.log('Get switchs: ' + two + 'ms');
 				
-        });
+        }
+	});
 		
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
@@ -1354,8 +1365,8 @@ function RefreshData()
 		// affichage de la partie scène/groupe
 		
 		$.ajax({
-            url: [$.domoticzurl,'/json.htm?type=scenes&plan=',$.roomplan,'&jsoncallback=?'].join('')
-        }).done(function(data) {
+            url: [$.domoticzurl,'/json.htm?type=scenes&plan=',$.roomplan,'&jsoncallback=?'].join(''),
+			success: function(data) {
 		
 				var three = new Date();
 		
@@ -1480,14 +1491,17 @@ function RefreshData()
 			console.log('Get scenes/groups: ' + three + 'ms');	
 			
 				
-        });
+        }
+	});
 		
 		
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////													
 		
 		      // affichage de la partie UserVariable
 
-      $.ajax({url: [$.domoticzurl,'/json.htm?type=command&param=getuservariables&jsoncallback=?'].join('')}).done(function(data) {
+      $.ajax({
+		url: [$.domoticzurl,'/json.htm?type=command&param=getuservariables&jsoncallback=?'].join(''),
+		success: function(data) {
       
          var four = new Date();
       
@@ -1540,9 +1554,10 @@ function RefreshData()
          console.log('Get user variable : ' + four + 'ms');   
          
             
-        });
+        }
+	});
 		
-        $.refreshTimer = setInterval(RefreshData, refresh); // auto refresh page
+        refreshTimer = setTimeout(RefreshData, refresh); 
 	
 }
 
@@ -2047,7 +2062,6 @@ function rss(feedUrl) {
 	//domoticz feed 'https://github.com/domoticz/domoticz/commits/master.atom';
 	$.ajax({
 	  url      : document.location.protocol + '//ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=10&callback=?&q=' + encodeURIComponent(feedUrl),
-	  dataType : 'json',
 	  success  : function (data) {
 		if (data.responseData.feed && data.responseData.feed.entries) {
 		  $.each(data.responseData.feed.entries, function (i, e) {
