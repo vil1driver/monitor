@@ -631,9 +631,7 @@ function RefreshData()
                                                 }
 												
 												//console.log(item.Name+' : '+vdata);
-												var switchclick='';
-                                                var alarmcss='';
-												var val, plus, min;
+												var switchclick, alarmcss, val, plus, min;
 												
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 						
@@ -665,11 +663,11 @@ function RefreshData()
                                             
 												else if(vtype === 'Level' && item.SwitchType === 'Dimmer') {
 														if (vstatus === 'Off') {
-															alarmcss=';color:#E24E2A;';	// text color dimmer percentage when OFF
+															alarmcss='color:#E24E2A;';	// text color dimmer percentage when OFF
 															vdata = txt_off;
 														}
 														else {
-															alarmcss=';color:#1B9772;';	// text color dimmer percentage when ON
+															alarmcss='color:#1B9772;';	// text color dimmer percentage when ON
 														}
 													
                                                         if (vdata === txt_off) {
@@ -974,7 +972,7 @@ function RefreshData()
 															}
 															else { 
 															vdata = txt_off;
-															alarmcss=';color:#E24E2A;';
+															alarmcss='color:#E24E2A;';
 															}
 													}
 													
@@ -987,7 +985,7 @@ function RefreshData()
 															}
 															else { 
 															vdata = txt_on;
-															alarmcss=';color:#1B9772;';
+															alarmcss='color:#1B9772;';
 															}
 															
 													}
@@ -1081,9 +1079,9 @@ function RefreshData()
                                                 // if alarm threshold is defined, make value red
 												
 													if (typeof valarm !== 'undefined' && vtype !== 'SetPoint') {
-														alarmcss='';
+														
 														if ( eval(valarm.replace(/x/g, "Number(vdata)")) ) {  
-															alarmcss=';color:red;';
+															alarmcss='color:red;';
 															if (blink && !$('#'+vlabel).hasClass("blink_me")) {
 																$('#'+vlabel).addClass('blink_me');
 															}		
@@ -1097,7 +1095,7 @@ function RefreshData()
 											
 												// // graphs and units and temps color 
 												
-													if(vtype === 'Temp' || vtype === 'Chill') {
+													if((vtype === 'Temp' || vtype === 'Chill') && alarmcss !== 'color:red;') {
 															 if (parseInt(vdata, 10) >= 35) { vattr=['color:',T35,';',vattr].join(''); } 
 														else if (parseInt(vdata, 10) >= 34) { vattr=['color:',T34,';',vattr].join(''); } 
 														else if (parseInt(vdata, 10) >= 33) { vattr=['color:',T33,';',vattr].join(''); } 
@@ -1135,9 +1133,14 @@ function RefreshData()
 														else if (parseInt(vdata, 10) >= 1) { vattr=['color:',T01,';',vattr].join(''); } 
 														else if (parseInt(vdata, 10) >= 0) { vattr=['color:',T00,';',vattr].join(''); }
 																					  else  { vattr=['color:',T000,';',vattr].join(''); }
-														// Adds °C after the temperature
-														vdata = ['<span onclick="RefreshGraphData(',item.idx,',\'',vdesc,'\',\'temp\',\'day\',\'te\',\'Température &#8451;\')">',vdata,'<sup style="font-size:50%;" >&#8451;</sup></span>'].join('');
 													}
+													else if((vtype === 'Temp' || vtype === 'Chill') && alarmcss === 'color:red;') {
+														vattr = undefined;
+													}
+													// Adds °C after the temperature
+													if(vtype === 'Temp' || vtype === 'Chill') {
+														vdata = ['<span onclick="RefreshGraphData(',item.idx,',\'',vdesc,'\',\'temp\',\'day\',\'te\',\'Température &#8451;\')">',vdata,'<sup style="font-size:50%;" >&#8451;</sup></span>'].join('');
+													}													
 																									
 													// Adds % after the humidity
 													else if(vtype === 'Humidity'){       
@@ -1228,13 +1231,19 @@ function RefreshData()
 																								
 												// if extra css attributes.
 												
-													if (typeof vattr === 'undefined') {
+													if (typeof alarmcss !== 'undefined' && typeof vattr === 'undefined') {
 														$(['#',vlabel].join('')).html(['<span ',switchclick,' style=',alarmcss,'>',vdata,'</span>'].join(''));
-													} 
-													else {
-														$(['#',vlabel].join('')).html(['<span ',switchclick,' style=',vattr,alarmcss,'>',vdata,'</span>'].join(''));
 													}
-													
+													else if (typeof alarmcss !== 'undefined' && typeof vattr !== 'undefined') {
+														$(['#',vlabel].join('')).html(['<span ',switchclick,' style=',vattr,';',alarmcss,'>',vdata,'</span>'].join(''));
+													}
+													else if (typeof alarmcss === 'undefined' && typeof vattr !== 'undefined') {
+														$(['#',vlabel].join('')).html(['<span ',switchclick,' style=',vattr,'>',vdata,'</span>'].join(''));
+													}
+													else if (typeof alarmcss === 'undefined' && typeof vattr === 'undefined') {
+														$(['#',vlabel].join('')).html(['<span ',switchclick,'>',vdata,'</span>'].join(''));
+													}
+																										
 													if ($(['#desc_',vlabel].join('')).length > 0) {
 														$(['#desc_',vlabel].join('')).html(vdesc);
 													}
@@ -1415,12 +1424,12 @@ function RefreshData()
 															vdesc = '';
 														}else {
 														vdata = txt_off;
-														alarmcss=';color:#E24E2A;';
+														alarmcss='color:#E24E2A;';
 														}
                                                 }
                                                 else if (vdata === 'On' ) {
                                                         switchclick = ['onclick="SceneToggle(',item.idx,', \'Off\',',txt_switch_off,',',item.Protected,')"'].join('');
-                                                        alarmcss=';color:#1B9772;';
+                                                        alarmcss='color:#1B9772;';
                                                         vdata = txt_on;
                                                 }
 												else if (vdata === 'Mixed' ) {
@@ -1466,12 +1475,19 @@ function RefreshData()
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////													
 
                                                 // if extra css attributes
-                                                if (typeof vattr === 'undefined') {
-                                                        $(['#',vlabel].join('')).html(['<span ',switchclick,' style=',alarmcss,'>',vdata,'</span>'].join(''));
-                                                }
-												else {
-                                                        $(['#',vlabel].join('')).html(['<span ',switchclick,' style=',vattr+alarmcss,'>',vdata,'</span>'].join(''));
-                                                }
+                                                
+												if (typeof alarmcss !== 'undefined' && typeof vattr === 'undefined') {
+													$(['#',vlabel].join('')).html(['<span ',switchclick,' style=',alarmcss,'>',vdata,'</span>'].join(''));
+												}
+												else if (typeof alarmcss !== 'undefined' && typeof vattr !== 'undefined') {
+													$(['#',vlabel].join('')).html(['<span ',switchclick,' style=',vattr,';',alarmcss,'>',vdata,'</span>'].join(''));
+												}
+												else if (typeof alarmcss === 'undefined' && typeof vattr !== 'undefined') {
+													$(['#',vlabel].join('')).html(['<span ',switchclick,' style=',vattr,'>',vdata,'</span>'].join(''));
+												}
+												else if (typeof alarmcss === 'undefined' && typeof vattr === 'undefined') {
+													$(['#',vlabel].join('')).html(['<span ',switchclick,'>',vdata,'</span>'].join(''));
+												}
 
                                                 if ($(['#desc_',vlabel].join('')).length > 0) {
 													$(['#desc_',vlabel].join('')).html(vdesc);
