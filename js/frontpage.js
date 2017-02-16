@@ -630,6 +630,12 @@ function RefreshData()
                                                         vdata= String(vdata).replace("true","protected");
                                                 }
 												
+												if (typeof vattr !== 'undefined') {
+													if (vattr === '') {
+														vattr = undefined;
+													}
+												}
+												
 												//console.log(item.Name+' : '+vdata);
 												var switchclick, alarmcss, val, plus, min;
 												
@@ -1095,7 +1101,10 @@ function RefreshData()
 											
 												// // graphs and units and temps color 
 												
-													if((vtype === 'Temp' || vtype === 'Chill') && alarmcss !== 'color:red;') {
+													if((vtype === 'Temp' || vtype === 'Chill') && alarmcss === 'color:red;') {
+														vattr = undefined;
+													}
+													else if((vtype === 'Temp' || vtype === 'Chill') && alarmcss !== 'color:red;' && typeof vattr !== 'undefined') {
 															 if (parseInt(vdata, 10) >= 35) { vattr=['color:',T35,';',vattr].join(''); } 
 														else if (parseInt(vdata, 10) >= 34) { vattr=['color:',T34,';',vattr].join(''); } 
 														else if (parseInt(vdata, 10) >= 33) { vattr=['color:',T33,';',vattr].join(''); } 
@@ -1134,9 +1143,46 @@ function RefreshData()
 														else if (parseInt(vdata, 10) >= 0) { vattr=['color:',T00,';',vattr].join(''); }
 																					  else  { vattr=['color:',T000,';',vattr].join(''); }
 													}
-													else if((vtype === 'Temp' || vtype === 'Chill') && alarmcss === 'color:red;') {
-														vattr = undefined;
+													else if((vtype === 'Temp' || vtype === 'Chill') && alarmcss !== 'color:red;' && typeof vattr === 'undefined') {
+															 if (parseInt(vdata, 10) >= 35) { vattr=['color:',T35].join(''); } 
+														else if (parseInt(vdata, 10) >= 34) { vattr=['color:',T34].join(''); } 
+														else if (parseInt(vdata, 10) >= 33) { vattr=['color:',T33].join(''); } 
+														else if (parseInt(vdata, 10) >= 32) { vattr=['color:',T32].join(''); } 
+														else if (parseInt(vdata, 10) >= 31) { vattr=['color:',T31].join(''); } 
+														else if (parseInt(vdata, 10) >= 30) { vattr=['color:',T30].join(''); } 
+														else if (parseInt(vdata, 10) >= 29) { vattr=['color:',T29].join(''); } 
+														else if (parseInt(vdata, 10) >= 28) { vattr=['color:',T28].join(''); } 
+														else if (parseInt(vdata, 10) >= 27) { vattr=['color:',T27].join(''); } 
+														else if (parseInt(vdata, 10) >= 26) { vattr=['color:',T26].join(''); } 
+														else if (parseInt(vdata, 10) >= 25) { vattr=['color:',T25].join(''); } 
+														else if (parseInt(vdata, 10) >= 24) { vattr=['color:',T24].join(''); } 
+														else if (parseInt(vdata, 10) >= 23) { vattr=['color:',T23].join(''); } 
+														else if (parseInt(vdata, 10) >= 22) { vattr=['color:',T22].join(''); } 
+														else if (parseInt(vdata, 10) >= 21) { vattr=['color:',T21].join(''); } 
+														else if (parseInt(vdata, 10) >= 20) { vattr=['color:',T20].join(''); } 
+														else if (parseInt(vdata, 10) >= 19) { vattr=['color:',T19].join(''); } 
+														else if (parseInt(vdata, 10) >= 18) { vattr=['color:',T18].join(''); } 
+														else if (parseInt(vdata, 10) >= 17) { vattr=['color:',T17].join(''); } 
+														else if (parseInt(vdata, 10) >= 16) { vattr=['color:',T16].join(''); } 
+														else if (parseInt(vdata, 10) >= 15) { vattr=['color:',T15].join(''); } 
+														else if (parseInt(vdata, 10) >= 14) { vattr=['color:',T14].join(''); } 
+														else if (parseInt(vdata, 10) >= 13) { vattr=['color:',T13].join(''); } 
+														else if (parseInt(vdata, 10) >= 12) { vattr=['color:',T12].join(''); } 
+														else if (parseInt(vdata, 10) >= 11) { vattr=['color:',T11].join(''); } 
+														else if (parseInt(vdata, 10) >= 10) { vattr=['color:',T10].join(''); } 
+														else if (parseInt(vdata, 10) >= 9) { vattr=['color:',T09].join(''); } 
+														else if (parseInt(vdata, 10) >= 8) { vattr=['color:',T08].join(''); } 
+														else if (parseInt(vdata, 10) >= 7) { vattr=['color:',T07].join(''); } 
+														else if (parseInt(vdata, 10) >= 6) { vattr=['color:',T06].join(''); } 
+														else if (parseInt(vdata, 10) >= 5) { vattr=['color:',T05].join(''); } 
+														else if (parseInt(vdata, 10) >= 4) { vattr=['color:',T04].join(''); } 
+														else if (parseInt(vdata, 10) >= 3) { vattr=['color:',T03].join(''); } 
+														else if (parseInt(vdata, 10) >= 2) { vattr=['color:',T02].join(''); } 
+														else if (parseInt(vdata, 10) >= 1) { vattr=['color:',T01].join(''); } 
+														else if (parseInt(vdata, 10) >= 0) { vattr=['color:',T00].join(''); }
+																					  else  { vattr=['color:',T000].join(''); }
 													}
+													
 													// Adds °C after the temperature
 													if(vtype === 'Temp' || vtype === 'Chill') {
 														vdata = ['<span onclick="RefreshGraphData(',item.idx,',\'',vdesc,'\',\'temp\',\'day\',\'te\',\'Température &#8451;\')">',vdata,'<sup style="font-size:50%;" >&#8451;</sup></span>'].join('');
