@@ -1238,7 +1238,7 @@ function RefreshData()
 														$(['#',vlabel].join('')).html(['<span ',switchclick,' style=',vattr,';',alarmcss,'>',vdata,'</span>'].join(''));
 													}
 													else if (typeof alarmcss === 'undefined' && typeof vattr !== 'undefined') {
-														$(['#',vlabel].join('')).html(['<span ',switchclick,' style=',vattr,'>',vdata,'</span>'].join(''));
+														$(['#',vlabel].join('')).html(['<span ',switchclick,' style=',vattr,';>',vdata,'</span>'].join(''));
 													}
 													else if (typeof alarmcss === 'undefined' && typeof vattr === 'undefined') {
 														$(['#',vlabel].join('')).html(['<span ',switchclick,'>',vdata,'</span>'].join(''));
@@ -1483,7 +1483,7 @@ function RefreshData()
 													$(['#',vlabel].join('')).html(['<span ',switchclick,' style=',vattr,';',alarmcss,'>',vdata,'</span>'].join(''));
 												}
 												else if (typeof alarmcss === 'undefined' && typeof vattr !== 'undefined') {
-													$(['#',vlabel].join('')).html(['<span ',switchclick,' style=',vattr,'>',vdata,'</span>'].join(''));
+													$(['#',vlabel].join('')).html(['<span ',switchclick,' style=',vattr,';>',vdata,'</span>'].join(''));
 												}
 												else if (typeof alarmcss === 'undefined' && typeof vattr === 'undefined') {
 													$(['#',vlabel].join('')).html(['<span ',switchclick,'>',vdata,'</span>'].join(''));
