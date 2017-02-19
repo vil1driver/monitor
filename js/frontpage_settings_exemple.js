@@ -106,10 +106,28 @@ var debug = false;							// affichage des infos de debug dans la console (true/f
 		//$.domoticzurl = "http://192.168.22.100:8080";	// url de connection à domoticz (ex: http://paul:ochon@toto.com:8765)
 		$.domoticzurl = location.protocol + "//" + location.host;		// auto detect (location.protocol + "//paul:ochon@" + location.host)
 				
-        $.PageArray = [
+        $.PagesList = [
 		
-            
+			// ['html page name (location must be in 'monitor/pages/')','menu icon name (location must be in 'monitor/icons/menu/')],
 			
+				['clock.html','clock.png'],
+				['meteo.html','meteo.png'],
+				['pluie.html','pluie.png'],
+				['page1.html','light1.png'],
+				['page2.html','light2.png'],
+				['page3.html','light3.png'],
+				['page4.html','light4.png'],
+				['page5.html','chauffage.png'],
+				['trafic.html','map.png'],
+				['logs.html','log.png'],
+				['agenda.html','agenda.png'],
+		
+		
+		[]];
+
+
+        $.PageArray = [
+
 			//	['idx','value','cellule','description','1=lastseen 2=icon 3=both ou J+x(popup météo)','pas de thermostat','override css','Alarme ou valeur max de thermostat'],
 			
 	

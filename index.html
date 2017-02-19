@@ -28,25 +28,19 @@
 <div id='black'></div>
 <div id='slider' class='swipe'>
 <div class='swipe-wrap'>
-
-
-
-<!-- import pages  ( minimum 3 /!\ ) -->
-
-<div><script>  $('div').filter(':last').load("pages/clock.html");   </script></div>	<!-- clock -->
-<div><script>  $('div').filter(':last').load("pages/page1.html");   </script></div>	<!-- page 1 -->
-<div><script>  $('div').filter(':last').load("pages/page2.html");   </script></div>	<!-- page 2 -->
-<div><script>  $('div').filter(':last').load("pages/page3.html");   </script></div>	<!-- page 3 -->
-<div><script>  $('div').filter(':last').load("pages/page4.html");   </script></div>	<!-- page 4 -->
-<div><script>  $('div').filter(':last').load("pages/page5.html");   </script></div>	<!-- page 5 -->
-<div><script>  $('div').filter(':last').load("pages/meteo.html");   </script></div>	<!-- page meteo -->
-<div><script>  $('div').filter(':last').load("pages/pluie.html");   </script></div>	<!-- page pluie -->
-<div><script>  $('div').filter(':last').load('pages/trafic.html');   </script></div><!-- trafic -->
-<div><script>  $('div').filter(':last').load("pages/logs.html");   </script></div>	<!-- logs -->
-
-
-
 </div>
+<script>
+for( var n = 0, len = $.PagesList.length; n < len - 1; n++ )
+	{
+	$('.swipe-wrap').append('<div></div>');
+	$('div').filter(':last').load('pages/'+$.PagesList[n][0]);
+	if (n <= 8) {
+		$('#menu').append('<div onclick="mySwipe.slide('+$('div').filter(':last').index()+')"><img src="icons/menu/'+$.PagesList[n][1]+'"></div>');
+	} else {
+		$('#menu').append('<div class="autoHide" onclick="mySwipe.slide('+$('div').filter(':last').index()+')"><img src="icons/menu/'+$.PagesList[n][1]+'"></div>');
+	}
+}
+</script>
 </div>
 <div id="popup_switch"></div>
 <div id="popup_graph"></div>

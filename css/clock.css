@@ -32,7 +32,8 @@
 {
 	font-family: arimo;
 	font-weight: bold;
-	width: 245px;
+	/*width: 245px;*/
+	width: 225px;
 	padding: 5px;
 	border: 1px solid transparent;
 	border-radius: 0px;
@@ -51,7 +52,7 @@
 {
 	font-family: arimo;
 	font-weight: bold;
-	width: 151.5px;
+	width: 152px;
 	padding: 10px;
 	border: 1px solid transparent;
 	border-radius: 0px;
@@ -62,15 +63,12 @@
 	text-shadow: 1px 1px 4px black;
 }
 
-#clock17, #clock18, #clock20, #clock21
-{
-	width: 162px;
+#clock3
+{ 
+	line-height: 25px; 		
 }
 
-#clock19
-{ 
-	width: 184px; 
-}
+
 
 #clock15
 {
@@ -78,7 +76,8 @@
     width: 162px;
 	height: 58px;
 	margin-top: 150px;
-    margin-left: 130px;
+    /*margin-left: 130px;*/
+    margin-left: 110px;
 	font-family: arimo;
     font-weight: bold;
     color: #999;
@@ -94,7 +93,8 @@
     width: 162px;
 	height: 58px;
     margin-top: 295px;
-    margin-left: 130px;
+    /*margin-left: 130px;*/
+    margin-left: 110px;
 	font-family: arimo;
     font-weight: bold;
     color: #999;
@@ -108,7 +108,8 @@
 {
 	font-family: arimo;
 	font-weight: bold;
-	width: 404px;
+	/*width: 404px;*/
+	width: 330px;
 	padding: 10px;
 	border: 1px solid transparent;
 	border-radius: 0px;
@@ -122,13 +123,16 @@
 
 .up
 {
-	width: 415px;
+	/*width: 415px;*/
+	width: 382px;
 }
 
 .horloge 
 {
 	height: 400px;
-	margin: 40px auto;
+	/*margin: 40px auto;*/
+	margin-top: 40px;
+    margin-left: -15px;
 	position: relative;
 	width: 400px;
 /* 	border: 10px solid #3A5486; */

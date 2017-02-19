@@ -26,7 +26,8 @@
     color: #999;
     font-size: 40px;
     text-shadow: 1px 1px 4px black;
-    margin-left: 145px;
+    /*margin-left: 145px;*/
+    margin-left: 120px;
     width: 183px;
 	border: 1px solid transparent;
 	line-height: 60px; 
@@ -38,7 +39,8 @@
     position: absolute;
     width: 130px;
     height: 60px;
-    margin-left: 338px;
+    /*margin-left: 338px;*/
+    margin-left: 288px;
     margin-top: -210px;
     font-size: 40px;
 	font-family: arimo;
@@ -72,7 +74,8 @@
     position: absolute;
     width: 130px;
     height: 60px;
-    margin-left: 338px;
+    /*margin-left: 338px;*/
+    margin-left: 305px;
     margin-top: -141px;
     font-size: 40px;
 	font-family: arimo;
@@ -112,7 +115,8 @@
     font-size: 40px;
     text-shadow: 1px 1px 4px black;
     text-align: right;
-    margin-left: 338px;
+    /*margin-left: 338px;*/
+    margin-left: 305px;
     width: 130px;
 	border: 1px solid transparent;
 	line-height: 60px; 
@@ -122,7 +126,8 @@
 {
 	font-family: arimo;
 	font-weight: bold;
-	width: 454px;
+	/*width: 454px;*/
+	width: 420px;
 	padding: 10px;
 	border: 1px solid transparent;
  	box-shadow: 1px 1px 1px #999; 
@@ -140,7 +145,8 @@
  {
 	font-family: arimo;
 	font-weight: bold;
-	width: 162px;
+	/*width: 162px;*/
+	width: 152px;
 	padding: 10px;
 	border: 1px solid transparent;
 	border-radius: 0px;
@@ -154,7 +160,8 @@
 }
 #cell5_7, #cell5_12
 { 
-	width: 184px; 
+	/*width: 184px;*/ 
+	width: 154px; 
 }
 #desc_cell5_1, #desc_cell5_2, #desc_cell5_3, #desc_cell5_4
 {

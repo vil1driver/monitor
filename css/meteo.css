@@ -31,7 +31,8 @@
 {
 	font-family: arimo;
 	font-weight: bold;
-	width: 277px;
+	/*width: 277px;*/
+	width: 252px;
 	padding: 5px;
 /*	border: 1px solid #1E1E1F; */
 	border: 1px solid transparent;
@@ -45,12 +46,14 @@
 	
 }
 
+
 #meteo1, #meteo2, #meteo4, #meteo5, 
 #meteo6, #meteo7, #meteo8, #meteo9, #meteo10, #meteo11
 {
 	font-family: arimo;
 	font-weight: bold;
-	width: 162px;
+	/*width: 162px;*/
+	width: 152px;
 	padding: 10px;
 /*	border: 1px solid #1E1E1F; */
 	border: 1px solid transparent;
@@ -63,14 +66,33 @@
 	
 }
 
+#meteo4
+{
+	background: url("http://www.icone-png.com/png/11/10869.png") no-repeat center center;
+	background-size: cover;
+}
+
+#meteo5
+{
+	background: url("../icons/swimming.png") no-repeat center center;
+	background-size: cover;
+}
+
 #meteo7, #meteo8, #meteo9, #meteo10
 { 
-	width: 134px; 
+	/*width: 114px; */
+	width: 123px; 
 }
 
 #meteo6, #meteo11
 { 
-	width: 135px; 
+	/*width: 115px; */
+	width: 122px; 
+}
+
+#meteo1
+{ 
+	line-height: 25px; 		
 }
 
 #desc_jour0, #desc_jour1, #desc_jour2, #desc_jour3, 
@@ -112,7 +134,8 @@
 {
 	font-family: arimo;
 	font-weight: bold;
-	width: 46px;
+	/*width: 46px;*/
+	width: 41.6px;
 	padding: 10px;
 /*	border: 1px solid #1E1E1F; */
 	border: 1px solid transparent;
@@ -126,10 +149,12 @@
 
 #jour0, #jour1, #jour2, #jour3
 {
+	/*width: 55px;*/
 	width: 55px;
 	font-size:27px;
 	color:#F2DDB3;
 	text-align: left;
+	margin-top: -5px;
 }
 
 #sep

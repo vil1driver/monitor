@@ -39,7 +39,8 @@
 	font-family: arimo;
 	font-weight: bold;
 	
-	width: 277px;
+	/*width: 277px;*/
+	width: 252px;
 	padding: 5px;
 	border: 1px solid transparent;
 	border-radius: 0px;
@@ -58,7 +59,8 @@
 {
 	font-family: arimo;
 	font-weight: bold;
-	width: 162px;
+	/*width: 162px;*/
+	width: 152px;
 	padding: 10px;
 	border: 1px solid transparent;
 	border-radius: 0px;
@@ -92,6 +94,7 @@
  
 #cell4_8, #cell4_13, #cell4_18, #cell4_24 
 { 
-	width: 184px; 
+	/*width: 184px;*/ 
+	width: 154px; 
 }
 

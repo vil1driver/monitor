@@ -589,7 +589,7 @@ function RefreshData()
 							var ii = 0, len = $.PageArray.length;
 							jsKata.nofreeze.forloop(
 								  // the condition
-								  function() { return ii < len;  }, 
+								  function() { return ii < len - 1;  }, 
 								  // the incrementor
 								  function() { ii++; },
 								  // this is what will be executed
@@ -1435,7 +1435,7 @@ function RefreshData()
                             var ii = 0, len = $.PageArray_Scenes.length;
 							jsKata.nofreeze.forloop(
 								  // the condition
-								  function() { return ii < len;  }, 
+								  function() { return ii < len - 1;  }, 
 								  // the incrementor
 								  function() { ii++; },
 								  // this is what will be executed
@@ -1577,7 +1577,7 @@ function RefreshData()
                          var ii = 0, len = $.PageArray_UserVariable.length;
                jsKata.nofreeze.forloop(
                     // the condition
-                  function() { return ii < len;  }, 
+                  function() { return ii < len - 1;  }, 
                     // the incrementor
                   function() { ii++; },
                   // this is what will be executed
@@ -1638,7 +1638,7 @@ function GetCams()
 	    var ii = 0, len = $.PageArray.length;
 		jsKata.nofreeze.forloop(
 			  // the condition
-			  function() { return ii < len;  }, 
+			  function() { return ii < len - 1;  }, 
 			  // the incrementor
 			  function() { ii++; },
 			  // this is what will be executed

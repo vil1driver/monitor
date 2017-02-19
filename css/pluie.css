@@ -39,7 +39,8 @@
 {
 	font-family: arimo;
 	font-weight: bold;
-	width: 304px;
+	/*width: 304px;*/
+	width: 282px;
 	padding: 5px;
 	border: 1px solid #1E1E1F; 
 	border: 1px solid transparent;
@@ -63,7 +64,8 @@
      {
 	font-family: arimo;
 	font-weight: bold;
-	width: 134px;
+	/*width: 134px;*/
+	width: 123px;
 	padding: 10px;
 /*	border: 1px solid #ffffff; */
 	border: 1px solid transparent;

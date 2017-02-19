@@ -1,17 +1,22 @@
-﻿#map {
+﻿iframe
+{
+	border-width: 0;
 	/*width: 935px;*/
 	width: 885px;
 	height: 505px;
-}
-
-
-.avoid-clicks {
-  pointer-events: none;
+	frameborder: 0;
+	scrolling: no;
 }
 
 @media screen and (min-height: 610px) {
-    #map 
+	iframe
 	{
 		height: 590px;
 	}
 }
+
+.avoid-clicks 
+{
+pointer-events: none;
+}
+
