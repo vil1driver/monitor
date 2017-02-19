@@ -19,8 +19,8 @@ var txt_blind_stop = '\'Arrêt\'';
 var txt_wrong_code = 'Mot de pass erroné';
 
 // Change backgrounds images,size and brightness
-var bg_day = 'pissanli.jpg';			// image de fond le jour, laisser vide pour fond noir
-var bg_night = 'romantic.jpg';			// image de fond la nuit, laisser vide pour fond noir
+var bg_day = 'wallpaper/pissanli.jpg';			// image de fond le jour, laisser vide pour fond noir
+var bg_night = 'wallpaper/romantic.jpg';			// image de fond la nuit, laisser vide pour fond noir
 var bg_day_spring = '';									// image de fond pour la saison printemps
 var bg_night_spring = '';
 var bg_day_summer = '';									// image de fond pour la saison été
