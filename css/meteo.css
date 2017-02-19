@@ -66,18 +66,6 @@
 	
 }
 
-#meteo4
-{
-	background: url("http://www.icone-png.com/png/11/10869.png") no-repeat center center;
-	background-size: cover;
-}
-
-#meteo5
-{
-	background: url("../icons/swimming.png") no-repeat center center;
-	background-size: cover;
-}
-
 #meteo7, #meteo8, #meteo9, #meteo10
 { 
 	/*width: 114px; */
