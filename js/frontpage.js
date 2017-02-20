@@ -615,16 +615,16 @@ function RefreshData()
 												if (typeof vdata === 'undefined') {
                                                         vdata='?!';
                                                 }
-												else {
+												else if (item.SubType !== 'Text') {
                                                         // remove too much text
                                                         vdata= String(vdata).split("Watt",1)[0];
                                                         vdata= String(vdata).split("kWh",1)[0];
                                                         vdata= String(vdata).split("km",1)[0];
                                                         vdata= String(vdata).split("Liter",1)[0];
-                                                        //vdata= String(vdata).split("V",1)[0];
-														if (vdata.charAt(vdata.length - 1) == 'V') {
-														  vdata = vdata.substr(0, vdata.length - 1);
-														}
+                                                        vdata= String(vdata).split("V",1)[0];
+														//if (vdata.charAt(vdata.length - 1) == 'V') {
+														  //vdata = vdata.substr(0, vdata.length - 1);
+														//}
                                                         vdata= String(vdata).split("%",1)[0];
                                                         vdata= String(vdata).split(" Level:",1)[0];
                                                         vdata= String(vdata).split("m3",1)[0];
