@@ -120,6 +120,7 @@ var debug = false;							// affichage des infos de debug dans la console (true/f
 				['page5.html','chauffage.png'],
 				['trafic.html','map.png'],
 				['logs.html','log.png'],
+				['iframe.html','domoticz.png'],
 
 		
 		
