@@ -78,10 +78,6 @@
 	width: 122px; 
 }
 
-#meteo1
-{ 
-	line-height: 25px; 		
-}
 
 #desc_jour0, #desc_jour1, #desc_jour2, #desc_jour3, 
 #temp_day_0_1H00, #temp_day_0_3H00, #temp_day_0_5H00, #temp_day_0_7H00, #temp_day_0_9H00, #temp_day_0_11H00, 
