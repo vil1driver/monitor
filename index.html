@@ -34,11 +34,13 @@ for( var n = 0, len = $.PagesList.length; n < len - 1; n++ )
 	{
 	$('.swipe-wrap').append('<div></div>');
 	$('div').filter(':last').load('pages/'+$.PagesList[n][0]);
-	if (n <= 8) {
-		$('#menu').append('<div onclick="mySwipe.slide('+$('div').filter(':last').index()+')"><img src="icons/menu/'+$.PagesList[n][1]+'"></div>');
-	} else {
-		$('#menu').append('<div class="autoHide" onclick="mySwipe.slide('+$('div').filter(':last').index()+')"><img src="icons/menu/'+$.PagesList[n][1]+'"></div>');
-	}
+	if ( typeof($.PagesList[n][1]) !== 'undefined'){
+		if (n <= 8) {
+			$('#menu').append('<div onclick="mySwipe.slide('+$('div').filter(':last').index()+')"><img src="icons/menu/'+$.PagesList[n][1]+'"></div>');
+		} else {
+			$('#menu').append('<div class="autoHide" onclick="mySwipe.slide('+$('div').filter(':last').index()+')"><img src="icons/menu/'+$.PagesList[n][1]+'"></div>');
+		}
+	}	
 }
 </script>
 </div>

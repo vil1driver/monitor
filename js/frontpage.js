@@ -149,16 +149,10 @@ function LoadMeteoWidget() {
 }
 
 // get graph infos
-function RefreshGraphData(xIDX, vdesc, vtype, vrange, vpara, vunit) {
+function RefreshGraphData(divID, xIDX, vdesc, vtype, vrange, vpara, vunit) {
 		
 		$.ajax({
-            url: [$.domoticzurl,'/json.htm?type=graph&sensor=',vtype,'&idx=',xIDX,'&range=',vrange,'&jsoncallback=?'].join(''),
-            xIDX: xIDX,
-			vdesc: vdesc,
-			vtype: vtype,
-			vrange: vrange,
-            vunit: vunit,
-			vpara: vpara
+            url: [$.domoticzurl,'/json.htm?type=graph&sensor=',vtype,'&idx=',xIDX,'&range=',vrange,'&jsoncallback=?'].join('')
         }).done(function(data) {
             var arrData = [];
             var arrData2 = [];
@@ -211,16 +205,16 @@ function RefreshGraphData(xIDX, vdesc, vtype, vrange, vpara, vunit) {
 			}
 
 
-            createGraph(seriesData, vdesc, vunit);
+            createGraph(divID, seriesData, vdesc, vunit);
 			
         });
     
 }
 
 // create graph
-function createGraph(seriesData, vdesc, vunit) {
+function createGraph(divID, seriesData, vdesc, vunit) {
     
-    $('#popup_graph').highcharts({
+    $(divID).highcharts({
         chart: {
             backgroundColor: 'white',
             plotBackgroundColor: 'none',
@@ -275,8 +269,9 @@ function createGraph(seriesData, vdesc, vunit) {
         series: seriesData
     });
 	
-	lightbox_open('graph', 25400);
-			
+	if (divID === '#popup_graph'){
+		lightbox_open('graph', 25400);
+	}		
 }
 
 // init some vars
@@ -594,7 +589,7 @@ function RefreshData()
 								  function() { ii++; },
 								  // this is what will be executed
 								  function fct() {
-										if( $.PageArray[ii][0] === item.idx || $.PageArray[ii][0] === item.Name ) {         				// Domoticz idx number or device name
+										if ($.PageArray[ii][0] === item.idx || $.PageArray[ii][0] === item.Name) {	// Domoticz idx number or device name
                                                 var vtype=      $.PageArray[ii][1];             		// Domotitcz type (like Temp, Humidity)
                                                 var vlabel=     $.PageArray[ii][2];                     // cell number from HTML layout
                                                 var vdesc=      $.PageArray[ii][3];                     // description
@@ -666,8 +661,16 @@ function RefreshData()
 												}
 													
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
-											
-											
+
+											// graph
+
+												else if ( vtype === 'Graph' ) {
+													RefreshGraphData('#'+vlabel,item.idx,vdesc,lastseen,vplusmin,vattr,valarm);
+													vdata = vdesc = '';	
+												}
+												
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////			
+									
                                             //Dimmer
                                             
 												else if(vtype === 'Level' && item.SwitchType === 'Dimmer') {
@@ -1087,7 +1090,7 @@ function RefreshData()
 												
                                                 // if alarm threshold is defined, make value red
 												
-													if (typeof valarm !== 'undefined' && vtype !== 'SetPoint') {
+													if (typeof valarm !== 'undefined' && vtype !== 'SetPoint' && vtype !== 'Graph') {
 														
 														if ( eval(valarm.replace(/x/g, "Number(vdata)")) ) {  
 															alarmcss='color:red;';
@@ -1187,25 +1190,29 @@ function RefreshData()
 													}
 													
 													// Adds °C after the temperature
-													if(vtype === 'Temp' || vtype === 'Chill') {
-														vdata = ['<span onclick="RefreshGraphData(',item.idx,',\'',vdesc,'\',\'temp\',\'day\',\'te\',\'Température &#8451;\')">',vdata,'<sup style="font-size:50%;" >&#8451;</sup></span>'].join('');
+													if(vtype === 'Temp' || vtype === 'Chill' || vtype === 'DewPoint') {
+														vdata = ['<span onclick="RefreshGraphData(\'#popup_graph\',',item.idx,',\'',vdesc,'\',\'temp\',\'day\',\'te\',\'Température &#8451;\')">',vdata,'<sup style="font-size:50%;" >&#8451;</sup></span>'].join('');
 													}													
 																									
 													// Adds % after the humidity
 													else if(vtype === 'Humidity'){       
-														vdata = ['<span onclick="RefreshGraphData(',item.idx,',\'',vdesc,'\',\'temp\',\'day\',\'hu\',\'Humidité &#37;\')">',vdata,'<span style="font-size:50%;"> &#37;</span></span>'].join('');
+														vdata = ['<span onclick="RefreshGraphData(\'#popup_graph\',',item.idx,',\'',vdesc,'\',\'temp\',\'day\',\'hu\',\'Humidité &#37;\')">',vdata,'<span style="font-size:50%;"> &#37;</span></span>'].join('');
 													}
 													// Adds hPa after Barometer
 													else if(vtype === 'Barometer'){
-														vdata = ['<span onclick="RefreshGraphData(',item.idx,',\'',vdesc,'\',\'temp\',\'day\',\'ba\',\'Baromètre hpa\')">',vdata,'<span style="font-size:50%;"> hPa</span></span>'].join('');
+														vdata = ['<span onclick="RefreshGraphData(\'#popup_graph\',',item.idx,',\'',vdesc,'\',\'temp\',\'day\',\'ba\',\'Baromètre hpa\')">',vdata,'<span style="font-size:50%;"> hPa</span></span>'].join('');
 													}
 													// Adds Km/h after the wind
 													else if(vtype === 'Speed' || vtype === 'Gust'){       
-														vdata = ['<span onclick="RefreshGraphData(',item.idx,',\'',vdesc,'\',\'wind\',\'day\',\'sp\',\'Vitesse km/h\')">',vdata,'<span style="font-size:50%;"> km/h</span></span>'].join('');
+														vdata = ['<span onclick="RefreshGraphData(\'#popup_graph\',',item.idx,',\'',vdesc,'\',\'wind\',\'day\',\'sp\',\'Vitesse km/h\')">',vdata,'<span style="font-size:50%;"> km/h</span></span>'].join('');
+													}
+													// Adds mm/h after the rainrate
+													else if(vtype === 'RainRate'){       
+													vdata = ['<span onclick="RefreshGraphData(',item.idx,',\'',vdesc,'\',\'rainrate\',\'day\',\'mm/h\',\'Précipitations mm/h\')">',vdata,'<span style="font-size:50%;"> mm/h</span></span>'].join('');
 													}
 													// Adds mm after the rain
 													else if(item.Type === 'Rain'){       
-														vdata = ['<span onclick="RefreshGraphData(',item.idx,',\'',vdesc,'\',\'rain\',\'day\',\'mm\',\'Précipitations mm\')">',vdata,'<span style="font-size:50%;"> mm</span></span>'].join('');
+														vdata = ['<span onclick="RefreshGraphData(\'#popup_graph\',',item.idx,',\'',vdesc,'\',\'rain\',\'day\',\'mm\',\'Précipitations mm\')">',vdata,'<span style="font-size:50%;"> mm</span></span>'].join('');
 													}
 													// Adds UVI after UV
 													else if(item.Type === 'UV'){
@@ -1217,18 +1224,18 @@ function RefreshData()
 													}
 													// Adds % after percentage
 													else if(vtype === 'Data' && item.SubType === 'Percentage'){       
-														vdata = ['<span onclick="RefreshGraphData(',item.idx,',\'',vdesc,'\',\'Percentage\',\'day\',\'v\',\'Pourcentage &#37;\')">',Math.ceil(vdata),'<span style="font-size:50%;"> &#37;</span></span>'].join('');
+														vdata = ['<span onclick="RefreshGraphData(\'#popup_graph\',',item.idx,',\'',vdesc,'\',\'Percentage\',\'day\',\'v\',\'Pourcentage &#37;\')">',Math.ceil(vdata),'<span style="font-size:50%;"> &#37;</span></span>'].join('');
 													}
 													// Adds % after Leaf Wetness
 													else if(vtype === 'Data' && item.SubType === 'Leaf Wetness'){
-														vdata = ['<span onclick="RefreshGraphData(',item.idx,',\'',vdesc,'\',\'Leaf Wetness\',\'day\',\'v\',\'Pourcentage &#37;\')">',Math.ceil(vdata),'<span style="font-size:50%;"> &#37;</span></span>'].join('');
+														vdata = ['<span onclick="RefreshGraphData(\'#popup_graph\',',item.idx,',\'',vdesc,'\',\'Leaf Wetness\',\'day\',\'v\',\'Pourcentage &#37;\')">',Math.ceil(vdata),'<span style="font-size:50%;"> &#37;</span></span>'].join('');
 													}
 													// Adds Watt after the Usage
 													else if((vtype === 'Usage' || vtype === 'Data') && (item.SubType === 'Energy' || item.SubType === 'CM119 / CM160' || item.SubType === 'CM180' || item.SubType === 'kWh' || item.SubType === 'Electric')){       
 														if(item.Type === 'P1 Smart Meter') {
-															vdata = ['<span onclick="RefreshGraphData(',item.idx,',\'',vdesc,'\',\'counter\',\'day\',\'p1\',\'Electricité Watt\')">',Math.ceil(vdata),'<span style="font-size:50%;"> Watt</span></span>'].join('');
+															vdata = ['<span onclick="RefreshGraphData(\'#popup_graph\',',item.idx,',\'',vdesc,'\',\'counter\',\'day\',\'p1\',\'Electricité Watt\')">',Math.ceil(vdata),'<span style="font-size:50%;"> Watt</span></span>'].join('');
 														}else{	
-															vdata = ['<span onclick="RefreshGraphData(',item.idx,',\'',vdesc,'\',\'counter&method=1\',\'day\',\'v\',\'Electricité Watt\')">',Math.ceil(vdata),'<span style="font-size:50%;"> Watt</span></span>'].join('');
+															vdata = ['<span onclick="RefreshGraphData(\'#popup_graph\',',item.idx,',\'',vdesc,'\',\'counter&method=1\',\'day\',\'v\',\'Electricité Watt\')">',Math.ceil(vdata),'<span style="font-size:50%;"> Watt</span></span>'].join('');
 														}
 													}
 													// Adds Kwh after the CounterToday
@@ -1268,11 +1275,11 @@ function RefreshData()
 													}
 													// graph for counter without unit
 													else if(item.Type === 'RFXMeter' && item.SwitchTypeVal == '3'){       
-														vdata = ['<span onclick="RefreshGraphData(',item.idx,',\'',vdesc,'\',\'counter\',\'day\',\'v\',\'Compteur\')">',vdata,'</span>'].join('');
+														vdata = ['<span onclick="RefreshGraphData(\'#popup_graph\',',item.idx,',\'',vdesc,'\',\'counter\',\'day\',\'v\',\'Compteur\')">',vdata,'</span>'].join('');
 													}
 													// adds V after voltage
 													else if(vtype === 'Voltage' || item.SubType === 'Voltage'){       
-														vdata = ['<span onclick="RefreshGraphData(',item.idx,',\'',vdesc,'\',\'counter\',\'day\',\'v\',\'Tension V\')">',Math.ceil(vdata*100)/100,'<span style="font-size:50%;"> V</span></span>'].join('');
+														vdata = ['<span onclick="RefreshGraphData(\'#popup_graph\',',item.idx,',\'',vdesc,'\',\'counter\',\'day\',\'v\',\'Tension V\')">',Math.ceil(vdata*100)/100,'<span style="font-size:50%;"> V</span></span>'].join('');
 													}
 												
 												
@@ -1280,19 +1287,21 @@ function RefreshData()
 																								
 												// if extra css attributes.
 												
-													if (typeof alarmcss !== 'undefined' && typeof vattr === 'undefined') {
-														$(['#',vlabel].join('')).html(['<span ',switchclick,' style=',alarmcss,'>',vdata,'</span>'].join(''));
+													if (vtype !== 'Graph') {
+														if (typeof alarmcss !== 'undefined' && typeof vattr === 'undefined') {
+															$(['#',vlabel].join('')).html(['<span ',switchclick,' style=',alarmcss,'>',vdata,'</span>'].join(''));
+														}
+														else if (typeof alarmcss !== 'undefined' && typeof vattr !== 'undefined') {
+															$(['#',vlabel].join('')).html(['<span ',switchclick,' style=',vattr,';',alarmcss,'>',vdata,'</span>'].join(''));
+														}
+														else if (typeof alarmcss === 'undefined' && typeof vattr !== 'undefined') {
+															$(['#',vlabel].join('')).html(['<span ',switchclick,' style=',vattr,';>',vdata,'</span>'].join(''));
+														}
+														else if (typeof alarmcss === 'undefined' && typeof vattr === 'undefined') {
+															$(['#',vlabel].join('')).html(['<span ',switchclick,'>',vdata,'</span>'].join(''));
+														}
 													}
-													else if (typeof alarmcss !== 'undefined' && typeof vattr !== 'undefined') {
-														$(['#',vlabel].join('')).html(['<span ',switchclick,' style=',vattr,';',alarmcss,'>',vdata,'</span>'].join(''));
-													}
-													else if (typeof alarmcss === 'undefined' && typeof vattr !== 'undefined') {
-														$(['#',vlabel].join('')).html(['<span ',switchclick,' style=',vattr,';>',vdata,'</span>'].join(''));
-													}
-													else if (typeof alarmcss === 'undefined' && typeof vattr === 'undefined') {
-														$(['#',vlabel].join('')).html(['<span ',switchclick,'>',vdata,'</span>'].join(''));
-													}
-																										
+													
 													if ($(['#desc_',vlabel].join('')).length > 0) {
 														$(['#desc_',vlabel].join('')).html(vdesc);
 													}
@@ -1305,19 +1314,16 @@ function RefreshData()
                                                 var vlabel=     $.PageArray[ii][2];             // cell number from HTML layout
                                                 var vdesc = 	$.PageArray[ii][3];				// description (text in this case
 												var vattr=    $.PageArray[ii][6];             	// extra css attributes
-                                                var valarm=     '';             // alarm value to turn text to red
-												
+                                                												
 												$(['#',vlabel].join('')).html(['<span style=',vattr,'>',vdesc,'</span>'].join(''));
 												if ($(['#desc_',vlabel].join('')).length > 0) {
 													$(['#desc_',vlabel].join('')).empty();
 												}
 										}
-										else if ( $.PageArray[ii][1] === 'FreeRemote' ) { 			//Special nummer, link in cell (test)
+										else if ( $.PageArray[ii][1] === 'FreeRemote' ) { 		//Special nummer, link in cell (test)
                                                 var vlabel=     $.PageArray[ii][2];             // cell number from HTML layout
                                                 var vdesc = 	$.PageArray[ii][3];				// description (text in this case
-												var vattr=    $.PageArray[ii][6];             	// extra css attributes
-                                                var valarm=     '';             // alarm value to turn text to red
-												
+																								
 												$(['#',vlabel].join('')).html('<img src="icons/freeRemote.png" width=48 height=48 onclick="showFreeRemote()"></img>');
 												if ($(['#desc_',vlabel].join('')).length > 0) {
 													$(['#desc_',vlabel].join('')).html(vdesc);
@@ -1325,9 +1331,7 @@ function RefreshData()
 										}
 										else if ( $.PageArray[ii][1] === 'Hide' ) { 			//Special nummer, link in cell (test)
                                                 var vlabel=     $.PageArray[ii][2];             // cell number from HTML layout
-                                                var vdata=      $.PageArray[ii][3];             // description (link in this case
-                                                var valarm= '';             // alarm value to turn text to red
-                                                
+                                                                                                
 												$(['#',vlabel].join('')).empty();
                                                 if ($(['#desc_',vlabel].join('')).length > 0) {
 													$(['#desc_',vlabel].join('')).empty();
@@ -1336,8 +1340,7 @@ function RefreshData()
 										else if ( $.PageArray[ii][1] === 'Html' ) { 			//Special nummer, link in cell (test)
                                                 var vlabel=     $.PageArray[ii][2];             // cell number from HTML layout
                                                 var vdata=      $.PageArray[ii][3];             // description (link in this case
-                                                var valarm=  '';             // alarm value to turn text to red
-                                                
+                                                                                                
                                                 $(['#',vlabel].join('')).html(vdata);
                                                 if ($(['#desc_',vlabel].join('')).length > 0) {
 													$(['#desc_',vlabel].join('')).empty();
@@ -1347,8 +1350,7 @@ function RefreshData()
                                                 var vlabel=     $.PageArray[ii][2];             // cell number from HTML layout
                                                 var vdata=      currentTime();             		// Get present time
                                                 var vattr=    $.PageArray[ii][6];             	// extra css attributes
-                                                var valarm=   '';             // alarm value to turn text to red
-                                                
+                                                                                                
                                                 $(['#',vlabel].join('')).html(['<span style=',vattr,'>',vdata,'</span>'].join(''));
                                                 if ($(['#desc_',vlabel].join('')).length > 0) {
 													$(['#desc_',vlabel].join('')).empty();
@@ -1358,19 +1360,17 @@ function RefreshData()
                                                 var vlabel=     $.PageArray[ii][2];             // cell number from HTML layout
                                                 var vdata=      currentDate();             		// Get present time
                                                 var vattr=    $.PageArray[ii][6];             	// extra css attributes
-                                                var valarm=    '';             // alarm value to turn text to red
-                                                
+                                                                                                
                                                 $(['#',vlabel].join('')).html(['<span style=',vattr,'>',vdata,'</span>'].join(''));
                                                 if ($(['#desc_',vlabel].join('')).length > 0) {
 													$(['#desc_',vlabel].join('')).empty();
 												}	 
 										}
-										else if ( $.PageArray[ii][1] === 'MonthYear' ) { 			//Special nummer, Date in cell (test)
+										else if ( $.PageArray[ii][1] === 'MonthYear' ) { 		//Special nummer, Date in cell (test)
                                                 var vlabel=     $.PageArray[ii][2];             // cell number from HTML layout
-                                                var vdata=      currentMonthYear();             		// Get present time
+                                                var vdata=      currentMonthYear();             // Get present time
                                                 var vattr=    $.PageArray[ii][6];             	// extra css attributes
-                                                var valarm=   '';             // alarm value to turn text to red
-                                                
+                                                                                                
                                                 $(['#',vlabel].join('')).html(['<span style=',vattr,'>',vdata,'</span>'].join(''));
                                                 if ($(['#desc_',vlabel].join('')).length > 0) {
 													$(['#desc_',vlabel].join('')).empty();
@@ -1379,8 +1379,7 @@ function RefreshData()
                                         else if ( $.PageArray[ii][1] === 'SunRise' ) { 			//Special nummer, zonsop/onder in cell (test)
                                                 var vlabel=     $.PageArray[ii][2];             // cell number from HTML layout
                                                 var vattr=    $.PageArray[ii][6];             	// extra css attributes
-                                                var valarm=   '';             // alarm value to turn text to red
-
+                                                
                                                 $(['#',vlabel].join('')).html(['<span style=',vattr,'>',var_sunrise,'</span>'].join(''));
                                                 if ($(['#desc_',vlabel].join('')).length > 0) {
 													$(['#desc_',vlabel].join('')).html(txt_sunrise);
@@ -1389,8 +1388,7 @@ function RefreshData()
                                         else if ( $.PageArray[ii][1] === 'SunSet' ) { 			//Special nummer, zonsop/onder in cell (test)
                                                 var vlabel=     $.PageArray[ii][2];             // cell number from HTML layout
                                                 var vattr=    $.PageArray[ii][6];             	// extra css attributes
-                                                var valarm=    '';             // alarm value to turn text to red
-
+                                                
                                                 $(['#',vlabel].join('')).html(['<span style=',vattr,'>',var_sunset,'</span>'].join(''));
                                                 if ($(['#desc_',vlabel].join('')).length > 0) {
 													$(['#desc_',vlabel].join('')).html(txt_sunset);
@@ -1399,24 +1397,26 @@ function RefreshData()
                                         else if ( $.PageArray[ii][1] === 'SunBoth' ) { 			//Special nummer, zonsop/onder in cell (test)
                                                 var vlabel=     $.PageArray[ii][2];             // cell number from HTML layout
                                                 var vattr=    $.PageArray[ii][6];             	// extra css attributes
-                                                var valarm=   '';             // alarm value to turn text to red
-												
+                                                												
                                                 $(['#',vlabel].join('')).html(['<span style=',vattr,'><img src=icons/sun.png  height="15" width="15" style="PADDING-RIGHT: 2px;">',var_sunrise,'<img src=icons/moon.png  height="15" width="15" style="PADDING-LEFT: 15px;">',var_sunset,'</span>'].join(''));
                                                 if ($(['#desc_',vlabel].join('')).length > 0) {
 													$(['#desc_',vlabel].join('')).html(txt_sunboth);
 												} 
 										}
-                                
+										                                
 																		 
                                 });
                         }, { releaseObjects: true });
+						
+						
                 }
 		two = new Date() - two;
 		console.log('Get switchs: ' + two + 'ms');
 				
         }
 	});
-		
+	
+								
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
 											

@@ -281,6 +281,12 @@ img[alt] {
     margin-left: -430px;
     margin-top: -180px;      
 }
+.highcharts-container {
+	text-shadow: none;
+}
+.highcharts-background {
+	fill: #ffffff;
+}
 
 #popup_camera
 {
