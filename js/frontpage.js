@@ -174,12 +174,12 @@ function RefreshGraphData(divID, xIDX, vdesc, vtype, vrange, vpara, vunit) {
 				
 				seriesData = [{
 								data: arrData,
-								color: '#3333FF',
+								/* color: '#3333FF', */
 								borderWidth: 2
 							},
 							 {
 								data: arrData2,
-								color: '#0099FF',
+								/* color: '#0099FF', */
 								borderWidth: 2
 							}];
 			
@@ -199,7 +199,7 @@ function RefreshGraphData(divID, xIDX, vdesc, vtype, vrange, vpara, vunit) {
 				
 				seriesData = [{
 								data: arrData,
-								color: '#3333FF',
+								/* color: '#3333FF', */
 								borderWidth: 2
 							}];	
 			}
@@ -216,8 +216,8 @@ function createGraph(divID, seriesData, vdesc, vunit) {
     
     $(divID).highcharts({
         chart: {
-            backgroundColor: 'white',
-            plotBackgroundColor: 'none',
+            // backgroundColor: 'white',
+            // plotBackgroundColor: 'none',
             type: 'line',
             zoomType: 'none',
 			animation: false,
@@ -250,18 +250,18 @@ function createGraph(divID, seriesData, vdesc, vunit) {
             title: {
 
                 text: 'time',
-                style: {
+               /*  style: {
                     font: 'bold 13px Tahoma, sans-serif'
-                },
+                }, */
                 opposite: true
             }
         },
         yAxis: {
             title: {
                 text: vunit,
-                style: {
+                /* style: {
                     font: 'bold 13px Tahoma, sans-serif'
-                },
+                }, */
                 opposite: true
             }
         },

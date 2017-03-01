@@ -285,7 +285,18 @@ img[alt] {
 	text-shadow: none;
 }
 .highcharts-background {
-	fill: #ffffff;
+	fill: white;
+}
+.highcharts-axis-title {
+    font-family: Tahoma, sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+}
+.highcharts-color-0{
+	stroke: #3333FF;
+}
+.highcharts-color-1{
+	stroke: #0099FF;
 }
 
 #popup_camera
