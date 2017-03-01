@@ -1110,7 +1110,7 @@ function RefreshData()
 													if((vtype === 'Temp' || vtype === 'Chill') && alarmcss === 'color:red;') {
 														vattr = undefined;
 													}
-													else if((vtype === 'Temp' || vtype === 'Chill') && alarmcss !== 'color:red;' && typeof vattr !== 'undefined') {
+													else if((vtype === 'Temp' || vtype === 'Chill' || vtype === 'DewPoint') && alarmcss !== 'color:red;' && typeof vattr !== 'undefined') {
 															 if (parseInt(vdata, 10) >= 35) { vattr=['color:',T35,';',vattr].join(''); } 
 														else if (parseInt(vdata, 10) >= 34) { vattr=['color:',T34,';',vattr].join(''); } 
 														else if (parseInt(vdata, 10) >= 33) { vattr=['color:',T33,';',vattr].join(''); } 
@@ -1149,7 +1149,7 @@ function RefreshData()
 														else if (parseInt(vdata, 10) >= 0) { vattr=['color:',T00,';',vattr].join(''); }
 																					  else  { vattr=['color:',T000,';',vattr].join(''); }
 													}
-													else if((vtype === 'Temp' || vtype === 'Chill') && alarmcss !== 'color:red;' && typeof vattr === 'undefined') {
+													else if((vtype === 'Temp' || vtype === 'Chill' || vtype === 'DewPoint') && alarmcss !== 'color:red;' && typeof vattr === 'undefined') {
 															 if (parseInt(vdata, 10) >= 35) { vattr=['color:',T35].join(''); } 
 														else if (parseInt(vdata, 10) >= 34) { vattr=['color:',T34].join(''); } 
 														else if (parseInt(vdata, 10) >= 33) { vattr=['color:',T33].join(''); } 
