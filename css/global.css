@@ -37,7 +37,6 @@
 	display:none;
 }
 
-
 body,html
 {
     height: 95%;
@@ -45,6 +44,7 @@ body,html
 	padding: 10px 0px 0px 4px;
 	cursor: default;
 }
+
 
 @media screen and (min-height: 610px) {
     .autoHide {
@@ -56,6 +56,8 @@ body,html
 		padding: 5px 0px 0px 4px;
 	}
 }
+
+
 
 body
 {
@@ -281,6 +283,7 @@ img[alt] {
     margin-left: -430px;
     margin-top: -180px;      
 }
+
 .highcharts-container {
 	text-shadow: none;
 }
@@ -402,6 +405,44 @@ img[alt] {
     50% { opacity: 0.5; }
     100% { opacity: 1.0; }
 }
+
+.T35 { color: #FF0000;}                  
+.T34 { color: #FE1400;}
+.T33 { color: #FD2800;}
+.T32 { color: #FD3C00;}
+.T31 { color: #FC5000;}
+.T30 { color: #FC6500;}
+.T29 { color: #FC6F0A;}
+.T28 { color: #FC7A14;}
+.T27 { color: #FC841E;}
+.T26 { color: #FC8F28;}
+.T25 { color: #FC9A32;}
+.T24 { color: #FCA43C;}
+.T23 { color: #FCAF46;}
+.T22 { color: #FCB950;}
+.T21 { color: #FCC45A;}
+.T20 { color: #FCCF65;}                  
+.T19 { color: #FCD270;}
+.T18 { color: #FDD67B;}
+.T17 { color: #FDDA87;}
+.T16 { color: #FEDE92;}
+.T15 { color: #FFE29E;}
+.T14 { color: #F8E5A1;}
+.T13 { color: #F1E9A4;}
+.T12 { color: #EAEDA7;}
+.T11 { color: #E3F1AA;}
+.T10 { color: #DDF5AE;}
+.T9 { color: #D3F5B7;}
+.T8 { color: #CAF5C0;}
+.T7 { color: #C0F5C9;}
+.T6 { color: #B7F5D2;}
+.T5 { color: #AEF5DC;}
+.T4 { color: #AEF1E1;}
+.T3 { color: #AEEDE6;}
+.T2 { color: #AEEAEB;}
+.T1 { color: #AEE6F0;}
+.T0 { color: #AEE3F5;}
+.T00 { color: #EBF4F7;}   
 
 button.yellow{
 	-moz-box-shadow: 0px 1px 0px 0px #fff6af;

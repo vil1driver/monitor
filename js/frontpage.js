@@ -474,23 +474,12 @@ function RefreshData()
 																									
 		var h1 = today.getHours();
 		var m1 = today.getMinutes();
-														
-		var h2 = var_sunrise.substring(0, 2);
-		var m2 = var_sunrise.substring(3, 5);
-													
-		var h3 = var_sunset.substring(0, 2);
-		var m3 = var_sunset.substring(3, 5);
-													
-													
-		h2 = parseInt(h2, 10);
-		m2 = parseInt(m2, 10);
-		h3 = parseInt(h3, 10);
-		m3 = parseInt(m3, 10); 
-		
-		var t1 = (60 * h1) + m1;	// time
-		var t2 = (60 * h2) + m2;	// sunrise
-		var t3 = (60 * h3) + m3;	// sunset
-		
+		var h2 = var_sunrise.split(':');
+		var h3 = var_sunset.split(':');
+		var t1 = (60 * h1) + m1; // time
+		var t2 = (+h2[0] * 60) + +h2[1]; // sunrise
+		var t3 = (+h3[0] * 60) + +h3[1]; // sunset
+
 		if ( t1 > t3 || t1 < t2) {
 			// night
 			IsNight = true;
@@ -874,74 +863,11 @@ function RefreshData()
 												// replace forecast (text) with an image
 												
 													else if (vtype === 'ForecastStr'){
+														switchclick = ['onclick="lightbox_open(\'meteo',lastseen,'\',25400)"'].join('');
 														if (IsNight) {
-															
-																switch (vdata) {
-																	case 'Sunny':
-																		vdata = ['<img src=icons/meteo/night-clear.png width=155 height=155 onclick="lightbox_open(\'meteo',lastseen,'\', 25400)">'].join('');
-																		break;
-																	case 'Partly Cloudy':
-																		vdata = ['<img src=icons/meteo/night-partlycloudy.png width=155 height=155 onclick="lightbox_open(\'meteo',lastseen,'\', 25400)">'].join('');
-																		break;
-																	case 'Cloudy':
-																		vdata = ['<img src=icons/meteo/night-cloudy.png width=155 height=155 onclick="lightbox_open(\'meteo',lastseen,'\', 25400)">'].join('');
-																		break;
-																	case 'Clear':
-																		vdata = ['<img src=icons/meteo/night-clear.png width=155 height=155 onclick="lightbox_open(\'meteo',lastseen,'\', 25400)">'].join('');
-																		break;
-																	case 'Rain':
-																		vdata = ['<img src=icons/meteo/night-rain.png width=155 height=155 onclick="lightbox_open(\'meteo',lastseen,'\', 25400)">'].join('');
-																		break;
-																	case 'Snow':
-																		vdata = ['<img src=icons/meteo/night-snow.png width=155 height=155 onclick="lightbox_open(\'meteo',lastseen,'\', 25400)">'].join('');
-																		break;
-																	case 'Fog':
-																		vdata = ['<img src=icons/meteo/night-fog.png width=155 height=155 onclick="lightbox_open(\'meteo',lastseen,'\', 25400)">'].join('');
-																		break;
-																	case 'Hail':
-																		vdata = ['<img src=icons/meteo/night-hail.png width=155 height=155 onclick="lightbox_open(\'meteo',lastseen,'\', 25400)">'].join('');
-																		break;
-																	case 'Thunderstom':
-																		vdata = ['<img src=icons/meteo/night-thunder.png width=155 height=155 onclick="lightbox_open(\'meteo',lastseen,'\', 25400)">'].join('');
-																		break;
-																	case 'Sleet':
-																		vdata = ['<img src=icons/meteo/night-sleet.png width=155 height=155 onclick="lightbox_open(\'meteo',lastseen,'\', 25400)">'].join('');
-																		break;
-																}
-																
+															vdata = ['<img src=icons/meteo/night/',vdata.slice(0, 3),'.png width=155 height=155>'].join('');					
 														}else{
-																switch (vdata) {
-																	case 'Sunny':
-																		vdata = ['<img src=icons/meteo/day-sun.png width=155 height=155 onclick="lightbox_open(\'meteo',lastseen,'\', 25400)">'].join('');
-																		break;
-																	case 'Partly Cloudy':
-																		vdata = ['<img src=icons/meteo/day-partlycloudy.png width=155 height=155 onclick="lightbox_open(\'meteo',lastseen,'\', 25400)">'].join('');
-																		break;
-																	case 'Cloudy':
-																		vdata = ['<img src=icons/meteo/day-cloudy.png width=155 height=155 onclick="lightbox_open(\'meteo',lastseen,'\', 25400)">'].join('');
-																		break;
-																	case 'Clear':
-																		vdata = ['<img src=icons/meteo/day-sun.png width=155 height=155 onclick="lightbox_open(\'meteo',lastseen,'\', 25400)">'].join('');
-																		break;
-																	case 'Rain':
-																		vdata = ['<img src=icons/meteo/day-rain.png width=155 height=155 onclick="lightbox_open(\'meteo',lastseen,'\', 25400)">'].join('');
-																		break;
-																	case 'Snow':
-																		vdata = ['<img src=icons/meteo/day-snow.png width=155 height=155 onclick="lightbox_open(\'meteo',lastseen,'\', 25400)">'].join('');
-																		break;
-																	case 'Fog':
-																		vdata = ['<img src=icons/meteo/day-fog.png width=155 height=155 onclick="lightbox_open(\'meteo',lastseen,'\', 25400)">'].join('');
-																		break;
-																	case 'Hail':
-																		vdata = ['<img src=icons/meteo/day-hail.png width=155 height=155 onclick="lightbox_open(\'meteo',lastseen,'\', 25400)">'].join('');
-																		break;
-																	case 'Thunderstom':
-																		vdata = ['<img src=icons/meteo/day-thunder.png width=155 height=155 onclick="lightbox_open(\'meteo',lastseen,'\', 25400)">'].join('');
-																		break;
-																	case 'Sleet':
-																		vdata = ['<img src=icons/meteo/day-sleet.png width=155 height=155 onclick="lightbox_open(\'meteo',lastseen,'\', 25400)">'].join('');  
-																		break;
-																}
+															vdata = ['<img src=icons/meteo/day/',vdata.slice(0, 3),'.png width=155 height=155>'].join('');
 														}
 													}
 												
@@ -967,7 +893,10 @@ function RefreshData()
 													}
 													else if (typeof HumidityStatus[vdata] !== 'undefined') {
 														vdata = HumidityStatus[vdata];
-													}	
+													}
+													else if (vtype === 'DirectionStr') {
+														vdata = vdata.replace(new RegExp('W', 'g'), 'O');
+													}
 												
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////													
                                                 											
@@ -1105,137 +1034,66 @@ function RefreshData()
 											
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 											
-												// // graphs and units and temps color 
-												
-													if((vtype === 'Temp' || vtype === 'Chill') && alarmcss === 'color:red;') {
-														vattr = undefined;
-													}
-													else if((vtype === 'Temp' || vtype === 'Chill' || vtype === 'DewPoint') && alarmcss !== 'color:red;' && typeof vattr !== 'undefined') {
-															 if (parseInt(vdata, 10) >= 35) { vattr=['color:',T35,';',vattr].join(''); } 
-														else if (parseInt(vdata, 10) >= 34) { vattr=['color:',T34,';',vattr].join(''); } 
-														else if (parseInt(vdata, 10) >= 33) { vattr=['color:',T33,';',vattr].join(''); } 
-														else if (parseInt(vdata, 10) >= 32) { vattr=['color:',T32,';',vattr].join(''); } 
-														else if (parseInt(vdata, 10) >= 31) { vattr=['color:',T31,';',vattr].join(''); } 
-														else if (parseInt(vdata, 10) >= 30) { vattr=['color:',T30,';',vattr].join(''); } 
-														else if (parseInt(vdata, 10) >= 29) { vattr=['color:',T29,';',vattr].join(''); } 
-														else if (parseInt(vdata, 10) >= 28) { vattr=['color:',T28,';',vattr].join(''); } 
-														else if (parseInt(vdata, 10) >= 27) { vattr=['color:',T27,';',vattr].join(''); } 
-														else if (parseInt(vdata, 10) >= 26) { vattr=['color:',T26,';',vattr].join(''); } 
-														else if (parseInt(vdata, 10) >= 25) { vattr=['color:',T25,';',vattr].join(''); } 
-														else if (parseInt(vdata, 10) >= 24) { vattr=['color:',T24,';',vattr].join(''); } 
-														else if (parseInt(vdata, 10) >= 23) { vattr=['color:',T23,';',vattr].join(''); } 
-														else if (parseInt(vdata, 10) >= 22) { vattr=['color:',T22,';',vattr].join(''); } 
-														else if (parseInt(vdata, 10) >= 21) { vattr=['color:',T21,';',vattr].join(''); } 
-														else if (parseInt(vdata, 10) >= 20) { vattr=['color:',T20,';',vattr].join(''); } 
-														else if (parseInt(vdata, 10) >= 19) { vattr=['color:',T19,';',vattr].join(''); } 
-														else if (parseInt(vdata, 10) >= 18) { vattr=['color:',T18,';',vattr].join(''); } 
-														else if (parseInt(vdata, 10) >= 17) { vattr=['color:',T17,';',vattr].join(''); } 
-														else if (parseInt(vdata, 10) >= 16) { vattr=['color:',T16,';',vattr].join(''); } 
-														else if (parseInt(vdata, 10) >= 15) { vattr=['color:',T15,';',vattr].join(''); } 
-														else if (parseInt(vdata, 10) >= 14) { vattr=['color:',T14,';',vattr].join(''); } 
-														else if (parseInt(vdata, 10) >= 13) { vattr=['color:',T13,';',vattr].join(''); } 
-														else if (parseInt(vdata, 10) >= 12) { vattr=['color:',T12,';',vattr].join(''); } 
-														else if (parseInt(vdata, 10) >= 11) { vattr=['color:',T11,';',vattr].join(''); } 
-														else if (parseInt(vdata, 10) >= 10) { vattr=['color:',T10,';',vattr].join(''); } 
-														else if (parseInt(vdata, 10) >= 9) { vattr=['color:',T09,';',vattr].join(''); } 
-														else if (parseInt(vdata, 10) >= 8) { vattr=['color:',T08,';',vattr].join(''); } 
-														else if (parseInt(vdata, 10) >= 7) { vattr=['color:',T07,';',vattr].join(''); } 
-														else if (parseInt(vdata, 10) >= 6) { vattr=['color:',T06,';',vattr].join(''); } 
-														else if (parseInt(vdata, 10) >= 5) { vattr=['color:',T05,';',vattr].join(''); } 
-														else if (parseInt(vdata, 10) >= 4) { vattr=['color:',T04,';',vattr].join(''); } 
-														else if (parseInt(vdata, 10) >= 3) { vattr=['color:',T03,';',vattr].join(''); } 
-														else if (parseInt(vdata, 10) >= 2) { vattr=['color:',T02,';',vattr].join(''); } 
-														else if (parseInt(vdata, 10) >= 1) { vattr=['color:',T01,';',vattr].join(''); } 
-														else if (parseInt(vdata, 10) >= 0) { vattr=['color:',T00,';',vattr].join(''); }
-																					  else  { vattr=['color:',T000,';',vattr].join(''); }
-													}
-													else if((vtype === 'Temp' || vtype === 'Chill' || vtype === 'DewPoint') && alarmcss !== 'color:red;' && typeof vattr === 'undefined') {
-															 if (parseInt(vdata, 10) >= 35) { vattr=['color:',T35].join(''); } 
-														else if (parseInt(vdata, 10) >= 34) { vattr=['color:',T34].join(''); } 
-														else if (parseInt(vdata, 10) >= 33) { vattr=['color:',T33].join(''); } 
-														else if (parseInt(vdata, 10) >= 32) { vattr=['color:',T32].join(''); } 
-														else if (parseInt(vdata, 10) >= 31) { vattr=['color:',T31].join(''); } 
-														else if (parseInt(vdata, 10) >= 30) { vattr=['color:',T30].join(''); } 
-														else if (parseInt(vdata, 10) >= 29) { vattr=['color:',T29].join(''); } 
-														else if (parseInt(vdata, 10) >= 28) { vattr=['color:',T28].join(''); } 
-														else if (parseInt(vdata, 10) >= 27) { vattr=['color:',T27].join(''); } 
-														else if (parseInt(vdata, 10) >= 26) { vattr=['color:',T26].join(''); } 
-														else if (parseInt(vdata, 10) >= 25) { vattr=['color:',T25].join(''); } 
-														else if (parseInt(vdata, 10) >= 24) { vattr=['color:',T24].join(''); } 
-														else if (parseInt(vdata, 10) >= 23) { vattr=['color:',T23].join(''); } 
-														else if (parseInt(vdata, 10) >= 22) { vattr=['color:',T22].join(''); } 
-														else if (parseInt(vdata, 10) >= 21) { vattr=['color:',T21].join(''); } 
-														else if (parseInt(vdata, 10) >= 20) { vattr=['color:',T20].join(''); } 
-														else if (parseInt(vdata, 10) >= 19) { vattr=['color:',T19].join(''); } 
-														else if (parseInt(vdata, 10) >= 18) { vattr=['color:',T18].join(''); } 
-														else if (parseInt(vdata, 10) >= 17) { vattr=['color:',T17].join(''); } 
-														else if (parseInt(vdata, 10) >= 16) { vattr=['color:',T16].join(''); } 
-														else if (parseInt(vdata, 10) >= 15) { vattr=['color:',T15].join(''); } 
-														else if (parseInt(vdata, 10) >= 14) { vattr=['color:',T14].join(''); } 
-														else if (parseInt(vdata, 10) >= 13) { vattr=['color:',T13].join(''); } 
-														else if (parseInt(vdata, 10) >= 12) { vattr=['color:',T12].join(''); } 
-														else if (parseInt(vdata, 10) >= 11) { vattr=['color:',T11].join(''); } 
-														else if (parseInt(vdata, 10) >= 10) { vattr=['color:',T10].join(''); } 
-														else if (parseInt(vdata, 10) >= 9) { vattr=['color:',T09].join(''); } 
-														else if (parseInt(vdata, 10) >= 8) { vattr=['color:',T08].join(''); } 
-														else if (parseInt(vdata, 10) >= 7) { vattr=['color:',T07].join(''); } 
-														else if (parseInt(vdata, 10) >= 6) { vattr=['color:',T06].join(''); } 
-														else if (parseInt(vdata, 10) >= 5) { vattr=['color:',T05].join(''); } 
-														else if (parseInt(vdata, 10) >= 4) { vattr=['color:',T04].join(''); } 
-														else if (parseInt(vdata, 10) >= 3) { vattr=['color:',T03].join(''); } 
-														else if (parseInt(vdata, 10) >= 2) { vattr=['color:',T02].join(''); } 
-														else if (parseInt(vdata, 10) >= 1) { vattr=['color:',T01].join(''); } 
-														else if (parseInt(vdata, 10) >= 0) { vattr=['color:',T00].join(''); }
-																					  else  { vattr=['color:',T000].join(''); }
-													}
-													
+												// graphs and units and temps color 
+
 													// Adds °C after the temperature
-													if(vtype === 'Temp' || vtype === 'Chill' || vtype === 'DewPoint') {
-														vdata = ['<span onclick="RefreshGraphData(\'#popup_graph\',',item.idx,',\'',vdesc,'\',\'temp\',\'day\',\'te\',\'Température &#8451;\')">',vdata,'<sup style="font-size:50%;" >&#8451;</sup></span>'].join('');
-													}													
-																									
+													if (vtype === 'Temp' || vtype === 'Chill' || vtype === 'DewPoint') { 
+														var vtemp = 'T00';
+														if (parseInt(vdata, 10) >= 0) {
+															vtemp = ['T'+ parseInt(vdata, 10)];
+														}else if (parseInt(vdata, 10) >= 35) {
+															vtemp = 'T35';
+														}
+														switchclick = ['class="',vtemp,'" onclick="RefreshGraphData(\'#popup_graph\',',item.idx,',\'',vdesc,'\',\'temp\',\'day\',\'te\',\'Température &#8451;\')"'].join('');
+														vdata = [vdata,'<sup style="font-size:50%;" >&#8451;</sup>'].join('');
+													}
 													// Adds % after the humidity
-													else if(vtype === 'Humidity'){       
-														vdata = ['<span onclick="RefreshGraphData(\'#popup_graph\',',item.idx,',\'',vdesc,'\',\'temp\',\'day\',\'hu\',\'Humidité &#37;\')">',vdata,'<span style="font-size:50%;"> &#37;</span></span>'].join('');
+													else if (vtype === 'Humidity') {
+														switchclick = ['onclick="RefreshGraphData(\'#popup_graph\',',item.idx,',\'',vdesc,'\',\'temp\',\'day\',\'hu\',\'Humidité &#37;\')"'].join('');
+														vdata = [vdata,'<span style="font-size:50%;" > &#37;</span>'].join('');
 													}
 													// Adds hPa after Barometer
 													else if(vtype === 'Barometer'){
-														vdata = ['<span onclick="RefreshGraphData(\'#popup_graph\',',item.idx,',\'',vdesc,'\',\'temp\',\'day\',\'ba\',\'Baromètre hpa\')">',vdata,'<span style="font-size:50%;"> hPa</span></span>'].join('');
+														switchclick = ['onclick="RefreshGraphData(\'#popup_graph\',',item.idx,',\'',vdesc,'\',\'temp\',\'day\',\'ba\',\'Baromètre hpa\')"'].join('');
+														vdata = [vdata,'<span style="font-size:50%;"> hPa</span>'].join('');
 													}
 													// Adds Km/h after the wind
 													else if(vtype === 'Speed' || vtype === 'Gust'){       
-														vdata = ['<span onclick="RefreshGraphData(\'#popup_graph\',',item.idx,',\'',vdesc,'\',\'wind\',\'day\',\'sp\',\'Vitesse km/h\')">',vdata,'<span style="font-size:50%;"> km/h</span></span>'].join('');
+														switchclick = ['onclick="RefreshGraphData(\'#popup_graph\',',item.idx,',\'',vdesc,'\',\'wind\',\'day\',\'sp\',\'Vitesse km/h\')"'].join('');
+														vdata = [vdata,'<span style="font-size:50%;"> km/h</span>'].join('');
 													}
 													// Adds mm/h after the rainrate
 													else if(vtype === 'RainRate'){       
-													vdata = ['<span onclick="RefreshGraphData(',item.idx,',\'',vdesc,'\',\'rainrate\',\'day\',\'mm/h\',\'Précipitations mm/h\')">',vdata,'<span style="font-size:50%;"> mm/h</span></span>'].join('');
+														switchclick = ['onclick="RefreshGraphData(',item.idx,',\'',vdesc,'\',\'rainrate\',\'day\',\'mm/h\',\'Précipitations mm/h\')"'].join('');
+														vdata = [vdata,'<span style="font-size:50%;"> mm/h</span>'].join('');
 													}
 													// Adds mm after the rain
 													else if(item.Type === 'Rain'){       
-														vdata = ['<span onclick="RefreshGraphData(\'#popup_graph\',',item.idx,',\'',vdesc,'\',\'rain\',\'day\',\'mm\',\'Précipitations mm\')">',vdata,'<span style="font-size:50%;"> mm</span></span>'].join('');
+														switchclick = ['onclick="RefreshGraphData(\'#popup_graph\',',item.idx,',\'',vdesc,'\',\'rain\',\'day\',\'mm\',\'Précipitations mm\')"'].join('');
+														vdata = [vdata,'<span style="font-size:50%;"> mm</span>'].join('');
 													}
 													// Adds UVI after UV
 													else if(item.Type === 'UV'){
+														switchclick = ['onclick="RefreshGraphData(\'#popup_graph\',',item.idx,',\'',vdesc, '\',\'uv\',\'day\',\'uvi\',\'UV (uvi)\')"'].join('');
 														vdata = [vdata,'<span style="font-size:50%;"> UVI</span>'].join('');
 													}
 													// Adds lx after luminous flux
 													else if(item.Type === 'Lux'){       
 														vdata = [vdata,'<span style="font-size:50%;"> lx</span>'].join('');
 													}
-													// Adds % after percentage
-													else if(vtype === 'Data' && item.SubType === 'Percentage'){       
-														vdata = ['<span onclick="RefreshGraphData(\'#popup_graph\',',item.idx,',\'',vdesc,'\',\'Percentage\',\'day\',\'v\',\'Pourcentage &#37;\')">',Math.ceil(vdata),'<span style="font-size:50%;"> &#37;</span></span>'].join('');
-													}
-													// Adds % after Leaf Wetness
-													else if(vtype === 'Data' && item.SubType === 'Leaf Wetness'){
-														vdata = ['<span onclick="RefreshGraphData(\'#popup_graph\',',item.idx,',\'',vdesc,'\',\'Leaf Wetness\',\'day\',\'v\',\'Pourcentage &#37;\')">',Math.ceil(vdata),'<span style="font-size:50%;"> &#37;</span></span>'].join('');
+													// Adds % after percentage and Leaf Wetness
+													else if(vtype === 'Data' && (item.SubType === 'Percentage' || item.SubType === 'Leaf Wetness')){       
+														switchclick = ['onclick="RefreshGraphData(\'#popup_graph\',',item.idx,',\'',vdesc,'\',\'Percentage\',\'day\',\'v\',\'Pourcentage &#37;\')"'].join('');
+														vdata = [Math.ceil(vdata),'<span style="font-size:50%;"> &#37;</span>'].join('');
 													}
 													// Adds Watt after the Usage
 													else if((vtype === 'Usage' || vtype === 'Data') && (item.SubType === 'Energy' || item.SubType === 'CM119 / CM160' || item.SubType === 'CM180' || item.SubType === 'kWh' || item.SubType === 'Electric')){       
 														if(item.Type === 'P1 Smart Meter') {
-															vdata = ['<span onclick="RefreshGraphData(\'#popup_graph\',',item.idx,',\'',vdesc,'\',\'counter\',\'day\',\'p1\',\'Electricité Watt\')">',Math.ceil(vdata),'<span style="font-size:50%;"> Watt</span></span>'].join('');
+															switchclick = ['onclick="RefreshGraphData(\'#popup_graph\',',item.idx,',\'',vdesc,'\',\'counter\',\'day\',\'p1\',\'Electricité Watt\')"'].join('');
+															vdata = [Math.ceil(vdata),'<span style="font-size:50%;"> Watt</span>'].join('');
 														}else{	
-															vdata = ['<span onclick="RefreshGraphData(\'#popup_graph\',',item.idx,',\'',vdesc,'\',\'counter&method=1\',\'day\',\'v\',\'Electricité Watt\')">',Math.ceil(vdata),'<span style="font-size:50%;"> Watt</span></span>'].join('');
+															switchclick = ['onclick="RefreshGraphData(\'#popup_graph\',',item.idx,',\'',vdesc,'\',\'counter&method=1\',\'day\',\'v\',\'Electricité Watt\')"'].join('');
+															vdata = [Math.ceil(vdata),'<span style="font-size:50%;"> Watt</span>'].join('');
 														}
 													}
 													// Adds Kwh after the CounterToday
@@ -1267,19 +1125,22 @@ function RefreshData()
 													}
 													// Adds Watt/m² after solar radiation
 													else if(item.SubType === 'Solar Radiation'){
+														switchclick = ['onclick="RefreshGraphData(\'#popup_graph\',',item.idx,',\'',vdesc,'\',\'counter\',\'day\',\'v\',\'Radiations W/m&#178;\')"'].join('');
 														vdata = [vdata,'<span style="font-size:50%;"> W/m&#178;</span>'].join('');
 													}
 													// Adds km after visibility for WU
 													else if(item.SubType === 'Visibility'){
+														switchclick = ['onclick="RefreshGraphData(\'#popup_graph\',',item.idx,',\'', vdesc,'\',\'counter\',\'day\',\'v\',\'Visibilité Km\')"'].join('');
 														vdata = [vdata,'<span style="font-size:50%;"> km</span>'].join('');
 													}
 													// graph for counter without unit
 													else if(item.Type === 'RFXMeter' && item.SwitchTypeVal == '3'){       
-														vdata = ['<span onclick="RefreshGraphData(\'#popup_graph\',',item.idx,',\'',vdesc,'\',\'counter\',\'day\',\'v\',\'Compteur\')">',vdata,'</span>'].join('');
+														switchclick = ['onclick="RefreshGraphData(\'#popup_graph\',',item.idx,',\'',vdesc,'\',\'counter\',\'day\',\'v\',\'Compteur\')"'].join('');
 													}
 													// adds V after voltage
 													else if(vtype === 'Voltage' || item.SubType === 'Voltage'){       
-														vdata = ['<span onclick="RefreshGraphData(\'#popup_graph\',',item.idx,',\'',vdesc,'\',\'counter\',\'day\',\'v\',\'Tension V\')">',Math.ceil(vdata*100)/100,'<span style="font-size:50%;"> V</span></span>'].join('');
+														switchclick = ['onclick="RefreshGraphData(\'#popup_graph\',',item.idx,',\'',vdesc,'\',\'counter\',\'day\',\'v\',\'Tension V\')"'].join('');
+														vdata = [Math.ceil(vdata*100)/100,'<span style="font-size:50%;"> V</span>'].join('');
 													}
 												
 												

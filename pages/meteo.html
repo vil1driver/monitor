@@ -17,47 +17,15 @@ $( "#jour3").append( tab_jour[jour] );
 
 var JsonAddress = "http://www.prevision-meteo.ch/services/json/"+city;
 
-
 function color(temp) {
-	if (parseInt(temp, 10) >= 35) { return '<span style="color:'+T35+'">'+temp; } 
-	else if (parseInt(temp, 10) >= 34) { return '<span style="color:'+T34+'">'+temp; } 
-	else if (parseInt(temp, 10) >= 33) { return '<span style="color:'+T33+'">'+temp; } 
-	else if (parseInt(temp, 10) >= 32) { return '<span style="color:'+T32+'">'+temp; } 
-	else if (parseInt(temp, 10) >= 31) { return '<span style="color:'+T31+'">'+temp; } 
-	else if (parseInt(temp, 10) >= 30) { return '<span style="color:'+T30+'">'+temp; } 
-	else if (parseInt(temp, 10) >= 29) { return '<span style="color:'+T29+'">'+temp; } 
-	else if (parseInt(temp, 10) >= 28) { return '<span style="color:'+T28+'">'+temp; } 
-	else if (parseInt(temp, 10) >= 27) { return '<span style="color:'+T27+'">'+temp; } 
-	else if (parseInt(temp, 10) >= 26) { return '<span style="color:'+T26+'">'+temp; } 
-	else if (parseInt(temp, 10) >= 25) { return '<span style="color:'+T25+'">'+temp; } 
-	else if (parseInt(temp, 10) >= 24) { return '<span style="color:'+T24+'">'+temp; } 
-	else if (parseInt(temp, 10) >= 23) { return '<span style="color:'+T23+'">'+temp; } 
-	else if (parseInt(temp, 10) >= 22) { return '<span style="color:'+T22+'">'+temp; } 
-	else if (parseInt(temp, 10) >= 21) { return '<span style="color:'+T21+'">'+temp; } 
-	else if (parseInt(temp, 10) >= 20) { return '<span style="color:'+T20+'">'+temp; } 
-	else if (parseInt(temp, 10) >= 19) { return '<span style="color:'+T19+'">'+temp; } 
-	else if (parseInt(temp, 10) >= 18) { return '<span style="color:'+T18+'">'+temp; } 
-	else if (parseInt(temp, 10) >= 17) { return '<span style="color:'+T17+'">'+temp; } 
-	else if (parseInt(temp, 10) >= 16) { return '<span style="color:'+T16+'">'+temp; } 
-	else if (parseInt(temp, 10) >= 15) { return '<span style="color:'+T15+'">'+temp; } 
-	else if (parseInt(temp, 10) >= 14) { return '<span style="color:'+T14+'">'+temp; } 
-	else if (parseInt(temp, 10) >= 13) { return '<span style="color:'+T13+'">'+temp; } 
-	else if (parseInt(temp, 10) >= 12) { return '<span style="color:'+T12+'">'+temp; } 
-	else if (parseInt(temp, 10) >= 11) { return '<span style="color:'+T11+'">'+temp; } 
-	else if (parseInt(temp, 10) >= 10) { return '<span style="color:'+T10+'">'+temp; } 
-	else if (parseInt(temp, 10) >= 9) { return '<span style="color:'+T09+'">'+temp; } 
-	else if (parseInt(temp, 10) >= 8) { return '<span style="color:'+T08+'">'+temp; } 
-	else if (parseInt(temp, 10) >= 7) { return '<span style="color:'+T07+'">'+temp; } 
-	else if (parseInt(temp, 10) >= 6) { return '<span style="color:'+T06+'">'+temp; } 
-	else if (parseInt(temp, 10) >= 5) { return '<span style="color:'+T05+'">'+temp; } 
-	else if (parseInt(temp, 10) >= 4) { return '<span style="color:'+T04+'">'+temp; } 
-	else if (parseInt(temp, 10) >= 3) { return '<span style="color:'+T03+'">'+temp; } 
-	else if (parseInt(temp, 10) >= 2) { return '<span style="color:'+T02+'">'+temp; } 
-	else if (parseInt(temp, 10) >= 1) { return '<span style="color:'+T01+'">'+temp; } 
-	else if (parseInt(temp, 10) >= 0) { return '<span style="color:'+T00+'">'+temp; }
-	else  { return '<span style="color:'+T000+'">'+temp; }
-}																					  
-
+   var vtemp = 'T00';
+   if (parseInt(temp, 10) >= 0) {
+      vtemp = ['T'+parseInt(temp, 10)];
+    }else if (parseInt(temp, 10) >= 35) {
+      vtemp = 'T35';
+    }
+   return '<span class="'+vtemp+'">'+temp;
+}
 
 $.getJSON(JsonAddress, function (json) {
 	
