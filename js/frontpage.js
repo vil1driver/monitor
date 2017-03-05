@@ -1083,7 +1083,7 @@ function RefreshData()
 													}
 													// Adds % after percentage and Leaf Wetness
 													else if(vtype === 'Data' && (item.SubType === 'Percentage' || item.SubType === 'Leaf Wetness')){       
-														switchclick = ['onclick="RefreshGraphData(\'#popup_graph\',',item.idx,',\'',vdesc,'\',\'Percentage\',\'day\',\'v\',\'Pourcentage &#37;\')"'].join('');
+														switchclick = ['onclick="RefreshGraphData(\'#popup_graph\',',item.idx, ',\'', vdesc, '\',\'',item.SubType,'\',\'day\',\'v\',\'Pourcentage &#37;\')"'].join('');
 														vdata = [Math.ceil(vdata),'<span style="font-size:50%;"> &#37;</span>'].join('');
 													}
 													// Adds Watt after the Usage
