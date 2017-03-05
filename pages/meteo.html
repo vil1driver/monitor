@@ -18,13 +18,14 @@ $( "#jour3").append( tab_jour[jour] );
 var JsonAddress = "http://www.prevision-meteo.ch/services/json/"+city;
 
 function color(temp) {
-   var vtemp = 'T00';
-   if (parseInt(temp, 10) >= 0) {
-      vtemp = ['T'+parseInt(temp, 10)];
-    }else if (parseInt(temp, 10) >= 35) {
+	var vtemp = 'T00';
+	if (parseInt(temp, 10) >= 35) {
       vtemp = 'T35';
     }
-   return '<span class="'+vtemp+'">'+temp;
+	else if (parseInt(temp, 10) >= 0) {
+      vtemp = ['T'+parseInt(temp, 10)];
+    }
+	return '<span class="'+vtemp+'">'+temp;
 }
 
 $.getJSON(JsonAddress, function (json) {

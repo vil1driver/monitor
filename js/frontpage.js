@@ -1034,15 +1034,16 @@ function RefreshData()
 											
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 											
-												// graphs and units and temps color 
+												// graphs and units
 
-													// Adds °C after the temperature
+													// Adds °C after the temperature and color them
 													if (vtype === 'Temp' || vtype === 'Chill' || vtype === 'DewPoint') { 
 														var vtemp = 'T00';
-														if (parseInt(vdata, 10) >= 0) {
-															vtemp = ['T'+ parseInt(vdata, 10)];
-														}else if (parseInt(vdata, 10) >= 35) {
+														if (parseInt(vdata, 10) >= 35) {
 															vtemp = 'T35';
+														}
+														else if (parseInt(vdata, 10) >= 0) {
+															vtemp = ['T'+ parseInt(vdata, 10)];
 														}
 														switchclick = ['class="',vtemp,'" onclick="RefreshGraphData(\'#popup_graph\',',item.idx,',\'',vdesc,'\',\'temp\',\'day\',\'te\',\'Température &#8451;\')"'].join('');
 														vdata = [vdata,'<sup style="font-size:50%;" >&#8451;</sup>'].join('');
@@ -1083,7 +1084,7 @@ function RefreshData()
 													}
 													// Adds % after percentage and Leaf Wetness
 													else if(vtype === 'Data' && (item.SubType === 'Percentage' || item.SubType === 'Leaf Wetness')){       
-														switchclick = ['onclick="RefreshGraphData(\'#popup_graph\',',item.idx, ',\'', vdesc, '\',\'',item.SubType,'\',\'day\',\'v\',\'Pourcentage &#37;\')"'].join('');
+														switchclick = ['onclick="RefreshGraphData(\'#popup_graph\',',item.idx,',\'', vdesc,'\',\'',item.SubType,'\',\'day\',\'v\',\'Pourcentage &#37;\')"'].join('');
 														vdata = [Math.ceil(vdata),'<span style="font-size:50%;"> &#37;</span>'].join('');
 													}
 													// Adds Watt after the Usage
