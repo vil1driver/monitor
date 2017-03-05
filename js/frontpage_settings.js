@@ -71,6 +71,7 @@ var debug = false;							// affichage des infos de debug dans la console (true/f
 		
 			// ['html page name (location must be in 'monitor/pages/')','menu icon name (location must be in 'monitor/icons/menu/')],
 			
+				['slideshow.html'],
 				['iframe.html','domoticz.png'],
 				['clock.html','clock.png'],
 				['meteo.html','meteo.png'],
