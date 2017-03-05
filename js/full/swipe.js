@@ -654,8 +654,16 @@
 
     }
 
-    function begin() {
+    /* function begin() {
       interval = setTimeout(next, delay);
+    } */
+	function begin() {
+
+		if (options.direction == 'next') {
+			interval = setTimeout(next, delay);
+		} else if (options.direction == 'index') {
+			interval = setTimeout(function(){slide(0,speed);}, delay);
+		}
     }
 
     function stop() {
