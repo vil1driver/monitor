@@ -2,7 +2,7 @@
 
 // wellcome
 console.log('\n','\n','\n');
-console.log('%cWellcome on Monitor for Domoticz','color: blue; font-size:25px;','\n');
+console.log('%cWelcome on Monitor for Domoticz','color: blue; font-size:25px;','\n');
 console.log('%c    Big thanks to all contributors..','color: blue; font-size:19px;','\n','\n','\n');
 
 
@@ -488,9 +488,11 @@ function RefreshData()
 			
 				$('#black').css('background', ['rgba(0,0,0,',bg_nightBright,')'].join(''));
 				
+				var random = Math.round(Math.random()*(bg_count-1)+1);
 				document.body.style.background=['black url(icons/',bg_night,') no-repeat top center fixed'].join('');
+				//document.body.style.background=['black url(icons/',bg_night,random,'.jpg) no-repeat top center fixed'].join('');				
 				document.body.style.backgroundSize=bg_size;
-				
+
 			}
 			// night clock background
 			if ($('.horloge').length > 0) {
@@ -511,9 +513,11 @@ function RefreshData()
 			
 				$('#black').css('background', ['rgba(0,0,0,',bg_dayBright,')'].join(''));
 			
-			
+				var random = Math.round(Math.random()*(bg_count-1)+1);
 				document.body.style.background=['black url(icons/',bg_day,') no-repeat top center fixed'].join('');													
+				//document.body.style.background=['black url(icons/',bg_day,random,'.jpg) no-repeat top center fixed'].join('');													
 				document.body.style.backgroundSize=bg_size;
+				
 					
 			}
 			// day clock background
@@ -883,11 +887,11 @@ function RefreshData()
 												// traduction
 													var HumidityStatus = { "Wet": "Humide", "Comfortable": "Confortable", "ccc": "333" };
 													
-													if (vdata === 'Closed' && (item.SwitchType === 'Contact' || item.SwitchType === 'Door Lock')) {
+													if (vdata === 'Closed' && (item.SwitchType === 'Contact' || item.SwitchType === 'Door Contact')) {
 															vdata = txt_closed; 
 															vattr='color:#E24E2A';
 													}
-													else if (vdata === 'Open' && (item.SwitchType === 'Contact' || item.SwitchType === 'Door Lock')) {
+													else if (vdata === 'Open' && (item.SwitchType === 'Contact' || item.SwitchType === 'Door Contact')) {
 															vdata = txt_open;
 															vattr='color:#1B9772';
 													}
@@ -942,7 +946,7 @@ function RefreshData()
 															var icon_On = 'uvdark.png';
 															var icon_Off = 'uvsunny.png';
 														}
-														else if (item.SwitchType === 'Door Lock') {
+														else if (item.SwitchType === 'Door Contact') {
 															var icon_On = 'door48open.png';
 															var icon_Off = 'door48.png';
 														}
