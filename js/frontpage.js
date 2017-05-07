@@ -887,11 +887,11 @@ function RefreshData()
 												// traduction
 													var HumidityStatus = { "Wet": "Humide", "Comfortable": "Confortable", "ccc": "333" };
 													
-													if (vdata === 'Closed' && (item.SwitchType === 'Contact' || item.SwitchType === 'Door Contact')) {
+													if (vdata === 'Closed' && (item.SwitchType === 'Contact' || item.SwitchType === 'Door Contact' || item.SwitchType === 'Door Lock')) {
 															vdata = txt_closed; 
 															vattr='color:#E24E2A';
 													}
-													else if (vdata === 'Open' && (item.SwitchType === 'Contact' || item.SwitchType === 'Door Contact')) {
+													else if (vdata === 'Open' && (item.SwitchType === 'Contact' || item.SwitchType === 'Door Contact' || item.SwitchType === 'Door Lock')) {
 															vdata = txt_open;
 															vattr='color:#1B9772';
 													}
@@ -946,7 +946,7 @@ function RefreshData()
 															var icon_On = 'uvdark.png';
 															var icon_Off = 'uvsunny.png';
 														}
-														else if (item.SwitchType === 'Door Contact') {
+														else if (item.SwitchType === 'Door Contact' || item.SwitchType === 'Door Lock') {
 															var icon_On = 'door48open.png';
 															var icon_Off = 'door48.png';
 														}
