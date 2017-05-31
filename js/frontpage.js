@@ -488,7 +488,7 @@ function RefreshData()
 			
 				$('#black').css('background', ['rgba(0,0,0,',bg_nightBright,')'].join(''));
 				
-				var random = Math.round(Math.random()*(bg_count-1)+1);
+				//var random = Math.round(Math.random()*(bg_count-1)+1);
 				document.body.style.background=['black url(icons/',bg_night,') no-repeat top center fixed'].join('');
 				//document.body.style.background=['black url(icons/',bg_night,random,'.jpg) no-repeat top center fixed'].join('');				
 				document.body.style.backgroundSize=bg_size;
@@ -513,7 +513,7 @@ function RefreshData()
 			
 				$('#black').css('background', ['rgba(0,0,0,',bg_dayBright,')'].join(''));
 			
-				var random = Math.round(Math.random()*(bg_count-1)+1);
+				//var random = Math.round(Math.random()*(bg_count-1)+1);
 				document.body.style.background=['black url(icons/',bg_day,') no-repeat top center fixed'].join('');													
 				//document.body.style.background=['black url(icons/',bg_day,random,'.jpg) no-repeat top center fixed'].join('');													
 				document.body.style.backgroundSize=bg_size;
